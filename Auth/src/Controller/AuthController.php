@@ -42,13 +42,10 @@ class AuthController extends PageController
         meta()->setTag('format-detection', 'telephone=no');
         meta()->setTag('theme-color', '#0E91B7');
         // seo
-        meta()->setTitle('DDMSEO');
+        meta()->setTitle('Auth');
         meta()->setTag('description', 'Login');
         meta()->setTag('robots', 'noindex,nofollow');
         meta()->setLink('canonical', URL);
-        // dc terms
-        meta()->setTag('dcterms.rightsHolder', 'Andrew Mc Cormack');
-        meta()->setTag('dcterms.rights', 'Copyright '.date('Y').' Andrew Mc Cormack, All right reserved');
         // icons
         meta()->setLink('icon', url('favicon.ico'), ['type' => 'image/x-icon']);
         meta()->setLink('shortcut icon', url('favicon.ico'), ['type' => 'image/x-icon']);
