@@ -1,0 +1,2 @@
+Cobra\Auth\Authenticator\SessionAuthenticator:
+  active_token: active_token

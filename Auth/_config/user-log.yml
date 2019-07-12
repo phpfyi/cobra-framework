@@ -1,0 +1,11 @@
+Cobra\Auth\User\UserLog:
+  validation_rules:
+    action: required
+    result: required
+    ip: required
+  table_columns:
+    - [5, 'id', 'ID']
+    - [10, 'tableDate', 'Created']
+    - [25, 'action', 'Action']
+    - [25, 'result', 'Result']
+    - [25, 'ip', 'IP']

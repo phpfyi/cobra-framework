@@ -1,0 +1,36 @@
+routes:
+  - path: '/auth'
+    children:
+      - path: '/registration'
+        controller: 'Cobra\Auth\Controller\RegistrationController'
+
+      - path: '/registration/success'
+        controller: 'Cobra\Auth\Controller\RegistrationController'
+        action: success
+
+      - path: '/login'
+        controller: 'Cobra\Auth\Controller\LoginController'
+
+      - path: '/logout'
+        controller: 'Cobra\Auth\Controller\LogoutController'
+
+      - path: '/change'
+        controller: 'Cobra\Auth\Controller\PasswordChangeController'
+
+      - path: '/change/success'
+        controller: 'Cobra\Auth\Controller\PasswordChangeController'
+        action: success
+
+      - path: '/change/error'
+        controller: 'Cobra\Auth\Controller\PasswordChangeController'
+        action: error
+
+      - path: '/confirm'
+        controller: 'Cobra\Auth\Controller\ConfirmAccountController'
+
+      - path: '/reset'
+        controller: 'Cobra\Auth\Controller\PasswordResetController'
+
+      - path: '/reset/success'
+        controller: 'Cobra\Auth\Controller\PasswordResetController'
+        action: success

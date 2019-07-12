@@ -1,0 +1,13 @@
+auth:
+  single_device_signin: true
+  registration_route: '/auth/registration'
+  registration_success_route: '/auth/registration/success'
+  confirm_route: '/auth/confirm'
+  login_route: '/auth/login'
+  logout_route: '/auth/login'
+  reset_route: '/auth/reset'
+  reset_success_route: '/auth/reset/success'
+  change_route: '/auth/change'
+  change_success_route: '/auth/change/success'
+  change_error_route: '/auth/change/error'
+  login_redirect: '/'

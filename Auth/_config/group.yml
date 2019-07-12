@@ -1,0 +1,9 @@
+Cobra\Auth\Group\Group:
+  validation_rules:
+    title: required
+    identifier: required
+  table_columns:
+    - [5, 'id', 'ID']
+    - [10, 'tableDate', 'Created']
+    - [35, 'title', 'Title']
+    - [40, 'identifier', 'Identifier']

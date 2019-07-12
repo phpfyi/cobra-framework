@@ -1,0 +1,24 @@
+Cobra\Auth\User\User:
+  gender_options:
+    - 'Male'
+    - 'Female'
+  status_options:
+    2: 'Active'
+    3: 'Pending'
+    1: 'Disabled'
+  validation_rules:
+    forename: required
+    surname: required
+    username: required
+    email: cms-user-email
+    username: cms-user-name
+    account: required
+  password_validation_rules:
+    password: password
+    password_confirm: password-confirm
+  table_columns:
+    - [5, 'id', 'ID']
+    - [10, 'tableDate', 'Created']
+    - [25, 'title', 'Name']
+    - [25, 'email', 'Email']
+    - [25, 'country', 'Country']
