@@ -24,9 +24,9 @@ class RegistrationRequest extends AuthRequest
     /**
      * Form request validation rules
      *
-     * @return void
+     * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'username' => 'user-name',

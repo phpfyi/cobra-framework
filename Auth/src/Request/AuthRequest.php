@@ -5,7 +5,7 @@ namespace Cobra\Auth\Request;
 use Cobra\Form\FormRequest;
 use Cobra\Interfaces\Auth\AuthInterface;
 use Cobra\Interfaces\Controller\ControllerInterface;
-use Cobra\Interfaces\Form\Form;
+use Cobra\Interfaces\Form\FormInterface;
 
 /**
  * Auth Request
@@ -32,10 +32,10 @@ abstract class AuthRequest extends FormRequest
      * Sets the controller and form instances
      *
      * @param ControllerInterface $controller
-     * @param Form       $form
+     * @param FormInterface $form
      * @param AuthInterface $auth
      */
-    public function __construct(ControllerInterface $controller, Form $form, AuthInterface $auth)
+    public function __construct(ControllerInterface $controller, FormInterface $form, AuthInterface $auth)
     {
         parent::__construct($controller, $form);
 

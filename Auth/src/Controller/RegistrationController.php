@@ -8,9 +8,9 @@ use Cobra\Form\Field\EmailField;
 use Cobra\Form\Field\PasswordField;
 use Cobra\Form\Field\TextField;
 use Cobra\Form\Form;
-use Cobra\Form\FormFactory;
 use Cobra\Gtm\Gtm;
 use Cobra\Html\HtmlElement;
+use Cobra\Interfaces\Form\FormFactoryInterface;
 use Cobra\Interfaces\Http\Message\RequestInterface;
 
 /**
@@ -60,7 +60,7 @@ class RegistrationController extends AuthController
             HtmlElement::resolve('div', 'reset', $this->getLoginLink())
                 ->addClass('auth-a')
         );
-        $form = FormFactory::resolve($form)->getForm();
+        $form = container_resolve(FormFactoryInterface::class, [$form])->getForm();
 
         view()->setData('form', $form);
 

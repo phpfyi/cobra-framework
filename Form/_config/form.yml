@@ -1,0 +1,3 @@
+form:
+  csrf_field_name: form_token
+  spam_field_name: required_sp

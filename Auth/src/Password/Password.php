@@ -4,7 +4,7 @@ namespace Cobra\Auth\Password;
 
 use Cobra\Auth\User\User;
 use Cobra\Cms\Traits\ModelDataTableColumns;
-use Cobra\Interfaces\Form\Form;
+use Cobra\Interfaces\Form\FormInterface;
 use Cobra\Model\ModelDatabaseTable;
 use Cobra\Model\Model;
 
@@ -80,10 +80,10 @@ class Password extends Model
     /**
      * Model CMS form fields override
      *
-     * @param  Form $form
-     * @return Form
+     * @param  FormInterface $form
+     * @return FormInterface
      */
-    public function cmsForm(Form $form): Form
+    public function cmsForm(FormInterface $form): FormInterface
     {
         return $form;
     }

@@ -14,7 +14,7 @@ use Cobra\Html\HtmlElement;
 use Cobra\Interfaces\Auth\Password\PasswordEncrypterInterface;
 use Cobra\Interfaces\Auth\User\UserInterface;
 use Cobra\Interfaces\Controller\Controller;
-use Cobra\Interfaces\Form\Form;
+use Cobra\Interfaces\Form\FormInterface;
 use Cobra\Model\Model;
 use Cobra\Model\ModelDatabaseTable;
 use Cobra\Page\PageComment;
@@ -177,10 +177,10 @@ class User extends Model implements UserInterface
     /**
      * Model CMS form fields override
      *
-     * @param  Form $form
-     * @return Form
+     * @param  FormInterface $form
+     * @return FormInterface
      */
-    public function cmsForm(Form $form): Form
+    public function cmsForm(FormInterface $form): FormInterface
     {
         // update field types
         $form->setField(EmailField::resolve('email'));
