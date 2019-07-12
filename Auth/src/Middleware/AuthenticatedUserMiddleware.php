@@ -52,7 +52,7 @@ class AuthenticatedUserMiddleware extends Middleware
     }
 
     /**
-     * Adds the current session to the passed request for use later in the application
+     * Calls the authenticator to validate the request for a logged in status.
      *
      * @param  RequestInterface  $request
      * @param  RequestHandlerInterface $handler

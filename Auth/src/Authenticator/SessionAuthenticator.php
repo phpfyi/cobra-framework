@@ -109,7 +109,7 @@ class SessionAuthenticator extends Authenticator
     }
 
     /**
-     * Updates the user model and session data
+     * Updates the user model and session data with a logged in status
      *
      * @param UserInterface $user
      * @return void
