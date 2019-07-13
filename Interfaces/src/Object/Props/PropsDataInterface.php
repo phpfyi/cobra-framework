@@ -17,23 +17,6 @@ namespace Cobra\Interfaces\Object\Props;
 interface PropsDataInterface
 {
     /**
-     * Sets a data values
-     *
-     * @param  string $name
-     * @param  mixed  $value
-     * @return self
-     */
-    public function set(string $name, $value): PropsDataInterface;
-
-    /**
-     * Returns a data value
-
-     * @param  string $name
-     * @return mixed
-     */
-    public function get(string $name);
-
-    /**
      * Outputs the data values as a JSON object
      *
      * @return string

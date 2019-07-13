@@ -4,6 +4,7 @@ namespace Cobra\Object\Props;
 
 use Cobra\Interfaces\Object\Props\PropsDataInterface;
 use Cobra\Object\AbstractObject;
+use Cobra\Object\Traits\DataStore;
 
 /**
  * Object Props Data
@@ -21,36 +22,7 @@ use Cobra\Object\AbstractObject;
  */
 class PropsData extends AbstractObject implements PropsDataInterface
 {
-    /**
-     * Array of data values
-     *
-     * @var array
-     */
-    protected $data = [];
-
-    /**
-     * Sets a data values
-     *
-     * @param  string $name
-     * @param  mixed  $value
-     * @return self
-     */
-    public function set(string $name, $value): PropsDataInterface
-    {
-        $this->data[$name] = $value;
-        return $this;
-    }
-
-    /**
-     * Returns a data value
-
-     * @param  string $name
-     * @return mixed
-     */
-    public function get(string $name)
-    {
-        return $this->data[$name];
-    }
+    use DataStore;
 
     /**
      * Outputs the data values as a JSON object
