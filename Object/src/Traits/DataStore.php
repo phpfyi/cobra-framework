@@ -40,11 +40,12 @@ trait DataStore
      * Returns a data value.
 
      * @param  string $name
+     * @param  boolean $strict
      * @return mixed
      */
-    public function get(string $name)
+    public function get(string $name, bool $strict = true)
     {
-        return $this->data[$name];
+        return $strict ? $this->data[$name] : array_key($name, $this->data);
     }
 
     /**
