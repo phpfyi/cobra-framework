@@ -56,5 +56,6 @@ class EventHandler extends AbstractObject implements EventHandlerInterface
                 return $interceptor::resolve()->handle(...$args);
             }, $this->mappings[$event]);
         }
+        return null;
     }
 }
