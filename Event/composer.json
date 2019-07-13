@@ -1,0 +1,30 @@
+{
+    "name": "cobra/event",
+    "description": "Cobra event package",
+    "homepage": "https://php.fyi",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrew Mc Cormack",
+            "email": "webmaster@ddmseo.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/phpfyi/cobra/issues"
+    },
+    "keywords": [
+        "event",
+        "events",
+        "php"
+    ],
+    "require": {
+        "php": "~7.3.1"
+    },
+    "autoload": {
+        "classmap": [
+            "src/"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
