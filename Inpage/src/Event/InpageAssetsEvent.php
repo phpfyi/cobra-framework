@@ -4,8 +4,6 @@ namespace Cobra\Inpage\Event;
 
 use Cobra\Interfaces\Controller\ControllerInterface;
 use Cobra\Interfaces\Inpage\InpageInterface;
-use Cobra\View\View;
-
 /**
  * Inpage Assets Event
  *
@@ -23,23 +21,14 @@ use Cobra\View\View;
 class InpageAssetsEvent extends InpageEvent
 {
     /**
-     * View instance
-     *
-     * @var View
-     */
-    protected $view;
-
-    /**
      * Sets the required inpage instance
      *
      * @param Inpage $inpage
      * @param View $view
      */
-    public function __construct(InpageInterface $inpage, View $view)
+    public function __construct(InpageInterface $inpage)
     {
         parent::__construct($inpage);
-
-        $this->view = $view;
     }
 
     /**
@@ -50,9 +39,8 @@ class InpageAssetsEvent extends InpageEvent
      */
     public function handle(ControllerInterface $controller): void
     {
-        $this->view->setData('inpage', $this->inpage);
-
         css()->setInline('inpage.main');
+
         js()->setFile('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js');
         js()->setFile('https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js');
         js()->setBundle('dist/inpage');
