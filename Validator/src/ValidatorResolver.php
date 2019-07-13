@@ -65,7 +65,7 @@ class ValidatorResolver extends AbstractObject implements ValidatorResolverInter
             );
         }
 
-        return $classnames[$value]::resolve();
+        return $classnames[$name]::resolve();
     }
 
     /**
