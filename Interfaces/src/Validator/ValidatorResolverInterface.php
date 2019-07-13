@@ -19,9 +19,9 @@ interface ValidatorResolverInterface
     /**
      * Returns a validator instance based on a string identifier.
      *
-     * @param string $value
+     * @param string $name
      * @return ValidatorInterface
      * @throws InvalidClassnameException
      */
-    public function get(string $value): ValidatorInterface;
+    public function get(string $name): ValidatorInterface;
 }
