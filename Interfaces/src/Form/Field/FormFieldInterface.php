@@ -2,7 +2,7 @@
 
 namespace Cobra\Interfaces\Form\Field;
 
-use Cobra\Interfaces\Validator\Validator;
+use Cobra\Interfaces\Validator\ValidatorInterface;
 
 /**
  * Form Field Interface
@@ -111,7 +111,7 @@ interface FormFieldInterface
     /**
      * Sets the validator instance for this field
      *
-     * @param  Validator|string|null $validator
+     * @param  ValidatorInterface|string $validator
      * @return FormFieldInterface
      */
     public function setValidator($validator): FormFieldInterface;
@@ -119,9 +119,9 @@ interface FormFieldInterface
     /**
      * Returns the validator instance for this field
      *
-     * @return Validator|null
+     * @return ValidatorInterface|null
      */
-    public function getValidator():? Validator;
+    public function getValidator():? ValidatorInterface;
 
     /**
      * Sets the field error message

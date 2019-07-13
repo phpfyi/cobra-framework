@@ -3,10 +3,10 @@
 namespace Cobra\Form\Field;
 
 use Cobra\Interfaces\Form\Field\FormFieldInterface;
-use Cobra\Interfaces\Validator\Validator;
+use Cobra\Interfaces\Validator\ValidatorInterface;
+use Cobra\Interfaces\Validator\ValidatorResolverInterface;
 use Cobra\Html\HtmlElement;
 use Cobra\Object\Traits\Decoratable;
-use Cobra\Validator\ValidatorResolver;
 use Cobra\View\Traits\RendersTemplate;
 
 /**
@@ -300,22 +300,24 @@ class FormField extends HtmlElement implements FormFieldInterface
     /**
      * Sets the validator instance for this field
      *
-     * @param  Validator|string|null $validator
+     * @param  ValidatorInterface|string $validator
      * @return FormFieldInterface
      */
     public function setValidator($validator): FormFieldInterface
     {
         $this->attributes['required'] = 'required';
-        $this->validator = ValidatorResolver::resolve()->get($validator);
+        $this->validator = $validator instanceof ValidatorInterface
+        ? $validator
+        : container_resolve(ValidatorResolverInterface::class)->get($validator);
         return $this;
     }
 
     /**
      * Returns the validator instance for this field
      *
-     * @return Validator|null
+     * @return ValidatorInterface|null
      */
-    public function getValidator():? Validator
+    public function getValidator():? ValidatorInterface
     {
         return $this->validator;
     }
