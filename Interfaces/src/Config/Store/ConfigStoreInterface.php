@@ -40,7 +40,7 @@ interface ConfigStoreInterface
      * @return mixed
      * @throws ConfigValueNotFoundException
      */
-    public function unset(string $name, $value): ConfigStoreInterface;
+    public function unset(string $name): ConfigStoreInterface;
 
     /**
      * Updates a configuration value.
