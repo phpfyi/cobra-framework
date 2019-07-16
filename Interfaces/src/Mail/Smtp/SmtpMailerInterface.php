@@ -3,7 +3,7 @@
 namespace Cobra\Interfaces\Mail\Smtp;
 
 /**
- * SMTP Mailer interface
+ * SMTP Mailer Interface
  *
  * @category  Mail
  * @package   Cobra
@@ -14,7 +14,7 @@ namespace Cobra\Interfaces\Mail\Smtp;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-interface SmtpMailer
+interface SmtpMailerInterface
 {
     
 }

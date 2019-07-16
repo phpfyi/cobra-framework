@@ -2,8 +2,8 @@
 
 namespace Cobra\Mail\Smtp;
 
-use Cobra\Interfaces\Mail\Smtp\SmtpMailer as SmtpMailerInterface;
-use Cobra\Interfaces\Mail\Smtp\SmtpMailerConfig;
+use Cobra\Interfaces\Mail\Smtp\SmtpMailerInterface;
+use Cobra\Interfaces\Mail\Smtp\SmtpMailerConfigInterface;
 use Cobra\Mail\Mailer;
 use Cobra\Mail\Stream\Client;
 use Cobra\Mail\Traits\ConfigFromEnvironment;
@@ -41,9 +41,9 @@ class SmtpMailer extends Mailer implements SmtpMailerInterface
     /**
      * Sets the requied properties
      *
-     * @param SmtpMailerConfig $config
+     * @param SmtpMailerConfigInterface $config
      */
-    public function __construct(SmtpMailerConfig $config)
+    public function __construct(SmtpMailerConfigInterface $config)
     {
         $this->config = $config;
 

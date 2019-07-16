@@ -2,7 +2,7 @@
 
 namespace Cobra\Mail\Formatter;
 
-use Cobra\Mail\MailerConfig;
+use Cobra\Interfaces\Mail\MailerConfigInterface;
 use Cobra\Object\AbstractObject;
 
 /**
@@ -21,9 +21,9 @@ class Formatter extends AbstractObject
 {
 
     /**
-     * MailerConfig instance
+     * MailerConfigInterface instance
      *
-     * @var MailerConfig
+     * @var MailerConfigInterface
      */
     protected $config;
 
@@ -37,9 +37,9 @@ class Formatter extends AbstractObject
     /**
      * Sets the requied properties
      *
-     * @param MailerConfig $config
+     * @param MailerConfigInterface $config
      */
-    public function __construct(MailerConfig $config)
+    public function __construct(MailerConfigInterface $config)
     {
         $this->config = $config;
     }

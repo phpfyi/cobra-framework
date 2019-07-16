@@ -2,7 +2,7 @@
 
 namespace Cobra\Mail;
 
-use Cobra\Interfaces\Mail\MailerConfig;
+use Cobra\Interfaces\Mail\MailerConfigInterface;
 use Cobra\Mail\Formatter\Formatter;
 use Cobra\Mail\Mailer;
 use Cobra\Mail\Traits\ConfigFromEnvironment;
@@ -33,9 +33,9 @@ class PhpMailer extends Mailer
     /**
      * Sets the requied properties
      *
-     * @param MailerConfig $config
+     * @param MailerConfigInterface $config
      */
-    public function __construct(MailerConfig $config)
+    public function __construct(MailerConfigInterface $config)
     {
         $this->config = $config;
 

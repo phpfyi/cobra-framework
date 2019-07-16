@@ -3,8 +3,8 @@
 namespace Cobra\Mail;
 
 use BadMethodCallException;
-use Cobra\Interfaces\Mail\Mailer as MailerInterface;
-use Cobra\Interfaces\Mail\MailerConfig;
+use Cobra\Interfaces\Mail\MailerInterface;
+use Cobra\Interfaces\Mail\MailerConfigInterface;
 use Cobra\Object\AbstractObject;
 
 /**
@@ -22,9 +22,9 @@ use Cobra\Object\AbstractObject;
 abstract class Mailer extends AbstractObject implements MailerInterface
 {
     /**
-     * MailerConfig instance
+     * MailerConfigInterface instance
      *
-     * @var MailerConfig
+     * @var MailerConfigInterface
      */
     protected $config;
 
@@ -38,10 +38,10 @@ abstract class Mailer extends AbstractObject implements MailerInterface
     /**
      * Sets the MailerConfig instance
      *
-     * @param  MailerConfig $email
+     * @param  MailerConfigInterface $email
      * @return MailerInterface
      */
-    public function setConfig(MailerConfig $config): MailerInterface
+    public function setConfig(MailerConfigInterface $config): MailerInterface
     {
         $this->config = $config;
         return $this;
@@ -50,9 +50,9 @@ abstract class Mailer extends AbstractObject implements MailerInterface
     /**
      * Returns the MailerConfig instance
      *
-     * @return MailerConfig
+     * @return MailerConfigInterface
      */
-    public function getConfig(): MailerConfig
+    public function getConfig(): MailerConfigInterface
     {
         return $this->config;
     }

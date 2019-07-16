@@ -14,16 +14,16 @@ namespace Cobra\Interfaces\Mail;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-interface MailerConfig
+interface MailerConfigInterface
 {
     /**
      * Sets the email recipient
      *
      * @param  string $email
      * @param  string $name
-     * @return MailerConfig
+     * @return MailerConfigInterface
      */
-    public function setTo(string $email): MailerConfig;
+    public function setTo(string $email): MailerConfigInterface;
 
     /**
      * Returns the email recipient
@@ -36,18 +36,18 @@ interface MailerConfig
      * Sets the email recipients
      *
      * @param  array $emails
-     * @return MailerConfig
+     * @return MailerConfigInterface
      */
-    public function setToMany(array $emails): MailerConfig;
+    public function setToMany(array $emails): MailerConfigInterface;
 
     /**
      * Sets the from name and email
      *
      * @param  string $name
      * @param  string $email
-     * @return MailerConfig
+     * @return MailerConfigInterface
      */
-    public function setFrom(string $name, string $email): MailerConfig;
+    public function setFrom(string $name, string $email): MailerConfigInterface;
 
     /**
      * Returns the from name and email
@@ -60,9 +60,9 @@ interface MailerConfig
      * Sets the from name
      *
      * @param  string $name
-     * @return MailerConfig
+     * @return MailerConfigInterface
      */
-    public function setFromName(string $name): MailerConfig;
+    public function setFromName(string $name): MailerConfigInterface;
 
     /**
      * Returns the from name
@@ -75,9 +75,9 @@ interface MailerConfig
      * Sets the from email
      *
      * @param  string $email
-     * @return MailerConfig
+     * @return MailerConfigInterface
      */
-    public function setFromEmail(string $email): MailerConfig;
+    public function setFromEmail(string $email): MailerConfigInterface;
 
     /**
      * Returns the from email
@@ -90,9 +90,9 @@ interface MailerConfig
      * Sets the email subject
      *
      * @param  string $subject
-     * @return MailerConfig
+     * @return MailerConfigInterface
      */
-    public function setSubject(string $subject): MailerConfig;
+    public function setSubject(string $subject): MailerConfigInterface;
 
     /**
      * Returns the email subject
@@ -105,9 +105,9 @@ interface MailerConfig
      * Sets the email body
      *
      * @param  string $body
-     * @return MailerConfig
+     * @return MailerConfigInterface
      */
-    public function setBody(string $body): MailerConfig;
+    public function setBody(string $body): MailerConfigInterface;
 
     /**
      * Returns the email body
@@ -121,9 +121,9 @@ interface MailerConfig
      *
      * @param  string $name
      * @param  string $value
-     * @return MailerConfig
+     * @return MailerConfigInterface
      */
-    public function setHeader(string $name, string $value): MailerConfig;
+    public function setHeader(string $name, string $value): MailerConfigInterface;
 
     /**
      * Returns an email header
@@ -137,9 +137,9 @@ interface MailerConfig
      * Sets an array of email headers
      *
      * @param  array $headers
-     * @return MailerConfig
+     * @return MailerConfigInterface
      */
-    public function setHeaders(array $headers): MailerConfig;
+    public function setHeaders(array $headers): MailerConfigInterface;
 
     /**
      * Returns an array of all email headers
@@ -154,9 +154,9 @@ interface MailerConfig
      * Seen by other email recipients
      *
      * @param  array $email
-     * @return MailerConfig
+     * @return MailerConfigInterface
      */
-    public function setCc(array $emails): MailerConfig;
+    public function setCc(array $emails): MailerConfigInterface;
 
     /**
      * Return the email carbon copy recipients
@@ -171,9 +171,9 @@ interface MailerConfig
      * Not seen by other email recipients
      *
      * @param  array $email
-     * @return MailerConfig
+     * @return MailerConfigInterface
      */
-    public function setBcc(array $emails): MailerConfig;
+    public function setBcc(array $emails): MailerConfigInterface;
 
     /**
      * Returns the email blind carbon copy recipients
@@ -186,9 +186,9 @@ interface MailerConfig
      * Sets the reply to email address
      *
      * @param  string $email
-     * @return MailerConfig
+     * @return MailerConfigInterface
      */
-    public function setReplyTo(string $email): MailerConfig;
+    public function setReplyTo(string $email): MailerConfigInterface;
 
     /**
      * Returns the reply to email address
@@ -203,9 +203,9 @@ interface MailerConfig
      * Used for bounces
      *
      * @param  string $email
-     * @return MailerConfig
+     * @return MailerConfigInterface
      */
-    public function setReturnPath(string $email): MailerConfig;
+    public function setReturnPath(string $email): MailerConfigInterface;
 
     /**
      * Returns the email return path
@@ -218,9 +218,9 @@ interface MailerConfig
      * Sets the email charset
      *
      * @param  string $charset
-     * @return MailerConfig
+     * @return MailerConfigInterface
      */
-    public function setCharset(string $charset): MailerConfig;
+    public function setCharset(string $charset): MailerConfigInterface;
 
     /**
      * Returns the email charset
@@ -233,9 +233,9 @@ interface MailerConfig
      * Sets the email MIME-Version
      *
      * @param  string $version
-     * @return MailerConfig
+     * @return MailerConfigInterface
      */
-    public function setMimeVersion(string $version): MailerConfig;
+    public function setMimeVersion(string $version): MailerConfigInterface;
 
     /**
      * Returns the email MIME-Version
@@ -248,9 +248,9 @@ interface MailerConfig
      * Sets whether the email is HTML format
      *
      * @param  boolean $html
-     * @return MailerConfig
+     * @return MailerConfigInterface
      */
-    public function setHTML(bool $html): MailerConfig;
+    public function setHTML(bool $html): MailerConfigInterface;
 
     /**
      * Returns whether the email is HTML format

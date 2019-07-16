@@ -2,7 +2,7 @@
 
 namespace Cobra\Mail\Stream;
 
-use Cobra\Interfaces\Mail\Smtp\SmtpMailerConfig;
+use Cobra\Interfaces\Mail\Smtp\SmtpMailerConfigInterface;
 use Cobra\Mail\Formatter\Formatter;
 use Cobra\Object\AbstractObject;
 
@@ -21,9 +21,9 @@ use Cobra\Object\AbstractObject;
 class Client extends AbstractObject
 {
     /**
-     * SmtpMailerConfig instance
+     * SmtpMailerConfigInterface instance
      *
-     * @var SmtpMailerConfig
+     * @var SmtpMailerConfigInterface
      */
     protected $config;
 
@@ -51,9 +51,9 @@ class Client extends AbstractObject
     /**
      * Sets the required properties
      *
-     * @param SmtpMailerConfig $config
+     * @param SmtpMailerConfigInterface $config
      */
-    public function __construct(SmtpMailerConfig $config)
+    public function __construct(SmtpMailerConfigInterface $config)
     {
         $this->config = $config;
         $this->socket = new Socket(

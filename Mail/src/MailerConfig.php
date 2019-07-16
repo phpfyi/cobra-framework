@@ -2,7 +2,7 @@
 
 namespace Cobra\Mail;
 
-use Cobra\Interfaces\Mail\MailerConfig as MailerConfigInterface;
+use Cobra\Interfaces\Mail\MailerConfigInterface;
 use Cobra\Object\AbstractObject;
 
 /**

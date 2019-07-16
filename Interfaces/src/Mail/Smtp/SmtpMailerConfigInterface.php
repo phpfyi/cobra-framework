@@ -3,7 +3,7 @@
 namespace Cobra\Interfaces\Mail\Smtp;
 
 /**
- * SMTP Mailer Config interface
+ * SMTP Mailer Config Interface
  *
  * @category  Mail
  * @package   Cobra
@@ -14,15 +14,15 @@ namespace Cobra\Interfaces\Mail\Smtp;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-interface SmtpMailerConfig
+interface SmtpMailerConfigInterface
 {
     /**
      * Sets the SMTP hostname
      *
      * @param  string $hostname
-     * @return SmtpMailerConfig
+     * @return SmtpMailerConfigInterface
      */
-    public function setHostname(string $hostname): SmtpMailerConfig;
+    public function setHostname(string $hostname): SmtpMailerConfigInterface;
     
     /**
      * Returns the SMTP hostname
@@ -35,9 +35,9 @@ interface SmtpMailerConfig
      * Sets the SMTP port
      *
      * @param  integer $port
-     * @return SmtpMailerConfig
+     * @return SmtpMailerConfigInterface
      */
-    public function setPort(int $port): SmtpMailerConfig;
+    public function setPort(int $port): SmtpMailerConfigInterface;
 
     /**
      * Returns the SMTP port
@@ -50,9 +50,9 @@ interface SmtpMailerConfig
      * Sets the SMTP connection timeout
      *
      * @param  integer $timeout
-     * @return SmtpMailerConfig
+     * @return SmtpMailerConfigInterface
      */
-    public function setTimeout(int $timeout): SmtpMailerConfig;
+    public function setTimeout(int $timeout): SmtpMailerConfigInterface;
 
     /**
      * Returns the SMTP connection timeout
@@ -65,9 +65,9 @@ interface SmtpMailerConfig
      * Sets the SMTP username
      *
      * @param  string $username
-     * @return SmtpMailerConfig
+     * @return SmtpMailerConfigInterface
      */
-    public function setUsername(string $username): SmtpMailerConfig;
+    public function setUsername(string $username): SmtpMailerConfigInterface;
 
     /**
      * Returns the SMTP username
@@ -80,9 +80,9 @@ interface SmtpMailerConfig
      * Sets the SMTP password
      *
      * @param  string $password
-     * @return SmtpMailerConfig
+     * @return SmtpMailerConfigInterface
      */
-    public function setPassword(string $password): SmtpMailerConfig;
+    public function setPassword(string $password): SmtpMailerConfigInterface;
 
     /**
      * Returns the SMTP password
@@ -95,9 +95,9 @@ interface SmtpMailerConfig
      * Sets the SMTP encryption
      *
      * @param  string $encryption
-     * @return SmtpMailerConfig
+     * @return SmtpMailerConfigInterface
      */
-    public function setEncryption(string $encryption): SmtpMailerConfig;
+    public function setEncryption(string $encryption): SmtpMailerConfigInterface;
 
     /**
      * Returns the SMTP encryption
@@ -110,9 +110,9 @@ interface SmtpMailerConfig
      * Sets the SMTP mode
      *
      * @param  string $mode
-     * @return SmtpMailerConfig
+     * @return SmtpMailerConfigInterface
      */
-    public function setMode(string $mode): SmtpMailerConfig;
+    public function setMode(string $mode): SmtpMailerConfigInterface;
 
     /**
      * Returns the SMTP mode

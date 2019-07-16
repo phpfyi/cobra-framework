@@ -2,10 +2,10 @@
 
 namespace Cobra\Interfaces\Mail;
 
-use Cobra\Interfaces\Mail\MailerConfig;
+use Cobra\Interfaces\Mail\MailerConfigInterface;
 
 /**
- * Mailer interface
+ * Mailer Interface
  *
  * @category  Mail
  * @package   Cobra
@@ -16,20 +16,20 @@ use Cobra\Interfaces\Mail\MailerConfig;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-interface Mailer
+interface MailerInterface
 {
     /**
-     * Sets the MailerConfig instance
+     * Sets the MailerConfigInterface instance
      *
-     * @param  MailerConfig $email
-     * @return Mailer
+     * @param  MailerConfigInterface $email
+     * @return MailerInterface
      */
-    public function setConfig(MailerConfig $config): Mailer;
+    public function setConfig(MailerConfigInterface $config): MailerInterface;
 
     /**
      * Returns the MailerConfig instance
      *
-     * @return MailerConfig
+     * @return MailerConfigInterface
      */
-    public function getConfig(): MailerConfig;
+    public function getConfig(): MailerConfigInterface;
 }

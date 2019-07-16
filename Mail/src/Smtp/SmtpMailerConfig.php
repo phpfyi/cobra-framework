@@ -2,7 +2,7 @@
 
 namespace Cobra\Mail\Smtp;
 
-use Cobra\Interfaces\Mail\Smtp\SmtpMailerConfig as SmtpMailerConfigInterface;
+use Cobra\Interfaces\Mail\Smtp\SmtpMailerConfigInterface;
 use Cobra\Mail\MailerConfig;
 
 /**
