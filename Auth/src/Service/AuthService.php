@@ -37,14 +37,6 @@ class AuthService extends Service
     public function namespaces(): void
     {
         contain_namespace(
-            \Cobra\Interfaces\Mail\MailerConfig::class,
-            \Cobra\Mail\MailerConfig::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Mail\Smtp\SmtpMailerConfig::class,
-            \Cobra\Mail\Smtp\SmtpMailerConfig::class
-        );
-        contain_namespace(
             \Cobra\Interfaces\Auth\Password\PasswordEncrypterInterface::class,
             \Cobra\Auth\Password\PasswordEncrypter::class
         );
