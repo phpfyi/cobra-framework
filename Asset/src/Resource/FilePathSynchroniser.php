@@ -3,6 +3,8 @@
 namespace Cobra\Asset\Resource;
 
 use Cobra\Interfaces\Asset\Resource\FilePathSynchroniserInterface;
+use Cobra\Interfaces\Asset\FileInterface;
+use Cobra\Interfaces\Asset\FolderInterface;
 use Cobra\Object\AbstractObject;
 use Cobra\Server\FileSystem;
 use Cobra\Server\FilePath;
@@ -22,16 +24,16 @@ use Cobra\Server\FilePath;
 class FilePathSynchroniser extends AbstractObject implements FilePathSynchroniserInterface
 {
     /**
-     * File instance
+     * FileInterface instance
      *
-     * @var File
+     * @var FileInterface
      */
     protected $file;
 
     /**
-     * Folder instance
+     * FolderInterface instance
      *
-     * @var Folder
+     * @var FolderInterface
      */
     protected $folder;
 
@@ -52,10 +54,10 @@ class FilePathSynchroniser extends AbstractObject implements FilePathSynchronise
     /**
      * Sets the file and folder instances
      *
-     * @param File   $file
-     * @param Folder $folder
+     * @param FileInterface   $file
+     * @param FolderInterface $folder
      */
-    public function __construct(File $file, Folder $folder)
+    public function __construct(FileInterface $file, FolderInterface $folder)
     {
         $this->file = $file;
         $this->folder = $folder;
