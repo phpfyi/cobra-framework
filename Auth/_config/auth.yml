@@ -11,3 +11,5 @@ auth:
   change_success_route: '/auth/change/success'
   change_error_route: '/auth/change/error'
   login_redirect: '/'
+  gtm:
+    container_id: ''

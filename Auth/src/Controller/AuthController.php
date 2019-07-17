@@ -60,7 +60,7 @@ class AuthController extends PageController
         js()->setBundle('dist/auth');
 
         view()
-            ->setData('container_id', config('website.gtm.container_id'))
+            ->setData('container_id', config('auth.gtm.container_id'))
             ->setData('datalayer', Gtm::instance());
     }
 
