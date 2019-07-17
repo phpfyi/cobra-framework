@@ -1,0 +1,14 @@
+Cobra\Http\Redirect:
+  types:
+    internal: 'Internal Page'
+    external: 'External URL'
+  validation_rules:
+    code: required
+    from_type: required
+    to_type: required
+  table_columns:
+    - [5, 'id', 'ID']
+    - [10, 'tableDate', 'Created']
+    - [15, 'code', 'Code']
+    - [30, 'from_type', 'From']
+    - [30, 'to_type', 'To']

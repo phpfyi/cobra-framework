@@ -1,0 +1,5 @@
+Cobra\Http\Middleware\RedirectIndexMiddleware:
+  homepages:
+    - '/index.php'
+    - '/index.html'
+    - '/home'
