@@ -2,7 +2,6 @@
 
 namespace Cobra\Interfaces\Asset\Form\Field;
 
-use Iterator;
 use Cobra\Interfaces\Asset\FolderInterface;
 
 /**
@@ -30,17 +29,17 @@ interface UploadFieldInterface
     /**
      * Sets the upload field files
      *
-     * @param  Iterator $files
+     * @param  iterable $files
      * @return UploadFieldInterface
      */
-    public function setFiles(Iterator $files): UploadFieldInterface;
+    public function setFiles(iterable $files): UploadFieldInterface;
     
     /**
      * Gets the upload field files
      *
-     * @return Iterator
+     * @return iterable
      */
-    public function getFiles(): Iterator;
+    public function getFiles(): iterable;
 
     /**
      * Sets the folder record by name

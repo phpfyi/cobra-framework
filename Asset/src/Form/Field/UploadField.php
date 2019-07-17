@@ -3,7 +3,6 @@
 namespace Cobra\Asset\Form\Field;
 
 use ArrayIterator;
-use Iterator;
 use Cobra\Asset\File;
 use Cobra\Asset\Folder;
 use Cobra\Interfaces\Asset\FolderInterface;
@@ -113,7 +112,7 @@ class UploadField extends FormField implements UploadFieldInterface
      */
     public function setValue($value, $escape = true): FormFieldInterface
     {
-        if (is_array($value) || $value instanceof Iterator) {
+        if (is_array($value) || is_iterable($value)) {
             array_map(
                 function ($id) {
                     $this->files[] = File::find('id', $id);
@@ -145,10 +144,10 @@ class UploadField extends FormField implements UploadFieldInterface
     /**
      * Sets the upload field files
      *
-     * @param  Iterator $files
+     * @param  iterable $files
      * @return UploadFieldInterface
      */
-    public function setFiles(Iterator $files): UploadFieldInterface
+    public function setFiles(iterable $files): UploadFieldInterface
     {
         $this->files = $files;
         return $this;
@@ -157,9 +156,9 @@ class UploadField extends FormField implements UploadFieldInterface
     /**
      * Gets the upload field files
      *
-     * @return Iterator
+     * @return iterable
      */
-    public function getFiles(): Iterator
+    public function getFiles(): iterable
     {
         return $this->files;
     }
