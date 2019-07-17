@@ -4,7 +4,7 @@ namespace Cobra\Config;
 
 use Cobra\Interfaces\Config\ConfigInterface;
 use Cobra\Interfaces\Config\Store\ConfigStoreInterface;
-use Cobra\Interfaces\Singleton\SingletonInterface;
+use Cobra\Interfaces\Object\SingletonInterface;
 use Cobra\Object\Traits\SingletonMethods;
 
 /**

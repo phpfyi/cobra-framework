@@ -2,7 +2,7 @@
 
 namespace Cobra\Autoloader\Log;
 
-use Cobra\Interfaces\Singleton\SingletonInterface;
+use Cobra\Interfaces\Object\SingletonInterface;
 use Cobra\Log\Logger;
 use Cobra\Object\Traits\SingletonMethods;
 
