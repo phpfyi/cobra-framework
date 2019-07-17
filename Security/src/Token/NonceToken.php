@@ -30,7 +30,7 @@ class NonceToken implements NonceTokenInterface, SingletonInterface, SingletonTo
      *
      * @return void
      */
-    public static function regenerate(): void
+    protected static function regenerate(): void
     {
         self::$token = container_resolve(SecurityTokenInterface::class)::base64();
     }

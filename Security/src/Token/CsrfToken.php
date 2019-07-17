@@ -30,7 +30,7 @@ class CsrfToken implements CsrfTokenInterface, SingletonInterface, SingletonToke
      *
      * @return void
      */
-    public static function regenerate(): void
+    protected static function regenerate(): void
     {
         self::$token = container_resolve(SecurityTokenInterface::class)::bin2hex();
     }

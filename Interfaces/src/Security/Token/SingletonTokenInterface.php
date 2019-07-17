@@ -29,11 +29,4 @@ interface SingletonTokenInterface
      * @return string
      */
     public static function get(): string;
-    
-    /**
-     * Sets a new token.
-     *
-     * @return void
-     */
-    public static function regenerate(): void;
 }

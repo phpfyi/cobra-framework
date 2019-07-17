@@ -15,11 +15,11 @@ namespace Cobra\Interfaces\Security\Token;
  * @since     1.0.0
  */
 interface CsrfTokenInterface
-{   
+{
     /**
-     * Sets a new token.
+     * Returns the current token or creates a new one and returns it.
      *
-     * @return void
+     * @return string
      */
-    public static function regenerate(): void;
+    public static function get(): string;
 }
