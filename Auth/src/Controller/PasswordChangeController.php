@@ -6,9 +6,9 @@ use Cobra\Auth\Password\PasswordValidationHtmlElement;
 use Cobra\Auth\Request\PasswordChangeRequest;
 use Cobra\Form\Field\PasswordField;
 use Cobra\Form\Form;
-use Cobra\Gtm\Gtm;
 use Cobra\Html\HtmlElement;
 use Cobra\Interfaces\Form\FormFactoryInterface;
+use Cobra\Interfaces\Gtm\GtmInterface;
 use Cobra\Interfaces\Http\Message\RequestInterface;
 
 /**
@@ -67,10 +67,10 @@ class PasswordChangeController extends AuthController
      * Password change success action
      *
      * @param  RequestInterface $request
-     * @param  Gtm $gtm
+     * @param  GtmInterface $gtm
      * @return void
      */
-    public function success(RequestInterface $request, Gtm $gtm)
+    public function success(RequestInterface $request, GtmInterface $gtm)
     {
         if (!$request->getSession()->get('password_changed')) {
             return $this->redirect(config('auth.reset_route'));
@@ -88,10 +88,10 @@ class PasswordChangeController extends AuthController
      * Password change error action
      *
      * @param  RequestInterface $request
-     * @param  Gtm $gtm
+     * @param  GtmInterface $gtm
      * @return void
      */
-    public function error(RequestInterface $request, Gtm $gtm)
+    public function error(RequestInterface $request, GtmInterface $gtm)
     {
         $gtm->setEvent('PasswordChangeError');
 

@@ -5,9 +5,9 @@ namespace Cobra\Auth\Controller;
 use Cobra\Auth\Request\PasswordResetRequest;
 use Cobra\Form\Form;
 use Cobra\Form\Field\EmailField;
-use Cobra\Gtm\Gtm;
 use Cobra\Html\HtmlElement;
 use Cobra\Interfaces\Form\FormFactoryInterface;
+use Cobra\Interfaces\Gtm\GtmInterface;
 use Cobra\Interfaces\Http\Message\RequestInterface;
 
 /**
@@ -64,10 +64,10 @@ class PasswordResetController extends AuthController
      * Password reset success action
      *
      * @param  RequestInterface $request
-     * @param  Gtm $gtm
+     * @param  GtmInterface $gtm
      * @return void
      */
-    public function success(RequestInterface $request, Gtm $gtm)
+    public function success(RequestInterface $request, GtmInterface $gtm)
     {
         if (!$request->getSession()->get('password_reset')) {
             return $this->redirect(config('auth.login_route'));

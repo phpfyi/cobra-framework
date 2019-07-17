@@ -8,9 +8,9 @@ use Cobra\Form\Field\EmailField;
 use Cobra\Form\Field\PasswordField;
 use Cobra\Form\Field\TextField;
 use Cobra\Form\Form;
-use Cobra\Gtm\Gtm;
 use Cobra\Html\HtmlElement;
 use Cobra\Interfaces\Form\FormFactoryInterface;
+use Cobra\Interfaces\Gtm\GtmInterface;
 use Cobra\Interfaces\Http\Message\RequestInterface;
 
 /**
@@ -72,10 +72,10 @@ class RegistrationController extends AuthController
      * Registration success action
      *
      * @param  RequestInterface $request
-     * @param  Gtm $gtm
+     * @param  GtmInterface $gtm
      * @return void
      */
-    public function success(RequestInterface $request, Gtm $gtm)
+    public function success(RequestInterface $request, GtmInterface $gtm)
     {
         if (!$request->getSession()->get('confirmation_pending')) {
             return $this->redirect(config('auth.registration_route'));

@@ -2,7 +2,7 @@
 
 namespace Cobra\Inpage\Report;
 
-use Cobra\Gtm\Gtm;
+use Cobra\Interfaces\Gtm\GtmInterface;
 
 /**
  * Inpage Tag Manager Report
@@ -35,9 +35,9 @@ class InpageTagManagerReport extends InpageReport
     /**
      * Sets the required properties
      *
-     * @param Gtm $gtm
+     * @param GtmInterface $gtm
      */
-    public function __construct(Gtm $gtm)
+    public function __construct(GtmInterface $gtm)
     {
         $this->gtm = $gtm;
     }
@@ -55,9 +55,9 @@ class InpageTagManagerReport extends InpageReport
     /**
      * Returns the GTM instance
      *
-     * @return string
+     * @return GtmInterface
      */
-    public function getGtm():? Gtm
+    public function getGtm(): GtmInterface
     {
         return $this->gtm;
     }

@@ -6,9 +6,9 @@ use Cobra\Auth\Request\LoginRequest;
 use Cobra\Form\Form;
 use Cobra\Form\Field\EmailField;
 use Cobra\Form\Field\PasswordField;
-use Cobra\Gtm\Gtm;
 use Cobra\Html\HtmlElement;
 use Cobra\Interfaces\Form\FormFactoryInterface;
+use Cobra\Interfaces\Gtm\GtmInterface;
 use Cobra\Interfaces\Http\Message\RequestInterface;
 
 /**
@@ -29,10 +29,10 @@ class LoginController extends AuthController
      * Default controller action
      *
      * @param  RequestInterface $request
-     * @param  Gtm $gtm
+     * @param  GtmInterface $gtm
      * @return void
      */
-    public function index(RequestInterface $request, Gtm $gtm)
+    public function index(RequestInterface $request, GtmInterface $gtm)
     {
         if ($request->getSession()->get('gtm_logout')) {
             $gtm->setEvent('LogoutSuccess');

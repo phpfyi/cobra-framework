@@ -3,8 +3,8 @@
 namespace Cobra\Auth\Controller;
 
 use Cobra\Auth\User\User;
-use Cobra\Gtm\Gtm;
 use Cobra\Interfaces\Auth\AuthInterface;
+use Cobra\Interfaces\Gtm\GtmInterface;
 use Cobra\Interfaces\Http\Uri\RequestUriInterface;
 use Cobra\Interfaces\Security\Token\SecurityTokenInterface;
 
@@ -41,10 +41,10 @@ class ConfirmAccountController extends AuthController
      *
      * @param  RequestUriInterface $uri
      * @param  AuthInterface $auth
-     * @param  Gtm $gtm
+     * @param  GtmInterface $gtm
      * @return void
      */
-    public function index(RequestUriInterface $uri, AuthInterface $auth, Gtm $gtm)
+    public function index(RequestUriInterface $uri, AuthInterface $auth, GtmInterface $gtm)
     {
         if ($user = $auth->getUser()) {
             return $this->redirect(config('auth.login_redirect'));
