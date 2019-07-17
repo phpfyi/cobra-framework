@@ -1,0 +1,92 @@
+Cobra\Asset\File:
+  validation_rules:
+    title: required
+  table_columns:
+    - [5, 'id', 'ID']
+    - [10, 'tableDate', 'Created']
+    - [25, 'title', 'Title']
+    - [30, 'public_path', 'Path']
+    - [10, 'size', 'Size']
+    - [10, 'type', 'Type']
+  mime_types:
+    application:
+      mpkg: application/vnd.apple.installer+xml
+      ogx: application/ogg
+      xul: application/vnd.mozilla.xul+xml
+    asset:
+      css: text/css
+      es: application/ecmascript
+      js: application/javascript
+      ts: application/typescript
+    audio:
+      aac: audio/aac
+      mid: audio/midi
+      midi: audio/midi
+      oga: audio/ogg
+      wav: audio/wav
+      weba: audio/webm
+    archive:
+      arc: application/octet-stream
+      bz: application/x-bzip
+      bz2: application/x-bzip2
+      jar: application/java-archive
+      rar: application/x-rar-compressed
+      tar: application/x-tar
+      zip: application/zip
+      7z: application/x-7z-compressed
+    binary:
+      bin: application/octet-stream
+    calendar:
+      ics: text/calendar
+    code:
+      htm: text/html
+      html: text/html
+      json: application/json
+      xhtml: application/xhtml+xml
+      xml: application/xml
+    document:
+      abw: application/x-abiword
+      csv: text/csv
+      doc: application/msword
+      docx: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+      odp: application/vnd.oasis.opendocument.presentation
+      ods: application/vnd.oasis.opendocument.spreadsheet
+      odt: application/vnd.oasis.opendocument.text
+      pdf: application/pdf
+      ppt: application/vnd.ms-powerpoint
+      pptx: application/vnd.openxmlformats-officedocument.presentationml.presentation
+      rtf: application/rtf
+      txt: text/plain
+      xls: application/vnd.ms-excel
+      xlsx: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+    ebook:
+      azw: application/vnd.amazon.ebook
+      epub: application/epub+zip
+    flash:
+      swf: application/x-shockwave-flash
+    font:
+      eot: application/vnd.ms-fontobject
+      otf: font/otf
+      ttf: font/ttf
+      woff: font/woff
+      woff2: font/woff2
+    image:
+      bmp: image/bmp
+      gif: image/gif
+      ico: image/x-icon
+      jpeg: image/jpeg
+      jpg: image/jpeg
+      png: image/png
+      svg: image/svg+xml
+      tif: image/tiff
+      tiff: image/tiff
+      webp: image/webp
+    shell:
+      csh: application/x-csh
+      sh: application/x-sh
+    video:
+      avi: video/x-msvideo
+      mpeg: video/mpeg
+      ogv: video/ogg
+      webm: video/webm
+      

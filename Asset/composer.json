@@ -1,0 +1,30 @@
+{
+    "name": "cobra/asset",
+    "description": "Cobra asset package",
+    "homepage": "https://php.fyi",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrew Mc Cormack",
+            "email": "webmaster@ddmseo.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/phpfyi/cobra/issues"
+    },
+    "keywords": [
+        "asset",
+        "assets",
+        "php"
+    ],
+    "require": {
+        "php": "~7.3.1"
+    },
+    "autoload": {
+        "classmap": [
+            "src/"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

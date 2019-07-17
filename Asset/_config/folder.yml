@@ -1,0 +1,10 @@
+Cobra\Asset\Folder:
+  validation_rules:
+    title: required
+    directory: required
+  table_columns:
+    - [5, 'id', 'ID']
+    - [10, 'tableDate', 'Created']
+    - [40, 'title', 'Title']
+    - [30, 'directory', 'Directory']
+    - [5, 'tableFileCount', 'Files']

@@ -1,0 +1,11 @@
+Cobra\Asset\Image:
+  validation_rules:
+    title: required
+    alt: required
+  table_columns:
+    - [5, 'id', 'ID']
+    - [10, 'tableDate', 'Created']
+    - [25, 'title', 'Title']
+    - [30, 'public_path', 'Path']
+    - [10, 'size', 'Size']
+    - [10, 'type', 'Type']

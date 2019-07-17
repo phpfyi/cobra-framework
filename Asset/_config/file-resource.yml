@@ -1,0 +1,2 @@
+Cobra\Asset\Resource\FileResource:
+  expiry_days: 30
