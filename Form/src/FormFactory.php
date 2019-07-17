@@ -10,7 +10,6 @@ use Cobra\Form\Field\SubmitField;
 use Cobra\Form\Field\TokenField;
 use Cobra\Form\Validator\FormTokenValidator;
 use Cobra\Object\AbstractObject;
-use Cobra\Security\Token\CSRFToken;
 
 /**
  * Form Factory
@@ -53,7 +52,9 @@ class FormFactory extends AbstractObject implements FormFactoryInterface
     public function getForm(): FormInterface
     {
         $this->form
-            ->setField(TokenField::resolve(config('form.csrf_field_name'))->setValue(CSRFToken::get()))
+            ->setField(TokenField::resolve(config('form.csrf_field_name'))
+                ->setValue(csrf())
+            )
             ->setField(SpamField::resolve(config('form.spam_field_name')))
             ->setField(SubmitField::resolve('form-submit'));
 
