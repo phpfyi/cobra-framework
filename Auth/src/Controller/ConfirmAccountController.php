@@ -6,7 +6,7 @@ use Cobra\Auth\User\User;
 use Cobra\Gtm\Gtm;
 use Cobra\Interfaces\Auth\AuthInterface;
 use Cobra\Interfaces\Http\Uri\RequestUriInterface;
-use Cobra\Security\Token\SecurityToken;
+use Cobra\Interfaces\Security\Token\SecurityTokenInterface;
 
 /**
  * Confirm Account Controller
@@ -57,7 +57,7 @@ class ConfirmAccountController extends AuthController
             $gtm->setEvent('ConfirmAccountSuccess');
 
             $user->account = 2;
-            $user->confirm_token = SecurityToken::bin2hex();
+            $user->confirm_token = container_resolve(SecurityTokenInterface::class)::bin2hex();
             $user->save();
 
             view()->setPage('templates.Auth.Page.ConfirmAccountSuccess');

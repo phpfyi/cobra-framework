@@ -3,8 +3,8 @@
 namespace Cobra\Auth\Request;
 
 use Cobra\Auth\User\User;
+use Cobra\Interfaces\Security\Token\SecurityTokenInterface;
 use Cobra\Mail\Smtp\SmtpMailer;
-use Cobra\Security\Token\SecurityToken;
 use Cobra\View\ViewData;
 
 /**
@@ -49,7 +49,7 @@ class PasswordResetRequest extends AuthRequest
     {
         $user = User::find('email', $this->controller->getRequest()->postVar('email'));
 
-        $user->reset_token = SecurityToken::bin2hex();
+        $user->reset_token = container_resolve(SecurityTokenInterface::class)::bin2hex();
         $user->save();
 
         $data = ViewData::resolve()

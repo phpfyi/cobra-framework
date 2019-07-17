@@ -7,8 +7,8 @@ use Cobra\Auth\Validator\UserLoginExpiryValidator;
 use Cobra\Auth\Validator\UserSingleDeviceLoginValidator;
 use Cobra\Interfaces\Auth\Authenticator\AuthenticatorInterface;
 use Cobra\Interfaces\Auth\User\UserInterface;
+use Cobra\Interfaces\Security\Token\SecurityTokenInterface;
 use Cobra\Event\Traits\EventEmitter;
-use Cobra\Security\Token\SecurityToken;
 
 /**
  * Session Authenticator
@@ -117,8 +117,8 @@ class SessionAuthenticator extends Authenticator
     protected function update(UserInterface $user): void
     {
         $user->login_expiry = date('Y-m-d H:i:s', strtotime(env('CMS_LOGIN_EXPIRY')));
-        $user->active_token = SecurityToken::bin2hex();
-        $user->device_id = SecurityToken::bin2hex();
+        $user->active_token = container_resolve(SecurityTokenInterface::class)::bin2hex();
+        $user->device_id = container_resolve(SecurityTokenInterface::class)::bin2hex();
         $user->ip = $this->request->getIP();
         $user->save();
 

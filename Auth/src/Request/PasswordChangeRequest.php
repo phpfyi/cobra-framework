@@ -3,7 +3,7 @@
 namespace Cobra\Auth\Request;
 
 use Cobra\Auth\User\User;
-use Cobra\Security\Token\SecurityToken;
+use Cobra\Interfaces\Security\Token\SecurityTokenInterface;
 
 /**
  * Password Change Request
@@ -60,7 +60,7 @@ class PasswordChangeRequest extends AuthRequest
      */
     public function onSuccess()
     {
-        $this->user->reset_token = SecurityToken::bin2hex();
+        $this->user->reset_token = container_resolve(SecurityTokenInterface::class)::bin2hex();
         $this->user->save();
 
         $this->controller->getResponse()->getSession()->set('password_changed', true);

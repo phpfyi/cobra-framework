@@ -3,8 +3,8 @@
 namespace Cobra\Auth\Request;
 
 use Cobra\Auth\User\User;
+use Cobra\Interfaces\Security\Token\SecurityTokenInterface;
 use Cobra\Mail\Smtp\SmtpMailer;
-use Cobra\Security\Token\SecurityToken;
 use Cobra\View\ViewData;
 
 /**
@@ -60,8 +60,8 @@ class RegistrationRequest extends AuthRequest
 
         $user->account = 3;
         $user->login_expiry = date('Y-m-d H:i:s', strtotime(env('CMS_LOGIN_EXPIRY')));
-        $user->device_id = SecurityToken::bin2hex();
-        $user->confirm_token = SecurityToken::bin2hex();
+        $user->device_id = container_resolve(SecurityTokenInterface::class)::bin2hex();
+        $user->confirm_token = container_resolve(SecurityTokenInterface::class)::bin2hex();
         $user->save();
 
         $data = ViewData::resolve()
