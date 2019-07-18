@@ -4,8 +4,8 @@ namespace Cobra\Auth\Request;
 
 use Cobra\Auth\User\User;
 use Cobra\Interfaces\Security\Token\SecurityTokenInterface;
+use Cobra\Interfaces\View\ViewDataInterface;
 use Cobra\Mail\Smtp\SmtpMailer;
-use Cobra\View\ViewData;
 
 /**
  * Registration Request
@@ -64,7 +64,7 @@ class RegistrationRequest extends AuthRequest
         $user->confirm_token = container_resolve(SecurityTokenInterface::class)::bin2hex();
         $user->save();
 
-        $data = ViewData::resolve()
+        $data = container_resolve(ViewDataInterface::class)
             ->set('title', 'Confirm Account')
             ->set('confirm_url', $this->getConfirmAccountUrl($user))
             ->withTemplate(config('mailer.registration_success_template'));

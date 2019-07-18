@@ -26,6 +26,14 @@ class ViewService extends Service
     public function namespaces(): void
     {
         contain_namespace(
+            \Cobra\Interfaces\View\ViewInterface::class,
+            \Cobra\View\View::class
+        );
+        contain_namespace(
+            \Cobra\Interfaces\View\ViewDataInterface::class,
+            \Cobra\View\ViewData::class
+        );
+        contain_namespace(
             \Cobra\Interfaces\View\Loader\ViewLoaderInterface::class,
             \Cobra\View\Loader\ViewLoader::class
         );

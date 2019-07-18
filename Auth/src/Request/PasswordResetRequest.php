@@ -4,8 +4,8 @@ namespace Cobra\Auth\Request;
 
 use Cobra\Auth\User\User;
 use Cobra\Interfaces\Security\Token\SecurityTokenInterface;
+use Cobra\Interfaces\View\ViewDataInterface;
 use Cobra\Mail\Smtp\SmtpMailer;
-use Cobra\View\ViewData;
 
 /**
  * Password Reset Request
@@ -52,7 +52,7 @@ class PasswordResetRequest extends AuthRequest
         $user->reset_token = container_resolve(SecurityTokenInterface::class)::bin2hex();
         $user->save();
 
-        $data = ViewData::resolve()
+        $data = container_resolve(ViewDataInterface::class)
             ->set('title', 'Password Reset')
             ->set('reset_url', $this->getChangePasswordUrl($user))
             ->withTemplate(config('mailer.password_reset_template'));
