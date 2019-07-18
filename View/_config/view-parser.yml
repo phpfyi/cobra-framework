@@ -1,0 +1,10 @@
+Cobra\View\Transform\ViewParser:
+  expressions:
+    'e (.*?)': 'echo $2'
+    'if (.*?)': 'if($2):'
+    'endif': 'endif;'
+    'else': 'else:'
+    'for (.*?)': 'for($2):'
+    'endfor': 'endfor;'
+    'foreach (.*?)': 'foreach($2):'
+    'endforeach': 'endforeach;'
