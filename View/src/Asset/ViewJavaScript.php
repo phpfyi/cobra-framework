@@ -3,7 +3,7 @@
 namespace Cobra\View\Asset;
 
 use Cobra\Html\HtmlScriptElement;
-use Cobra\Server\FilePath;
+use Cobra\Server\File\FilePath;
 
 /**
  * View JavaScript

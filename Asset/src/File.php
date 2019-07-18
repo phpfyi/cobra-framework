@@ -11,7 +11,7 @@ use Cobra\Interfaces\Form\FormInterface;
 use Cobra\Form\Field\SelectField;
 use Cobra\Model\Model;
 use Cobra\Model\ModelDatabaseTable;
-use Cobra\Server\FilePath;
+use Cobra\Server\File\FilePath;
 
 /**
  * File

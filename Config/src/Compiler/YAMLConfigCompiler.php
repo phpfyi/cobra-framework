@@ -4,7 +4,7 @@ namespace Cobra\Config\Compiler;
 
 use Closure;
 use Cobra\Config\Cache\ConfigCache;
-use Cobra\Server\DirectoryIterator;
+use Cobra\Server\Directory\DirectoryIterator;
 
 /**
  * YAML Config Compiler

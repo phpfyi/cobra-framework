@@ -6,8 +6,8 @@ use Cobra\Interfaces\View\Loader\ViewLoaderInterface;
 use Cobra\Interfaces\View\Transform\ViewParserInterface;
 use Cobra\Event\Traits\EventEmitter;
 use Cobra\Object\AbstractObject;
-use Cobra\Server\FilePath;
-use Cobra\Server\FileSystem;
+use Cobra\Server\File\FilePath;
+use Cobra\Server\File\FileSystem;
 use Cobra\View\Cache\ViewCache;
 
 /**

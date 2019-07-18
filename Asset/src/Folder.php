@@ -7,7 +7,7 @@ use Cobra\Cms\Traits\ModelDataTableColumns;
 use Cobra\Interfaces\Asset\FolderInterface;
 use Cobra\Model\Model;
 use Cobra\Model\ModelDatabaseTable;
-use Cobra\Server\Directory;
+use Cobra\Server\Directory\Directory;
 
 /**
  * Folder

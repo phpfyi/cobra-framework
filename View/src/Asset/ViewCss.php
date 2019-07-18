@@ -3,7 +3,7 @@
 namespace Cobra\View\Asset;
 
 use Cobra\Html\HtmlStyleElement;
-use Cobra\Server\FilePath;
+use Cobra\Server\File\FilePath;
 
 /**
  * View CSS

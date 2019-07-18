@@ -6,8 +6,8 @@ use Cobra\Interfaces\Asset\Resource\FilePathSynchroniserInterface;
 use Cobra\Interfaces\Asset\FileInterface;
 use Cobra\Interfaces\Asset\FolderInterface;
 use Cobra\Object\AbstractObject;
-use Cobra\Server\FileSystem;
-use Cobra\Server\FilePath;
+use Cobra\Server\File\FileSystem;
+use Cobra\Server\File\FilePath;
 
 /**
  * File Path Synchroniser

@@ -8,7 +8,7 @@ use Cobra\Interfaces\Asset\FileInterface;
 use Cobra\Interfaces\Asset\Resource\FileResourceInterface;
 use Cobra\Interfaces\Http\Message\ResponseInterface;
 use Cobra\Object\AbstractObject;
-use Cobra\Server\FilePath;
+use Cobra\Server\File\FilePath;
 
 /**
  * File Resource
