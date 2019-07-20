@@ -81,23 +81,4 @@ interface ContainerInterface
      * @return array
      */
     public function getBound(): array;
-
-    /**
-     * Resolves an object an its dependencies and returns it
-     *
-     * @param  string $id
-     * @param  array  $args
-     * @return object
-     */
-    public function resolve(string $id, array $arguments = []): object;
-
-    /**
-     * Resolves an object method and its dependencies before calling it and returning it
-     *
-     * @param  object $instance
-     * @param  string $method
-     * @param  array  $args
-     * @return mixed
-     */
-    public function resolveMethod(object $instance, string $method, array $arguments = []);
 }
