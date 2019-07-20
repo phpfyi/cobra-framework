@@ -2,7 +2,6 @@
 
 namespace Cobra\Controller;
 
-use Cobra\Container\Container;
 use Cobra\Interfaces\Controller\ControllerActionHandlerInterface;
 use Cobra\Interfaces\Controller\ControllerInterface;
 use Cobra\Interfaces\Http\Message\RequestInterface;
@@ -46,30 +45,20 @@ class ControllerActionHandler extends AbstractObject implements ControllerAction
     protected $action;
 
     /**
-     * Container instance
-     *
-     * @var Container
-     */
-    protected $container;
-
-    /**
      * Sets the required properties
      *
      * @param ControllerInterface $controller
      * @param RequestInterface $request
      * @param string $action
-     * @param Container $container
      */
     public function __construct(
         ControllerInterface $controller,
         RequestInterface $request,
-        string $action,
-        Container $container
+        string $action
     ) {
         $this->controller = $controller;
         $this->request = $request;
         $this->action = $action;
-        $this->container = $container;
     }
 
     /**
@@ -80,7 +69,7 @@ class ControllerActionHandler extends AbstractObject implements ControllerAction
     public function invoke(): void
     {
         if (method_exists($this->controller, $this->action)) {
-            $this->container->resolveMethod(
+            container_resolve_method(
                 $this->controller,
                 $this->action
             );
