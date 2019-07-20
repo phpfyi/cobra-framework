@@ -24,7 +24,7 @@
             "src/"
         ],
         "files": [
-            "_functions.php"
+            "package.php"
         ]
     },
     "minimum-stability": "dev",

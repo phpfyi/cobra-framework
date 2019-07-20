@@ -1,9 +1,9 @@
 <?php
 
 /**
- * HTTP function sets
+ * Inpage package
  *
- * @category  HTTP
+ * @category  Inpage
  * @package   Cobra
  * @author    Andrew Mc Cormack <webmaster@ddmseo.com>
  * @copyright Copyright (c) 2019, Andrew Mc Cormack
@@ -13,7 +13,5 @@
  * @since     1.0.0
  */
 
- include '_functions/ip.php';
- include '_functions/request.php';
- include '_functions/response.php';
- include '_functions/uri.php';
+// DEFINES
+define('INPAGE_PACKAGE_ROOT', dirname(__FILE__));

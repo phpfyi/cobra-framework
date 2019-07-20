@@ -1,6 +1,6 @@
 {
-    "name": "cobra/inpage",
-    "description": "Cobra inpage package",
+    "name": "cobra/container",
+    "description": "Cobra container package",
     "homepage": "https://php.fyi",
     "license": "MIT",
     "authors": [
@@ -13,7 +13,8 @@
         "issues": "https://github.com/phpfyi/cobra/issues"
     },
     "keywords": [
-        "inpage",
+        "container",
+        "resolver",
         "php"
     ],
     "require": {
