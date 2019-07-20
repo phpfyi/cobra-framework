@@ -14,7 +14,7 @@
  */
 
 // DEFINES
-define('OBJECT_PACKAGE_ROOT', dirname(__FILE__));
+define('OBJECT_PACKAGE_ROOT', __DIR__.DIRECTORY_SEPARATOR);
 
 // FUNCTIONS
 include 'functions/object.php';

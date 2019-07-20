@@ -14,7 +14,7 @@
  */
 
 // DEFINES
-define('FORM_PACKAGE_ROOT', dirname(__FILE__));
+define('FORM_PACKAGE_ROOT', __DIR__.DIRECTORY_SEPARATOR);
 
 // FUNCTIONS
 include 'functions/form.php';

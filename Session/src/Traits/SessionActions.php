@@ -4,7 +4,7 @@ namespace Cobra\Session\Traits;
 
 /**
  * Session Actions Trait
- * 
+ *
  * Set of methods that allow modifying of session data.
  *
  * @category  Session

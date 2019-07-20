@@ -53,8 +53,7 @@ class FormFactory extends AbstractObject implements FormFactoryInterface
     {
         $this->form
             ->setField(TokenField::resolve(config('form.csrf_field_name'))
-                ->setValue(csrf())
-            )
+                ->setValue(csrf()))
             ->setField(SpamField::resolve(config('form.spam_field_name')))
             ->setField(SubmitField::resolve('form-submit'));
 

@@ -18,7 +18,7 @@ interface ServerConfigurationInterface
 {
     /**
      * Checks the PHP version is supported
-     * 
+     *
      * Checks that the required PHP extensions are present
      *
      * @return void

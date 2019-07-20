@@ -15,7 +15,7 @@ namespace Cobra\Interfaces\Security\Token;
  * @since     1.0.0
  */
 interface NonceTokenInterface
-{   
+{
     /**
      * Returns the current token or creates a new one and returns it.
      *

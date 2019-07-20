@@ -14,4 +14,4 @@
  */
 
 // DEFINES
-define('AMP_PACKAGE_ROOT', dirname(__FILE__));
+define('AMP_PACKAGE_ROOT', __DIR__.DIRECTORY_SEPARATOR);

@@ -14,4 +14,4 @@
  */
 
 // DEFINES
-define('EVENT_PACKAGE_ROOT', dirname(__FILE__));
+define('EVENT_PACKAGE_ROOT', __DIR__.DIRECTORY_SEPARATOR);

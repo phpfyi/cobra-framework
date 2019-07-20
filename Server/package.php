@@ -14,7 +14,7 @@
  */
 
 // DEFINES
-define('SERVER_PACKAGE_ROOT', dirname(__FILE__));
+define('SERVER_PACKAGE_ROOT', __DIR__.DIRECTORY_SEPARATOR);
 
 // FUNCTIONS
 include 'functions/server.php';

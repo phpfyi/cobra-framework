@@ -14,7 +14,7 @@
  */
 
 // DEFINES
-define('HTTP_PACKAGE_ROOT', dirname(__FILE__));
+define('HTTP_PACKAGE_ROOT', __DIR__.DIRECTORY_SEPARATOR);
 
 // FUNCTIONS
 include 'functions/ip.php';

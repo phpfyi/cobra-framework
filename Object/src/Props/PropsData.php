@@ -32,8 +32,8 @@ class PropsData extends AbstractObject implements PropsDataInterface
     public function __toString(): string
     {
         return htmlspecialchars(
-            json_encode($this->data, JSON_FORCE_OBJECT), 
-            ENT_QUOTES, 
+            json_encode($this->data, JSON_FORCE_OBJECT),
+            ENT_QUOTES,
             'UTF-8'
         );
     }

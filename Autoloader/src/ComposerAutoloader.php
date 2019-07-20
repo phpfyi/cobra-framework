@@ -10,7 +10,7 @@ use Cobra\Object\AbstractObject;
 /**
  * ComposerAutoloader
  *
- * Class which acts as a wrapper and allows easy interaction with the composer 
+ * Class which acts as a wrapper and allows easy interaction with the composer
  * class loader.
  *
  * @category  Autoloader

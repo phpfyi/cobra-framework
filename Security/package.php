@@ -14,7 +14,7 @@
  */
 
 // DEFINES
-define('SECURITY_PACKAGE_ROOT', dirname(__FILE__));
+define('SECURITY_PACKAGE_ROOT', __DIR__.DIRECTORY_SEPARATOR);
 
 // FUNCTIONS
 include 'functions/token.php';

@@ -14,7 +14,7 @@
  */
 
 // DEFINES
-define('AUTOLOADER_PACKAGE_ROOT', dirname(__FILE__));
+define('AUTOLOADER_PACKAGE_ROOT', __DIR__.DIRECTORY_SEPARATOR);
 
 // FUNCTIONS
 include 'functions/class.php';

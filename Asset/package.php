@@ -14,4 +14,4 @@
  */
 
 // DEFINES
-define('ASSET_PACKAGE_ROOT', dirname(__FILE__));
+define('ASSET_PACKAGE_ROOT', __DIR__.DIRECTORY_SEPARATOR);
