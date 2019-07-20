@@ -2,8 +2,6 @@
 
 namespace Cobra\Container\Traits;
 
-use Cobra\Container\Container;
-
 /**
  * Resolvable Trait
  *
@@ -26,6 +24,6 @@ trait Resolvable
      */
     public static function resolve(...$args)
     {
-        return Container::instance()->resolve(static::class, func_get_args($args));
+        return container_resolve(static::class, func_get_args());
     }
 }
