@@ -44,13 +44,14 @@ class ContentSecurityPolicyMiddleware extends Middleware
     protected function getRules(): string
     {
         $csp = (array) config('csp');
-        return implode(' ', 
+        return implode(
+            ' ',
             array_map(
                 function ($name, $values) {
                     return sprintf(
-                        '%s %s%s;', 
-                        $name, 
-                        implode(' ', $values), 
+                        '%s %s%s;',
+                        $name,
+                        implode(' ', $values),
                         $this->getNonce($name)
                     );
                 },
@@ -68,7 +69,7 @@ class ContentSecurityPolicyMiddleware extends Middleware
      */
     protected function getNonce(string $name): string
     {
-        return $name === 'script-src' 
+        return $name === 'script-src'
         ? sprintf(" 'nonce-%s'", nonce())
         : '';
     }
