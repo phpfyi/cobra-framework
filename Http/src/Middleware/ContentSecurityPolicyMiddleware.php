@@ -50,11 +50,15 @@ class ContentSecurityPolicyMiddleware extends Middleware
      */
     protected function getRules(): string
     {
-        $csp = config('csp');
+        $csp = (array) config('csp');
         array_map(
             function ($name, $values) {
-                $rule = sprintf('%s %s%s;', $name, implode(' ', $values), $this->getNonce($name));
-                $this->rules[] = $rule;
+                $this->rules[] = sprintf(
+                    '%s %s%s;', 
+                    $name, 
+                    implode(' ', $values), 
+                    $this->getNonce($name)
+                );
             },
             array_keys($csp),
             $csp
@@ -66,12 +70,12 @@ class ContentSecurityPolicyMiddleware extends Middleware
      * Returns the CSP nonce token for script execution
      *
      * @param  string $name
-     * @return void
+     * @return string
      */
-    protected function getNonce(string $name)
+    protected function getNonce(string $name): string
     {
-        if ($name === 'script-src') {
-            return sprintf(" 'nonce-%s'", nonce());
-        }
+        return $name === 'script-src' 
+        ? sprintf(" 'nonce-%s'", nonce())
+        : '';
     }
 }
