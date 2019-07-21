@@ -1,0 +1,4 @@
+object:
+  decorators:
+    Cobra\Form\Field\FormField:
+      - Cobra\Form\Decorator\CssVisibilityChildDecorator
