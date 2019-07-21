@@ -8,7 +8,7 @@ use Cobra\Interfaces\Http\Middleware\MiddlewareHandlerInterface;
 use Cobra\Interfaces\Http\RequestHandlerInterface;
 use Cobra\Interfaces\Routing\RouteInterface;
 use Cobra\Interfaces\Routing\RouterInterface;
-use Cobra\Interfaces\Routing\Factory\RouteControllerFactoryInterface;
+use Cobra\Interfaces\Routing\RouteDispatcherInterface;
 use Cobra\Event\Traits\EventEmitter;
 use Cobra\Http\Traits\UsesRequest;
 use Cobra\Http\Traits\UsesResponse;
@@ -98,7 +98,7 @@ class Router extends AbstractObject implements RouterInterface, RequestHandlerIn
             return $this->response;
         }
         return container_resolve(
-            RouteControllerFactoryInterface::class,
+            RouteDispatcherInterface::class,
             [
                 $this
             ]

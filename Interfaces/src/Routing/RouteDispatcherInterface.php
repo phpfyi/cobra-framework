@@ -1,13 +1,13 @@
 <?php
 
-namespace Cobra\Interfaces\Routing\Factory;
+namespace Cobra\Interfaces\Routing;
 
 use Cobra\Interfaces\Http\Message\ResponseInterface;
 
 /**
- * Route Controller Factory Interface
+ * Route Dispatcher Interface
  *
- * @category  Core
+ * @category  Routing
  * @package   Cobra
  * @author    Andrew Mc Cormack <webmaster@ddmseo.com>
  * @copyright Copyright (c) 2019, Andrew Mc Cormack
@@ -16,7 +16,7 @@ use Cobra\Interfaces\Http\Message\ResponseInterface;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-interface RouteControllerFactoryInterface
+interface RouteDispatcherInterface
 {
     /**
      * Returns the response.
