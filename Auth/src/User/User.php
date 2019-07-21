@@ -17,8 +17,8 @@ use Cobra\Interfaces\Controller\ControllerInterface;
 use Cobra\Interfaces\Form\FormInterface;
 use Cobra\Model\Model;
 use Cobra\Model\ModelDatabaseTable;
-use Cobra\Page\PageComment;
-use Cobra\Page\PageRating;
+use Cobra\Page\Model\PageComment;
+use Cobra\Page\Model\PageRating;
 use Cobra\Social\SocialLink;
 
 /**
