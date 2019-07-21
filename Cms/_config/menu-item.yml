@@ -1,0 +1,7 @@
+Cobra\Cms\Model\MenuItem:
+  validation_rules:
+    title: required
+  table_columns:
+    - [5, 'id', 'ID']
+    - [35, 'title', 'Title']
+    - [50, 'css_class', 'CSS Class']

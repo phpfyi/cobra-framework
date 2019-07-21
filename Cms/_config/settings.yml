@@ -1,0 +1,6 @@
+Cobra\Cms\Model\SiteSettings:
+  table_columns:
+    - [5, 'id', 'ID']
+    - [25, 'title', 'Title']
+    - [35, 'app', 'App']
+    - [25, 'domain', 'domain']
