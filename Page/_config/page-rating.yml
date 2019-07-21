@@ -1,0 +1,10 @@
+Cobra\Page\Model\PageRating:
+  validation_rules:
+    rating: required
+    userID: required
+    pageID: required
+  table_columns:
+    - [5, 'id', 'ID']
+    - [10, 'tableDate', 'Created']
+    - [15, 'ip', 'IP']
+    - [60, 'rating', 'Rating']

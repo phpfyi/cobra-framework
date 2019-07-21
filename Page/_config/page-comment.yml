@@ -1,0 +1,11 @@
+Cobra\Page\Model\PageComment:
+  validation_rules:
+    comment: required
+    status: required
+    userID: required
+    pageID: required
+  table_columns:
+    - [5, 'id', 'ID']
+    - [10, 'tableDate', 'Created']
+    - [10, 'tableStatus', 'Status']
+    - [65, 'ip', 'IP']

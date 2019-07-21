@@ -1,0 +1,7 @@
+Cobra\Page\Model\PageTag:
+  validation_rules:
+    title: required
+  table_columns:
+    - [5, 'id', 'ID']
+    - [10, 'tableDate', 'Created']
+    - [75, 'title', 'Title']

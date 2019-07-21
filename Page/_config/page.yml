@@ -1,0 +1,14 @@
+Cobra\Page\Page:
+  validation_rules:
+    class: required
+    controller: required
+    title: required
+    status: required
+    h1: required
+  table_columns:
+    - [5, 'id', 'ID']
+    - [10, 'tableDate', 'Created']
+    - [10, 'tableStatus', 'Status']
+    - [30, 'title', 'Title']
+    - [30, 'tableUrl', 'URL']
+    - [5, 'tableCount', 'Blocks']
