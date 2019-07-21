@@ -23,13 +23,6 @@ use Cobra\Interfaces\Http\RequestHandlerInterface;
 class ContentSecurityPolicyMiddleware extends Middleware
 {
     /**
-     * Array of content security policy rules
-     *
-     * @var array
-     */
-    protected $rules = [];
-
-    /**
      * Enables the content security policy header
      *
      * @param  RequestInterface  $request
@@ -51,19 +44,20 @@ class ContentSecurityPolicyMiddleware extends Middleware
     protected function getRules(): string
     {
         $csp = (array) config('csp');
-        array_map(
-            function ($name, $values) {
-                $this->rules[] = sprintf(
-                    '%s %s%s;', 
-                    $name, 
-                    implode(' ', $values), 
-                    $this->getNonce($name)
-                );
-            },
-            array_keys($csp),
-            $csp
+        return implode(' ', 
+            array_map(
+                function ($name, $values) {
+                    return sprintf(
+                        '%s %s%s;', 
+                        $name, 
+                        implode(' ', $values), 
+                        $this->getNonce($name)
+                    );
+                },
+                array_keys($csp),
+                $csp
+            )
         );
-        return implode(' ', $this->rules);
     }
 
     /**
