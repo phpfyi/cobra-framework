@@ -2,7 +2,7 @@
 
 namespace Cobra\Inpage\Report;
 
-use Cobra\Routing\Route;
+use Cobra\Interfaces\Routing\RouteInterface;
 
 /**
  * Inpage Route Report
@@ -28,7 +28,7 @@ class InpageRouteReport extends InpageReport
     /**
      * Loaded route instance
      *
-     * @var Route
+     * @var RouteInterface
      */
     protected $route;
 
@@ -45,10 +45,10 @@ class InpageRouteReport extends InpageReport
     /**
      * Sets the loaded route
      *
-     * @param  Route $route
+     * @param  RouteInterface $route
      * @return InpageRouteReport
      */
-    public function setRoute(Route $route): InpageRouteReport
+    public function setRoute(RouteInterface $route): InpageRouteReport
     {
         $this->route = $route;
         return $this;
@@ -61,6 +61,6 @@ class InpageRouteReport extends InpageReport
      */
     public function getRoute(): array
     {
-        return $this->route ? $this->route->getPropertiesArray() : [];
+        return $this->route ? $this->route->getProperties() : [];
     }
 }

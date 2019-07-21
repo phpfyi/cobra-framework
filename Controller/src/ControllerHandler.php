@@ -4,8 +4,8 @@ namespace Cobra\Controller;
 
 use Cobra\Interfaces\Controller\ControllerHandlerInterface;
 use Cobra\Interfaces\Controller\ControllerInterface;
+use Cobra\Interfaces\Routing\RouteInterface;
 use Cobra\Object\AbstractObject;
-use Cobra\Routing\Route;
 
 /**
  * Controller Handler
@@ -31,9 +31,9 @@ class ControllerHandler extends AbstractObject implements ControllerHandlerInter
     protected $controller;
 
     /**
-     * Route instance
+     * RouteInterface instance
      *
-     * @var Route
+     * @var RouteInterface
      */
     protected $route;
 
@@ -41,8 +41,9 @@ class ControllerHandler extends AbstractObject implements ControllerHandlerInter
      * Sets the required properties
      *
      * @param ControllerInterface $controller
+     * @param RouteInterface $route
      */
-    public function __construct(ControllerInterface $controller, Route $route)
+    public function __construct(ControllerInterface $controller, RouteInterface $route)
     {
         $this->controller = $controller;
         $this->route = $route;

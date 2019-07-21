@@ -8,12 +8,12 @@ use Cobra\Interfaces\Controller\ControllerHandlerInterface;
 use Cobra\Interfaces\Routing\RouteDispatcherInterface;
 use Cobra\Interfaces\Http\Message\ResponseInterface;
 use Cobra\Interfaces\Page\PageInterface;
+use Cobra\Interfaces\Page\Routing\PageRouteInterface;
 use Cobra\Interfaces\Routing\RouterInterface;
 use Cobra\Object\AbstractObject;
 use Cobra\Object\Exception\InvalidClassnameException;
 use Cobra\Page\Controller\PageController;
 use Cobra\Page\Controller\PageControllerHandler;
-use Cobra\Page\Routing\PageRoute;
 use Cobra\Routing\Traits\CanProcessResponse;
 
 /**
@@ -42,9 +42,9 @@ class RouteDispatcher extends AbstractObject implements RouteDispatcherInterface
     protected $router;
 
     /**
-     * Route instance
+     * RouteInterface instance
      *
-     * @var Route
+     * @var RouteInterface
      */
     protected $route;
 
@@ -77,17 +77,15 @@ class RouteDispatcher extends AbstractObject implements RouteDispatcherInterface
         if (!$this->controller) {
             return $this->router->getResponse()->withStatus(404);
         }
-        $this->setupControllerHandler();
-
         $this->handler->beforeAction();
+
         if ($this->controller instanceof PageController) {
             $this->controller->setPage(
-                $this->route instanceof PageRoute
+                $this->route instanceof PageRouteInterface
                 ? $this->route->getPage()
                 : container_resolve(PageInterface::class)
             );
         }
-        $this->controller->setResponse($this->router->getResponse());
         if (method_exists($this->controller, 'setup')) {
             $this->controller->setup();
         }
@@ -119,8 +117,11 @@ class RouteDispatcher extends AbstractObject implements RouteDispatcherInterface
             );
         }
         $this->controller = $namespace::resolve($this->router->getRequest());
+        $this->controller->setResponse($this->router->getResponse());
 
         contain_object(ControllerInterface::class, $this->controller);
+
+        $this->setupControllerHandler();
     }
 
     /**

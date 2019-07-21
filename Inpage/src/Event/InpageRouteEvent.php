@@ -3,7 +3,7 @@
 namespace Cobra\Inpage\Event;
 
 use Cobra\Inpage\Report\InpageRouteReport;
-use Cobra\Routing\Route;
+use Cobra\Interfaces\Routing\RouteInterface;
 
 /**
  * Inpage Route Event
@@ -22,10 +22,10 @@ class InpageRouteEvent extends InpageEvent
     /**
      * Sets the route on the inpage route report
      *
-     * @param Route $route
+     * @param RouteInterface $route
      * @return void
      */
-    public function handle(Route $route): void
+    public function handle(RouteInterface $route): void
     {
         $this->inpage->getReport(InpageRouteReport::class)->setRoute($route);
     }
