@@ -11,7 +11,7 @@ use Cobra\Object\AbstractObject;
  *
  * Object representation of a database field.
  *
- * Parent class which can be initialised and set or child classes can inherit 
+ * Parent class which can be initialised and set or child classes can inherit
  * from with custom properties.
  *
  * Properties on this class correspond to particular field traits such as the
