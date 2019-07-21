@@ -20,7 +20,7 @@ use Cobra\Routing\Matcher\RouteMatcher;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-class RoutePageMatcher extends RouteMatcher
+class PageRouteMatcher extends RouteMatcher
 {
     /**
      * Page instance
