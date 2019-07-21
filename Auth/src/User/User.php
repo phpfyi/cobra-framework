@@ -13,7 +13,7 @@ use Cobra\Form\Field\SelectField;
 use Cobra\Html\HtmlElement;
 use Cobra\Interfaces\Auth\Password\PasswordEncrypterInterface;
 use Cobra\Interfaces\Auth\User\UserInterface;
-use Cobra\Interfaces\Controller\Controller;
+use Cobra\Interfaces\Controller\ControllerInterface;
 use Cobra\Interfaces\Form\FormInterface;
 use Cobra\Model\Model;
 use Cobra\Model\ModelDatabaseTable;
@@ -210,7 +210,7 @@ class User extends Model implements UserInterface
 
         // validation
         $form->setValidators(static::config('validation_rules'));
-        if (container_object(Controller::class)->getUrlParser()->getAction() == 'create') {
+        if (container_object(ControllerInterface::class)->getUrlParser()->getAction() == 'create') {
             // requires setting a password on user creation
             $form->setValidators(static::config('password_validation_rules'));
         }
