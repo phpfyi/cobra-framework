@@ -106,8 +106,8 @@ class Gtm implements GtmInterface, SingletonInterface
      */
     public function __toString(): string
     {
-        return json_encode(
+        return json_encode([
             (array) self::$store->getData()
-        );
+        ]);
     }
 }
