@@ -4,6 +4,7 @@ namespace Cobra\Http\Middleware;
 
 use Cobra\Interfaces\Http\Message\RequestInterface;
 use Cobra\Interfaces\Http\Message\ResponseInterface;
+use Cobra\Interfaces\Http\Middleware\MiddlewareHandlerInterface;
 use Cobra\Interfaces\Http\RequestHandlerInterface;
 use Cobra\Http\Traits\UsesRequest;
 use Cobra\Http\Traits\UsesResponse;
@@ -23,7 +24,7 @@ use Cobra\Object\AbstractObject;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-class MiddlewareHandler extends AbstractObject implements RequestHandlerInterface
+class MiddlewareHandler extends AbstractObject implements RequestHandlerInterface, MiddlewareHandlerInterface
 {
     use UsesRequest, UsesResponse;
 
