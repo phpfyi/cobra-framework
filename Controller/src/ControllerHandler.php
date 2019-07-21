@@ -2,13 +2,13 @@
 
 namespace Cobra\Controller;
 
-use Cobra\Interfaces\Controller\ControllerDirectorInterface;
+use Cobra\Interfaces\Controller\ControllerHandlerInterface;
 use Cobra\Interfaces\Controller\ControllerInterface;
 use Cobra\Object\AbstractObject;
 use Cobra\Routing\Route;
 
 /**
- * Controller Director
+ * Controller Handler
  *
  * Handles the before and after request actions for a controller
  *
@@ -21,7 +21,7 @@ use Cobra\Routing\Route;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-class ControllerDirector extends AbstractObject implements ControllerDirectorInterface
+class ControllerHandler extends AbstractObject implements ControllerHandlerInterface
 {
     /**
      * Controller instance

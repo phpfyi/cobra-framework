@@ -3,7 +3,7 @@
 namespace Cobra\Interfaces\Controller;
 
 /**
- * Controller Director Interface
+ * Controller Handler Interface
  *
  * @category  Controller
  * @package   Cobra
@@ -14,7 +14,7 @@ namespace Cobra\Interfaces\Controller;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-interface ControllerDirectorInterface
+interface ControllerHandlerInterface
 {
     /**
      * Called before the controller action

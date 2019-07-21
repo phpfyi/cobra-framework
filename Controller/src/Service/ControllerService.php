@@ -30,8 +30,8 @@ class ControllerService extends Service
             \Cobra\Controller\ControllerActionHandler::class
         );
         contain_namespace(
-            \Cobra\Interfaces\Controller\ControllerDirectorInterface::class,
-            \Cobra\Controller\ControllerDirector::class
+            \Cobra\Interfaces\Controller\ControllerHandlerInterface::class,
+            \Cobra\Controller\ControllerHandler::class
         );
     }
 }
