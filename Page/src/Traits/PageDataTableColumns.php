@@ -2,7 +2,7 @@
 
 namespace Cobra\Page\Traits;
 
-use Cobra\Interfaces\Cms\ModelDataTable\ModelDataTable;
+use Cobra\Interfaces\Cms\ModelDataTable\ModelDataTableInterface;
 use Cobra\Page\Page;
 
 /**
@@ -22,10 +22,10 @@ trait PageDataTableColumns
     /**
      * Model CMS table overrides
      *
-     * @param  ModelDataTable $table
-     * @return ModelDataTable
+     * @param  ModelDataTableInterface $table
+     * @return ModelDataTableInterface
      */
-    public function cmsTable(ModelDataTable $table): ModelDataTable
+    public function cmsTable(ModelDataTableInterface $table): ModelDataTableInterface
     {
         return $table->setColumns(Page::config('table_columns'));
     }
