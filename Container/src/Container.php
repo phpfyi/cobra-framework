@@ -2,11 +2,11 @@
 
 namespace Cobra\Container;
 
+use Cobra\Container\Exception\NotFoundException;
 use Cobra\Interfaces\Container\ContainerInterface;
 use Cobra\Interfaces\Object\SingletonInterface;
 use Cobra\Object\Traits\SingletonMethods;
 use Psr\Container\ContainerInterface as PsrContainerInterface;
-use Psr\Container\NotFoundExceptionInterface;
 
 /**
  * Container
@@ -166,7 +166,7 @@ class Container implements ContainerInterface, PsrContainerInterface, SingletonI
         if ($this->has($id)) {
             return $this->bound[$id];
         }
-        throw new NotFoundExceptionInterface("Container entry not found for: {$id}");
+        throw new NotFoundException("Container entry not found for: {$id}");
     }
 
     /**
