@@ -27,7 +27,7 @@ use Cobra\Object\AbstractObject;
  *
  * Generates data tables for has many and many many relations
  *
- * Individual fields can be overridden in the model child class @method form()
+ * Individual fields can be overridden in the model child class @method cmsForm()
  * and customized as required.
  *
  * @category  CMS
