@@ -19,7 +19,6 @@ use Cobra\Model\Model;
 use Cobra\Model\ModelDatabaseTable;
 use Cobra\Page\Model\PageComment;
 use Cobra\Page\Model\PageRating;
-use Cobra\Social\SocialLink;
 
 /**
  * User Model
@@ -166,7 +165,6 @@ class User extends Model implements UserInterface
         $schema->hasMany('Comments', PageComment::class);
         $schema->hasMany('Ratings', PageRating::class);
         $schema->hasMany('Passwords', Password::class);
-        $schema->hasMany('SocialLinks', SocialLink::class);
         $schema->hasMany('Logs', UserLog::class);
         // many many
         $schema->belongsManyMany('Groups', Group::class);
