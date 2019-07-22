@@ -3,7 +3,6 @@
 namespace Cobra\Asset;
 
 use Cobra\Interfaces\Asset\ImageInterface;
-use Cobra\Interfaces\Cms\ModelDataTable\ModelDataTable;
 use Cobra\Model\ModelDatabaseTable;
 
 /**
