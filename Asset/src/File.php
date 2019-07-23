@@ -152,7 +152,7 @@ class File extends Model implements FileInterface
     public function afterSave(): void
     {
         if ($this->folderID > 0) {
-            $synchroniser = container_resolve(
+            container_resolve(
                 FilePathSynchroniserInterface::class,
                 [
                     $this,
