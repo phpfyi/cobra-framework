@@ -114,8 +114,8 @@ class UploadField extends FormField implements UploadFieldInterface
     {
         if (is_array($value) || is_iterable($value)) {
             array_map(
-                function ($id) {
-                    $this->files[] = File::find('id', $id);
+                function ($fileId) {
+                    $this->files[] = File::find('id', $fileId);
                 },
                 new ArrayIterator($value)
             );

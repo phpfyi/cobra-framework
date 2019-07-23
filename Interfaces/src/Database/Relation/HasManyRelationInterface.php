@@ -58,10 +58,10 @@ interface HasManyRelationInterface
     /**
      * Sets the relation parent ID
      *
-     * @param  integer $id
+     * @param  integer $parentID
      * @return HasManyRelationInterface
      */
-    public function setParentID(int $id): HasManyRelationInterface;
+    public function setParentID(int $parentID): HasManyRelationInterface;
 
     /**
      * Returns the relation parent ID

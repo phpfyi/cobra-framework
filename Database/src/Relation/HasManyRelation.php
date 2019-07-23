@@ -144,12 +144,12 @@ class HasManyRelation extends AbstractObject implements HasManyRelationInterface
     /**
      * Sets the relation parent ID
      *
-     * @param  integer $id
+     * @param  integer $parentID
      * @return HasManyRelationInterface
      */
-    public function setParentID(int $id): HasManyRelationInterface
+    public function setParentID(int $parentID): HasManyRelationInterface
     {
-        $this->parentID = $id;
+        $this->parentID = $parentID;
         return $this;
     }
 
