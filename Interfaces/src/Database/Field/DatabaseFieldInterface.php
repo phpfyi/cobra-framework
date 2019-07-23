@@ -106,7 +106,7 @@ interface DatabaseFieldInterface
      *
      * @return bool
      */
-    public function getPrimary(): bool;
+    public function isPrimary(): bool;
 
     /**
      * Sets the field as NULL

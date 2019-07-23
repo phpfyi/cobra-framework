@@ -237,7 +237,7 @@ class DatabaseField extends AbstractObject implements DatabaseFieldInterface
      *
      * @return bool
      */
-    public function getPrimary(): bool
+    public function isPrimary(): bool
     {
         return $this->primary;
     }
