@@ -76,7 +76,7 @@ interface DatabaseFieldInterface
      *
      * @return bool
      */
-    public function getUnsigned();
+    public function isUnsigned();
 
     /**
      * Sets the field as AUTO INCREMENT
@@ -91,7 +91,7 @@ interface DatabaseFieldInterface
      *
      * @return bool
      */
-    public function getIncrement(): bool;
+    public function isIncremented(): bool;
 
     /**
      * Sets the field as PRIMARY
@@ -121,7 +121,7 @@ interface DatabaseFieldInterface
      *
      * @return bool
      */
-    public function getNull(): bool;
+    public function isNull(): bool;
 
     /**
      * Sets the field as NOT NULL
@@ -136,7 +136,7 @@ interface DatabaseFieldInterface
      *
      * @return bool
      */
-    public function getNotNull(): bool;
+    public function isNotNull(): bool;
 
     /**
      * Sets the field as DEFAULT and its value

@@ -193,7 +193,7 @@ class DatabaseField extends AbstractObject implements DatabaseFieldInterface
      *
      * @return bool
      */
-    public function getUnsigned(): bool
+    public function isUnsigned(): bool
     {
         return $this->unsigned;
     }
@@ -215,7 +215,7 @@ class DatabaseField extends AbstractObject implements DatabaseFieldInterface
      *
      * @return bool
      */
-    public function getIncrement(): bool
+    public function isIncremented(): bool
     {
         return $this->increment;
     }
@@ -259,7 +259,7 @@ class DatabaseField extends AbstractObject implements DatabaseFieldInterface
      *
      * @return bool
      */
-    public function getNull(): bool
+    public function isNull(): bool
     {
         return $this->null;
     }
@@ -281,7 +281,7 @@ class DatabaseField extends AbstractObject implements DatabaseFieldInterface
      *
      * @return bool
      */
-    public function getNotNull(): bool
+    public function isNotNull(): bool
     {
         return $this->notNull;
     }

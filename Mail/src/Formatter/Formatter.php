@@ -63,7 +63,7 @@ class Formatter extends AbstractObject
         $this->headers['Reply-To'] = $this->config->getReplyTo();
         $this->headers['Return-Path'] = $this->config->getReturnPath();
         
-        if ($this->config->getHTML() === true) {
+        if ($this->config->isHTML() === true) {
             $this->headers['MIME-Version'] = $this->config->getMimeVersion();
             $this->headers['Content-type'] = $this->getContentType();
         }
