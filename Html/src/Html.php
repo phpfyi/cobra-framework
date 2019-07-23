@@ -44,7 +44,7 @@ class Html implements HtmlInterface
             $element->getTag(),
             $attributes,
             $element->getBody(),
-            $element->getClose() === true ? sprintf('</%s>', $element->getTag()) : '',
+            $element->hasClose() === true ? sprintf('</%s>', $element->getTag()) : '',
             $element->getAfter()
         ).PHP_EOL;
     }

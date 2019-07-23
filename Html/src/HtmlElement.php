@@ -262,7 +262,7 @@ class HtmlElement extends AbstractObject implements HtmlElementInterface
      *
      * @return bool
      */
-    public function getClose(): bool
+    public function hasClose(): bool
     {
         return $this->close;
     }

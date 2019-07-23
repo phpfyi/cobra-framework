@@ -121,7 +121,7 @@ interface HtmlElementInterface
      *
      * @return bool
      */
-    public function getClose(): bool;
+    public function hasClose(): bool;
 
     /**
      * Set the HTML content before the HTML element
