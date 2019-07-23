@@ -6,5 +6,5 @@ Cobra\Page\Model\PageRating:
   table_columns:
     - [5, 'id', 'ID']
     - [10, 'tableDate', 'Created']
-    - [15, 'ip', 'IP']
+    - [15, 'ip_address', 'IP']
     - [60, 'rating', 'Rating']

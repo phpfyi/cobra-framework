@@ -119,7 +119,7 @@ class SessionAuthenticator extends Authenticator
         $user->login_expiry = date('Y-m-d H:i:s', strtotime(env('CMS_LOGIN_EXPIRY')));
         $user->active_token = container_resolve(SecurityTokenInterface::class)::bin2hex();
         $user->device_id = container_resolve(SecurityTokenInterface::class)::bin2hex();
-        $user->ip = $this->request->getIP();
+        $user->ip_address = $this->request->getIP();
         $user->save();
 
         auth()->setUser($user);

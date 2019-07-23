@@ -160,7 +160,7 @@ class User extends Model implements UserInterface
         $schema->varchar('device_id');
         $schema->varchar('reset_token');
         $schema->varchar('confirm_token');
-        $schema->varchar('ip');
+        $schema->varchar('ip_address');
         // has many
         $schema->hasMany('Comments', PageComment::class);
         $schema->hasMany('Ratings', PageRating::class);
@@ -197,7 +197,7 @@ class User extends Model implements UserInterface
         $form->removeFields(['reset_token', 'confirm_token']);
 
         // readonly
-        $form->setReadonly(['ip', 'login_expiry', 'device_id']);
+        $form->setReadonly(['ip_address', 'login_expiry', 'device_id']);
         $form->getField('username')->setDescription('Allowed characters: A-Z a-z 0-9 _-');
 
         // headings

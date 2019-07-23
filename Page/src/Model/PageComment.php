@@ -74,7 +74,7 @@ class PageComment extends Model
         $schema->created();
         $schema->updated();
         $schema->text('comment');
-        $schema->varchar('ip');
+        $schema->varchar('ip_address');
         $schema->int('status');
 
         $schema->hasOne('user', User::class, 'Comments');

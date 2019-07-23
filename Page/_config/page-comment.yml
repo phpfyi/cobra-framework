@@ -8,4 +8,4 @@ Cobra\Page\Model\PageComment:
     - [5, 'id', 'ID']
     - [10, 'tableDate', 'Created']
     - [10, 'tableStatus', 'Status']
-    - [65, 'ip', 'IP']
+    - [65, 'ip_address', 'IP']

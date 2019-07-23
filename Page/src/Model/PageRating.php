@@ -72,7 +72,7 @@ class PageRating extends Model
         $schema->created();
         $schema->updated();
         $schema->int('rating');
-        $schema->varchar('ip');
+        $schema->varchar('ip_address');
 
         $schema->hasOne('user', User::class, 'Ratings');
         $schema->hasOne('page', Page::class, 'Ratings');

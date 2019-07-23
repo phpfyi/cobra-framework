@@ -73,7 +73,7 @@ class UserLog extends Model implements UserLogInterface
         $schema->updated();
         $schema->varchar('action');
         $schema->varchar('result');
-        $schema->varchar('ip');
+        $schema->varchar('ip_address');
 
         $schema->hasOne('User', User::class, 'Logs');
 
