@@ -1,0 +1,76 @@
+routes:
+  - path: '/cms/password/create'
+    controller: 'Cobra\Auth\Controller\GeneratePasswordController'
+    action: 'generate'
+
+  - path: '/cms'
+    guards: 
+      - 'Cobra\Cms\Guard\CmsRouteGuard'
+    middleware:
+      - 'Cobra\Http\Middleware\CmsAllowedIpsMiddleware'
+    children:
+      - path: '/tree'
+        controller: 'Cobra\Cms\Controller\PageTreeController'
+
+      - path: '/tree/children'
+        controller: 'Cobra\Cms\Controller\Page\PageTreeChildrenController'
+
+      - path: '/links'
+        controller: 'Cobra\Cms\Controller\Page\PageLinkListController'
+
+      - path: '/segment/parent'
+        controller: 'Cobra\Cms\Controller\Page\PageSegmentController'
+
+      - path: '/model'
+        children:
+          - path: '/Page/.*/Blocks/create'
+            action: 'create'
+            controller: 'Cobra\Cms\Controller\PageBlockRecordController'
+
+          - path: '/.*/create'
+            controller: 'Cobra\Cms\Controller\RecordController'
+            action: 'create'
+
+          - path: '/.*/read'
+            controller: 'Cobra\Cms\Controller\RecordsController'
+            action: 'read'
+
+          - path: '/.*/update/.*'
+            controller: 'Cobra\Cms\Controller\RecordController'
+            action: 'update'
+
+      - path: '/task'
+        children:
+          - path: '/build'
+            controller: 'Cobra\Cms\Controller\TaskController'
+            action: 'build'
+
+          - path: '/migrate'
+            controller: 'Cobra\Cms\Controller\TaskController'
+            action: 'migrate'
+
+      - path: '/action'
+        children:
+          - path: '/delete'
+            controller: 'Cobra\Cms\Controller\DataTable\CmsDeleteAction'
+
+          - path: '/link'
+            controller: 'Cobra\Cms\Controller\DataTable\CmsLinkAction'
+
+          - path: '/search'
+            controller: 'Cobra\Cms\Controller\DataTable\CmsSearchAction'
+
+          - path: '/sort'
+            controller: 'Cobra\Cms\Controller\DataTable\CmsSortAction'
+
+          - path: '/upload'
+            guards: 
+              - 'Cobra\Cms\Guard\CmsUploadGuard'
+            children:
+              - path: '/add'
+                controller: 'Cobra\Cms\Controller\Upload\CmsUploadAddAction'
+              - path: '/remove'
+                controller: 'Cobra\Cms\Controller\Upload\CmsUploadRemoveAction'
+
+          - path: '/unlink'
+            controller: 'Cobra\Cms\Controller\DataTable\CmsUnlinkAction'

@@ -1,0 +1,9 @@
+Cobra\Cms\FormFactory\ModelFormColumnFactory:
+  mappings:
+    DATE: Cobra\Form\Field\DateField
+    DECIMAL: Cobra\Form\Field\DecimalField
+    INT: Cobra\Form\Field\NumericField
+    TEXT: Cobra\Form\Field\TextareaField
+    TIMESTAMP: Cobra\Form\Field\DatetimeField
+    TINYINT: Cobra\Form\Field\CheckboxField
+    VARCHAR: Cobra\Form\Field\TextField
