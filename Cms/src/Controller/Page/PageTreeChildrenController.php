@@ -44,11 +44,11 @@ class PageTreeChildrenController extends Controller
     /**
      * Returns the child pages of a page
      *
-     * @param  integer $id
+     * @param  integer $parentID
      * @return Iterator
      */
-    public function getChildren(int $id): Iterator
+    public function getChildren(int $parentID): Iterator
     {
-        return Page::get()->where('parentID', '=', $id)->all();
+        return Page::get()->where('parentID', '=', $parentID)->all();
     }
 }

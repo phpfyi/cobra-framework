@@ -75,39 +75,39 @@ class Container implements ContainerInterface, PsrContainerInterface, SingletonI
      *
      * Usually an interface reference to a class.
      *
-     * @param string $id
+     * @param string $identifier
      * @param string $namespace
      * @return ContainerInterface
      */
-    public function bindNamespace(string $id, string $namespace): ContainerInterface
+    public function bindNamespace(string $identifier, string $namespace): ContainerInterface
     {
-        $this->bound[$id] = $this->namespaces[$id] = $namespace;
+        $this->bound[$identifier] = $this->namespaces[$identifier] = $namespace;
         return $this;
     }
 
     /**
      * Binds a referene to an object instance into the container.
      *
-     * @param string $id
+     * @param string $identifier
      * @param object $instance
      * @return ContainerInterface
      */
-    public function bindInstance(string $id, object $instance): ContainerInterface
+    public function bindInstance(string $identifier, object $instance): ContainerInterface
     {
-        $this->bound[$id] = $this->instances[$id] = $instance;
+        $this->bound[$identifier] = $this->instances[$identifier] = $instance;
         return $this;
     }
 
     /**
      * Binds a reference to a singleton object into the container.
      *
-     * @param string $id
+     * @param string $identifier
      * @param SingletonInterface $instance
      * @return ContainerInterface
      */
-    public function bindSingleton(string $id, SingletonInterface $instance): ContainerInterface
+    public function bindSingleton(string $identifier, SingletonInterface $instance): ContainerInterface
     {
-        $this->bound[$id] = $this->singletons[$id] = $instance;
+        $this->bound[$identifier] = $this->singletons[$identifier] = $instance;
         return $this;
     }
 

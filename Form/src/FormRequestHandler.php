@@ -183,9 +183,9 @@ class FormRequestHandler extends AbstractObject implements FormRequestHandlerInt
     {
         $session = (array) $this->request->getSession()->get(self::SESSION_KEY);
 
-        $id = $this->form->getID();
-        if (array_key_exists($id, $session)) {
-            $data = $session[$id];
+        $formId = $this->form->getID();
+        if (array_key_exists($formId, $session)) {
+            $data = $session[$formId];
 
             $this->data = array_key('data', $data, []);
             $this->errors = array_key('messages', $data, []);

@@ -81,10 +81,10 @@ interface HtmlElementInterface
     /**
      * Sets the HTML element ID attribute
      *
-     * @param  string $id
+     * @param  string $elementId
      * @return HtmlElementInterface
      */
-    public function setID(string $id): HtmlElementInterface;
+    public function setID(string $elementId): HtmlElementInterface;
 
     /**
      * Returns the HTML element ID attribute

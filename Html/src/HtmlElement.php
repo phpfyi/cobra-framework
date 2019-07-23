@@ -205,12 +205,12 @@ class HtmlElement extends AbstractObject implements HtmlElementInterface
     /**
      * Sets the HTML element ID attribute
      *
-     * @param  string $id
+     * @param  string $elementId
      * @return HtmlElementInterface
      */
-    public function setID(string $id): HtmlElementInterface
+    public function setID(string $elementId): HtmlElementInterface
     {
-        $this->attributes['id'] = $id;
+        $this->attributes['id'] = $elementId;
     }
 
     /**

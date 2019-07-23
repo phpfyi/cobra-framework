@@ -44,10 +44,10 @@ class SessionAuthenticator extends Authenticator
      */
     public function handle(): AuthenticatorInterface
     {
-        if (!$id = $this->request->getSession()->get(self::config('active_token'))) {
+        if (!$hash = $this->request->getSession()->get(self::config('active_token'))) {
             return $this;
         }
-        if (!$user = User::find(self::config('active_token'), $id) ?: null) {
+        if (!$user = User::find(self::config('active_token'), $hash) ?: null) {
             return $this;
         }
         foreach ($this->validators as $namespace) {
