@@ -458,7 +458,7 @@ class MailerConfig extends AbstractObject implements MailerConfigInterface
      *
      * @return boolean
      */
-    public function getHTML(): bool
+    public function isHTML(): bool
     {
         return $this->html;
     }

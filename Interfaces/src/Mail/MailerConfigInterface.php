@@ -257,5 +257,5 @@ interface MailerConfigInterface
      *
      * @return boolean
      */
-    public function getHTML(): bool;
+    public function isHTML(): bool;
 }
