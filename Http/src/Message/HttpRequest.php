@@ -37,7 +37,7 @@ class HttpRequest extends ServerRequest implements RequestInterface
      *
      * @var string
      */
-    protected $ip;
+    protected $ipAddress;
 
     /**
      * The request IP(s) hostnames
@@ -122,7 +122,7 @@ class HttpRequest extends ServerRequest implements RequestInterface
      */
     public function getIP(): string
     {
-        return $this->ip ?? $this->ip = request_ip($this);
+        return $this->ipAddress ?? $this->ipAddress = request_ip($this);
     }
 
     /**

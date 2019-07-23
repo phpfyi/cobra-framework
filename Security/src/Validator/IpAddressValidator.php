@@ -24,14 +24,14 @@ class IpAddressValidator extends Validator
      *
      * @var string
      */
-    protected $ip;
+    protected $ipAddress;
 
     /**
      * Disallowed IPs
      *
      * @var array
      */
-    protected $ips = [];
+    protected $ipAddresses = [];
 
     /**
      * Sets the required properties
@@ -40,8 +40,8 @@ class IpAddressValidator extends Validator
      */
     public function __construct(RequestInterface $request)
     {
-        $this->ip = $request->getIP();
-        $this->ips = env('DISALLOW_IPS');
+        $this->ipAddress = $request->getIP();
+        $this->ipAddresses = env('DISALLOW_IPS');
     }
 
     /**
@@ -62,12 +62,12 @@ class IpAddressValidator extends Validator
      */
     public function validate($value = null): bool
     {
-        foreach (explode(',', $this->ip) as $origin) {
-            foreach ($this->ips as $ip) {
-                if (is_array($ip) && ip_in_range($origin, $ip[0], $ip[1])) {
+        foreach (explode(',', $this->ipAddress) as $origin) {
+            foreach ($this->ipAddresses as $ipAddress) {
+                if (is_array($ipAddress) && ip_in_range($origin, $ipAddress[0], $ipAddress[1])) {
                     return false;
                 }
-                if ($origin === $ip) {
+                if ($origin === $ipAddress) {
                     return false;
                 }
             }
