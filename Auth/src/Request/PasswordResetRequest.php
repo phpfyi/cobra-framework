@@ -57,7 +57,7 @@ class PasswordResetRequest extends AuthRequest
             ->set('reset_url', $this->getChangePasswordUrl($user))
             ->withTemplate(config('mailer.password_reset_template'));
             
-        $mailer = SmtpMailer::resolve()
+        SmtpMailer::resolve()
             ->setSubject('Password Reset')
             ->setBody($data)
             ->setTo($user->email)

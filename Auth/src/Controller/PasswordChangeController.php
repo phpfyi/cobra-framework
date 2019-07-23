@@ -87,11 +87,10 @@ class PasswordChangeController extends AuthController
     /**
      * Password change error action
      *
-     * @param  RequestInterface $request
      * @param  GtmInterface $gtm
      * @return void
      */
-    public function error(RequestInterface $request, GtmInterface $gtm)
+    public function error(GtmInterface $gtm)
     {
         $gtm->setEvent('PasswordChangeError');
 

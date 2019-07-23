@@ -3,7 +3,6 @@
 namespace Cobra\Auth\Controller;
 
 use Cobra\Interfaces\Auth\AuthInterface;
-use Cobra\Interfaces\Http\Message\RequestInterface;
 
 /**
  * Logout Controller
@@ -22,11 +21,10 @@ class LogoutController extends AuthController
     /**
      * Default controller action
      *
-     * @param  RequestInterface $request
      * @param  AuthInterface $auth
      * @return void
      */
-    public function index(RequestInterface $request, AuthInterface $auth)
+    public function index(AuthInterface $auth)
     {
         if ($user = $auth->getUser()) {
             $auth->logout($user);

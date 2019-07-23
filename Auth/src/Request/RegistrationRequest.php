@@ -69,7 +69,7 @@ class RegistrationRequest extends AuthRequest
             ->set('confirm_url', $this->getConfirmAccountUrl($user))
             ->withTemplate(config('mailer.registration_success_template'));
             
-        $mailer = SmtpMailer::resolve()
+        SmtpMailer::resolve()
             ->setSubject('Confirm Account')
             ->setBody($data)
             ->setTo($user->email)

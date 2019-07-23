@@ -43,12 +43,11 @@ if (! function_exists('get_validators')) {
     {
         $validators = [];
         array_map(
-            function ($name, $element) use (&$validators) {
+            function ($element) use (&$validators) {
                 if (method_exists($element, 'getValidator')) {
                     $validators[$element->getName()] = $element->getValidator();
                 }
             },
-            array_keys($object->getElements()),
             $object->getElements()
         );
         return array_filter($validators);

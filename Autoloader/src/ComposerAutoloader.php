@@ -102,13 +102,12 @@ class ComposerAutoloader extends AbstractObject implements ComposerAutoloaderInt
         $classes = [];
         $map = $this->autoloader->getClassMap();
         array_map(
-            function ($class, $path) use (&$classes, $namespace, $parent) {
+            function ($class) use (&$classes, $namespace, $parent) {
                 if (is_subclass_of($class, $namespace) || ($parent && $class === $namespace)) {
                     $classes[] = $class;
                 }
             },
-            array_keys($map),
-            $map
+            array_keys($map)
         );
         return json_encode($classes, JSON_PRETTY_PRINT);
     }
