@@ -24,7 +24,7 @@ class PasswordChangeRequest extends AuthRequest
      *
      * @var User
      */
-    private $user;
+    protected $user;
 
     /**
      * Form request validation rules
