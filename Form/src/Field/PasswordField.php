@@ -58,7 +58,10 @@ class PasswordField extends FormField
      */
     public function setValue($value, $escape = true): FormFieldInterface
     {
-        $this->value = $value;
+        parent::setValue($value, $escape);
+        
+        unset($this->attributes['value']);
+
         return $this;
     }
 }
