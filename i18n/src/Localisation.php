@@ -8,7 +8,7 @@ use Cobra\Interfaces\i18n\LocalisationInterface;
 /**
  * Localisation
  *
- * High level localisation class that can be interacted with for specific 
+ * High level localisation class that can be interacted with for specific
  * locale values and logic
  *
  * @category  i18n

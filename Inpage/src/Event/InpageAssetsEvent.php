@@ -35,10 +35,9 @@ class InpageAssetsEvent extends InpageEvent
     /**
      * Sets the required inpage assets
      *
-     * @param ControllerInterface $controller
      * @return void
      */
-    public function handle(ControllerInterface $controller): void
+    public function handle(): void
     {
         css()->setInline('inpage.main');
 

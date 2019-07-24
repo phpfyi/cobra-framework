@@ -37,7 +37,7 @@ class RouteConfigMatcher extends RouteMatcher
                 continue;
             }
             $regex = sprintf("#^%s$#", $route->getPath());
-            if (preg_match($regex, $this->path, $matches) !== 1) {
+            if (preg_match($regex, $this->path) !== 1) {
                 continue;
             }
             $this->route = $route;
