@@ -15,3 +15,6 @@
 
 // DEFINES
 define('HTML_PACKAGE_ROOT', __DIR__.DIRECTORY_SEPARATOR);
+
+// FUNCTIONS
+include 'functions/element.php';
