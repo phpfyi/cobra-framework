@@ -3,9 +3,9 @@
 namespace Cobra\Auth\Controller;
 
 use Cobra\Auth\Request\PasswordResetRequest;
-use Cobra\Form\Form;
 use Cobra\Form\Field\EmailField;
 use Cobra\Html\HtmlElement;
+use Cobra\Interfaces\Form\FormInterface;
 use Cobra\Interfaces\Form\FormFactoryInterface;
 use Cobra\Interfaces\Gtm\GtmInterface;
 use Cobra\Interfaces\Http\Message\RequestInterface;
@@ -46,7 +46,8 @@ class PasswordResetController extends AuthController
      */
     public function index(RequestInterface $request)
     {
-        $form = Form::resolve('Login');
+        $form = container_resolve(FormInterface::class, ['PasswordReset']);
+
         $form->setField(EmailField::resolve('email'));
         $form->setField(
             HtmlElement::resolve('div', 'reset', $this->getLoginLink())

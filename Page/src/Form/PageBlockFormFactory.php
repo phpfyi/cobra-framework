@@ -8,7 +8,6 @@ use Cobra\Interfaces\Http\Message\RequestInterface;
 use Cobra\Form\Field\SpamField;
 use Cobra\Form\Field\SubmitField;
 use Cobra\Form\Field\TokenField;
-use Cobra\Form\Form;
 use Cobra\Object\AbstractObject;
 use Cobra\Page\Form\Field\PageBlockRadioGroupField;
 
@@ -49,7 +48,8 @@ class PageBlockFormFactory extends AbstractObject implements FormFactoryInterfac
         $group->setData($blocks);
         $group->setValue(get_class(array_shift($blocks)));
 
-        $this->form = Form::resolve('PageBlock');
+        $this->form = container_resolve(FormInterface::class, ['PageBlock']);
+
         $this->form->setAction($this->request->getUri()->getPath());
         $this->form->setField($group);
         $this->form

@@ -5,8 +5,8 @@ namespace Cobra\Auth\Controller;
 use Cobra\Auth\Password\PasswordValidationHtmlElement;
 use Cobra\Auth\Request\PasswordChangeRequest;
 use Cobra\Form\Field\PasswordField;
-use Cobra\Form\Form;
 use Cobra\Html\HtmlElement;
+use Cobra\Interfaces\Form\FormInterface;
 use Cobra\Interfaces\Form\FormFactoryInterface;
 use Cobra\Interfaces\Gtm\GtmInterface;
 use Cobra\Interfaces\Http\Message\RequestInterface;
@@ -47,7 +47,8 @@ class PasswordChangeController extends AuthController
      */
     public function index(RequestInterface $request)
     {
-        $form = Form::resolve('Login');
+        $form = container_resolve(FormInterface::class, ['PasswordChange']);
+
         $form->setField(PasswordField::resolve('password')->addClass('password-field'));
         $form->setField(PasswordField::resolve('password_confirm')->addClass('password-field'));
         $form->setField(PasswordValidationHtmlElement::resolve('password_validator'));

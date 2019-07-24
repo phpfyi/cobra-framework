@@ -7,8 +7,8 @@ use Cobra\Auth\Request\RegistrationRequest;
 use Cobra\Form\Field\EmailField;
 use Cobra\Form\Field\PasswordField;
 use Cobra\Form\Field\TextField;
-use Cobra\Form\Form;
 use Cobra\Html\HtmlElement;
+use Cobra\Interfaces\Form\FormInterface;
 use Cobra\Interfaces\Form\FormFactoryInterface;
 use Cobra\Interfaces\Gtm\GtmInterface;
 use Cobra\Interfaces\Http\Message\RequestInterface;
@@ -49,7 +49,8 @@ class RegistrationController extends AuthController
      */
     public function index(RequestInterface $request)
     {
-        $form = Form::resolve('Registration');
+        $form = container_resolve(FormInterface::class, ['Registration']);
+
         $form->setField(TextField::resolve('username'));
         $form->setField(EmailField::resolve('email'));
         $form->setField(PasswordField::resolve('password')->addClass('password-field'));

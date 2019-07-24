@@ -6,7 +6,6 @@ use Cobra\Interfaces\Form\FormInterface;
 use Cobra\Interfaces\Form\FormFactoryInterface;
 use Cobra\Interfaces\Http\Message\RequestInterface;
 use Cobra\Interfaces\View\Loader\ViewLoaderInterface;
-use Cobra\Form\Form;
 use Cobra\Model\Model;
 use Cobra\Object\AbstractObject;
 
@@ -63,9 +62,9 @@ class ModelFormFactory extends AbstractObject implements FormFactoryInterface
     protected $data = [];
 
     /**
-     * Form instance
+     * FormInterface instance
      *
-     * @var Form
+     * @var FormInterface
      */
     protected $form;
 
@@ -99,7 +98,9 @@ class ModelFormFactory extends AbstractObject implements FormFactoryInterface
      */
     public function getForm(): FormInterface
     {
-        $this->form = Form::resolve($this->model->getTable());
+        $this->form = container_resolve(FormInterface::class, [
+            $this->model->getTable()
+        ]);
 
         // loop through the model hierarchy and set the default fields
         array_map(

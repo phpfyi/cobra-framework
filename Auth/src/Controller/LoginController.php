@@ -3,10 +3,10 @@
 namespace Cobra\Auth\Controller;
 
 use Cobra\Auth\Request\LoginRequest;
-use Cobra\Form\Form;
 use Cobra\Form\Field\EmailField;
 use Cobra\Form\Field\PasswordField;
 use Cobra\Html\HtmlElement;
+use Cobra\Interfaces\Form\FormInterface;
 use Cobra\Interfaces\Form\FormFactoryInterface;
 use Cobra\Interfaces\Gtm\GtmInterface;
 use Cobra\Interfaces\Http\Message\RequestInterface;
@@ -38,7 +38,8 @@ class LoginController extends AuthController
             $gtm->setEvent('LogoutSuccess');
             $this->getResponse()->getSession()->remove('gtm_logout');
         }
-        $form = Form::resolve('Login');
+        $form = container_resolve(FormInterface::class, ['Login']);
+        
         $form->setField(EmailField::resolve('email'));
         $form->setField(PasswordField::resolve('password'));
         $form->setField(
