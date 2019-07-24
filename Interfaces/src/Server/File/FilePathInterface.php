@@ -47,4 +47,12 @@ interface FilePathInterface
      * @return string
      */
     public static function normalize(string $path): string;
+
+    /**
+     * Returns the path filename / basename
+     *
+     * @param string $path
+     * @return string
+     */
+    public static function basename(string $path): string;
 }

@@ -104,7 +104,7 @@ class FilePathSynchroniser extends AbstractObject implements FilePathSynchronise
         return uri_join_absolute(
             ASSETS_DIRECTORY,
             $this->folder->title,
-            basename($filename)
+            FilePath::basename($filename)
         );
     }
 }

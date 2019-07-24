@@ -1,5 +1,7 @@
 <?php
 
+use Cobra\Server\File\FilePath;
+
 /**
  * Server function sets
  *
@@ -72,7 +74,7 @@ if (! function_exists('dir_parts')) {
     function dir_parts(string $path): array
     {
         return array_map(function (string $directory) {
-            return basename($directory);
+            return FilePath::basename($directory);
         }, explode('.', $path));
     }
 }

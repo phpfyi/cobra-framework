@@ -2,6 +2,7 @@
 
 namespace Cobra\Server\File;
 
+use SplFileInfo;
 use Cobra\Interfaces\Server\File\FilePathInterface;
 
 /**
@@ -68,8 +69,19 @@ class FilePath implements FilePathInterface
         $directories = dir_parts($path);
 
         $basename = array_pop($directories);
-        $basename = basename(array_pop($directories)).'.'.$basename;
+        $basename = static::basename(array_pop($directories)).'.'.$basename;
 
         return implode(DIRECTORY_SEPARATOR, $directories).DIRECTORY_SEPARATOR.$basename;
+    }
+
+    /**
+     * Returns the path filename / basename
+     *
+     * @param string $path
+     * @return string
+     */
+    public static function basename(string $path): string
+    {
+        return (new SplFileInfo($path))->getFilename();
     }
 }
