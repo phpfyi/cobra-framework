@@ -24,6 +24,6 @@ trait Resolvable
      */
     public static function resolve(...$args)
     {
-        return container_resolve(static::class, func_get_args());
+        return container_resolve(static::class, $args);
     }
 }
