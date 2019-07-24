@@ -23,9 +23,6 @@
     "autoload": {
         "classmap": [
             "src/"
-        ],
-        "files": [
-            "package.php"
         ]
     },
     "minimum-stability": "dev",
