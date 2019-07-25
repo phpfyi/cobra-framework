@@ -83,7 +83,7 @@ class Config implements ConfigInterface, SingletonInterface
      * @param array $args
      * @return mixed
      */
-    public static function __call(string $name, array $args)
+    public function __call(string $name, array $args)
     {
         return self::$store->{$name}(...$args);
     }
