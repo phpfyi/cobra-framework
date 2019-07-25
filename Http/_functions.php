@@ -5,7 +5,6 @@ use Cobra\Interfaces\Http\Uri\RequestUriInterface;
 use Cobra\Http\Message\HttpForbiddenResponse;
 use Cobra\Http\Message\HttpRedirectResponse;
 
-
 /**
  * HTTP function sets
  *

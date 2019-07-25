@@ -4,7 +4,7 @@ namespace Cobra\Asset\Form\Field;
 
 use ArrayIterator;
 use Cobra\Asset\File;
-use Cobra\Asset\Folder;
+use Cobra\Interfaces\Asset\FileInterface;
 use Cobra\Interfaces\Asset\FolderInterface;
 use Cobra\Interfaces\Asset\Form\Field\UploadFieldInterface;
 use Cobra\Interfaces\Form\Field\FormFieldInterface;
@@ -67,9 +67,9 @@ class UploadField extends FormField implements UploadFieldInterface
     protected $files = [];
 
     /**
-     * Folder record instance
+     * FolderInterface instance
      *
-     * @var Folder
+     * @var FolderInterface
      */
     protected $folder;
 
@@ -115,13 +115,13 @@ class UploadField extends FormField implements UploadFieldInterface
         if (is_array($value) || is_iterable($value)) {
             array_map(
                 function ($fileId) {
-                    $this->files[] = File::find('id', $fileId);
+                    $this->files[] = container_resolve(FileInterface::class)->find('id', $fileId);
                 },
                 new ArrayIterator($value)
             );
         } else {
             parent::setValue($value);
-            if ((int) $value > 0 && $file = File::find('id', $value)) {
+            if ((int) $value > 0 && $file = container_resolve(FileInterface::class)->find('id', $value)) {
                 $this->files[] = $file;
             }
         }
@@ -171,7 +171,9 @@ class UploadField extends FormField implements UploadFieldInterface
      */
     public function setFolderName(string $name): UploadFieldInterface
     {
-        return $this->setFolder(Folder::find('title', $name));
+        return $this->setFolder(
+            container_resolve(FolderInterface::class)->find('title', $name)
+        );
     }
 
     /**
