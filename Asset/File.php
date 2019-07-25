@@ -2,9 +2,9 @@
 
 namespace Cobra\Asset;
 
-use Cobra\Asset\Form\Field\UploadField;
 use Cobra\Cms\Traits\ModelDataTableColumns;
 use Cobra\Interfaces\Asset\FileInterface;
+use Cobra\Interfaces\Asset\Form\Field\UploadFieldInterface;
 use Cobra\Interfaces\Asset\Resource\FilePathSynchroniserInterface;
 use Cobra\Interfaces\Asset\Resource\FileResourceInterface;
 use Cobra\Interfaces\Form\FormInterface;
@@ -117,7 +117,13 @@ class File extends Model implements FileInterface
             )
         );
         $this->id == 0
-        ? $form->setField(UploadField::resolve('public_path', 'File'))
+        ? $form->setField(container_resolve(
+            UploadFieldInterface::class,
+            [
+                'public_path', 
+                'File'
+            ]
+        ))
         : $form->getField('public_path')->setReadonly();
         
         $form->setReadonly(['class', 'filename', 'system_path', 'size', 'type', 'extension']);
