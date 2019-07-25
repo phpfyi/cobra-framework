@@ -1,6 +1,6 @@
 <?php
 
-use Cobra\Config\Config;
+use Cobra\Interfaces\Config\ConfigInterface;
 
 /**
  * Config function sets
@@ -24,6 +24,6 @@ if (! function_exists('config')) {
      */
     function config(string $name)
     {
-        return Config::get($name);
+        return container_object(ConfigInterface::class)->get($name);
     }
 }
