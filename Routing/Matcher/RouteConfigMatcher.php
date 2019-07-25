@@ -4,7 +4,7 @@ namespace Cobra\Routing\Matcher;
 
 use Closure;
 use Cobra\Interfaces\Routing\Factory\RouteFactoryInterface;
-use Cobra\Routing\Route;
+use Cobra\Interfaces\Routing\RouteInterface;
 use Cobra\Routing\Cache\RouteCache;
 
 /**
@@ -31,7 +31,7 @@ class RouteConfigMatcher extends RouteMatcher
     public function hasMatch(): bool
     {
         foreach ($this->getRoutes() as $route) {
-            $route = Route::resolve($route);
+            $route = container_resolve(RouteInterface::class, [$route]);
             
             if (!empty($route->getHostnames()) && !in_array($this->host, $route->getHostnames())) {
                 continue;

@@ -5,7 +5,6 @@ namespace Cobra\Routing\Factory;
 use Cobra\Interfaces\Routing\Factory\RouteFactoryInterface;
 use Cobra\Interfaces\Routing\RouteInterface;
 use Cobra\Object\AbstractObject;
-use Cobra\Routing\Route;
 
 /**
  * Route Factory
@@ -56,7 +55,9 @@ class RouteFactory extends AbstractObject implements RouteFactoryInterface
     {
         array_map(
             function ($route) {
-                $this->setRoute(Route::resolve($route));
+                $this->setRoute(
+                    container_resolve(RouteInterface::class, [$route])
+                );
             },
             $this->config
         );
@@ -75,7 +76,8 @@ class RouteFactory extends AbstractObject implements RouteFactoryInterface
         if ($children = $route->getChildren()) {
             array_map(
                 function ($child) use ($route) {
-                    $child = Route::resolve($child);
+                    $child = container_resolve(RouteInterface::class, [$child]);
+
                     $child->setParent($route);
                     $this->setRoute($child, $route);
                 },

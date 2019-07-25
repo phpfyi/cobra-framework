@@ -30,6 +30,10 @@ class RoutingService extends Service
             \Cobra\Routing\Router::class
         );
         contain_namespace(
+            \Cobra\Interfaces\Routing\RouteInterface::class,
+            \Cobra\Routing\Route::class
+        );
+        contain_namespace(
             \Cobra\Interfaces\Routing\RouteDispatcherInterface::class,
             \Cobra\Routing\RouteDispatcher::class
         );
