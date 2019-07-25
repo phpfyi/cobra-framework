@@ -29,7 +29,7 @@ class FileSystem implements FileSystemInterface
      */
     public static function get(string $path)
     {
-        if (!file_exists($path)) {
+        if (!static::exists($path)) {
             throw new MissingFileException(
                 sprintf('Cannot find file to get: %s', $path)
             );
@@ -68,7 +68,7 @@ class FileSystem implements FileSystemInterface
      */
     public static function remove(string $path): bool
     {
-        if (!file_exists($path)) {
+        if (!static::exists($path)) {
             throw new MissingFileException(
                 sprintf('Cannot find file to remove: %s', $path)
             );
@@ -86,7 +86,7 @@ class FileSystem implements FileSystemInterface
      */
     public static function move(string $fromPath, string $toPath): bool
     {
-        if (!file_exists($fromPath)) {
+        if (!static::exists($fromPath)) {
             throw new MissingFileException(
                 sprintf('Cannot find file to move: %s', $fromPath)
             );
