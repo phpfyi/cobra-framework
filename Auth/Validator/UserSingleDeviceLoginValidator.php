@@ -39,7 +39,7 @@ class UserSingleDeviceLoginValidator extends Validator
      *
      * @var string
      */
-    protected $id;
+    protected $deviceId;
 
     /**
      * Sets the field name to compare
@@ -50,7 +50,7 @@ class UserSingleDeviceLoginValidator extends Validator
     public function __construct(UserInterface $user, RequestInterface $request)
     {
         $this->user = $user;
-        $this->id = $request->getSession()->get('device_id');
+        $this->deviceId = $request->getSession()->get('device_id');
     }
 
     /**
@@ -72,7 +72,7 @@ class UserSingleDeviceLoginValidator extends Validator
     public function validate($value = null): bool
     {
         if (config('auth.single_device_signin') === true) {
-            return $this->user->device_id === $this->id;
+            return $this->user->device_id === $this->deviceId;
         };
         return true;
     }

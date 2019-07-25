@@ -151,12 +151,12 @@ class ManyManyRelation extends DatabaseTable implements ManyManyRelationInterfac
     /**
      * Sets the relation local ID
      *
-     * @param  integer $id
+     * @param  integer $localId
      * @return ManyManyRelationInterface
      */
-    public function setLocalID(int $id): ManyManyRelationInterface
+    public function setLocalID(int $localId): ManyManyRelationInterface
     {
-        $this->localID = $id;
+        $this->localID = $localId;
         return $this;
     }
 

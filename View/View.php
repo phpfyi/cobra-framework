@@ -49,7 +49,7 @@ class View extends AbstractObject implements ViewInterface
      *
      * @var ViewJavaScript
      */
-    protected $js;
+    protected $javascript;
 
     /**
      * Sets the view data instances
@@ -62,7 +62,7 @@ class View extends AbstractObject implements ViewInterface
 
         $this->meta = ViewMeta::resolve($this);
         $this->css = ViewCss::resolve($this);
-        $this->js = ViewJavaScript::resolve($this);
+        $this->javascript = ViewJavaScript::resolve($this);
     }
 
     /**
@@ -125,8 +125,8 @@ class View extends AbstractObject implements ViewInterface
      *
      * @return ViewJavaScript
      */
-    public function js(): ViewJavaScript
+    public function javascript(): ViewJavaScript
     {
-        return $this->js;
+        return $this->javascript;
     }
 }

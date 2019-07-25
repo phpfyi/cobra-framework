@@ -50,10 +50,10 @@ interface ManyManyRelationInterface
     /**
      * Sets the relation local ID
      *
-     * @param  integer $id
+     * @param  integer $localId
      * @return ManyManyRelationInterface
      */
-    public function setLocalID(int $id): ManyManyRelationInterface;
+    public function setLocalID(int $localId): ManyManyRelationInterface;
 
     /**
      * Returns the relation local ID

@@ -154,19 +154,19 @@ class Container implements ContainerInterface, PsrContainerInterface, SingletonI
     /**
      * Finds an entry of the container by its identifier and returns it.
      *
-     * @param string $id Identifier of the entry to look for.
+     * @param string $identifier Identifier of the entry to look for.
      *
      * @throws NotFoundExceptionInterface  No entry was found for **this** identifier.
      * @throws ContainerExceptionInterface Error while retrieving the entry.
      *
      * @return mixed Entry.
      */
-    public function get($id)
+    public function get($identifier)
     {
-        if ($this->has($id)) {
-            return $this->bound[$id];
+        if ($this->has($identifier)) {
+            return $this->bound[$identifier];
         }
-        throw new NotFoundException("Container entry not found for: {$id}");
+        throw new NotFoundException("Container entry not found for: {$identifier}");
     }
 
     /**
@@ -176,12 +176,12 @@ class Container implements ContainerInterface, PsrContainerInterface, SingletonI
      * `has($id)` returning true does not mean that `get($id)` will not throw an exception.
      * It does however mean that `get($id)` will not throw a `NotFoundExceptionInterface`.
      *
-     * @param string $id Identifier of the entry to look for.
+     * @param string $identifier Identifier of the entry to look for.
      *
      * @return bool
      */
-    public function has($id): bool
+    public function has($identifier): bool
     {
-        return array_key_exists($id, $this->bound);
+        return array_key_exists($identifier, $this->bound);
     }
 }

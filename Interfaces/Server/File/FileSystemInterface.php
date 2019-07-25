@@ -53,10 +53,10 @@ interface FileSystemInterface
     /**
      * Moves a files resource
      *
-     * @param  string $from
-     * @param  string $to
+     * @param  string $fromPath
+     * @param  string $toPath
      * @return boolean
      * @throws MissingFileException
      */
-    public static function move(string $from, string $to): bool;
+    public static function move(string $fromPath, string $toPath): bool;
 }

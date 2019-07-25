@@ -36,10 +36,10 @@ interface HasOneRelationInterface
     /**
      * Sets the relation ID
      *
-     * @param  integer $id
+     * @param  integer $relationId
      * @return HasOneRelationInterface
      */
-    public function setRelationID(int $id): HasOneRelationInterface;
+    public function setRelationID(int $relationId): HasOneRelationInterface;
 
     /**
      * Returns the relation ID

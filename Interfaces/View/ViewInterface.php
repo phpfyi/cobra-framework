@@ -63,5 +63,5 @@ interface ViewInterface
      *
      * @return ViewJavaScript
      */
-    public function js(): ViewJavaScript;
+    public function javascript(): ViewJavaScript;
 }

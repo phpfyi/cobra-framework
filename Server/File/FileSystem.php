@@ -79,18 +79,18 @@ class FileSystem implements FileSystemInterface
     /**
      * Moves a files resource
      *
-     * @param  string $from
-     * @param  string $to
+     * @param  string $fromPath
+     * @param  string $toPath
      * @return boolean
      * @throws MissingFileException
      */
-    public static function move(string $from, string $to): bool
+    public static function move(string $fromPath, string $toPath): bool
     {
-        if (!file_exists($from)) {
+        if (!file_exists($fromPath)) {
             throw new MissingFileException(
-                sprintf('Cannot find file to move: %s', $from)
+                sprintf('Cannot find file to move: %s', $fromPath)
             );
         }
-        return rename($from, $to);
+        return rename($fromPath, $toPath);
     }
 }

@@ -30,29 +30,29 @@ interface ContainerInterface
      *
      * Usually an interface reference to a class.
      *
-     * @param string $id
+     * @param string $identifier
      * @param string $namespace
      * @return ContainerInterface
      */
-    public function bindNamespace(string $id, string $namespace): ContainerInterface;
+    public function bindNamespace(string $identifier, string $namespace): ContainerInterface;
 
     /**
      * Binds a referene to an object instance into the container.
      *
-     * @param string $id
+     * @param string $identifier
      * @param object $instance
      * @return ContainerInterface
      */
-    public function bindInstance(string $id, object $instance): ContainerInterface;
+    public function bindInstance(string $identifier, object $instance): ContainerInterface;
 
     /**
      * Binds a reference to a singleton object into the container.
      *
-     * @param string $id
+     * @param string $identifier
      * @param SingletonInterface $instance
      * @return ContainerInterface
      */
-    public function bindSingleton(string $id, SingletonInterface $instance): ContainerInterface;
+    public function bindSingleton(string $identifier, SingletonInterface $instance): ContainerInterface;
 
     /**
      * Returns all namespaces identifiers and namespaces.

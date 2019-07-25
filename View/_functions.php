@@ -62,7 +62,7 @@ if (! function_exists('js')) {
      */
     function js(): ViewJavaScript
     {
-        return container_object(ViewInterface::class)->js();
+        return container_object(ViewInterface::class)->javascript();
     }
 }
 
