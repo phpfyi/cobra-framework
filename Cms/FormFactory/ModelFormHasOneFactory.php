@@ -2,9 +2,9 @@
 
 namespace Cobra\Cms\FormFactory;
 
-use Cobra\Interfaces\Asset\FileInterface;
-use Cobra\Asset\Form\Field\UploadField;
 use Cobra\Form\Field\SelectField;
+use Cobra\Interfaces\Asset\FileInterface;
+use Cobra\Interfaces\Asset\Form\Field\UploadFieldInterface;
 
 /**
  * Model Form Has One Factory
@@ -37,7 +37,13 @@ class ModelFormHasOneFactory extends ModelFormFieldFactory
         array_map(
             function ($relation, $column) {
                 if ($this->isFileRelation($column->relationClass)) {
-                    $element = UploadField::resolve($column->name, label_text($relation));
+                    $element = container_resolve(
+                        UploadFieldInterface::class,
+                        [
+                            $column->name, 
+                            label_text($relation)
+                        ]
+                    );
                     $element->setFileClass($column->relationClass);
                 } else {
                     $element = SelectField::resolve($column->name, label_text($relation));

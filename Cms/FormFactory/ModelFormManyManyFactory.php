@@ -3,8 +3,8 @@
 namespace Cobra\Cms\FormFactory;
 
 use Cobra\Interfaces\Asset\FileInterface;
+use Cobra\Interfaces\Asset\Form\Field\UploadFieldInterface;
 use Cobra\Interfaces\Database\Relation\ManyManyRelationInterface;
-use Cobra\Asset\Form\Field\UploadField;
 use Cobra\Model\Model;
 
 /**
@@ -68,7 +68,12 @@ class ModelFormManyManyFactory extends ModelFormManyFactory
      */
     private function setUploader(string $name, ManyManyRelationInterface $relation): void
     {
-        $uploader = UploadField::resolve($name)
+        $uploader = container_resolve(
+                UploadFieldInterface::class,
+                [
+                    $name
+                ]
+            )
             ->setMultiple(true)
             ->setFiles($this->record->$name())
             ->setFileClass($relation->getForeignClass());
