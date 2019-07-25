@@ -10,11 +10,11 @@ use Cobra\Form\Field\CountrySelectField;
 use Cobra\Form\Field\EmailField;
 use Cobra\Form\Field\PasswordField;
 use Cobra\Form\Field\SelectField;
-use Cobra\Html\HtmlElement;
 use Cobra\Interfaces\Auth\Password\PasswordEncrypterInterface;
 use Cobra\Interfaces\Auth\User\UserInterface;
 use Cobra\Interfaces\Controller\ControllerInterface;
 use Cobra\Interfaces\Form\FormInterface;
+use Cobra\Interfaces\Html\HtmlElementInterface;
 use Cobra\Model\Model;
 use Cobra\Model\ModelDatabaseTable;
 use Cobra\Page\Model\PageComment;
@@ -201,10 +201,10 @@ class User extends Model implements UserInterface
         $form->getField('username')->setDescription('Allowed characters: A-Z a-z 0-9 _-');
 
         // headings
-        $form->insertBefore('town', HtmlElement::resolve('h4', 's1', 'Location'));
-        $form->insertBefore('occupation', HtmlElement::resolve('h4', 's2', 'Role'));
-        $form->insertBefore('mailing', HtmlElement::resolve('h4', 's4', 'Subscriptions'));
-        $form->insertBefore('username', HtmlElement::resolve('h4', 's5', 'Account'));
+        $form->insertBefore('town', container_resolve(HtmlElementInterface::class, ['h4', 's1', 'Location']));
+        $form->insertBefore('occupation', container_resolve(HtmlElementInterface::class, ['h4', 's2', 'Role']));
+        $form->insertBefore('mailing', container_resolve(HtmlElementInterface::class, ['h4', 's4', 'Subscriptions']));
+        $form->insertBefore('username', container_resolve(HtmlElementInterface::class, ['h4', 's5', 'Account']));
 
         // validation
         $form->setValidators(static::config('validation_rules'));

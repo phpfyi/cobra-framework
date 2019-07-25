@@ -5,10 +5,10 @@ namespace Cobra\Auth\Controller;
 use Cobra\Auth\Request\LoginRequest;
 use Cobra\Form\Field\EmailField;
 use Cobra\Form\Field\PasswordField;
-use Cobra\Html\HtmlElement;
 use Cobra\Interfaces\Form\FormInterface;
 use Cobra\Interfaces\Form\FormFactoryInterface;
 use Cobra\Interfaces\Gtm\GtmInterface;
+use Cobra\Interfaces\Html\HtmlElementInterface;
 use Cobra\Interfaces\Http\Message\RequestInterface;
 
 /**
@@ -43,7 +43,7 @@ class LoginController extends AuthController
         $form->setField(EmailField::resolve('email'));
         $form->setField(PasswordField::resolve('password'));
         $form->setField(
-            HtmlElement::resolve('div', 'reset', $this->getResetLink())
+            container_resolve(HtmlElementInterface::class, ['div', 'reset', $this->getResetLink()])
                 ->addClass('auth-a')
         );
         $form = container_resolve(FormFactoryInterface::class, [$form])->getForm();

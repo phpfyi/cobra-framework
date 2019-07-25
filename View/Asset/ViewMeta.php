@@ -3,7 +3,6 @@
 namespace Cobra\View\Asset;
 
 use Cobra\Interfaces\Html\HtmlElementInterface;
-use Cobra\Html\HtmlElement;
 use Cobra\Html\HtmlLinkElement;
 use Cobra\Html\HtmlMetaElement;
 
@@ -30,7 +29,7 @@ class ViewMeta extends ViewAsset
      */
     public function setBaseTag(string $href, $attributes = []): HtmlElementInterface
     {
-        $element = HtmlElement::resolve('base', '')
+        $element = container_resolve(HtmlElementInterface::class, ['base' ,''])
             ->setClose(false)
             ->setAttributes(
                 array_merge(
@@ -79,7 +78,7 @@ class ViewMeta extends ViewAsset
      */
     public function setTitle(?string $text, $attributes = []): HtmlElementInterface
     {
-        $element = HtmlElement::resolve('title')
+        $element = container_resolve(HtmlElementInterface::class, ['title'])
             ->setAttributes($attributes)
             ->setBody($text);
 

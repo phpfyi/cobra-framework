@@ -4,8 +4,8 @@ namespace Cobra\Cms\Model;
 
 use Cobra\Cms\Traits\ModelDataTableColumns;
 use Cobra\Form\Field\SelectField;
-use Cobra\Html\HtmlElement;
 use Cobra\Interfaces\Form\FormInterface;
+use Cobra\Interfaces\Html\HtmlElementInterface;
 use Cobra\Model\Model;
 use Cobra\Model\ModelDatabaseTable;
 use Cobra\Page\Page;
@@ -104,9 +104,9 @@ class Redirect extends Model
         );
         $form->insertBefore('from_external', $form->getField('from_pageID'));
         $form->insertBefore('to_external', $form->getField('to_pageID'));
-        $form->insertBefore('code', HtmlElement::resolve('h4', 's1', 'Status Code'));
-        $form->insertBefore('from_type', HtmlElement::resolve('h4', 's2', 'From URL'));
-        $form->insertBefore('to_type', HtmlElement::resolve('h4', 's3', 'To URL'));
+        $form->insertBefore('code', container_resolve(HtmlElementInterface::class, ['h4', 's1', 'Status Code']));
+        $form->insertBefore('from_type', container_resolve(HtmlElementInterface::class, ['h4', 's2', 'From URL']));
+        $form->insertBefore('to_type', container_resolve(HtmlElementInterface::class, ['h4', 's3', 'To URL']));
 
         $form->getField('from_pageID')->setLabel('Page')->cssVisibilityChild('from_type', 'internal');
         $form->getField('from_external')->setLabel('External URL')->cssVisibilityChild('from_type', 'external');

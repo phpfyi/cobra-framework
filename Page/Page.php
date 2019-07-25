@@ -4,8 +4,8 @@ namespace Cobra\Page;
 
 use Cobra\Asset\Image;
 use Cobra\Form\Field\SelectField;
-use Cobra\Html\HtmlElement;
 use Cobra\Interfaces\Form\FormInterface;
+use Cobra\Interfaces\Html\HtmlElementInterface;
 use Cobra\Interfaces\Page\PageInterface;
 use Cobra\Model\Model;
 use Cobra\Model\ModelDatabaseTable;
@@ -187,10 +187,10 @@ class Page extends Model implements PageInterface
         $form->insertAfter('og_locale', $form->getField('social_imageID'));
         // headings
         $form->insertBefore('meta_title', PageSerpHtmlElement::resolve('div', 'serp')->setUri($this->segment));
-        $form->insertBefore('class', HtmlElement::resolve('h4', 's1', 'Class'));
-        $form->insertBefore('title', HtmlElement::resolve('h4', 's2', 'Content'));
-        $form->insertBefore('serp', HtmlElement::resolve('h4', 's3', 'Search Engine Optimisation'));
-        $form->insertBefore('priority', HtmlElement::resolve('h4', 's4', 'Sitemap'));
+        $form->insertBefore('class', container_resolve(HtmlElementInterface::class, ['h4', 's1', 'Class']));
+        $form->insertBefore('title', container_resolve(HtmlElementInterface::class, ['h4', 's2', 'Content']));
+        $form->insertBefore('serp', container_resolve(HtmlElementInterface::class, ['h4', 's3', 'Search Engine Optimisation']));
+        $form->insertBefore('priority', container_resolve(HtmlElementInterface::class, ['h4', 's4', 'Sitemap']));
         // validation
         $form->setValidators(Page::config('validation_rules'));
 

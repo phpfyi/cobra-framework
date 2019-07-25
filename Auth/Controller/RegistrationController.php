@@ -7,10 +7,10 @@ use Cobra\Auth\Request\RegistrationRequest;
 use Cobra\Form\Field\EmailField;
 use Cobra\Form\Field\PasswordField;
 use Cobra\Form\Field\TextField;
-use Cobra\Html\HtmlElement;
 use Cobra\Interfaces\Form\FormInterface;
 use Cobra\Interfaces\Form\FormFactoryInterface;
 use Cobra\Interfaces\Gtm\GtmInterface;
+use Cobra\Interfaces\Html\HtmlElementInterface;
 use Cobra\Interfaces\Http\Message\RequestInterface;
 
 /**
@@ -58,7 +58,7 @@ class RegistrationController extends AuthController
         $form->setField(PasswordValidationHtmlElement::resolve('password_validator'));
         $form->getField('username')->setDescription('Allowed characters: A-Z a-z 0-9 _-');
         $form->setField(
-            HtmlElement::resolve('div', 'reset', $this->getLoginLink())
+            container_resolve(HtmlElementInterface::class, ['div', 'reset', $this->getLoginLink()])
                 ->addClass('auth-a')
         );
         $form = container_resolve(FormFactoryInterface::class, [$form])->getForm();
