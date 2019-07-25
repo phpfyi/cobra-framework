@@ -2,7 +2,7 @@
 
 namespace Cobra\Page\Routing;
 
-use Cobra\Page\Page;
+use Cobra\Interfaces\Page\PageInterface;
 use Cobra\Page\Routing\PageRoute;
 use Cobra\Routing\Matcher\RouteMatcher;
 
@@ -23,9 +23,9 @@ use Cobra\Routing\Matcher\RouteMatcher;
 class PageRouteMatcher extends RouteMatcher
 {
     /**
-     * Page instance
+     * PageInterface instance
      *
-     * @var Page
+     * @var PageInterface
      */
     protected $page;
 
@@ -36,7 +36,9 @@ class PageRouteMatcher extends RouteMatcher
      */
     public function hasMatch(): bool
     {
-        $this->page = Page::find('segment', $this->getPagePath()) ?: null;
+        $this->page = container_resolve(PageInterface::class)
+            ->find('segment', $this->getPagePath()) ?: null;
+
         if (!$this->page) {
             return false;
         }
