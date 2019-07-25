@@ -11,7 +11,6 @@ use Cobra\Interfaces\Form\FormInterface;
 use Cobra\Form\Field\SelectField;
 use Cobra\Model\Model;
 use Cobra\Model\ModelDatabaseTable;
-use Cobra\Server\File\FilePath;
 
 /**
  * File
@@ -181,6 +180,6 @@ class File extends Model implements FileInterface
      */
     public function getAbsoluteSystemPath(): string
     {
-        return FilePath::joinRoot($this->system_path);
+        return path_with_root($this->system_path);
     }
 }

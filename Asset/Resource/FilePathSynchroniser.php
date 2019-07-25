@@ -7,7 +7,6 @@ use Cobra\Interfaces\Asset\FileInterface;
 use Cobra\Interfaces\Asset\FolderInterface;
 use Cobra\Object\AbstractObject;
 use Cobra\Server\File\FileSystem;
-use Cobra\Server\File\FilePath;
 
 /**
  * File Path Synchroniser
@@ -74,8 +73,8 @@ class FilePathSynchroniser extends AbstractObject implements FilePathSynchronise
     {
         if ($this->isPathMismatch()) {
             FileSystem::move(
-                FilePath::joinRoot($this->file->system_path),
-                FilePath::joinRoot($this->systemPath)
+                path_with_root($this->file->system_path),
+                path_with_root($this->systemPath)
             );
             $this->file->public_path = $this->publicPath;
             $this->file->system_path = $this->systemPath;
@@ -104,7 +103,7 @@ class FilePathSynchroniser extends AbstractObject implements FilePathSynchronise
         return uri_join_absolute(
             ASSETS_DIRECTORY,
             $this->folder->title,
-            FilePath::basename($filename)
+            path_basename($filename)
         );
     }
 }

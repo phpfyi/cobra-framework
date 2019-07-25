@@ -69,11 +69,9 @@ class ModelFormManyManyFactory extends ModelFormManyFactory
     private function setUploader(string $name, ManyManyRelationInterface $relation): void
     {
         $uploader = container_resolve(
-                UploadFieldInterface::class,
-                [
-                    $name
-                ]
-            )
+            UploadFieldInterface::class,
+            [$name]
+        )
             ->setMultiple(true)
             ->setFiles($this->record->$name())
             ->setFileClass($relation->getForeignClass());

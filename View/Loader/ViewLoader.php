@@ -6,7 +6,6 @@ use Cobra\Interfaces\View\Loader\ViewLoaderInterface;
 use Cobra\Interfaces\View\Transform\ViewParserInterface;
 use Cobra\Event\Traits\EventEmitter;
 use Cobra\Object\AbstractObject;
-use Cobra\Server\File\FilePath;
 use Cobra\Server\File\FileSystem;
 use Cobra\View\Cache\ViewCache;
 
@@ -56,7 +55,7 @@ class ViewLoader extends AbstractObject implements ViewLoaderInterface
      */
     public function __construct(string $path, $data, ViewCache $cache)
     {
-        $this->template = FilePath::joinRoot($path.'.'.TEMPLATE_EXTENSION);
+        $this->template = path_with_root($path.'.'.TEMPLATE_EXTENSION);
         $this->data = $data;
         $this->cache = $cache;
 

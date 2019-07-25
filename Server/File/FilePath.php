@@ -27,7 +27,7 @@ class FilePath implements FilePathInterface
      */
     public static function join(...$args): string
     {
-        return self::normalize(implode(DIRECTORY_SEPARATOR, $args));
+        return static::normalize(implode(DIRECTORY_SEPARATOR, $args));
     }
 
     /**
@@ -69,7 +69,7 @@ class FilePath implements FilePathInterface
         $directories = dir_parts($path);
 
         $basename = array_pop($directories);
-        $basename = static::basename(array_pop($directories)).'.'.$basename;
+        $basename = path_basename(array_pop($directories)).'.'.$basename;
 
         return implode(DIRECTORY_SEPARATOR, $directories).DIRECTORY_SEPARATOR.$basename;
     }

@@ -3,7 +3,6 @@
 namespace Cobra\View\Asset;
 
 use Cobra\Html\HtmlStyleElement;
-use Cobra\Server\File\FilePath;
 
 /**
  * View CSS
@@ -47,7 +46,7 @@ class ViewCss extends ViewAsset
                     $attributes
                 )
             )
-            ->setBody(FilePath::joinRoot(PUBLIC_DIRECTORY, 'css', $path.'.css'));
+            ->setBody(path_with_root(PUBLIC_DIRECTORY, 'css', $path.'.css'));
 
         $this->view->getData()->setHeadTag($element);
 

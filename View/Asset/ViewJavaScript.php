@@ -3,7 +3,6 @@
 namespace Cobra\View\Asset;
 
 use Cobra\Html\HtmlScriptElement;
-use Cobra\Server\File\FilePath;
 
 /**
  * View JavaScript
@@ -61,7 +60,7 @@ class ViewJavaScript extends ViewAsset
                     $attributes
                 )
             )
-            ->setBody(FilePath::joinRoot(PUBLIC_DIRECTORY, 'js', $path.'.js'));
+            ->setBody(path_with_root(PUBLIC_DIRECTORY, 'js', $path.'.js'));
 
         $this->view->getData()->setBodyTag($element);
 

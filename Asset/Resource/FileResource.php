@@ -8,7 +8,6 @@ use Cobra\Interfaces\Asset\FileInterface;
 use Cobra\Interfaces\Asset\Resource\FileResourceInterface;
 use Cobra\Interfaces\Http\Message\ResponseInterface;
 use Cobra\Object\AbstractObject;
-use Cobra\Server\File\FilePath;
 
 /**
  * File Resource
@@ -97,6 +96,6 @@ class FileResource extends AbstractObject implements FileResourceInterface
      */
     protected function getContentLength(): int
     {
-        return filesize(FilePath::joinRoot($this->file->system_path));
+        return filesize(path_with_root($this->file->system_path));
     }
 }

@@ -40,7 +40,7 @@ class ModelFormHasOneFactory extends ModelFormFieldFactory
                     $element = container_resolve(
                         UploadFieldInterface::class,
                         [
-                            $column->name, 
+                            $column->name,
                             label_text($relation)
                         ]
                     );

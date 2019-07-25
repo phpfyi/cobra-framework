@@ -1,6 +1,6 @@
 <?php
 
-use Cobra\Server\File\FilePath;
+use Cobra\Interfaces\Server\File\FilePathInterface;
 
 /**
  * Server function sets
@@ -74,7 +74,33 @@ if (! function_exists('dir_parts')) {
     function dir_parts(string $path): array
     {
         return array_map(function (string $directory) {
-            return FilePath::basename($directory);
+            return container_resolve(FilePathInterface::class)->basename($directory);
         }, explode('.', $path));
+    }
+}
+
+if (! function_exists('path_with_root')) {
+    /**
+     * Returns an root system file path joined by \ with a starting \.
+     *
+     * @param  string[] ...$args
+     * @return string
+     */
+    function path_with_root(...$args): string
+    {
+        return ROOT . container_resolve(FilePathInterface::class)->join(...$args);
+    }
+}
+
+if (! function_exists('path_basename')) {
+    /**
+     * Returns the path filename / basename
+     *
+     * @param string $path
+     * @return string
+     */
+    function path_basename(string $path): string
+    {
+        return container_resolve(FilePathInterface::class)->basename($path);
     }
 }
