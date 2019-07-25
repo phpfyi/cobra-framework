@@ -3,7 +3,7 @@
 namespace Cobra\Form\Field;
 
 use Cobra\Form\Field\SelectField;
-use Cobra\i18n\Localisation;
+use Cobra\Interfaces\i18n\LocalisationInterface;
 
 /**
  * Country Select Field
@@ -37,6 +37,8 @@ class CountrySelectField extends SelectField
     {
         parent::__construct($name, $label, $value);
 
-        $this->data = array_combine_from(Localisation::getCountries());
+        $this->data = array_combine_from(
+            container_resolve(LocalisationInterface::class)->getCountries()
+        );
     }
 }
