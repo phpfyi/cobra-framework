@@ -2,7 +2,7 @@
 
 namespace Cobra\Auth\Validator;
 
-use Cobra\Auth\User\User;
+use Cobra\Interfaces\Auth\User\UserInterface;
 use Cobra\Validator\EmailValidator;
 
 /**
@@ -40,7 +40,7 @@ class UserEmailValidator extends EmailValidator
         if (!parent::validate($value)) {
             return false;
         }
-        if (User::find('email', $value)) {
+        if (container_resolve(UserInterface::class)->find('email', $value)) {
             $this->message = 'Email is already registered';
             return false;
         }

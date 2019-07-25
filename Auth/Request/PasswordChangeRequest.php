@@ -2,7 +2,7 @@
 
 namespace Cobra\Auth\Request;
 
-use Cobra\Auth\User\User;
+use Cobra\Interfaces\Auth\User\UserInterface;
 use Cobra\Interfaces\Security\Token\SecurityTokenInterface;
 
 /**
@@ -22,7 +22,7 @@ class PasswordChangeRequest extends AuthRequest
     /**
      * Matched user instance
      *
-     * @var User
+     * @var UserInterface
      */
     protected $user;
 
@@ -47,7 +47,7 @@ class PasswordChangeRequest extends AuthRequest
     public function onInit()
     {
         $token = $this->controller->getRequest()->getUri()->getVar('token');
-        if (!$token || !$this->user = User::find('reset_token', $token)) {
+        if (!$token || !$this->user = container_resolve(UserInterface::class)->find('reset_token', $token)) {
             return $this->controller->redirect(config('auth.change_error_route'));
         }
         $this->auth->logout($this->user);

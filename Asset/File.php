@@ -120,7 +120,7 @@ class File extends Model implements FileInterface
         ? $form->setField(container_resolve(
             UploadFieldInterface::class,
             [
-                'public_path', 
+                'public_path',
                 'File'
             ]
         ))

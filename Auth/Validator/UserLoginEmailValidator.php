@@ -2,7 +2,7 @@
 
 namespace Cobra\Auth\Validator;
 
-use Cobra\Auth\User\User;
+use Cobra\Interfaces\Auth\User\UserInterface;
 use Cobra\Validator\EmailValidator;
 
 /**
@@ -47,7 +47,7 @@ class UserLoginEmailValidator extends EmailValidator
         if (!parent::validate($value)) {
             return false;
         }
-        $user = User::find('email', $value);
+        $user = container_resolve(UserInterface::class)->find('email', $value);
         return $user ? true : false;
     }
 }

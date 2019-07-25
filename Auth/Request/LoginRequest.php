@@ -2,7 +2,7 @@
 
 namespace Cobra\Auth\Request;
 
-use Cobra\Auth\User\User;
+use Cobra\Interfaces\Auth\User\UserInterface;
 
 /**
  * Login Request
@@ -50,7 +50,8 @@ class LoginRequest extends AuthRequest
      */
     public function onSuccess()
     {
-        $user = User::find('email', $this->controller->getRequest()->postVar('email'));
+        $user = container_resolve(UserInterface::class)
+            ->find('email', $this->controller->getRequest()->postVar('email'));
 
         $this->auth->getAuthenticator()->login($user);
         

@@ -2,7 +2,6 @@
 
 namespace Cobra\Auth\Authenticator;
 
-use Cobra\Auth\User\User;
 use Cobra\Auth\Validator\UserLoginExpiryValidator;
 use Cobra\Auth\Validator\UserSingleDeviceLoginValidator;
 use Cobra\Interfaces\Auth\Authenticator\AuthenticatorInterface;
@@ -47,7 +46,7 @@ class SessionAuthenticator extends Authenticator
         if (!$hash = $this->request->getSession()->get(self::config('active_token'))) {
             return $this;
         }
-        if (!$user = User::find(self::config('active_token'), $hash) ?: null) {
+        if (!$user = container_resolve(UserInterface::class)->find(self::config('active_token'), $hash) ?: null) {
             return $this;
         }
         foreach ($this->validators as $namespace) {

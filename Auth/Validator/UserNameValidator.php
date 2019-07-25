@@ -2,7 +2,7 @@
 
 namespace Cobra\Auth\Validator;
 
-use Cobra\Auth\User\User;
+use Cobra\Interfaces\Auth\User\UserInterface;
 use Cobra\Validator\Validator;
 
 /**
@@ -59,7 +59,7 @@ class UserNameValidator extends Validator
             $this->message = 'Please pick a username between 4 and 20 characters';
             return false;
         }
-        if (User::find('username', $value)) {
+        if (container_resolve(UserInterface::class)->find('username', $value)) {
             $this->message = 'Username taken';
             return false;
         }

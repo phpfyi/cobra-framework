@@ -2,7 +2,7 @@
 
 namespace Cobra\Auth\Request;
 
-use Cobra\Auth\User\User;
+use Cobra\Interfaces\Auth\User\UserInterface;
 use Cobra\Interfaces\Security\Token\SecurityTokenInterface;
 use Cobra\Interfaces\View\ViewDataInterface;
 use Cobra\Mail\Smtp\SmtpMailer;
@@ -24,7 +24,7 @@ class PasswordResetRequest extends AuthRequest
     /**
      * Matched user instance
      *
-     * @var User
+     * @var UserInterface
      */
     protected $user;
 
@@ -47,7 +47,8 @@ class PasswordResetRequest extends AuthRequest
      */
     public function onSuccess()
     {
-        $user = User::find('email', $this->controller->getRequest()->postVar('email'));
+        $user = container_resolve(UserInterface::class)
+            ->find('email', $this->controller->getRequest()->postVar('email'));
 
         $user->reset_token = container_resolve(SecurityTokenInterface::class)::bin2hex();
         $user->save();
@@ -72,10 +73,10 @@ class PasswordResetRequest extends AuthRequest
     /**
      * Returns the user change password URL
      *
-     * @param  User $user
+     * @param  UserInterface $user
      * @return string
      */
-    protected function getChangePasswordUrl(User $user): string
+    protected function getChangePasswordUrl(UserInterface $user): string
     {
         return BASE_URL.config('auth.change_route').'?token='.$user->reset_token;
     }

@@ -2,8 +2,8 @@
 
 namespace Cobra\Auth\Validator;
 
-use Cobra\Auth\User\User;
 use Cobra\Interfaces\Auth\Password\PasswordEncrypterInterface;
+use Cobra\Interfaces\Auth\User\UserInterface;
 use Cobra\Interfaces\Http\Message\RequestInterface;
 use Cobra\Validator\RequiredValidator;
 
@@ -59,7 +59,8 @@ class UserLoginPasswordValidator extends RequiredValidator
         if (!parent::validate($value)) {
             return false;
         }
-        $user = User::find('email', $this->request->postVar('email'));
+        $user = container_resolve(UserInterface::class)
+            ->find('email', $this->request->postVar('email'));
         if (!$user) {
             return false;
         }

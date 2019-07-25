@@ -2,8 +2,8 @@
 
 namespace Cobra\Auth\Controller;
 
-use Cobra\Auth\User\User;
 use Cobra\Interfaces\Auth\AuthInterface;
+use Cobra\Interfaces\Auth\User\UserInterface;
 use Cobra\Interfaces\Gtm\GtmInterface;
 use Cobra\Interfaces\Http\Uri\RequestUriInterface;
 use Cobra\Interfaces\Security\Token\SecurityTokenInterface;
@@ -49,7 +49,7 @@ class ConfirmAccountController extends AuthController
         if ($user = $auth->getUser()) {
             return $this->redirect(config('auth.login_redirect'));
         }
-        if (!$user = User::find('confirm_token', $uri->getVar('token'))) {
+        if (!$user = container_resolve(UserInterface::class)->find('confirm_token', $uri->getVar('token'))) {
             $gtm->setEvent('ConfirmAccountError');
 
             view()->setPage('templates.Auth.Page.ConfirmAccountError');
