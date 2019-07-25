@@ -43,15 +43,6 @@ interface ViewDataInterface
     public function setBodyTag(HtmlElementInterface $element): ViewDataInterface;
 
     /**
-     * Includes a template file and passes template data
-     *
-     * @param  string            $template
-     * @param  ViewDataInterface $data
-     * @return void
-     */
-    public function include(string $template, ViewDataInterface $data = null): void;
-
-    /**
      * Outputs this view data instance inside a specified template
      *
      * @param  string $template
