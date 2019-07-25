@@ -61,7 +61,7 @@ if (! function_exists('memory_usage')) {
         $usage = memory_get_usage(true);
         $units = ['B','KB','MB','GB','TB','PB'];
         
-        return @round($usage / pow(1024, ($i = floor(log($usage, 1024)))), 2).$units[$i];
+        return @round($usage / pow(1024, ($unit = floor(log($usage, 1024)))), 2).$units[$unit];
     }
 }
 

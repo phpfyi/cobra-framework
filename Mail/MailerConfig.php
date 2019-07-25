@@ -24,7 +24,7 @@ class MailerConfig extends AbstractObject implements MailerConfigInterface
      *
      * @var string
      */
-    protected $to = [];
+    protected $toEmails = [];
 
     /**
      * From name
@@ -66,14 +66,14 @@ class MailerConfig extends AbstractObject implements MailerConfigInterface
      *
      * @var array
      */
-    protected $cc = [];
+    protected $ccEmails = [];
 
     /**
      * Array of email blind carbon copy recipients
      *
      * @var array
      */
-    protected $bcc = [];
+    protected $bccEmails = [];
 
     /**
      * Reply to email address
@@ -119,7 +119,7 @@ class MailerConfig extends AbstractObject implements MailerConfigInterface
      */
     public function setTo(string $email): MailerConfigInterface
     {
-        $this->to[] = $email;
+        $this->toEmails[] = $email;
         return $this;
     }
 
@@ -130,7 +130,7 @@ class MailerConfig extends AbstractObject implements MailerConfigInterface
      */
     public function getTo(): array
     {
-        return $this->to;
+        return $this->toEmails;
     }
 
     /**
@@ -141,7 +141,7 @@ class MailerConfig extends AbstractObject implements MailerConfigInterface
      */
     public function setToMany(array $emails): MailerConfigInterface
     {
-        $this->to = $emails;
+        $this->toEmails = $emails;
         return $this;
     }
 
@@ -313,7 +313,7 @@ class MailerConfig extends AbstractObject implements MailerConfigInterface
      */
     public function setCc(array $emails): MailerConfigInterface
     {
-        $this->cc = $emails;
+        $this->ccEmails = $emails;
         return $this;
     }
 
@@ -324,7 +324,7 @@ class MailerConfig extends AbstractObject implements MailerConfigInterface
      */
     public function getCc(): array
     {
-        return $this->cc;
+        return $this->ccEmails;
     }
 
     /**
@@ -337,7 +337,7 @@ class MailerConfig extends AbstractObject implements MailerConfigInterface
      */
     public function setBcc(array $emails): MailerConfigInterface
     {
-        $this->bcc = $emails;
+        $this->bccEmails = $emails;
         return $this;
     }
 
@@ -348,7 +348,7 @@ class MailerConfig extends AbstractObject implements MailerConfigInterface
      */
     public function getBcc(): array
     {
-        return $this->bcc;
+        return $this->bccEmails;
     }
 
     /**
