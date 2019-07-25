@@ -80,9 +80,9 @@ class HttpResponse extends HttpMessage implements ResponseInterface
     {
         if (array_key_exists($name, $this->headers)) {
             $this->headers[$name][] = $value;
-        } else {
-            $this->headers[$name] = [$value];
+            return $this;
         }
+        $this->headers[$name] = [$value];
         return $this;
     }
 

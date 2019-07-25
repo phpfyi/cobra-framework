@@ -119,11 +119,12 @@ class UploadField extends FormField implements UploadFieldInterface
                 },
                 new ArrayIterator($value)
             );
-        } else {
-            parent::setValue($value);
-            if ((int) $value > 0 && $file = container_resolve(FileInterface::class)->find('id', $value)) {
-                $this->files[] = $file;
-            }
+            return $this;
+        }
+        parent::setValue($value);
+        
+        if ((int) $value > 0 && $file = container_resolve(FileInterface::class)->find('id', $value)) {
+            $this->files[] = $file;
         }
         return $this;
     }

@@ -53,14 +53,14 @@ class ConfirmAccountController extends AuthController
             $gtm->setEvent('ConfirmAccountError');
 
             view()->setPage('templates.Auth.Page.ConfirmAccountError');
-        } else {
-            $gtm->setEvent('ConfirmAccountSuccess');
-
-            $user->account = 2;
-            $user->confirm_token = container_resolve(SecurityTokenInterface::class)::bin2hex();
-            $user->save();
-
-            view()->setPage('templates.Auth.Page.ConfirmAccountSuccess');
+            return;
         }
+        $gtm->setEvent('ConfirmAccountSuccess');
+
+        $user->account = 2;
+        $user->confirm_token = container_resolve(SecurityTokenInterface::class)::bin2hex();
+        $user->save();
+
+        view()->setPage('templates.Auth.Page.ConfirmAccountSuccess');
     }
 }

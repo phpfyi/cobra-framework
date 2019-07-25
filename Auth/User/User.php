@@ -258,8 +258,8 @@ class User extends Model implements UserInterface
     {
         if (!$this->password) {
             unset($this->password);
-        } else {
-            $this->password = container_resolve(PasswordEncrypterInterface::class)::encrypt($this->password);
+            return;
         }
+        $this->password = container_resolve(PasswordEncrypterInterface::class)::encrypt($this->password);
     }
 }
