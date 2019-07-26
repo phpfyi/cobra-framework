@@ -2,7 +2,7 @@
 
 namespace Cobra\Asset\Controller;
 
-use Cobra\Asset\File;
+use Cobra\Interfaces\Asset\FileInterface;
 use Cobra\Interfaces\Http\Uri\RequestUriInterface;
 use Cobra\Controller\Controller;
 
@@ -28,7 +28,7 @@ class AssetController extends Controller
      */
     public function get(RequestUriInterface $uri)
     {
-        $file = File::find('public_path', $uri->getPath());
+        $file = container_resolve(FileInterface::class)->find('public_path', $uri->getPath());
         
         if (!$file) {
             return $this->setHttpError(404);
