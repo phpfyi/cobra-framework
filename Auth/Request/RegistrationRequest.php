@@ -2,7 +2,7 @@
 
 namespace Cobra\Auth\Request;
 
-use Cobra\Auth\User\User;
+use Cobra\Interfaces\Auth\User\UserInterface;
 use Cobra\Interfaces\Security\Token\SecurityTokenInterface;
 use Cobra\Interfaces\View\ViewDataInterface;
 use Cobra\Mail\Smtp\SmtpMailer;
@@ -55,7 +55,7 @@ class RegistrationRequest extends AuthRequest
      */
     public function onSuccess()
     {
-        $user = User::resolve();
+        $user = container_resolve(UserInterface::class);
         $user->bind($this->controller->getRequest()->getBody());
 
         $user->account = 3;
@@ -82,10 +82,10 @@ class RegistrationRequest extends AuthRequest
     /**
      * Returns the user account confirmation URL
      *
-     * @param  User $user
+     * @param  UserInterface $user
      * @return string
      */
-    protected function getConfirmAccountUrl(User $user): string
+    protected function getConfirmAccountUrl(UserInterface $user): string
     {
         return BASE_URL.config('auth.confirm_route').'?token='.$user->confirm_token;
     }
