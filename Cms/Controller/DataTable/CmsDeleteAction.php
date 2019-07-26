@@ -2,8 +2,6 @@
 
 namespace Cobra\Cms\Controller\DataTable;
 
-use Cobra\Interfaces\Http\Message\RequestInterface;
-
 /**
  * CMS Delete Action Controller
  *
@@ -21,10 +19,9 @@ class CmsDeleteAction extends CmsAction
     /**
      * Deletes a CMS record
      *
-     * @param  RequestInterface $request
      * @return void
      */
-    public function action(RequestInterface $request)
+    public function action()
     {
         if ($relation = $this->parser->getManyRelation()) {
             $relation->remove($this->id);

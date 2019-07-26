@@ -51,10 +51,9 @@ abstract class CmsAction extends Controller
     /**
      * Cms handler action after the index call
      *
-     * @param  RequestInterface $request
      * @return void
      */
-    abstract public function action(RequestInterface $request);
+    abstract public function action();
 
     /**
      * Sets up the required POST vars

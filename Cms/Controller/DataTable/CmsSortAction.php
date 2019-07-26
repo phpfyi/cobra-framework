@@ -2,8 +2,6 @@
 
 namespace Cobra\Cms\Controller\DataTable;
 
-use Cobra\Interfaces\Http\Message\RequestInterface;
-
 /**
  * CMS Sort Action Controller
  *
@@ -21,10 +19,9 @@ class CmsSortAction extends CmsAction
     /**
      * Sorts a relation list
      *
-     * @param  RequestInterface $request
      * @return void
      */
-    public function action(RequestInterface $request)
+    public function action()
     {
         $relation = $this->parser->getManyRelation();
         array_map(
@@ -35,7 +32,7 @@ class CmsSortAction extends CmsAction
                     $record->sort
                 );
             },
-            $request->postVar('records')
+            $this->request->postVar('records')
         );
         $this->setTableResponse(
             singleton($this->parser->getManyRelationClass()),

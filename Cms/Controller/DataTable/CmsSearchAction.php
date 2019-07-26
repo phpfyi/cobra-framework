@@ -3,7 +3,6 @@
 namespace Cobra\Cms\Controller\DataTable;
 
 use Cobra\Http\Stream\HtmlStream;
-use Cobra\Interfaces\Http\Message\RequestInterface;
 
 /**
  * CMS Search Action Controller
@@ -29,12 +28,11 @@ class CmsSearchAction extends CmsAction
     /**
      * Searches a list and returns a result set
      *
-     * @param  RequestInterface $request
      * @return void
      */
-    public function action(RequestInterface $request)
+    public function action()
     {
-        foreach ($request->postVar('search-class')::get()->all() as $record) {
+        foreach ($this->request->postVar('search-class')::get()->all() as $record) {
             $this->list[] = sprintf(
                 '<li data-id="%s">%s</li>',
                 $record->id,

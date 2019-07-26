@@ -2,8 +2,6 @@
 
 namespace Cobra\Cms\Controller\DataTable;
 
-use Cobra\Interfaces\Http\Message\RequestInterface;
-
 /**
  * CMS Link Action Controller
  *
@@ -21,12 +19,12 @@ class CmsLinkAction extends CmsAction
     /**
      * Links a relation record
      *
-     * @param  RequestInterface $request
      * @return void
      */
-    public function action(RequestInterface $request)
+    public function action()
     {
         $this->parser->getManyRelation()->add($this->id);
+
         $this->setTableResponse(
             singleton($this->parser->getManyRelationClass()),
             $this->parser->getManyRelation()->get()

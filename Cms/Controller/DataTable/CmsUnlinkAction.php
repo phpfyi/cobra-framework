@@ -2,8 +2,6 @@
 
 namespace Cobra\Cms\Controller\DataTable;
 
-use Cobra\Interfaces\Http\Message\RequestInterface;
-
 /**
  * CMS Unlink Action Controller
  *
@@ -21,12 +19,12 @@ class CmsUnlinkAction extends CmsAction
     /**
      * Unlinks a relation record
      *
-     * @param  RequestInterface $request
      * @return void
      */
-    public function action(RequestInterface $request)
+    public function action()
     {
         $this->parser->getManyRelation()->remove($this->id);
+
         $this->setTableResponse(
             singleton($this->parser->getManyRelationClass()),
             $this->parser->getManyRelation()->get()
