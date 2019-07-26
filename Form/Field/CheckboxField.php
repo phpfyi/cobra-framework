@@ -32,6 +32,7 @@ class CheckboxField extends FormField
 
         $this->attributes['type'] = 'checkbox';
         $this->attributes['class'] .= ' field-checkbox';
+        
         $this->setValue($value);
     }
 
@@ -44,10 +45,13 @@ class CheckboxField extends FormField
      */
     public function setValue($value, $escape = true): FormFieldInterface
     {
-        if ($value == '1') {
+        parent::setValue((int) $value, $escape);
+
+        unset($this->attributes['value']);
+
+        if ($this->value === 1) {
             $this->attributes['checked'] = 'checked';
         }
-        $this->value = $value;
         return $this;
     }
 }

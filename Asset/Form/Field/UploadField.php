@@ -112,18 +112,18 @@ class UploadField extends FormField implements UploadFieldInterface
      */
     public function setValue($value, $escape = true): FormFieldInterface
     {
-        if (is_array($value) || is_iterable($value)) {
+        if (is_iterable($value)) {
             array_map(
-                function ($fileId) {
+                function (int $fileId) {
                     $this->files[] = container_resolve(FileInterface::class)->find('id', $fileId);
                 },
                 new ArrayIterator($value)
             );
             return $this;
         }
-        parent::setValue($value);
+        parent::setValue((int) $value, $escape);
         
-        if ((int) $value > 0 && $file = container_resolve(FileInterface::class)->find('id', $value)) {
+        if ($this->value > 0 && $file = container_resolve(FileInterface::class)->find('id', $this->value)) {
             $this->files[] = $file;
         }
         return $this;
