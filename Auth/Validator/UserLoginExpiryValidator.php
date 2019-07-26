@@ -28,13 +28,6 @@ class UserLoginExpiryValidator extends Validator
     protected $message = 'Your session has expired. Please log in again';
 
     /**
-     * User instance
-     *
-     * @var UserInterface
-     */
-    protected $user;
-
-    /**
      * Login expiry date
      *
      * @var string
@@ -44,12 +37,10 @@ class UserLoginExpiryValidator extends Validator
     /**
      * Sets the field name to compare
      *
-     * @param UserInterface $user
      * @param RequestInterface $request
      */
-    public function __construct(UserInterface $user, RequestInterface $request)
+    public function __construct(RequestInterface $request)
     {
-        $this->user = $user;
         $this->expiry = $request->getSession()->get('login_expiry');
     }
 
@@ -66,17 +57,17 @@ class UserLoginExpiryValidator extends Validator
     /**
      * Main method to validate the passed value
      *
-     * @param  mixed $value
+     * @param  UserInterface $user
      * @return bool
      */
-    public function validate($value): bool
+    public function validate($user): bool
     {
         if (!$this->expiry) {
             return false;
         }
-        if (strtotime($this->expiry) !== strtotime($this->user->login_expiry)) {
+        if (strtotime($this->expiry) !== strtotime($user->login_expiry)) {
             return false;
         }
-        return microtime(true) <= strtotime($this->user->login_expiry);
+        return microtime(true) <= strtotime($user->login_expiry);
     }
 }

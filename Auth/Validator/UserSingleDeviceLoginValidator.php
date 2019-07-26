@@ -28,13 +28,6 @@ class UserSingleDeviceLoginValidator extends Validator
     protected $message = 'Your account has been logged into from another device';
 
     /**
-     * User instance
-     *
-     * @var UserInterface
-     */
-    protected $user;
-
-    /**
      * Single device ID
      *
      * @var string
@@ -47,9 +40,8 @@ class UserSingleDeviceLoginValidator extends Validator
      * @param UserInterface $user
      * @param RequestInterface $request
      */
-    public function __construct(UserInterface $user, RequestInterface $request)
+    public function __construct(RequestInterface $request)
     {
-        $this->user = $user;
         $this->deviceId = $request->getSession()->get('device_id');
     }
 
@@ -66,13 +58,13 @@ class UserSingleDeviceLoginValidator extends Validator
     /**
      * Main method to validate the passed value
      *
-     * @param  mixed $value
+     * @param  UserInterface $user
      * @return bool
      */
-    public function validate($value): bool
+    public function validate($user): bool
     {
         if (config('auth.single_device_signin') === true) {
-            return $this->user->device_id === $this->deviceId;
+            return $user->device_id === $this->deviceId;
         };
         return true;
     }

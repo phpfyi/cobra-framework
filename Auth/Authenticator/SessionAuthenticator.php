@@ -50,8 +50,8 @@ class SessionAuthenticator extends Authenticator
             return $this;
         }
         foreach ($this->validators as $namespace) {
-            $validator = $namespace::resolve($user, $this->request);
-            if (!$validator->validate()) {
+            $validator = $namespace::resolve($this->request);
+            if (!$validator->validate($user)) {
                 $this->message = $validator->getMessage();
 
                 $this->expired = true;
