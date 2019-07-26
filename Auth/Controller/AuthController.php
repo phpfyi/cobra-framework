@@ -56,8 +56,8 @@ class AuthController extends PageController
         // css
         css()->setInline('cms.main');
         // javascript
-        js()->setInline('min/shared/io');
-        js()->setBundle('dist/auth');
+        javascript()->setInline('min/shared/io');
+        javascript()->setBundle('dist/auth');
 
         view()
             ->setData('container_id', config('auth.gtm.container_id'))

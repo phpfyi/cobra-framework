@@ -60,7 +60,7 @@ if (! function_exists('js')) {
      *
      * @return ViewJavaScript
      */
-    function js(): ViewJavaScript
+    function javascript(): ViewJavaScript
     {
         return container_object(ViewInterface::class)->javascript();
     }

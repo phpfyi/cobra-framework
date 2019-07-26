@@ -41,8 +41,8 @@ class InpageAssetsEvent extends InpageEvent
     {
         css()->setInline('inpage.main');
 
-        js()->setFile('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js');
-        js()->setFile('https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js');
-        js()->setBundle('dist/inpage');
+        javascript()->setFile('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js');
+        javascript()->setFile('https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js');
+        javascript()->setBundle('dist/inpage');
     }
 }
