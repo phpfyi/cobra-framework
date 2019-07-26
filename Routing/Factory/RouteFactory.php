@@ -68,10 +68,9 @@ class RouteFactory extends AbstractObject implements RouteFactoryInterface
      * Returns a transformed route
      *
      * @param  RouteInterface $route
-     * @param  RouteInterface $parent
      * @return void
      */
-    protected function setRoute(RouteInterface $route, RouteInterface $parent = null): void
+    protected function setRoute(RouteInterface $route): void
     {
         if ($children = $route->getChildren()) {
             array_map(
