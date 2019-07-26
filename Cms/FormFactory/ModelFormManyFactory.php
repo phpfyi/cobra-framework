@@ -3,8 +3,7 @@
 namespace Cobra\Cms\FormFactory;
 
 use Iterator;
-use Cobra\Cms\ModelDataTable\ModelDataTable;
-use Cobra\Form\Form;
+use Cobra\Interfaces\Cms\ModelDataTable\ModelDataTableInterface;
 use Cobra\Interfaces\Form\FormInterface;
 use Cobra\Model\Model;
 use Cobra\Object\AbstractObject;
@@ -24,9 +23,9 @@ use Cobra\Object\AbstractObject;
 abstract class ModelFormManyFactory extends AbstractObject
 {
     /**
-     * The Form instance
+     * FormInterface instance
      *
-     * @var Form
+     * @var FormInterface
      */
     protected $form;
 
@@ -92,10 +91,13 @@ abstract class ModelFormManyFactory extends AbstractObject
     protected function setManyTable(string $name, Model $model, Iterator $data): void
     {
         $table = $model->cmsTable(
-            ModelDataTable::resolve(
-                $name,
-                $model,
-                $data
+            container_resolve(
+                ModelDataTableInterface::class,
+                [
+                    $name,
+                    $model,
+                    $data
+                ]
             )
         );
         $table->getProps()

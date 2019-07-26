@@ -3,7 +3,7 @@
 namespace Cobra\Cms\Controller\DataTable;
 
 use Cobra\Cms\CmsModelUrlParser;
-use Cobra\Cms\ModelDataTable\ModelDataTable;
+use Cobra\Interfaces\Cms\ModelDataTable\ModelDataTableInterface;
 use Cobra\Interfaces\Http\Message\RequestInterface;
 use Cobra\Controller\Controller;
 use Cobra\Http\Stream\HtmlStream;
@@ -89,10 +89,13 @@ abstract class CmsAction extends Controller
     protected function setTableResponse(Model $model, $data): void
     {
         $table = $model->cmsTable(
-            ModelDataTable::resolve(
-                $this->isRelation($data) ? $data->getRelation() : $model->getPlural(),
-                $model,
-                $data
+            container_resolve(
+                ModelDataTableInterface::class,
+                [
+                    $this->isRelation($data) ? $data->getRelation() : $model->getPlural(),
+                    $model,
+                    $data
+                ]
             )
         );
         $table->getProps()
