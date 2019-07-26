@@ -13,9 +13,6 @@ use Cobra\Database\Field\DatabaseTextField;
 use Cobra\Database\Field\DatabaseTimestampField;
 use Cobra\Database\Field\DatabaseTinyintField;
 use Cobra\Database\Field\DatabaseVarcharField;
-use Cobra\Database\Relation\HasManyRelation;
-use Cobra\Database\Relation\HasOneRelation;
-use Cobra\Database\Relation\ManyManyRelation;
 use Cobra\Database\Traits\DatabaseSchema;
 use Cobra\Object\AbstractObject;
 
@@ -348,10 +345,13 @@ class DatabaseTable extends AbstractObject implements DatabaseTableInterface
      */
     public function hasOne(string $relation, string $relationClass, string $hasManyRelation = null): HasOneRelationInterface
     {
-        return $this->hasOne[$relation] = HasOneRelation::resolve(
-            $relation,
-            $relationClass,
-            $hasManyRelation
+        return $this->hasOne[$relation] = container_resolve(
+            HasOneRelationInterface::class,
+            [
+                $relation,
+                $relationClass,
+                $hasManyRelation
+            ]
         );
     }
 
@@ -364,12 +364,15 @@ class DatabaseTable extends AbstractObject implements DatabaseTableInterface
      */
     public function hasMany(string $relation, string $relationClass): HasManyRelationInterface
     {
-        return $this->hasMany[$relation] = HasManyRelation::resolve(
-            $relation,
-            $relationClass,
-            singleton($relationClass)->getTable(),
-            $this->class,
-            $this->table
+        return $this->hasMany[$relation] = container_resolve(
+            HasManyRelationInterface::class,
+            [
+                $relation,
+                $relationClass,
+                singleton($relationClass)->getTable(),
+                $this->class,
+                $this->table
+            ]
         );
     }
     
@@ -382,12 +385,15 @@ class DatabaseTable extends AbstractObject implements DatabaseTableInterface
      */
     public function manyMany(string $relation, string $foreignClass): ManyManyRelationInterface
     {
-        return $this->manyMany[$relation] = ManyManyRelation::resolve(
-            $relation,
-            $this->class,
-            $this->table,
-            $foreignClass,
-            singleton($foreignClass)->getTable()
+        return $this->manyMany[$relation] = container_resolve(
+            ManyManyRelationInterface::class,
+            [
+                $relation,
+                $this->class,
+                $this->table,
+                $foreignClass,
+                singleton($foreignClass)->getTable()
+            ]
         );
     }
 
@@ -400,12 +406,15 @@ class DatabaseTable extends AbstractObject implements DatabaseTableInterface
      */
     public function belongsManyMany(string $relation, string $foreignClass): ManyManyRelationInterface
     {
-        return $this->belongsManyMany[$relation] = ManyManyRelation::resolve(
-            $relation,
-            $this->class,
-            $this->table,
-            $foreignClass,
-            singleton($foreignClass)->getTable()
+        return $this->belongsManyMany[$relation] = container_resolve(
+            ManyManyRelationInterface::class,
+            [
+                $relation,
+                $this->class,
+                $this->table,
+                $foreignClass,
+                singleton($foreignClass)->getTable()
+            ]
         );
     }
 
