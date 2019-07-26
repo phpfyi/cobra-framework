@@ -50,7 +50,7 @@ class IpAddressValidator extends Validator
      * @param  RequestInterface $request
      * @return bool
      */
-    public function validate($request = null): bool
+    public function validate($request): bool
     {
         foreach (explode(',', $request->getIP()) as $origin) {
             foreach ($this->ipAddresses as $ipAddress) {

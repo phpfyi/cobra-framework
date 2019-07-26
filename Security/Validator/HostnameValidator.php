@@ -50,7 +50,7 @@ class HostnameValidator extends Validator
      * @param  RequestInterface $request
      * @return bool
      */
-    public function validate($request = null): bool
+    public function validate($request): bool
     {
         return empty(
             array_intersect(

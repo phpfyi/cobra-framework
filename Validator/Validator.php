@@ -41,7 +41,7 @@ abstract class Validator extends AbstractObject implements ValidatorInterface
      * @param  mixed $value
      * @return boolean
      */
-    abstract public function validate($value = null): bool;
+    abstract public function validate($value): bool;
 
     /**
      * Sets the validator error message.

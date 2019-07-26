@@ -43,7 +43,7 @@ class UrlValidator extends Validator
      * @param  mixed $value
      * @return bool
      */
-    public function validate($value = null): bool
+    public function validate($value): bool
     {
         $url = filter_var($value, FILTER_SANITIZE_URL);
             

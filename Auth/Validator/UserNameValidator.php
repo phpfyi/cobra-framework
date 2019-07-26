@@ -49,7 +49,7 @@ class UserNameValidator extends Validator
      * @param  mixed $value
      * @return bool
      */
-    public function validate($value = null): bool
+    public function validate($value): bool
     {
         if (!$this->hasUsernameCharacters($value)) {
             $this->message = 'Allowed characters _-';

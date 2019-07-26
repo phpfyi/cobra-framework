@@ -54,7 +54,7 @@ class UserLoginPasswordValidator extends RequiredValidator
      * @param  mixed $value
      * @return bool
      */
-    public function validate($value = null): bool
+    public function validate($value): bool
     {
         if (!parent::validate($value)) {
             return false;

@@ -69,7 +69,7 @@ class UserSingleDeviceLoginValidator extends Validator
      * @param  mixed $value
      * @return bool
      */
-    public function validate($value = null): bool
+    public function validate($value): bool
     {
         if (config('auth.single_device_signin') === true) {
             return $this->user->device_id === $this->deviceId;

@@ -68,7 +68,7 @@ class PasswordConfirmValidator extends Validator
      * @param  mixed $value
      * @return bool
      */
-    public function validate($value = null): bool
+    public function validate($value): bool
     {
         if (!array_key_exists($this->password, $this->data)) {
             return false;

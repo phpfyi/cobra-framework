@@ -36,7 +36,7 @@ class RequiredValidator extends Validator
      * @param  mixed $value
      * @return bool
      */
-    public function validate($value = null): bool
+    public function validate($value): bool
     {
         return trim((string) $value) !== '';
     }

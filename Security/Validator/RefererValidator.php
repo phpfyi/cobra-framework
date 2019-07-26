@@ -50,7 +50,7 @@ class RefererValidator extends Validator
      * @param  RequestInterface $request
      * @return bool
      */
-    public function validate($request = null): bool
+    public function validate($request): bool
     {
         return !array_strpos(
             $this->referers,

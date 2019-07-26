@@ -36,7 +36,7 @@ class FormSpamValidator extends Validator
      * @param mixed $value
      * @return boolean
      */
-    public function validate($value = null): bool
+    public function validate($value): bool
     {
         return trim($value) === '';
     }

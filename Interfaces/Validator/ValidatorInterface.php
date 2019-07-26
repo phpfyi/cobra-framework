@@ -29,7 +29,7 @@ interface ValidatorInterface
      * @param  mixed $value
      * @return boolean
      */
-    public function validate($value = null): bool;
+    public function validate($value): bool;
 
     /**
      * Sets the validator error message.
