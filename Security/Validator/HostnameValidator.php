@@ -20,13 +20,6 @@ use Cobra\Validator\Validator;
 class HostnameValidator extends Validator
 {
     /**
-     * Request hostnames
-     *
-     * @var array
-     */
-    protected $hosts = [];
-
-    /**
      * Disallowed hostnames
      *
      * @var array
@@ -35,12 +28,9 @@ class HostnameValidator extends Validator
 
     /**
      * Sets the required properties
-     *
-     * @param RequestInterface $request
      */
-    public function __construct(RequestInterface $request)
+    public function __construct()
     {
-        $this->hosts = $request->getHostByAddr();
         $this->hostnames = env('DISALLOW_HOSTS');
     }
 
@@ -57,14 +47,14 @@ class HostnameValidator extends Validator
     /**
      * Main method to validate the passed value
      *
-     * @param  mixed $value
+     * @param  RequestInterface $request
      * @return bool
      */
-    public function validate($value = null): bool
+    public function validate($request = null): bool
     {
         return empty(
             array_intersect(
-                $this->hosts,
+                $request->getHostByAddr(),
                 $this->hostnames
             )
         );

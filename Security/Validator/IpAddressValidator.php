@@ -20,13 +20,6 @@ use Cobra\Validator\Validator;
 class IpAddressValidator extends Validator
 {
     /**
-     * Request IP
-     *
-     * @var string
-     */
-    protected $ipAddress;
-
-    /**
      * Disallowed IPs
      *
      * @var array
@@ -35,12 +28,9 @@ class IpAddressValidator extends Validator
 
     /**
      * Sets the required properties
-     *
-     * @param RequestInterface $request
      */
-    public function __construct(RequestInterface $request)
+    public function __construct()
     {
-        $this->ipAddress = $request->getIP();
         $this->ipAddresses = env('DISALLOW_IPS');
     }
 
@@ -57,12 +47,12 @@ class IpAddressValidator extends Validator
     /**
      * Main method to validate the passed value
      *
-     * @param  mixed $value
+     * @param  RequestInterface $request
      * @return bool
      */
-    public function validate($value = null): bool
+    public function validate($request = null): bool
     {
-        foreach (explode(',', $this->ipAddress) as $origin) {
+        foreach (explode(',', $request->getIP()) as $origin) {
             foreach ($this->ipAddresses as $ipAddress) {
                 if (is_array($ipAddress) && ip_in_range($origin, $ipAddress[0], $ipAddress[1])) {
                     return false;

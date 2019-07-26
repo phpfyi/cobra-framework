@@ -20,13 +20,6 @@ use Cobra\Validator\Validator;
 class RefererValidator extends Validator
 {
     /**
-     * Request referers
-     *
-     * @var string
-     */
-    protected $referer;
-
-    /**
      * Disallowed referers
      *
      * @var array
@@ -35,12 +28,9 @@ class RefererValidator extends Validator
 
     /**
      * Sets the required properties
-     *
-     * @param RequestInterface $request
      */
-    public function __construct(RequestInterface $request)
+    public function __construct()
     {
-        $this->referer = $request->getReferer();
         $this->referers = env('DISALLOW_REFERERS');
     }
 
@@ -57,14 +47,14 @@ class RefererValidator extends Validator
     /**
      * Main method to validate the passed value
      *
-     * @param  mixed $value
+     * @param  RequestInterface $request
      * @return bool
      */
-    public function validate($value = null): bool
+    public function validate($request = null): bool
     {
         return !array_strpos(
             $this->referers,
-            $this->referer
+            $request->getReferer()
         );
     }
 }

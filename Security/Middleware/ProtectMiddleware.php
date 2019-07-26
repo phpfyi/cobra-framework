@@ -42,7 +42,7 @@ class ProtectMiddleware extends Middleware
     public function process(RequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         foreach ($this->validators as $namespace) {
-            if (!$namespace::resolve()->validate()) {
+            if (!$namespace::resolve()->validate($request)) {
                 return http_forbidden_response($this);
             }
         }
