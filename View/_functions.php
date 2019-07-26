@@ -70,11 +70,11 @@ if (! function_exists('template')) {
     /**
      * Outputs a template
      *
-     * @return void
+     * @return string
      */
-    function template(string $template): void
+    function template(string $template): string
     {
-        echo container_resolve(
+        return container_resolve(
             ViewLoaderInterface::class,
             [
                 $template,
