@@ -2,11 +2,11 @@
 
 namespace Cobra\Asset\Resource;
 
-use Cobra\Interfaces\Asset\Resource\FilePathSynchroniserInterface;
 use Cobra\Interfaces\Asset\FileInterface;
 use Cobra\Interfaces\Asset\FolderInterface;
+use Cobra\Interfaces\Asset\Resource\FilePathSynchroniserInterface;
+use Cobra\Interfaces\Server\File\FileSystemInterface;
 use Cobra\Object\AbstractObject;
-use Cobra\Server\File\FileSystem;
 
 /**
  * File Path Synchroniser
@@ -72,7 +72,7 @@ class FilePathSynchroniser extends AbstractObject implements FilePathSynchronise
     public function sync(): void
     {
         if ($this->isPathMismatch()) {
-            FileSystem::move(
+            container_resolve(FileSystemInterface::class)->move(
                 path_with_root($this->file->system_path),
                 path_with_root($this->systemPath)
             );

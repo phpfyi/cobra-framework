@@ -29,5 +29,9 @@ class ServerService extends Service
             \Cobra\Interfaces\Server\File\FilePathInterface::class,
             \Cobra\Server\File\FilePath::class
         );
+        contain_namespace(
+            \Cobra\Interfaces\Server\File\FileSystemInterface::class,
+            \Cobra\Server\File\FileSystem::class
+        );
     }
 }
