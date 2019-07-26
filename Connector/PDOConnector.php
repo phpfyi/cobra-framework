@@ -4,6 +4,7 @@ namespace Cobra\Connector;
 
 use PDO;
 use PDOException;
+use Cobra\Connector\Exception\DatabaseConnectionException;
 use Cobra\Interfaces\Connector\ConnectorInterface;
 use Cobra\Interfaces\Connector\PDOConnectorInterface;
 
@@ -105,8 +106,9 @@ class PDOConnector extends Connector implements PDOConnectorInterface
                 $params
             );
         } catch (PDOException $e) {
-            echo $this->errors === true ? $e->getMessage() : 'Cannot connect to database';
-            die;
+            throw new DatabaseConnectionException(
+                $this->errors === true ? $e->getMessage() : 'Cannot connect to database'
+            );
         }
         return $this;
     }
