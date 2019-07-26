@@ -26,6 +26,10 @@ class HtmlService extends Service
     public function namespaces(): void
     {
         contain_namespace(
+            \Cobra\Interfaces\Html\HtmlInterface::class,
+            \Cobra\Html\Html::class
+        );
+        contain_namespace(
             \Cobra\Interfaces\Html\HtmlElementInterface::class,
             \Cobra\Html\HtmlElement::class
         );

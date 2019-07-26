@@ -2,7 +2,7 @@
 
 namespace Cobra\Html\Traits;
 
-use Cobra\Html\Html;
+use Cobra\Interfaces\Html\HtmlInterface;
 
 /**
  * Renders As HTML Trait
@@ -25,6 +25,6 @@ trait RendersAsHtml
      */
     public function __toString(): string
     {
-        return HTML::render($this);
+        return container_resolve(HtmlInterface::class)->render($this);
     }
 }
