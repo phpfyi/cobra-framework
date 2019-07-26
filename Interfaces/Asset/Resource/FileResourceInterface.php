@@ -2,6 +2,8 @@
 
 namespace Cobra\Interfaces\Asset\Resource;
 
+use Cobra\Http\Stream\FileStream;
+
 /**
  * File Resource Interface
  *
@@ -17,9 +19,9 @@ namespace Cobra\Interfaces\Asset\Resource;
 interface FileResourceInterface
 {
     /**
-     * Outputs the file headers and response.
+     * Returns a file response.
      *
-     * @return void
+     * @return FileStream
      */
-    public function output(): void;
+    public function output(): FileStream;
 }

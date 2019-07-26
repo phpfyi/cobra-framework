@@ -21,7 +21,7 @@ interface ResponseInterface extends PsrResponseInterface
     /**
      * Outputs the HTTP response
      *
-     * @return void
+     * @return mixed
      */
-    public function output(): void;
+    public function output();
 }

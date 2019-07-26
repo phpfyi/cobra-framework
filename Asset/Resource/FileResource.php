@@ -3,7 +3,6 @@
 namespace Cobra\Asset\Resource;
 
 use Cobra\Http\Stream\FileStream;
-use Cobra\Http\Traits\OutputsHeaders;
 use Cobra\Interfaces\Asset\FileInterface;
 use Cobra\Interfaces\Asset\Resource\FileResourceInterface;
 use Cobra\Interfaces\Http\Message\ResponseInterface;
@@ -23,8 +22,6 @@ use Cobra\Object\AbstractObject;
  */
 class FileResource extends AbstractObject implements FileResourceInterface
 {
-    use OutputsHeaders;
-
     /**
      * File instance
      *
@@ -52,11 +49,11 @@ class FileResource extends AbstractObject implements FileResourceInterface
     }
 
     /**
-     * Outputs the file headers and response.
+     * Returns a file response.
      *
      * @return void
      */
-    public function output(): void
+    public function output(): FileStream
     {
         $seconds = 60 * 60 * 24 * static::config('expiry_days');
         $expires = gmdate('D, d M Y H:i:s', time() + $seconds).' GMT';
@@ -81,12 +78,7 @@ class FileResource extends AbstractObject implements FileResourceInterface
                     )
                 );
         }
-        $this->outputHeaders($this->response->getHeaders());
-
-        http_response_code(200);
-        
-        echo FileStream::resolve($this->file->getAbsoluteSystemPath());
-        exit();
+        return FileStream::resolve($this->file->getAbsoluteSystemPath());
     }
 
     /**

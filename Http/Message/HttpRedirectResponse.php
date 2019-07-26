@@ -43,14 +43,16 @@ class HttpRedirectResponse extends HttpResponse
     /**
      * Outputs the HTTP response
      *
-     * @return void
+     * @return mixed
      */
-    public function output(): void
+    public function output()
     {
         $this->outputHeaders($this->getHeaders());
 
-        $location = sprintf('Location:%s', $this->getHeader('Location')[0]);
-        header($location, true, $this->statusCode);
-        exit();
+        header(
+            sprintf('Location:%s', $this->getHeader('Location')[0]),
+            true,
+            $this->statusCode
+        );
     }
 }

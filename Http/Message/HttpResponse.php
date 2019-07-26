@@ -99,13 +99,14 @@ class HttpResponse extends HttpMessage implements ResponseInterface
     /**
      * Outputs the HTTP response
      *
-     * @return void
+     * @return mixed
      */
-    public function output(): void
+    public function output()
     {
         $this->outputHeaders($this->getHeaders());
+
         http_response_code($this->statusCode);
 
-        echo $this->body;
+        return $this->body;
     }
 }
