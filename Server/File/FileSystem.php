@@ -34,7 +34,8 @@ class FileSystem implements FileSystemInterface
                 sprintf('Cannot find file to get: %s', $path)
             );
         }
-        return file_get_contents($path);
+        $file = new SplFileObject($path, 'r');
+        return $file->fread($file->getSize());
     }
 
     /**
