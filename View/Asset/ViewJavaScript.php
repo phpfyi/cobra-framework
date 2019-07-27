@@ -137,7 +137,10 @@ class ViewJavaScript extends ViewAsset implements ViewJavaScriptInterface
         return sprintf(
             '/js/%s.%s.js',
             $path,
-            container_resolve(FileSystemInterface::class)->modified(ROOT.PUBLIC_DIRECTORY.'/js/'.$path.'.js')
+            container_resolve(FileSystemInterface::class)
+                ->modified(
+                    path_join_root(PUBLIC_DIRECTORY, 'js', $path, 'js')
+                )
         );
     }
 }
