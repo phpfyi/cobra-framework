@@ -2,7 +2,7 @@
 
 namespace Cobra\View\Loader;
 
-use Cobra\Interfaces\View\Loader\ViewScopedLoaderInterface;
+use Cobra\Interfaces\View\Loader\ScopedLoaderInterface;
 use Cobra\Interfaces\View\ViewDataInterface;
 
 /**
@@ -19,7 +19,7 @@ use Cobra\Interfaces\View\ViewDataInterface;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-class ViewScopedLoader implements ViewScopedLoaderInterface
+class ScopedLoader implements ScopedLoaderInterface
 {
     /**
      * Includes a template with optinal data scoped to the template.

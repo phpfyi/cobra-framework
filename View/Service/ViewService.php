@@ -38,8 +38,8 @@ class ViewService extends Service
             \Cobra\View\Loader\ViewLoader::class
         );
         contain_namespace(
-            \Cobra\Interfaces\View\Loader\ViewScopedLoaderInterface::class,
-            \Cobra\View\Loader\ViewScopedLoader::class
+            \Cobra\Interfaces\View\Loader\ScopedLoaderInterface::class,
+            \Cobra\View\Loader\ScopedLoader::class
         );
         contain_namespace(
             \Cobra\Interfaces\View\Transform\ViewParserInterface::class,

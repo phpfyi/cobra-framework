@@ -16,7 +16,7 @@ use Cobra\Interfaces\View\ViewDataInterface;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-interface ViewScopedLoaderInterface
+interface ScopedLoaderInterface
 {
     /**
      * Includes a template with optinal data scoped to the template.

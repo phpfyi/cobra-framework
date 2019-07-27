@@ -2,7 +2,7 @@
 
 namespace Cobra\Html\Traits;
 
-use Cobra\Interfaces\View\Loader\ViewScopedLoaderInterface;
+use Cobra\Interfaces\View\Loader\ScopedLoaderInterface;
 
 /**
  * Renders File in Body Trait
@@ -32,6 +32,6 @@ trait RendersFileInBody
         if (!$this->body) {
             return '';
         }
-        return container_resolve(ViewScopedLoaderInterface::class)->output($this->body);
+        return container_resolve(ScopedLoaderInterface::class)->output($this->body);
     }
 }
