@@ -41,7 +41,7 @@ class SessionStartMiddleware extends Middleware
                 env('SESSION_PATH'),
                 env('SESSION_DOMAIN'),
                 env('SESSION_SECURE'),
-                env('SESSION_HTTP')
+                env('SESSION_HTTP_ONLY')
             ]
         );
         $manager->boot();

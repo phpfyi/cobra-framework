@@ -52,7 +52,7 @@ class PhpIniMiddleware extends Middleware
             ->ini('session.cookie_lifetime', env('SESSION_LIFETIME'))
             ->ini('session.gc_maxlifetime', env('SESSION_LIFETIME'))
             ->ini('session.cookie_secure', env('SESSION_SECURE'))
-            ->ini('session.cookie_httponly', env('SESSION_HTTP'));
+            ->ini('session.cookie_httponly', env('SESSION_HTTP_ONLY'));
         
         return $handler->handle($request);
     }
