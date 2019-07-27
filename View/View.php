@@ -2,12 +2,12 @@
 
 namespace Cobra\View;
 
+use Cobra\Interfaces\View\Asset\ViewCssInterface;
+use Cobra\Interfaces\View\Asset\ViewMetaInterface;
+use Cobra\Interfaces\View\Asset\ViewJavaScriptInterface;
 use Cobra\Interfaces\View\ViewDataInterface;
 use Cobra\Interfaces\View\ViewInterface;
 use Cobra\Object\AbstractObject;
-use Cobra\View\Asset\ViewCss;
-use Cobra\View\Asset\ViewMeta;
-use Cobra\View\Asset\ViewJavaScript;
 
 /**
  * View
@@ -33,21 +33,21 @@ class View extends AbstractObject implements ViewInterface
     /**
      * Meta instance
      *
-     * @var ViewMeta
+     * @var ViewMetaInterface
      */
     protected $meta;
 
     /**
      * CSS instance
      *
-     * @var ViewCss
+     * @var ViewCssInterface
      */
     protected $css;
 
     /**
      * JavaScript instance
      *
-     * @var ViewJavaScript
+     * @var ViewJavaScriptInterface
      */
     protected $javascript;
 
@@ -60,9 +60,18 @@ class View extends AbstractObject implements ViewInterface
     {
         $this->data = $data;
 
-        $this->meta = ViewMeta::resolve($this);
-        $this->css = ViewCss::resolve($this);
-        $this->javascript = ViewJavaScript::resolve($this);
+        $this->meta = container_resolve(
+            ViewMetaInterface::class,
+            [$this]
+        );
+        $this->css = container_resolve(
+            ViewCssInterface::class,
+            [$this]
+        );
+        $this->javascript = container_resolve(
+            ViewJavaScriptInterface::class,
+            [$this]
+        );
     }
 
     /**
@@ -103,9 +112,9 @@ class View extends AbstractObject implements ViewInterface
     /**
      * Returns the Meta instance
      *
-     * @return ViewMeta
+     * @return ViewMetaInterface
      */
-    public function meta(): ViewMeta
+    public function meta(): ViewMetaInterface
     {
         return $this->meta;
     }
@@ -113,9 +122,9 @@ class View extends AbstractObject implements ViewInterface
     /**
      * Returns the CSS instance
      *
-     * @return ViewCss
+     * @return ViewCssInterface
      */
-    public function css(): ViewCss
+    public function css(): ViewCssInterface
     {
         return $this->css;
     }
@@ -123,9 +132,9 @@ class View extends AbstractObject implements ViewInterface
     /**
      * Returns the JavaScript instance
      *
-     * @return ViewJavaScript
+     * @return ViewJavaScriptInterface
      */
-    public function javascript(): ViewJavaScript
+    public function javascript(): ViewJavaScriptInterface
     {
         return $this->javascript;
     }

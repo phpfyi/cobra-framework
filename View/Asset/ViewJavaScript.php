@@ -3,6 +3,7 @@
 namespace Cobra\View\Asset;
 
 use Cobra\Html\HtmlScriptElement;
+use Cobra\Interfaces\View\Asset\ViewJavaScriptInterface;
 
 /**
  * View JavaScript
@@ -16,7 +17,7 @@ use Cobra\Html\HtmlScriptElement;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-class ViewJavaScript extends ViewAsset
+class ViewJavaScript extends ViewAsset implements ViewJavaScriptInterface
 {
     /**
      * Array of already loaded inline tags

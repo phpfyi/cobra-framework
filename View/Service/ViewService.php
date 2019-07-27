@@ -49,5 +49,17 @@ class ViewService extends Service
             \Cobra\Interfaces\View\Transform\ViewMinifierInterface::class,
             \Cobra\View\Transform\ViewParser::class
         );
+        contain_namespace(
+            \Cobra\Interfaces\View\Asset\ViewCssInterface::class,
+            \Cobra\View\Asset\ViewCss::class
+        );
+        contain_namespace(
+            \Cobra\Interfaces\View\Asset\ViewJavaScriptInterface::class,
+            \Cobra\View\Asset\ViewJavaScript::class
+        );
+        contain_namespace(
+            \Cobra\Interfaces\View\Asset\ViewMetaInterface::class,
+            \Cobra\View\Asset\ViewMeta::class
+        );
     }
 }

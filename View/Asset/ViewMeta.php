@@ -3,6 +3,7 @@
 namespace Cobra\View\Asset;
 
 use Cobra\Interfaces\Html\HtmlElementInterface;
+use Cobra\Interfaces\View\Asset\ViewMetaInterface;
 use Cobra\Html\HtmlLinkElement;
 use Cobra\Html\HtmlMetaElement;
 
@@ -18,7 +19,7 @@ use Cobra\Html\HtmlMetaElement;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-class ViewMeta extends ViewAsset
+class ViewMeta extends ViewAsset implements ViewMetaInterface
 {
     /**
      * Sets a meta base HTML tag

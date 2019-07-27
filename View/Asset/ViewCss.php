@@ -3,6 +3,7 @@
 namespace Cobra\View\Asset;
 
 use Cobra\Html\HtmlStyleElement;
+use Cobra\Interfaces\View\Asset\ViewCssInterface;
 
 /**
  * View CSS
@@ -16,7 +17,7 @@ use Cobra\Html\HtmlStyleElement;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-class ViewCss extends ViewAsset
+class ViewCss extends ViewAsset implements ViewCssInterface
 {
     /**
      * Array of already loaded inline tags

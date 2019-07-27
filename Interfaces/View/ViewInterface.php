@@ -2,9 +2,9 @@
 
 namespace Cobra\Interfaces\View;
 
-use Cobra\View\Asset\ViewCss;
-use Cobra\View\Asset\ViewMeta;
-use Cobra\View\Asset\ViewJavaScript;
+use Cobra\Interfaces\View\Asset\ViewCssInterface;
+use Cobra\Interfaces\View\Asset\ViewMetaInterface;
+use Cobra\Interfaces\View\Asset\ViewJavaScriptInterface;
 
 /**
  * View interface
@@ -47,21 +47,21 @@ interface ViewInterface
     /**
      * Returns the Meta instance
      *
-     * @return ViewMeta
+     * @return ViewMetaInterface
      */
-    public function meta(): ViewMeta;
+    public function meta(): ViewMetaInterface;
 
     /**
      * Returns the CSS instance
      *
-     * @return ViewCss
+     * @return ViewCssInterface
      */
-    public function css(): ViewCss;
+    public function css(): ViewCssInterface;
 
     /**
      * Returns the JavaScript instance
      *
-     * @return ViewJavaScript
+     * @return ViewJavaScriptInterface
      */
-    public function javascript(): ViewJavaScript;
+    public function javascript(): ViewJavaScriptInterface;
 }

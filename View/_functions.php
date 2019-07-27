@@ -1,10 +1,10 @@
 <?php
 
+use Cobra\Interfaces\View\Asset\ViewCssInterface;
+use Cobra\Interfaces\View\Asset\ViewMetaInterface;
+use Cobra\Interfaces\View\Asset\ViewJavaScriptInterface;
 use Cobra\Interfaces\View\Loader\ViewLoaderInterface;
 use Cobra\Interfaces\View\ViewInterface;
-use Cobra\View\Asset\ViewCss;
-use Cobra\View\Asset\ViewMeta;
-use Cobra\View\Asset\ViewJavaScript;
 
 /**
  * View function sets
@@ -34,9 +34,9 @@ if (! function_exists('meta')) {
     /**
      * Returns the view Meta instance
      *
-     * @return ViewMeta
+     * @return ViewMetaInterface
      */
-    function meta(): ViewMeta
+    function meta(): ViewMetaInterface
     {
         return container_object(ViewInterface::class)->meta();
     }
@@ -46,21 +46,21 @@ if (! function_exists('css')) {
     /**
      * Returns the view CSS instance
      *
-     * @return ViewCss
+     * @return ViewCssInterface
      */
-    function css(): ViewCss
+    function css(): ViewCssInterface
     {
         return container_object(ViewInterface::class)->css();
     }
 }
 
-if (! function_exists('js')) {
+if (! function_exists('javascript')) {
     /**
      * Returns the view JavaScript instance
      *
-     * @return ViewJavaScript
+     * @return ViewJavaScriptInterface
      */
-    function javascript(): ViewJavaScript
+    function javascript(): ViewJavaScriptInterface
     {
         return container_object(ViewInterface::class)->javascript();
     }
