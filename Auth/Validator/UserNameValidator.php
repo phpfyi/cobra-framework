@@ -20,20 +20,6 @@ use Cobra\Validator\Validator;
 class UserNameValidator extends Validator
 {
     /**
-     * Minimum username characters
-     *
-     * @var int
-     */
-    const MIN_CHARS = 3;
-
-    /**
-     * Maximum username characters
-     *
-     * @var int
-     */
-    const MAX_CHARS = 20;
-
-    /**
      * Returns the validator name
      *
      * @return string
@@ -85,6 +71,7 @@ class UserNameValidator extends Validator
      */
     private function hasUsernameLength($value): bool
     {
-        return strlen($value) >= self::MIN_CHARS && strlen($value) <= self::MAX_CHARS;
+        return strlen($value) >= static::config('min_chars') 
+        && strlen($value) <= static::config('max_chars');
     }
 }

@@ -22,3 +22,6 @@ Cobra\Auth\User\User:
     - [25, 'title', 'Name']
     - [25, 'email', 'Email']
     - [25, 'country', 'Country']
+Cobra\Auth\Validator\UserNameValidator:
+  min_chars: 3
+  max_chars: 20
