@@ -4,6 +4,7 @@ namespace Cobra\Auth\Password;
 
 use Cobra\Html\HtmlElement;
 use Cobra\View\Traits\RendersTemplate;
+use Cobra\Interfaces\View\ViewObject;
 
 /**
  * Password Validation HTML Element
@@ -17,7 +18,7 @@ use Cobra\View\Traits\RendersTemplate;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-class PasswordValidationHtmlElement extends HtmlElement
+class PasswordValidationHtmlElement extends HtmlElement implements ViewObject
 {
     use RendersTemplate;
 
@@ -43,5 +44,15 @@ class PasswordValidationHtmlElement extends HtmlElement
     public function __construct($name = null)
     {
         parent::__construct('div', $name);
+    }
+
+    /**
+     * Returns an array of view data
+     *
+     * @return array
+     */
+    public function getViewData(): array
+    {
+        return [];
     }
 }

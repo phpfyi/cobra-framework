@@ -51,4 +51,18 @@ class InpageHeadersReport extends InpageReport
     {
         return 'Headers';
     }
+    
+    /**
+     * Returns an array of view data
+     *
+     * @return array
+     */
+    public function getViewData(): array
+    {
+        return [
+            'name' => $this->getName(),
+            'request_headers' => $this->request->getHeaders(),
+            'response_headers' => $this->response->getHeaders()
+        ];
+    }
 }

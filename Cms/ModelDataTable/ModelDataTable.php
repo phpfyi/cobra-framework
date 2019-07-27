@@ -11,6 +11,7 @@ use Cobra\Interfaces\Cms\ModelDataTable\ModelDataTableColumnInterface;
 use Cobra\Interfaces\Cms\ModelDataTable\ModelDataTableInterface;
 use Cobra\Interfaces\Model\ModelDataList;
 use Cobra\Interfaces\Object\Props\PropsDataInterface;
+use Cobra\Interfaces\View\ViewObject;
 use Cobra\Model\Model;
 use Cobra\Model\Relation\ModelHasManyRelation;
 use Cobra\Model\Relation\ModelManyManyRelation;
@@ -62,7 +63,7 @@ use Cobra\View\Traits\RendersTemplate;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-class ModelDataTable extends AbstractObject implements ModelDataTableInterface
+class ModelDataTable extends AbstractObject implements ModelDataTableInterface, ViewObject
 {
     use RendersTemplate, UsesProps;
 
@@ -320,5 +321,28 @@ class ModelDataTable extends AbstractObject implements ModelDataTableInterface
                 return $element->getPosition() == $position;
             }
         );
+    }
+
+    /**
+     * Returns an array of view data
+     *
+     * @return array
+     */
+    public function getViewData(): array
+    {
+        return [
+            'list' => $this->getList(),
+            'props' => $this->getProps(),
+            'columns' => $this->getColumns(),
+            'is_relation' => $this->isRelation(),
+            'elements_above_top' => $this->getElementsByPosition('above-top'),
+            'elements_above_left' => $this->getElementsByPosition('above-left'),
+            'elements_above_right' => $this->getElementsByPosition('above-right'),
+            'elements_above_bottom' => $this->getElementsByPosition('above-bottom'),
+            'elements_below_top' => $this->getElementsByPosition('below-top'),
+            'elements_below_left' => $this->getElementsByPosition('below-left'),
+            'elements_below_right' => $this->getElementsByPosition('below-right'),
+            'elements_below_bottom' => $this->getElementsByPosition('below-bottom'),
+        ];
     }
 }

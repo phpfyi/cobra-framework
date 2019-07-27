@@ -51,4 +51,18 @@ class InpageSessionReport extends InpageReport
     {
         return 'Session';
     }
+    
+    /**
+     * Returns an array of view data
+     *
+     * @return array
+     */
+    public function getViewData(): array
+    {
+        return [
+            'name' => $this->getName(),
+            'request_session' => $this->request->getSession()->data(),
+            'response_session' => $this->response->getSession()->data()
+        ];
+    }
 }

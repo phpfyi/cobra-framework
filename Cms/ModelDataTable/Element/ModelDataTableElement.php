@@ -4,6 +4,7 @@ namespace Cobra\Cms\ModelDataTable\Element;
 
 use Cobra\Interfaces\Cms\ModelDataTable\Element\ModelDataTableElementInteface;
 use Cobra\Interfaces\Cms\ModelDataTable\ModelDataTableInterface;
+use Cobra\Interfaces\View\ViewObject;
 use Cobra\Object\AbstractObject;
 use Cobra\View\Traits\UsesTemplate;
 use Cobra\View\Traits\RendersTemplate;
@@ -20,7 +21,7 @@ use Cobra\View\Traits\RendersTemplate;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-class ModelDataTableElement extends AbstractObject implements ModelDataTableElementInteface
+abstract class ModelDataTableElement extends AbstractObject implements ModelDataTableElementInteface, ViewObject
 {
     use UsesTemplate, RendersTemplate;
 
@@ -102,5 +103,15 @@ class ModelDataTableElement extends AbstractObject implements ModelDataTableElem
     public function getAlias(): string
     {
         return $this->alias;
+    }
+
+    /**
+     * Returns an array of view data
+     *
+     * @return array
+     */
+    public function getViewData(): array
+    {
+        return [];
     }
 }

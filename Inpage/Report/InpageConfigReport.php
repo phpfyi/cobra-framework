@@ -51,14 +51,17 @@ class InpageConfigReport extends InpageReport
     {
         return 'Config';
     }
-
+    
     /**
-     * Returns the array of loaded configuration
+     * Returns an array of view data
      *
      * @return array
      */
-    public function getConfiguration(): array
+    public function getViewData(): array
     {
-        return $this->config->getStore()->loaded();
+        return [
+            'name' => $this->getName(),
+            'config' => $this->config->getStore()->loaded()
+        ];
     }
 }

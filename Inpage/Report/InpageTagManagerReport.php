@@ -51,14 +51,17 @@ class InpageTagManagerReport extends InpageReport
     {
         return 'Tag Manager';
     }
-
+    
     /**
-     * Returns the GTM instance
+     * Returns an array of view data
      *
-     * @return GtmInterface
+     * @return array
      */
-    public function getGtm(): GtmInterface
+    public function getViewData(): array
     {
-        return $this->gtm;
+        return [
+            'name' => $this->getName(),
+            'datalayer' => $this->gtm
+        ];
     }
 }

@@ -51,14 +51,17 @@ class InpageViewReport extends InpageReport
         $this->templates[] = $template;
         return $this;
     }
-
+    
     /**
-     * Returns the array of loaded templates
+     * Returns an array of view data
      *
      * @return array
      */
-    public function getTemplates(): array
+    public function getViewData(): array
     {
-        return $this->templates;
+        return [
+            'name' => $this->getName(),
+            'templates' => $this->templates
+        ];
     }
 }

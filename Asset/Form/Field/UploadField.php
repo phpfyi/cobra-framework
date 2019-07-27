@@ -9,6 +9,7 @@ use Cobra\Interfaces\Asset\FolderInterface;
 use Cobra\Interfaces\Asset\Form\Field\UploadFieldInterface;
 use Cobra\Interfaces\Form\Field\FormFieldInterface;
 use Cobra\Interfaces\Object\Props\PropsDataInterface;
+use Cobra\Interfaces\View\ViewObject;
 use Cobra\Form\Field\FormField;
 use Cobra\Object\Traits\UsesProps;
 
@@ -24,7 +25,7 @@ use Cobra\Object\Traits\UsesProps;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-class UploadField extends FormField implements UploadFieldInterface
+class UploadField extends FormField implements UploadFieldInterface, ViewObject
 {
     use UsesProps;
 
@@ -232,6 +233,24 @@ class UploadField extends FormField implements UploadFieldInterface
     public function __toString(): string
     {
         $this->attributes['name'] = 'form_uploader';
+
         return parent::__toString();
+    }
+
+    /**
+     * Returns an array of view data
+     *
+     * @return array
+     */
+    public function getViewData(): array
+    {
+        return array_merge(
+            parent::getViewData(),
+            [
+                'props' => $this->getProps(),
+                'files' => $this->getFiles(),
+                'multiple' => $this->isMultiple(),
+            ]
+        );
     }
 }

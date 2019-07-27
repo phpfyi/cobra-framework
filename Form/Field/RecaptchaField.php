@@ -93,4 +93,21 @@ class RecaptchaField extends FormField
     {
         return env('RECAPTCHA_SITE_KEY');
     }
+
+    /**
+     * Returns an array of view data
+     *
+     * @return array
+     */
+    public function getViewData(): array
+    {
+        return array_merge(
+            parent::getViewData(),
+            [
+                'form_id' => $this->getFormID(),
+                'submit_id' => $this->getSubmitID(),
+                'site_key' => $this->getSiteKey(),
+            ]
+        );
+    }
 }

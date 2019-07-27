@@ -3,6 +3,7 @@
 namespace Cobra\View\Loader;
 
 use Cobra\Interfaces\View\Loader\ViewScopedLoaderInterface;
+use Cobra\Interfaces\View\ViewDataInterface;
 
 /**
  * View Scoped Loader
@@ -24,19 +25,24 @@ class ViewScopedLoader implements ViewScopedLoaderInterface
      * Includes a template with optinal data scoped to the template.
      *
      * @param string $template
-     * @param object|null $data
+     * @param ViewDataInterface|null $data
      * @return string
      */
-    public static function output(string $template, $data = null): string
+    public static function output(string $template, ViewDataInterface $data = null): string
     {
-        $loader = static function (string $template) use ($data) {
+        $vars = $data ? $data->getData() : [];
+
+        $loader = static function (string $template) use ($vars) {
+            extract($vars);
+            unset($vars);
+                
             include $template;
         };
         ob_start();
         $loader($template);
         $output = ob_get_contents();
         ob_end_clean();
-
+            
         return (string) $output;
     }
 }

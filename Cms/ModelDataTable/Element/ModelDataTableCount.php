@@ -65,4 +65,16 @@ class ModelDataTableCount extends ModelDataTableElement
     {
         return $this->count;
     }
+
+    /**
+     * Returns an array of view data
+     *
+     * @return array
+     */
+    public function getViewData(): array
+    {
+        return [
+            'count' => $this->getCount()
+        ];
+    }
 }

@@ -4,6 +4,7 @@ namespace Cobra\Page;
 
 use Cobra\Cms\Traits\ModelDataTableColumns;
 use Cobra\Interfaces\Form\FormInterface;
+use Cobra\Interfaces\View\ViewObject;
 use Cobra\Model\Model;
 use Cobra\Model\ModelDatabaseTable;
 use Cobra\View\Traits\UsesTemplate;
@@ -21,7 +22,7 @@ use Cobra\View\Traits\RendersTemplate;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-class PageBlock extends Model
+class PageBlock extends Model implements ViewObject
 {
     use UsesTemplate, ModelDataTableColumns, RendersTemplate;
 
@@ -132,5 +133,17 @@ class PageBlock extends Model
     public function getPreview(): string
     {
         return $this->preview;
+    }
+
+    /**
+     * Returns an array of view data
+     *
+     * @return array
+     */
+    public function getViewData(): array
+    {
+        return [
+            'data' => $this
+        ];
     }
 }

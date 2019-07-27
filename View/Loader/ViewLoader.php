@@ -6,6 +6,7 @@ use Cobra\Interfaces\Server\File\FileSystemInterface;
 use Cobra\Interfaces\View\Loader\ViewLoaderInterface;
 use Cobra\Interfaces\View\Loader\ViewScopedLoaderInterface;
 use Cobra\Interfaces\View\Transform\ViewParserInterface;
+use Cobra\Interfaces\View\ViewDataInterface;
 use Cobra\Event\Traits\EventEmitter;
 use Cobra\Object\AbstractObject;
 use Cobra\View\Cache\ViewCache;
@@ -51,10 +52,10 @@ class ViewLoader extends AbstractObject implements ViewLoaderInterface
      * Sets the base template path and data
      *
      * @param string $path
-     * @param mixed $data
+     * @param ViewDataInterface $data
      * @param ViewCache $cache
      */
-    public function __construct(string $path, $data, ViewCache $cache)
+    public function __construct(string $path, ViewDataInterface $data, ViewCache $cache)
     {
         $this->template = path_with_root($path.'.'.TEMPLATE_EXTENSION);
         $this->data = $data;

@@ -36,4 +36,16 @@ class ModelDataTableCreateButton extends ModelDataTableElement
      * @var string
      */
     protected $alias = 'create-button';
+
+    /**
+     * Returns an array of view data
+     *
+     * @return array
+     */
+    public function getViewData(): array
+    {
+        return [
+            'base_path' => $this->getTable()->getProps()->get('basePath')
+        ];
+    }
 }

@@ -2,6 +2,8 @@
 
 namespace Cobra\Interfaces\View\Loader;
 
+use Cobra\Interfaces\View\ViewDataInterface;
+
 /**
  * View Scoped Loader Interface
  *
@@ -20,8 +22,8 @@ interface ViewScopedLoaderInterface
      * Includes a template with optinal data scoped to the template.
      *
      * @param string $template
-     * @param object|null $data
+     * @param ViewDataInterface $data
      * @return string
      */
-    public static function output(string $template, $data = null): string;
+    public static function output(string $template, ViewDataInterface $data = null): string;
 }

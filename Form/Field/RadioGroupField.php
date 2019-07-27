@@ -53,4 +53,19 @@ class RadioGroupField extends FormField
     {
         return $this->data;
     }
+
+    /**
+     * Returns an array of view data
+     *
+     * @return array
+     */
+    public function getViewData(): array
+    {
+        return array_merge(
+            parent::getViewData(),
+            [
+                'data' => $this->getData(),
+            ]
+        );
+    }
 }

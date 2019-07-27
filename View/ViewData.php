@@ -25,18 +25,14 @@ class ViewData extends AbstractObject implements ViewDataInterface
     use DataStore;
 
     /**
-     * Array of head meta tags
+     * Sets the initial view data
      *
-     * @var array
+     * @param array $data
      */
-    public $headTags = [];
-
-    /**
-     * Array of body script tags
-     *
-     * @var array
-     */
-    public $bodyTags = [];
+    public function __construct(array $data = [])
+    {
+        $this->data = $data;
+    }
 
     /**
      * Returns a template data property
@@ -57,7 +53,7 @@ class ViewData extends AbstractObject implements ViewDataInterface
      */
     public function setHeadTag(HtmlElementInterface $element): ViewDataInterface
     {
-        $this->headTags[] = $element;
+        $this->data['head_tags'][] = $element;
         return $this;
     }
 
@@ -69,7 +65,7 @@ class ViewData extends AbstractObject implements ViewDataInterface
      */
     public function setBodyTag(HtmlElementInterface $element): ViewDataInterface
     {
-        $this->bodyTags[] = $element;
+        $this->data['body_tags'][] = $element;
         return $this;
     }
 

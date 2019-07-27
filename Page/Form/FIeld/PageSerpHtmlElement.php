@@ -3,6 +3,7 @@
 namespace Cobra\Page\Form\Field;
 
 use Cobra\Html\HtmlElement;
+use Cobra\Interfaces\View\ViewObject;
 use Cobra\View\Traits\RendersTemplate;
 
 /**
@@ -17,7 +18,7 @@ use Cobra\View\Traits\RendersTemplate;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-class PageSerpHtmlElement extends HtmlElement
+class PageSerpHtmlElement extends HtmlElement implements ViewObject
 {
     use RendersTemplate;
 
@@ -73,5 +74,17 @@ class PageSerpHtmlElement extends HtmlElement
     public function getUri():? string
     {
         return $this->uri;
+    }
+
+    /**
+     * Returns an array of view data
+     *
+     * @return array
+     */
+    public function getViewData(): array
+    {
+        return [
+            'uri' => $this->getUri()
+        ];
     }
 }

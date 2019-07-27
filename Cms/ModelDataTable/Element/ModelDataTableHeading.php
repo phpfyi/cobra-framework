@@ -65,4 +65,16 @@ class ModelDataTableHeading extends ModelDataTableElement
     {
         return $this->heading;
     }
+
+    /**
+     * Returns an array of view data
+     *
+     * @return array
+     */
+    public function getViewData(): array
+    {
+        return [
+            'heading' => $this->getHeading()
+        ];
+    }
 }

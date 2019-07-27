@@ -2,7 +2,7 @@
 
 namespace Cobra\View\Traits;
 
-use Cobra\Interfaces\View\Loader\ViewLoaderInterface;
+use Cobra\Interfaces\View\ViewDataInterface;
 
 /**
  * Renders Template trait
@@ -36,11 +36,10 @@ trait RendersTemplate
     public function __toString(): string
     {
         return container_resolve(
-            ViewLoaderInterface::class,
+            ViewDataInterface::class,
             [
-                $this->template,
-                $this
+                $this->getViewData()
             ]
-        )->getOutput();
+        )->withTemplate($this->template);
     }
 }

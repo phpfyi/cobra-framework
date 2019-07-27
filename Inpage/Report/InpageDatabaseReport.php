@@ -51,14 +51,17 @@ class InpageDatabaseReport extends InpageReport
     {
         return 'Database';
     }
-
+    
     /**
-     * Returns the database query logger instance
+     * Returns an array of view data
      *
-     * @return DatabaseQueryLogger
+     * @return array
      */
-    public function getDatabaseQueryLogger(): DatabaseQueryLogger
+    public function getViewData(): array
     {
-        return $this->logger;
+        return [
+            'name' => $this->getName(),
+            'logs' => $this->logger->getLogs()
+        ];
     }
 }

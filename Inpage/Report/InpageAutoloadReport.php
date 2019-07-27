@@ -60,12 +60,15 @@ class InpageAutoloadReport extends InpageReport
     }
 
     /**
-     * Returns the autoloader logger instance
+     * Returns an array of view data
      *
-     * @return AutoloaderLogger
+     * @return array
      */
-    public function getAutoloaderLogger(): AutoloaderLogger
+    public function getViewData(): array
     {
-        return $this->logger;
+        return [
+            'name' => $this->getName(),
+            'logs' => $this->logger->getLogs()
+        ];
     }
 }

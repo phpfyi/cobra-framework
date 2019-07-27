@@ -3,6 +3,7 @@
 namespace Cobra\Form;
 
 use Cobra\Interfaces\Form\FormInterface;
+use Cobra\Interfaces\View\ViewObject;
 use Cobra\Html\HtmlElement;
 use Cobra\Html\Traits\ChildElements;
 use Cobra\Html\Traits\RendersChildElements;
@@ -46,7 +47,7 @@ use Cobra\View\Traits\RendersTemplate;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-class Form extends HtmlElement implements FormInterface
+class Form extends HtmlElement implements FormInterface, ViewObject
 {
     use ChildElements, UsesValidators, RendersChildElements, RendersTemplate {
         ChildElements::setElement as setField;
@@ -178,5 +179,17 @@ class Form extends HtmlElement implements FormInterface
             $fields
         );
         return $this;
+    }
+
+    /**
+     * Returns an array of view data
+     *
+     * @return array
+     */
+    public function getViewData(): array
+    {
+        return [
+            'html' => $this->getHTML()
+        ];
     }
 }

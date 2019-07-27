@@ -6,6 +6,7 @@ use Cobra\Interfaces\Http\Message\RequestInterface;
 use Cobra\Interfaces\Http\Message\ResponseInterface;
 use Cobra\Interfaces\Inpage\InpageInterface;
 use Cobra\Interfaces\Inpage\Report\InpageReportInterface;
+use Cobra\Interfaces\View\ViewObject;
 use Cobra\Http\Traits\UsesRequest;
 use Cobra\Http\Traits\UsesResponse;
 use Cobra\Object\AbstractObject;
@@ -44,7 +45,7 @@ use Cobra\View\Traits\RendersTemplate;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-class Inpage extends AbstractObject implements InpageInterface
+class Inpage extends AbstractObject implements InpageInterface, ViewObject
 {
     use UsesRequest, UsesResponse, RendersTemplate;
 
@@ -127,5 +128,19 @@ class Inpage extends AbstractObject implements InpageInterface
     public function getEnd(): float
     {
         return subtract_microtime($this->start, microtime());
+    }
+
+    /**
+     * Returns an array of view data
+     *
+     * @return array
+     */
+    public function getViewData(): array
+    {
+        return [
+            'reports'  => $this->getReports(),
+            'end_time' => $this->getEnd(),
+            'hostname' => $this->getRequest()->getUri()->getHost()
+        ];
     }
 }

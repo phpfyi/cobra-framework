@@ -5,6 +5,7 @@ namespace Cobra\Form\Field;
 use Cobra\Interfaces\Form\Field\FormFieldInterface;
 use Cobra\Interfaces\Validator\ValidatorInterface;
 use Cobra\Interfaces\Validator\ValidatorResolverInterface;
+use Cobra\Interfaces\View\ViewObject;
 use Cobra\Html\HtmlElement;
 use Cobra\Object\Traits\Decoratable;
 use Cobra\View\Traits\RendersTemplate;
@@ -71,7 +72,7 @@ use Cobra\View\Traits\RendersTemplate;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-class FormField extends HtmlElement implements FormFieldInterface
+class FormField extends HtmlElement implements FormFieldInterface, ViewObject
 {
     use Decoratable, RendersTemplate;
 
@@ -343,5 +344,25 @@ class FormField extends HtmlElement implements FormFieldInterface
     public function getErrorMessage():? string
     {
         return $this->errorMessage;
+    }
+
+    /**
+     * Returns an array of view data
+     *
+     * @return array
+     */
+    public function getViewData(): array
+    {
+        return [
+            'tag' => $this->getTag(),
+            'name' => $this->getName(),
+            'html' => $this->getHTML(),
+            'value' => $this->getValue(),
+            'label' => $this->getLabel(),
+            'validator' => $this->getValidator(),
+            'description' => $this->getDescription(),
+            'holder_class' => $this->getHolderClass(),
+            'error_message' => $this->getErrorMessage(),
+        ];
     }
 }

@@ -29,6 +29,7 @@ interface ViewObject
      * @return void
      */
     public function getHTML();
+    
     /**
      * Returns the rendered HTML template
      *

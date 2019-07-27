@@ -53,14 +53,17 @@ class InpageRouteReport extends InpageReport
         $this->route = $route;
         return $this;
     }
-
+    
     /**
-     * Returns the loaded route instance
+     * Returns an array of view data
      *
      * @return array
      */
-    public function getRoute(): array
+    public function getViewData(): array
     {
-        return $this->route ? $this->route->getProperties() : [];
+        return [
+            'name' => $this->getName(),
+            'route' => $this->route ? $this->route->getProperties() : []
+        ];
     }
 }

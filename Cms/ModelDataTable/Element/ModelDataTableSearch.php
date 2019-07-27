@@ -65,4 +65,16 @@ class ModelDataTableSearch extends ModelDataTableElement
     {
         return $this->field;
     }
+
+    /**
+     * Returns an array of view data
+     *
+     * @return array
+     */
+    public function getViewData(): array
+    {
+        return [
+            'base_path' => $this->getTable()->getProps()->get('basePath')
+        ];
+    }
 }
