@@ -4,6 +4,7 @@ namespace Cobra\View\Asset;
 
 use Cobra\Html\HtmlScriptElement;
 use Cobra\Interfaces\View\Asset\ViewJavaScriptInterface;
+use Cobra\Interfaces\Server\File\FileSystemInterface;
 
 /**
  * View JavaScript
@@ -136,7 +137,7 @@ class ViewJavaScript extends ViewAsset implements ViewJavaScriptInterface
         return sprintf(
             '/js/%s.%s.js',
             $path,
-            filemtime(ROOT.PUBLIC_DIRECTORY.'/js/'.$path.'.js')
+            container_resolve(FileSystemInterface::class)->modified(ROOT.PUBLIC_DIRECTORY.'/js/'.$path.'.js')
         );
     }
 }

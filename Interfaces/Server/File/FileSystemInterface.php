@@ -59,4 +59,12 @@ interface FileSystemInterface
      * @throws MissingFileException
      */
     public static function move(string $fromPath, string $toPath): bool;
+
+    /**
+     * Returns the file modified time.
+     *
+     * @param string $path
+     * @return int
+     */
+    public static function modified(string $path): int;
 }

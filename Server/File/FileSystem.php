@@ -2,6 +2,8 @@
 
 namespace Cobra\Server\File;
 
+use SplFileInfo;
+use SplFileObject;
 use Cobra\Interfaces\Server\File\FileSystemInterface;
 use Cobra\Server\Exception\MissingFileException;
 use Cobra\Server\File\FileInfo;
@@ -93,5 +95,16 @@ class FileSystem implements FileSystemInterface
             );
         }
         return rename($fromPath, $toPath);
+    }
+
+    /**
+     * Returns the file modified time.
+     *
+     * @param string $path
+     * @return int
+     */
+    public static function modified(string $path): int
+    {
+        return (int) (new SplFileInfo($path))->getMTime();
     }
 }
