@@ -43,13 +43,16 @@ trait OutputsHeaders
      *
      * @param  string $name
      * @param  string $value
+     * @param  bool $replace
+     * @param  int $code
      * @return void
      */
-    protected function outputHeader(string $name, string $value): void
+    protected function outputHeader(string $name, string $value, bool $replace = true, int $code = null): void
     {
         header(
             sprintf('%s:%s', $name, $value),
-            true
+            $replace,
+            $code
         );
     }
 }

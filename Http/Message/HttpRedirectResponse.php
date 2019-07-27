@@ -48,11 +48,11 @@ class HttpRedirectResponse extends HttpResponse
     public function output()
     {
         $this->outputHeaders($this->getHeaders());
-
-        header(
-            sprintf('Location:%s', $this->getHeader('Location')[0]),
+        $this->outputHeader(
+            'Location',
+            $this->getHeader('Location')[0],
             true,
-            $this->statusCode
+            301
         );
     }
 }
