@@ -4,7 +4,7 @@ namespace Cobra\View\Loader;
 
 use Cobra\Interfaces\Server\File\FileSystemInterface;
 use Cobra\Interfaces\View\Loader\ViewLoaderInterface;
-use Cobra\Interfaces\View\Loader\ViewScopedLoaderInterface;
+use Cobra\Interfaces\View\Loader\ScopedLoaderInterface;
 use Cobra\Interfaces\View\Transform\ViewParserInterface;
 use Cobra\Interfaces\View\ViewDataInterface;
 use Cobra\Event\Traits\EventEmitter;
@@ -85,7 +85,7 @@ class ViewLoader extends AbstractObject implements ViewLoaderInterface
                 )->getOutput();
             }
         );
-        return container_resolve(ViewScopedLoaderInterface::class)->output(
+        return container_resolve(ScopedLoaderInterface::class)->output(
             $this->cache->getFilePath($item->getKey()),
             $this->data
         );
