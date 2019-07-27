@@ -84,14 +84,14 @@ class HttpRequest extends ServerRequest implements RequestInterface
     ) {
         $this->uri = $uri;
         $this->protocol = $protocol;
-        $this->method = $method;
+        $this->method = strtoupper($method);
         $this->headers = $headers;
         $this->serverParams = $serverParams;
         $this->cookieParams = $cookieParams;
         $this->uploadedFiles = $uploadedFiles;
         $this->body = $body;
-
-        $this->parsedBody = is_string($this->body) ? unserialize($this->body) : $this->body;
+        
+        $this->parsedBody = $this->method === 'POST' ? (array) $this->body : json_decode($this->body);
     }
 
     /**
@@ -162,7 +162,7 @@ class HttpRequest extends ServerRequest implements RequestInterface
      */
     public function isPost(): bool
     {
-        return strtolower($this->method) == 'post';
+        return $this->method == 'POST';
     }
 
     /**
