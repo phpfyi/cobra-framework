@@ -33,5 +33,9 @@ class ServerService extends Service
             \Cobra\Interfaces\Server\File\FileSystemInterface::class,
             \Cobra\Server\File\FileSystem::class
         );
+        contain_namespace(
+            \Cobra\Interfaces\Server\ServerInterface::class,
+            \Cobra\Server\Server::class
+        );
     }
 }
