@@ -107,4 +107,15 @@ class FileSystem implements FileSystemInterface
     {
         return (int) (new SplFileInfo($path))->getMTime();
     }
+
+    /**
+     * Returns the file size.
+     *
+     * @param string $path
+     * @return int
+     */
+    public static function size(string $path): int
+    {
+        return (int) (new SplFileInfo($path))->getSize();
+    }
 }

@@ -67,4 +67,12 @@ interface FileSystemInterface
      * @return int
      */
     public static function modified(string $path): int;
+
+    /**
+     * Returns the file size.
+     *
+     * @param string $path
+     * @return int
+     */
+    public static function size(string $path): int;
 }

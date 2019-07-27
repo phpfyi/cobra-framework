@@ -6,6 +6,7 @@ use Cobra\Http\Stream\FileStream;
 use Cobra\Interfaces\Asset\FileInterface;
 use Cobra\Interfaces\Asset\Resource\FileResourceInterface;
 use Cobra\Interfaces\Http\Message\ResponseInterface;
+use Cobra\Interfaces\Server\File\FileSystemInterface;
 use Cobra\Object\AbstractObject;
 
 /**
@@ -88,6 +89,9 @@ class FileResource extends AbstractObject implements FileResourceInterface
      */
     protected function getContentLength(): int
     {
-        return filesize(path_with_root($this->file->system_path));
+        return container_resolve(FileSystemInterface::class)
+            ->size(
+                path_with_root($this->file->system_path)
+            );
     }
 }
