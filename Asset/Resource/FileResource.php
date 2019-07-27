@@ -91,7 +91,7 @@ class FileResource extends AbstractObject implements FileResourceInterface
     {
         return container_resolve(FileSystemInterface::class)
             ->size(
-                path_with_root($this->file->system_path)
+                path_join_root($this->file->system_path)
             );
     }
 }

@@ -73,8 +73,8 @@ class FilePathSynchroniser extends AbstractObject implements FilePathSynchronise
     {
         if ($this->isPathMismatch()) {
             container_resolve(FileSystemInterface::class)->move(
-                path_with_root($this->file->system_path),
-                path_with_root($this->systemPath)
+                path_join_root($this->file->system_path),
+                path_join_root($this->systemPath)
             );
             $this->file->public_path = $this->publicPath;
             $this->file->system_path = $this->systemPath;

@@ -79,14 +79,14 @@ if (! function_exists('dir_parts')) {
     }
 }
 
-if (! function_exists('path_with_root')) {
+if (! function_exists('path_join_root')) {
     /**
      * Returns an root system file path joined by \ with a starting \.
      *
      * @param  string[] ...$args
      * @return string
      */
-    function path_with_root(...$args): string
+    function path_join_root(...$args): string
     {
         return ROOT . container_resolve(FilePathInterface::class)->join(...$args);
     }

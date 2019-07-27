@@ -180,6 +180,6 @@ class File extends Model implements FileInterface
      */
     public function getAbsoluteSystemPath(): string
     {
-        return path_with_root($this->system_path);
+        return path_join_root($this->system_path);
     }
 }

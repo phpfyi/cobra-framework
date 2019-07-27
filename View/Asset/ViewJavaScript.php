@@ -62,7 +62,7 @@ class ViewJavaScript extends ViewAsset implements ViewJavaScriptInterface
                     $attributes
                 )
             )
-            ->setBody(path_with_root(PUBLIC_DIRECTORY, 'js', $path.'.js'));
+            ->setBody(path_join_root(PUBLIC_DIRECTORY, 'js', $path.'.js'));
 
         $this->view->getData()->setBodyTag($element);
 

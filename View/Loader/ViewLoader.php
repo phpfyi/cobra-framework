@@ -57,7 +57,7 @@ class ViewLoader extends AbstractObject implements ViewLoaderInterface
      */
     public function __construct(string $path, ViewDataInterface $data, ViewCache $cache)
     {
-        $this->template = path_with_root($path.'.'.TEMPLATE_EXTENSION);
+        $this->template = path_join_root($path.'.'.TEMPLATE_EXTENSION);
         $this->data = $data;
         $this->cache = $cache;
 

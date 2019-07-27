@@ -47,7 +47,7 @@ class ViewCss extends ViewAsset implements ViewCssInterface
                     $attributes
                 )
             )
-            ->setBody(path_with_root(PUBLIC_DIRECTORY, 'css', $path.'.css'));
+            ->setBody(path_join_root(PUBLIC_DIRECTORY, 'css', $path.'.css'));
 
         $this->view->getData()->setHeadTag($element);
 
