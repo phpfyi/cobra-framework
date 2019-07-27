@@ -88,7 +88,7 @@ if (! function_exists('path_join_root')) {
      */
     function path_join_root(...$args): string
     {
-        return ROOT . container_resolve(FilePathInterface::class)->join(...$args);
+        return container_resolve(FilePathInterface::class)->joinRoot(...$args);
     }
 }
 
