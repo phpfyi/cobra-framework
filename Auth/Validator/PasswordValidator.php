@@ -19,20 +19,6 @@ use Cobra\Validator\Validator;
 class PasswordValidator extends Validator
 {
     /**
-     * Minimum password characters
-     *
-     * @var int
-     */
-    const MIN_CHARS = 8;
-
-    /**
-     * Maximum password characters
-     *
-     * @var int
-     */
-    const MAX_CHARS = 20;
-
-    /**
      * Error message
      *
      * @var string
@@ -84,7 +70,8 @@ class PasswordValidator extends Validator
      */
     private function isPasswordLength($value): bool
     {
-        return strlen($value) >= self::MIN_CHARS && strlen($value) <= self::MAX_CHARS;
+        return strlen($value) >= static::config('min_chars') 
+        && strlen($value) <= static::config('max_chars');
     }
 
     /**
