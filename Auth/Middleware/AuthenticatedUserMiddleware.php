@@ -3,7 +3,6 @@
 namespace Cobra\User\Middleware;
 
 use Cobra\Auth\Traits\RedirectsToLogin;
-use Cobra\Form\FormRequestHandler;
 use Cobra\Http\Middleware\Middleware;
 use Cobra\Interfaces\Auth\Authenticator\AuthenticatorInterface;
 use Cobra\Interfaces\Auth\User\UserInterface;
@@ -62,7 +61,7 @@ class AuthenticatedUserMiddleware extends Middleware
     {
         if ($this->authenticator->handle()->isExpired()) {
             $handler->getResponse()->getSession()->set(
-                FormRequestHandler::SESSION_KEY,
+                config('form.session_key'),
                 [
                     'form-Login' => [
                         'messages' => [

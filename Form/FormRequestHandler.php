@@ -38,13 +38,6 @@ use Cobra\Object\AbstractObject;
 class FormRequestHandler extends AbstractObject implements FormRequestHandlerInterface
 {
     /**
-     * Form session data key
-     *
-     * @var string
-     */
-    const SESSION_KEY = 'form';
-
-    /**
      * Fork instance
      *
      * @var FormInterface
@@ -154,7 +147,7 @@ class FormRequestHandler extends AbstractObject implements FormRequestHandlerInt
     public function setSessionData(): void
     {
         $this->response->getSession()->set(
-            self::SESSION_KEY,
+            config('form.session_key'),
             [
                 $this->form->getID() => [
                     'data' => $this->body,
@@ -171,7 +164,7 @@ class FormRequestHandler extends AbstractObject implements FormRequestHandlerInt
      */
     public function removeSessionData(): void
     {
-        $this->response->getSession()->remove(self::SESSION_KEY);
+        $this->response->getSession()->remove(config('form.session_key'));
     }
 
     /**
@@ -181,7 +174,7 @@ class FormRequestHandler extends AbstractObject implements FormRequestHandlerInt
      */
     public function setFormSessionData(): void
     {
-        $session = (array) $this->request->getSession()->get(self::SESSION_KEY);
+        $session = (array) $this->request->getSession()->get(config('form.session_key'));
 
         $formId = $this->form->getID();
         if (array_key_exists($formId, $session)) {
