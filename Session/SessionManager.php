@@ -70,12 +70,6 @@ class SessionManager extends AbstractObject implements SessionManagerInterface
         $this->request = $request;
         $this->chance = $chance;
 
-        ini_set('session.cookie_lifetime', $lifetime);
-        ini_set('session.gc_maxlifetime', $lifetime);
-
-        ini_set("session.cookie_secure", $secure);
-        ini_set("session.cookie_httponly", $http);
-
         session_set_cookie_params($lifetime, $path, $domain, $secure, $http);
         
         session_name($name);
