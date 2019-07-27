@@ -44,12 +44,15 @@ class ModelFormHasOneFactory extends ModelFormFieldFactory
                             label_text($relation)
                         ]
                     );
-                    $element->setFileClass($column->relationClass);
-                } else {
-                    $element = SelectField::resolve($column->name, label_text($relation));
-                    $element->setData($this->getHasOneOptions($column->class));
+                    $this->form->setField(
+                        $element->setFileClass($column->relationClass)
+                    );
+                    return;
                 }
-                $this->form->setField($element);
+                $this->form->setField(
+                    SelectField::resolve($column->name, label_text($relation))
+                        ->setData($this->getHasOneOptions($column->class))
+                );
             },
             array_keys($this->columns),
             $this->columns
