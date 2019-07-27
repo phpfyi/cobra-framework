@@ -1,4 +1,3 @@
 routes:
   - path: '/assets/.*'
     controller: 'Cobra\Asset\Controller\AssetController'
-    action: 'get'

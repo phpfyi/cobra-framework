@@ -26,7 +26,7 @@ class AssetController extends Controller
      * @param RequestUriInterface $uri
      * @return void
      */
-    public function get(RequestUriInterface $uri)
+    public function index(RequestUriInterface $uri)
     {
         $file = container_resolve(FileInterface::class)->find('public_path', $uri->getPath());
         
