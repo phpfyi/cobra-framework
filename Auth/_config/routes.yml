@@ -1,6 +1,9 @@
 routes:
   - path: '/auth'
     children:
+      - path: '/password/create'
+        controller: 'Cobra\Auth\Controller\GeneratePasswordController'
+
       - path: '/registration'
         controller: 'Cobra\Auth\Controller\RegistrationController'
 

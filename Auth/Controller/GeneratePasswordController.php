@@ -28,7 +28,7 @@ class GeneratePasswordController extends Controller
      * @param  PasswordGeneratorInterface $generator
      * @return void
      */
-    public function generate(RequestInterface $request, PasswordGeneratorInterface $generator): void
+    public function index(RequestInterface $request, PasswordGeneratorInterface $generator): void
     {
         if (!$request->isAjax()) {
             return;

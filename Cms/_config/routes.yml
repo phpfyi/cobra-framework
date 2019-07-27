@@ -1,8 +1,4 @@
 routes:
-  - path: '/cms/password/create'
-    controller: 'Cobra\Auth\Controller\GeneratePasswordController'
-    action: 'generate'
-
   - path: '/cms'
     guards: 
       - 'Cobra\Cms\Guard\CmsRouteGuard'
