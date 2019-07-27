@@ -37,7 +37,8 @@ class FileSystem implements FileSystemInterface
             );
         }
         $file = new SplFileObject($path, 'r');
-        return $file->fread($file->getSize());
+        
+        return $file->getSize() > 0 ? $file->fread($file->getSize()) : '';
     }
 
     /**
