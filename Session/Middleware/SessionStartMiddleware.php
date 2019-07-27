@@ -44,7 +44,7 @@ class SessionStartMiddleware extends Middleware
                 env('SESSION_HTTP')
             ]
         );
-        $manager->start();
+        $manager->boot();
 
         $request->setSession(
             $manager->getRequestSession()

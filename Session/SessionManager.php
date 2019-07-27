@@ -86,9 +86,9 @@ class SessionManager extends AbstractObject implements SessionManagerInterface
      *
      * @return void
      */
-    public function start(): void
+    public function boot(): void
     {
-        session_start();
+        $this->start();
 
         $this->data = is_array($_SESSION) ? $_SESSION : [];
         $this->requestSession = RequestSession::resolve($this->request, $this->data);

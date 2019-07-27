@@ -21,7 +21,7 @@ interface SessionManagerInterface
      *
      * @return void
      */
-    public function start(): void;
+    public function boot(): void;
 
     /**
      * Returns the request session.

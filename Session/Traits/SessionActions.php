@@ -26,6 +26,16 @@ trait SessionActions
     protected $data = [];
 
     /**
+     * Starts the session
+     *
+     * @return void
+     */
+    public function start(): void
+    {
+        session_start();
+    }
+
+    /**
      * Regenerates the session ID.
      *
      * @param  boolean $delete
@@ -46,7 +56,8 @@ trait SessionActions
         $_SESSION = $this->data;
         
         session_write_close();
-        session_start();
+
+        $this->start();
     }
 
     /**
@@ -70,7 +81,8 @@ trait SessionActions
 
         session_unset();
         session_destroy();
-        session_start();
+        
+        $this->start();
         
         $this->regenerate(true);
     }
