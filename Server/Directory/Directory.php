@@ -27,7 +27,7 @@ class Directory implements DirectoryInterface
      * @param  string[] ...$args
      * @return string
      */
-    public static function path(...$args): string
+    public function path(...$args): string
     {
         $parts = [];
         array_map(
@@ -55,11 +55,11 @@ class Directory implements DirectoryInterface
      * @param  string[] ...$args
      * @return boolean|null
      */
-    public static function create(...$args):? bool
+    public function create(...$args):? bool
     {
-        $path = container_resolve(DirectoryInterface::class)->path(...$args);
+        $path = $this->path(...$args);
         
-        return !container_resolve(DirectoryInterface::class)->isDir($path) ? mkdir($path) : null;
+        return !$this->isDir($path) ? mkdir($path) : null;
     }
     
     /**
@@ -69,11 +69,11 @@ class Directory implements DirectoryInterface
      * @param  string[] ...$args
      * @return boolean
      */
-    public static function remove(...$args): bool
+    public function remove(...$args): bool
     {
-        $path = container_resolve(DirectoryInterface::class)->path(...$args);
+        $path = $this->path(...$args);
 
-        if (!container_resolve(DirectoryInterface::class)->isDir($path)) {
+        if (!$this->isDir($path)) {
             return false;
         }
 
@@ -97,7 +97,7 @@ class Directory implements DirectoryInterface
      * @param string $path
      * @return boolean
      */
-    public static function isDir(string $path): bool
+    public function isDir(string $path): bool
     {
         return (new SplFileInfo($path))->isDir();
     }

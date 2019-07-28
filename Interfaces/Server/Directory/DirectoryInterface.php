@@ -23,7 +23,7 @@ interface DirectoryInterface
      * @param  string[] ...$args
      * @return string
      */
-    public static function path(...$args): string;
+    public function path(...$args): string;
 
     /**
      * Create a system directory off a dot notation or directory
@@ -32,7 +32,7 @@ interface DirectoryInterface
      * @param  string[] ...$args
      * @return boolean|null
      */
-    public static function create(...$args):? bool;
+    public function create(...$args):? bool;
     
     /**
      * Removes a system directory off a dot notation or directory
@@ -41,7 +41,7 @@ interface DirectoryInterface
      * @param  string[] ...$args
      * @return boolean
      */
-    public static function remove(...$args): bool;
+    public function remove(...$args): bool;
 
     /**
      * Returns if the given path is a directory.
@@ -49,5 +49,5 @@ interface DirectoryInterface
      * @param string $path
      * @return boolean
      */
-    public static function isDir(string $path): bool;
+    public function isDir(string $path): bool;
 }
