@@ -6,6 +6,7 @@ use Cobra\Cms\CmsMessages;
 use Cobra\Cms\CmsModelUrlParser;
 use Cobra\Interfaces\Controller\ControllerInterface;
 use Cobra\Interfaces\Form\FormInterface;
+use Cobra\Model\Model;
 
 /**
  * Record Request Foundation trait
@@ -62,5 +63,25 @@ trait RecordRequestFoundation
     public function rules(): array
     {
         return $this->form->getValidators();
+    }
+
+    /**
+     * Returns the model record update path
+     *
+     * @param  Model  $record
+     * @param  string $uri
+     * @return string
+     */
+    protected function getUpdatePath(Model $record, string $uri): string
+    {
+        $parts = explode('/', $uri);
+        if (array_pop($parts) !== 'create') {
+            array_pop($parts);
+        }
+        return sprintf(
+            '%s/update/%s',
+            implode('/', $parts),
+            $record->id
+        );
     }
 }

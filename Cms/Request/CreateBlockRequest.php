@@ -39,7 +39,7 @@ class CreateBlockRequest extends FormRequest
 
         $this->parser->getManyRelation()->add($model->id);
         return $this->controller->redirect(
-            $this->controller->getUpdatePath(
+            $this->getUpdatePath(
                 $model,
                 $this->controller->getRequest()->getUri()
             )

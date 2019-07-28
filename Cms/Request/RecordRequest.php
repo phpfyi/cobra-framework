@@ -42,7 +42,7 @@ class RecordRequest extends FormRequest
             $relation->add($record->id);
         }
         return $this->controller->redirect(
-            $this->controller->getUpdatePath(
+            $this->getUpdatePath(
                 $record,
                 $this->controller->getRequest()->getUri()
             )
