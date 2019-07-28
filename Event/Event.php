@@ -27,5 +27,13 @@ use Cobra\Interfaces\Event\EventInterface;
  */
 abstract class Event extends AbstractObject implements EventInterface
 {
-    
+    /**
+     * Returns whether the event is enabled
+     *
+     * @return bool
+     */
+    public function enabled(): bool
+    {
+        return true;
+    }
 }

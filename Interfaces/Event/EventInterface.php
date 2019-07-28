@@ -16,5 +16,10 @@ namespace Cobra\Interfaces\Event;
  */
 interface EventInterface
 {
-
+    /**
+     * Returns whether the event is enabled
+     *
+     * @return bool
+     */
+    public function enabled(): bool;
 }

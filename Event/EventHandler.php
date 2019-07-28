@@ -53,7 +53,11 @@ class EventHandler extends AbstractObject implements EventHandlerInterface
     {
         if (array_key_exists($event, $this->mappings)) {
             return (array) array_map(function (string $interceptor) use ($args) {
-                return $interceptor::resolve()->handle(...$args);
+                $interceptor = $interceptor::resolve();
+                
+                if($interceptor->enabled()) {
+                    return $interceptor::resolve()->handle(...$args);
+                }
             }, $this->mappings[$event]);
         }
         return null;
