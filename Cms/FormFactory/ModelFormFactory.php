@@ -117,8 +117,7 @@ class ModelFormFactory extends AbstractObject implements FormFactoryInterface
                     container_resolve(
                         ViewLoaderInterface::class,
                         [
-                            'templates.Cms.CmsAddingRelations',
-                            []
+                            'templates.Cms.CmsAddingRelations'
                         ]
                     )->getOutput()
                 );
