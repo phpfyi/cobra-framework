@@ -73,7 +73,7 @@ class AuthController extends PageController
     {
         return sprintf(
             '<a href="%s">Back to Login</a>',
-            config('auth.login_route')
+            uri_join_host(config('auth.login_route'))
         );
     }
 
@@ -86,7 +86,7 @@ class AuthController extends PageController
     {
         return sprintf(
             '<a href="%s">Reset Password</a>',
-            config('auth.reset_route')
+            uri_join_host(config('auth.reset_route'))
         );
     }
 }

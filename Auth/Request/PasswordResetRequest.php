@@ -78,6 +78,6 @@ class PasswordResetRequest extends AuthRequest
      */
     protected function getChangePasswordUrl(UserInterface $user): string
     {
-        return BASE_URL.config('auth.change_route').'?token='.$user->reset_token;
+        return uri_join_host(config('auth.change_route')).'?token='.$user->reset_token;
     }
 }

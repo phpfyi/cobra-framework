@@ -87,6 +87,6 @@ class RegistrationRequest extends AuthRequest
      */
     protected function getConfirmAccountUrl(UserInterface $user): string
     {
-        return BASE_URL.config('auth.confirm_route').'?token='.$user->confirm_token;
+        return uri_join_host(config('auth.confirm_route')).'?token='.$user->confirm_token;
     }
 }
