@@ -45,7 +45,7 @@ class CmsAllowedIpsMiddleware extends Middleware
      */
     public function process(RequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        if (!in_array($request->getIP(), $this->ips)) {
+        if (!empty($this->ips) && !in_array($request->getIP(), $this->ips)) {
             return http_forbidden_response($handler);
         }
         return $handler->handle($request);
