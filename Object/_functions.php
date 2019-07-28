@@ -72,3 +72,16 @@ if (! function_exists('object_clone')) {
         return $clone;
     }
 }
+
+if (! function_exists('short_name')) {
+    /**
+     * Returns the class short name
+     *
+     * @param string $namespace
+     * @return string
+     */
+    function short_name(string $namespace): string
+    {
+        return (new ReflectionClass($namespace))->getShortName();
+    }
+}
