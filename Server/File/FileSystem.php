@@ -6,7 +6,6 @@ use SplFileInfo;
 use SplFileObject;
 use Cobra\Interfaces\Server\File\FileSystemInterface;
 use Cobra\Server\Exception\MissingFileException;
-use Cobra\Server\File\FileInfo;
 
 /**
  * File System
@@ -60,7 +59,7 @@ class FileSystem implements FileSystemInterface
      */
     public static function exists(string $path): bool
     {
-        return FileInfo::resolve($path)->isFile();
+        return (new SplFileInfo($path))->isFile();
     }
     
     /**
