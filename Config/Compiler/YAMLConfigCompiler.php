@@ -79,7 +79,7 @@ class YAMLConfigCompiler extends ConfigCompiler
                 function ($directory) {
                     array_map(
                         function ($path) {
-                            $config = yaml_parse_file($path);
+                            $config = (array) yaml_parse_file($path);
                             $this->config = array_key_exists('routes', $config)
                             ? array_merge_recursive($this->config, $config)
                             : array_replace_recursive($this->config, $config);
