@@ -5,7 +5,6 @@ namespace Cobra\Cms\Controller;
 use Cobra\Autoloader\ComposerAutoloader;
 use Cobra\Cache\CacheInvalidator;
 use Cobra\Cms\Controller\AppController;
-use Cobra\Interfaces\Http\Message\RequestInterface;
 use Cobra\Model\Migration\ModelMigrator;
 use Cobra\Model\Schema\ModelSchemaBuilder;
 
@@ -24,25 +23,14 @@ use Cobra\Model\Schema\ModelSchemaBuilder;
 class TaskController extends AppController
 {
     /**
-     * Array of migrated queries
-     *
-     * @var array
-     */
-    protected $migrated = [];
-
-    /**
      * Clears / builds the configuration cache
      *
-     * @param RequestInterface $request
      * @param CacheInvalidator $invalidator
      * @param ComposerAutoloader $autoloader
      * @return void
      */
-    public function build(
-        RequestInterface $request,
-        CacheInvalidator $invalidator,
-        ComposerAutoloader $autoloader
-    ): void {
+    public function build(CacheInvalidator $invalidator, ComposerAutoloader $autoloader): void 
+    {
         $invalidator->clear();
         $autoloader::refresh();
 
@@ -52,21 +40,15 @@ class TaskController extends AppController
     /**
      * Runs the database migration queries
      *
-     * @param RequestInterface $request
      * @param ModelSchemaBuilder $scheamBuilder
      * @param ModelMigrator $migrator
      * @return void
      */
-    public function migrate(
-        RequestInterface $request,
-        ModelSchemaBuilder $scheamBuilder,
-        ModelMigrator $migrator
-    ): void {
+    public function migrate(ModelSchemaBuilder $scheamBuilder, ModelMigrator $migrator): void 
+    {
         $scheamBuilder->run();
         $migrator->run();
 
-        view()
-            ->setPage('apps.cms.view.page.migrate')
-            ->setData('migrated', $this->migrated);
+        view()->setPage('apps.cms.view.page.migrate');
     }
 }
