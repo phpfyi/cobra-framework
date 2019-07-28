@@ -89,4 +89,15 @@ class Directory implements DirectoryInterface
         }
         return rmdir($path);
     }
+
+    /**
+     * Returns if the given path is a directory.
+     *
+     * @param string $path
+     * @return boolean
+     */
+    public static function isDir(string $path): bool
+    {
+        return (new SplFileInfo($path))->isDir();
+    }
 }

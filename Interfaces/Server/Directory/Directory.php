@@ -42,4 +42,12 @@ interface DirectoryInterface
      * @return boolean
      */
     public static function remove(...$args): bool;
+
+    /**
+     * Returns if the given path is a directory.
+     *
+     * @param string $path
+     * @return boolean
+     */
+    public static function isDir(string $path): bool;
 }
