@@ -29,6 +29,9 @@ class PageService extends Service
             ->namespace(
                 \Cobra\Interfaces\Page\PageInterface::class,
                 \Cobra\Page\Page::class
+            )->namespace(
+                \Cobra\Interfaces\Page\Sitemap\XMLSitemapBuilderInterface::class,
+                \Cobra\Page\Sitemap\XMLSitemapBuilder::class
             );
     }
 }

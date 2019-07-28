@@ -4,6 +4,7 @@ namespace Cobra\Page\Sitemap;
 
 use DOMDocument;
 use Cobra\Interfaces\Page\PageInterface;
+use Cobra\Interfaces\Page\Sitemap\XMLSitemapBuilderInterface;
 
 /**
  * XML Sitemap Builder
@@ -17,7 +18,7 @@ use Cobra\Interfaces\Page\PageInterface;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-class XMLSitemapBuilder
+class XMLSitemapBuilder implements XMLSitemapBuilderInterface
 {
     /**
      * Array of sitemap Page models
