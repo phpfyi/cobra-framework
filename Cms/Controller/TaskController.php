@@ -1,0 +1,72 @@
+<?php
+
+namespace Cobra\Cms\Controller;
+
+use Cobra\Autoloader\ComposerAutoloader;
+use Cobra\Cache\CacheInvalidator;
+use Cobra\Cms\Controller\AppController;
+use Cobra\Interfaces\Http\Message\RequestInterface;
+use Cobra\Model\Migration\ModelMigrator;
+use Cobra\Model\Schema\ModelSchemaBuilder;
+
+/**
+ * CMS Task Controller
+ *
+ * @category  CMS
+ * @package   Cobra
+ * @author    Andrew Mc Cormack <webmaster@ddmseo.com>
+ * @copyright Copyright (c) 2019, Andrew Mc Cormack
+ * @license   https://github.com/phpfyi/cobra-framework/issues
+ * @version   1.0.0
+ * @link      https://github.com/phpfyi/cobra-framework
+ * @since     1.0.0
+ */
+class TaskController extends AppController
+{
+    /**
+     * Array of migrated queries
+     *
+     * @var array
+     */
+    protected $migrated = [];
+
+    /**
+     * Clears / builds the configuration cache
+     *
+     * @param RequestInterface $request
+     * @param CacheInvalidator $invalidator
+     * @param ComposerAutoloader $autoloader
+     * @return void
+     */
+    public function build(
+        RequestInterface $request,
+        CacheInvalidator $invalidator,
+        ComposerAutoloader $autoloader
+    ): void {
+        $invalidator->clear();
+        $autoloader::refresh();
+
+        view()->setPage('apps.cms.view.page.build');
+    }
+
+    /**
+     * Runs the database migration queries
+     *
+     * @param RequestInterface $request
+     * @param ModelSchemaBuilder $scheamBuilder
+     * @param ModelMigrator $migrator
+     * @return void
+     */
+    public function migrate(
+        RequestInterface $request,
+        ModelSchemaBuilder $scheamBuilder,
+        ModelMigrator $migrator
+    ): void {
+        $scheamBuilder->run();
+        $migrator->run();
+
+        view()
+            ->setPage('apps.cms.view.page.migrate')
+            ->setData('migrated', $this->migrated);
+    }
+}
