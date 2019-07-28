@@ -29,7 +29,7 @@ class TaskController extends AppController
      * @param ComposerAutoloader $autoloader
      * @return void
      */
-    public function build(CacheInvalidator $invalidator, ComposerAutoloader $autoloader): void 
+    public function build(CacheInvalidator $invalidator, ComposerAutoloader $autoloader): void
     {
         $invalidator->clear();
         $autoloader::refresh();
@@ -44,7 +44,7 @@ class TaskController extends AppController
      * @param ModelMigrator $migrator
      * @return void
      */
-    public function migrate(ModelSchemaBuilder $scheamBuilder, ModelMigrator $migrator): void 
+    public function migrate(ModelSchemaBuilder $scheamBuilder, ModelMigrator $migrator): void
     {
         $scheamBuilder->run();
         $migrator->run();

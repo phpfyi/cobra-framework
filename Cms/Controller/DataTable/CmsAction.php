@@ -2,8 +2,8 @@
 
 namespace Cobra\Cms\Controller\DataTable;
 
-use Cobra\Cms\Parser\CmsModelUrlParser;
 use Cobra\Interfaces\Cms\ModelDataTable\ModelDataTableInterface;
+use Cobra\Interfaces\Cms\Parser\CmsModelUrlParserInterface;
 use Cobra\Interfaces\Http\Message\RequestInterface;
 use Cobra\Controller\Controller;
 use Cobra\Http\Stream\HtmlStream;
@@ -29,7 +29,7 @@ abstract class CmsAction extends Controller
     /**
      * Model URL parser instance
      *
-     * @var CmsModelUrlParser
+     * @var CmsModelUrlParserInterface
      */
     protected $parser;
 
@@ -73,8 +73,11 @@ abstract class CmsAction extends Controller
             $this->properties
         );
 
-        $this->parser = CmsModelUrlParser::resolve(
-            RequestUri::resolve($this->basePath)
+        $this->parser = container_resolve(
+            CmsModelUrlParserInterface::class,
+            [
+                RequestUri::resolve($this->basePath)
+            ]
         );
         $this->action($request);
     }

@@ -4,8 +4,8 @@ namespace Cobra\Cms\Controller;
 
 use Cobra\Cms\Controller\AppController;
 use Cobra\Cms\FormFactory\ModelFormFactory;
-use Cobra\Cms\Parser\CmsModelUrlParser;
 use Cobra\Cms\Request\RecordRequest;
+use Cobra\Interfaces\Cms\Parser\CmsModelUrlParserInterface;
 use Cobra\Interfaces\Http\Message\RequestInterface;
 use Cobra\Database\Relation\HasManyRelation;
 use Cobra\Form\Form;
@@ -35,7 +35,7 @@ class RecordController extends AppController
     /**
      * URL parser instance
      *
-     * @var CmsModelUrlParser
+     * @var CmsModelUrlParserInterface
      */
     protected $parser;
 
@@ -56,9 +56,9 @@ class RecordController extends AppController
     /**
      * Returns the URL parser instance
      *
-     * @return CmsModelUrlParser
+     * @return CmsModelUrlParserInterface
      */
-    public function getUrlParser(): CmsModelUrlParser
+    public function getUrlParser(): CmsModelUrlParserInterface
     {
         return $this->parser;
     }
@@ -72,8 +72,11 @@ class RecordController extends AppController
     {
         parent::setup();
 
-        $this->parser = CmsModelUrlParser::resolve(
-            $this->getRequest()->getUri()
+        $this->parser = container_resolve(
+            CmsModelUrlParserInterface::class,
+            [
+                $this->getRequest()->getUri()
+            ]
         );
         $this->record = $this->parser->getRecord();
         $this->relation = $this->parser->getManyRelation();

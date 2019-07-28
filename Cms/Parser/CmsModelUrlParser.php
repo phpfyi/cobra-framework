@@ -3,6 +3,7 @@
 namespace Cobra\Cms\Parser;
 
 use Cobra\Http\Uri\RequestUri;
+use Cobra\Interfaces\Cms\Parser\CmsModelUrlParserInterface;
 use Cobra\Model\Model;
 use Cobra\Model\ModelClassMap;
 use Cobra\Object\AbstractObject;
@@ -28,7 +29,7 @@ use Cobra\Object\AbstractObject;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-class CmsModelUrlParser extends AbstractObject
+class CmsModelUrlParser extends AbstractObject implements CmsModelUrlParserInterface
 {
     /**
      * URL segments
@@ -119,9 +120,9 @@ class CmsModelUrlParser extends AbstractObject
     /**
      * Returns the URL many relation class
      *
-     * @return string
+     * @return string|null
      */
-    public function getManyRelationClass()
+    public function getManyRelationClass():? string
     {
         return $this->manyRelationClass;
     }
@@ -129,9 +130,9 @@ class CmsModelUrlParser extends AbstractObject
     /**
      * Returns the URL many relation instance
      *
-     * @return object
+     * @return object|null
      */
-    public function getManyRelation()
+    public function getManyRelation():? object
     {
         return $this->manyRelation;
     }
@@ -223,7 +224,7 @@ class CmsModelUrlParser extends AbstractObject
     protected function getRelationTable(string $relation): string
     {
         $schema = schema($this->parent);
-        
+
         if (property_exists((object) $schema->hasMany_all, $relation)) {
             $this->manyRelation = $this->parent->$relation();
             $this->manyRelationClass = $this->manyRelation->getRelationClass();

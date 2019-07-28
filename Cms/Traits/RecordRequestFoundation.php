@@ -3,7 +3,7 @@
 namespace Cobra\Cms\Traits;
 
 use Cobra\Cms\CmsMessages;
-use Cobra\Cms\Parser\CmsModelUrlParser;
+use Cobra\Interfaces\Cms\Parser\CmsModelUrlParserInterface;
 use Cobra\Interfaces\Controller\ControllerInterface;
 use Cobra\Interfaces\Form\FormInterface;
 use Cobra\Model\Model;
@@ -25,7 +25,7 @@ trait RecordRequestFoundation
     /**
      * Model URL parser instance
      *
-     * @var CmsModelUrlParser
+     * @var CmsModelUrlParserInterface
      */
     protected $parser;
 
@@ -41,12 +41,12 @@ trait RecordRequestFoundation
      *
      * @param ControllerInterface $controller
      * @param FormInterface $form
-     * @param CmsModelUrlParser   $parser
+     * @param CmsModelUrlParserInterface   $parser
      */
     public function __construct(
         ControllerInterface $controller,
         FormInterface $form,
-        CmsModelUrlParser $parser,
+        CmsModelUrlParserInterface $parser,
         CmsMessages $messages
     ) {
         parent::__construct($controller, $form);

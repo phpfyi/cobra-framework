@@ -32,6 +32,9 @@ class CmsService extends Service
             )->namespace(
                 \Cobra\Interfaces\Cms\ModelDataTable\ModelDataTableColumnInterface::class,
                 \Cobra\Cms\ModelDataTable\ModelDataTableColumn::class
+            )->namespace(
+                \Cobra\Interfaces\Cms\Parser\CmsModelUrlParserInterface::class,
+                \Cobra\Cms\Parser\CmsModelUrlParser::class
             );
     }
 }

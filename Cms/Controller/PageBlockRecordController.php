@@ -3,8 +3,8 @@
 namespace Cobra\Cms\Controller;
 
 use Cobra\Cms\Controller\AppController;
-use Cobra\Cms\Parser\CmsModelUrlParser;
 use Cobra\Cms\Request\CreateBlockRequest;
+use Cobra\Interfaces\Cms\Parser\CmsModelUrlParserInterface;
 use Cobra\Interfaces\Http\Message\RequestInterface;
 use Cobra\Page\Form\PageBlockFormFactory;
 
@@ -42,7 +42,12 @@ class PageBlockRecordController extends AppController
         $request = CreateBlockRequest::resolve(
             $this,
             $this->form,
-            CmsModelUrlParser::resolve($request->getUri())
+            container_resolve(
+                CmsModelUrlParserInterface::class,
+                [
+                    $request->getUri()
+                ]
+            )
         );
         $request->process();
         
