@@ -28,9 +28,9 @@ class FileSystem implements FileSystemInterface
      * @return void
      * @throws MissingFileException
      */
-    public static function get(string $path)
+    public function get(string $path)
     {
-        if (!static::exists($path)) {
+        if (!$this->exists($path)) {
             throw new MissingFileException(
                 sprintf('Cannot find file to get: %s', $path)
             );
@@ -46,7 +46,7 @@ class FileSystem implements FileSystemInterface
      * @param  string $path
      * @return boolean
      */
-    public static function put(string $path, $content): bool
+    public function put(string $path, $content): bool
     {
         return file_put_contents($path, $content) === false ? false : true;
     }
@@ -57,7 +57,7 @@ class FileSystem implements FileSystemInterface
      * @param  string $path
      * @return boolean
      */
-    public static function exists(string $path): bool
+    public function exists(string $path): bool
     {
         return (new SplFileInfo($path))->isFile();
     }
@@ -69,9 +69,9 @@ class FileSystem implements FileSystemInterface
      * @return boolean
      * @throws MissingFileException
      */
-    public static function remove(string $path): bool
+    public function remove(string $path): bool
     {
-        if (!static::exists($path)) {
+        if (!$this->exists($path)) {
             throw new MissingFileException(
                 sprintf('Cannot find file to remove: %s', $path)
             );
@@ -87,9 +87,9 @@ class FileSystem implements FileSystemInterface
      * @return boolean
      * @throws MissingFileException
      */
-    public static function move(string $fromPath, string $toPath): bool
+    public function move(string $fromPath, string $toPath): bool
     {
-        if (!static::exists($fromPath)) {
+        if (!$this->exists($fromPath)) {
             throw new MissingFileException(
                 sprintf('Cannot find file to move: %s', $fromPath)
             );
@@ -103,7 +103,7 @@ class FileSystem implements FileSystemInterface
      * @param string $path
      * @return int
      */
-    public static function modified(string $path): int
+    public function modified(string $path): int
     {
         return (int) (new SplFileInfo($path))->getMTime();
     }
@@ -114,7 +114,7 @@ class FileSystem implements FileSystemInterface
      * @param string $path
      * @return int
      */
-    public static function size(string $path): int
+    public function size(string $path): int
     {
         return (int) (new SplFileInfo($path))->getSize();
     }

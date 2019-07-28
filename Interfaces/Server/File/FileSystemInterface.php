@@ -23,7 +23,7 @@ interface FileSystemInterface
      * @return void
      * @throws MissingFileException
      */
-    public static function get(string $path);
+    public function get(string $path);
 
     /**
      * Sends content to a file
@@ -31,7 +31,7 @@ interface FileSystemInterface
      * @param  string $path
      * @return boolean
      */
-    public static function put(string $path, $content): bool;
+    public function put(string $path, $content): bool;
 
     /**
      * Returns whether the file exists and is a file
@@ -39,7 +39,7 @@ interface FileSystemInterface
      * @param  string $path
      * @return boolean
      */
-    public static function exists(string $path): bool;
+    public function exists(string $path): bool;
     
     /**
      * Removes a file off a dot notation or directory separator syntax
@@ -48,7 +48,7 @@ interface FileSystemInterface
      * @return boolean
      * @throws MissingFileException
      */
-    public static function remove(string $path): bool;
+    public function remove(string $path): bool;
 
     /**
      * Moves a files resource
@@ -58,7 +58,7 @@ interface FileSystemInterface
      * @return boolean
      * @throws MissingFileException
      */
-    public static function move(string $fromPath, string $toPath): bool;
+    public function move(string $fromPath, string $toPath): bool;
 
     /**
      * Returns the file modified time.
@@ -66,7 +66,7 @@ interface FileSystemInterface
      * @param string $path
      * @return int
      */
-    public static function modified(string $path): int;
+    public function modified(string $path): int;
 
     /**
      * Returns the file size.
@@ -74,5 +74,5 @@ interface FileSystemInterface
      * @param string $path
      * @return int
      */
-    public static function size(string $path): int;
+    public function size(string $path): int;
 }
