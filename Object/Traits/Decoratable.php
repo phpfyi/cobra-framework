@@ -54,7 +54,7 @@ trait Decoratable
         }
         foreach ($this->decorators as $decorator) {
             if (method_exists($decorator, $name)) {
-                return call_user_func_array([$decorator, $name], $arguments);
+                return $decorator->{$name}(...$arguments);
             }
         }
         throw new BadMethodCallException(
