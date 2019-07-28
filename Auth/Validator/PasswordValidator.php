@@ -70,7 +70,7 @@ class PasswordValidator extends Validator
      */
     private function isPasswordLength($value): bool
     {
-        return strlen($value) >= static::config('min_chars') 
+        return strlen($value) >= static::config('min_chars')
         && strlen($value) <= static::config('max_chars');
     }
 

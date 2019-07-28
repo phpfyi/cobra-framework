@@ -71,7 +71,7 @@ class UserNameValidator extends Validator
      */
     private function hasUsernameLength($value): bool
     {
-        return strlen($value) >= static::config('min_chars') 
+        return strlen($value) >= static::config('min_chars')
         && strlen($value) <= static::config('max_chars');
     }
 }

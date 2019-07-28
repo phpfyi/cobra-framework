@@ -27,18 +27,18 @@ class ConfigService extends Service
      */
     public function instances(): void
     {
+        $this
+            ->instance(
+                \Cobra\Interfaces\Config\ConfigInterface::class,
+                \Cobra\Config\Config::class
+            );
+
         $store = container_resolve(
             YAMLConfigStore::class,
             [
                 container_resolve(YAMLConfigCompiler::class)->compile()
             ]
         );
-
-        $this
-            ->instance(
-                \Cobra\Interfaces\Config\ConfigInterface::class,
-                \Cobra\Config\Config::class
-            );
 
         container_object(
             \Cobra\Interfaces\Config\ConfigInterface::class
