@@ -194,10 +194,10 @@ class User extends Model implements UserInterface
         $form->setField(CountrySelectField::resolve('country'));
 
         // remove token fields
-        $form->removeFields(['reset_token', 'confirm_token']);
+        $form->removeFields(['active_token', 'device_id', 'reset_token', 'confirm_token']);
 
         // readonly
-        $form->setReadonly(['ip_address', 'login_expiry', 'device_id']);
+        $form->setReadonly(['ip_address', 'login_expiry']);
         $form->getField('username')->setDescription('Allowed characters: A-Z a-z 0-9 _-');
 
         // headings
