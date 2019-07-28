@@ -77,8 +77,6 @@ class PageControllerHandler extends ControllerHandler
         $this->controller->setView($this->view);
         
         contain_object(ViewInterface::class, $this->view);
-
-        $this->emit('ControllerBeforeActionComplete', $this->controller);
     }
 
     /**
@@ -90,7 +88,7 @@ class PageControllerHandler extends ControllerHandler
     {
         parent::afterAction();
 
-        $this->emit('BeforeViewRendered');
+        $this->emit('BeforeViewRendered', $this->controller);
 
         $this->output = container_resolve(
             ViewLoaderInterface::class,

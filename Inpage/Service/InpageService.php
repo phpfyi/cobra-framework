@@ -49,7 +49,7 @@ class InpageService extends Service
         'LoadingTemplate' => [
             \Cobra\Inpage\Event\InpageTemplateEvent::class
         ],
-        'ControllerBeforeActionComplete' => [
+        'BeforeViewRendered' => [
             \Cobra\Inpage\Event\InpageAssetsEvent::class
         ],
         'AfterViewRendered' => [

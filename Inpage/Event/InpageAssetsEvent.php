@@ -2,7 +2,6 @@
 
 namespace Cobra\Inpage\Event;
 
-use Cobra\Interfaces\Controller\ControllerInterface;
 use Cobra\Interfaces\Inpage\InpageInterface;
 
 /**
