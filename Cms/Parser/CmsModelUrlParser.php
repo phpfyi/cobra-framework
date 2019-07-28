@@ -166,12 +166,11 @@ class CmsModelUrlParser extends AbstractObject implements CmsModelUrlParserInter
         if ($this->action == 'create') {
             $this->setCreateRecord($table);
             return;
-        } else {
+        }
+        if (count($this->segments) > 0) {
+            $this->setUpdateRecord($table, array_shift($this->segments));
             if (count($this->segments) > 0) {
-                $this->setUpdateRecord($table, array_shift($this->segments));
-                if (count($this->segments) > 0) {
-                    $this->traverse();
-                }
+                $this->traverse();
             }
         }
     }
