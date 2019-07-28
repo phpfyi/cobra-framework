@@ -2,9 +2,9 @@
 
 namespace Cobra\Cms\Controller;
 
-use Cobra\Cms\CmsModelUrlParser;
 use Cobra\Cms\Controller\AppController;
 use Cobra\Cms\FormFactory\ModelFormFactory;
+use Cobra\Cms\Parser\CmsModelUrlParser;
 use Cobra\Cms\Request\RecordRequest;
 use Cobra\Interfaces\Http\Message\RequestInterface;
 use Cobra\Database\Relation\HasManyRelation;

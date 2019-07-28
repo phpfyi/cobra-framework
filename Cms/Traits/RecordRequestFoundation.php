@@ -3,7 +3,7 @@
 namespace Cobra\Cms\Traits;
 
 use Cobra\Cms\CmsMessages;
-use Cobra\Cms\CmsModelUrlParser;
+use Cobra\Cms\Parser\CmsModelUrlParser;
 use Cobra\Interfaces\Controller\ControllerInterface;
 use Cobra\Interfaces\Form\FormInterface;
 use Cobra\Model\Model;

@@ -2,7 +2,7 @@
 
 namespace Cobra\Cms\Controller\DataTable;
 
-use Cobra\Cms\CmsModelUrlParser;
+use Cobra\Cms\Parser\CmsModelUrlParser;
 use Cobra\Interfaces\Cms\ModelDataTable\ModelDataTableInterface;
 use Cobra\Interfaces\Http\Message\RequestInterface;
 use Cobra\Controller\Controller;
