@@ -25,10 +25,11 @@ class SecurityService extends Service
      */
     public function namespaces(): void
     {
-        contain_namespace(
-            \Cobra\Interfaces\Security\Token\SecurityTokenInterface::class,
-            \Cobra\Security\Token\SecurityToken::class
-        );
+        $this
+            ->namespace(
+                \Cobra\Interfaces\Security\Token\SecurityTokenInterface::class,
+                \Cobra\Security\Token\SecurityToken::class
+            );
     }
 
     /**
@@ -38,13 +39,13 @@ class SecurityService extends Service
      */
     public function instances(): void
     {
-        contain_object(
-            \Cobra\Interfaces\Security\Token\CsrfTokenInterface::class,
-            \Cobra\Security\Token\CsrfToken::instance()
-        );
-        contain_object(
-            \Cobra\Interfaces\Security\Token\NonceTokenInterface::class,
-            \Cobra\Security\Token\NonceToken::instance()
-        );
+        $this
+            ->instance(
+                \Cobra\Interfaces\Security\Token\CsrfTokenInterface::class,
+                \Cobra\Security\Token\CsrfToken::class
+            )->instance(
+                \Cobra\Interfaces\Security\Token\NonceTokenInterface::class,
+                \Cobra\Security\Token\NonceToken::class
+            );
     }
 }

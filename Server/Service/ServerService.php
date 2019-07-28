@@ -25,17 +25,16 @@ class ServerService extends Service
      */
     public function namespaces(): void
     {
-        contain_namespace(
-            \Cobra\Interfaces\Server\File\FilePathInterface::class,
-            \Cobra\Server\File\FilePath::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Server\File\FileSystemInterface::class,
-            \Cobra\Server\File\FileSystem::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Server\ServerInterface::class,
-            \Cobra\Server\Server::class
-        );
+        $this
+            ->namespace(
+                \Cobra\Interfaces\Server\File\FilePathInterface::class,
+                \Cobra\Server\File\FilePath::class
+            )->namespace(
+                \Cobra\Interfaces\Server\File\FileSystemInterface::class,
+                \Cobra\Server\File\FileSystem::class
+            )->namespace(
+                \Cobra\Interfaces\Server\ServerInterface::class,
+                \Cobra\Server\Server::class
+            );
     }
 }

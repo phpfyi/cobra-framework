@@ -25,10 +25,11 @@ class LocalisationService extends Service
      */
     public function namespaces(): void
     {
-        contain_namespace(
-            \Cobra\Interfaces\i18n\LocalisationInterface::class,
-            \Cobra\i18n\Localisation::class
-        );
+        $this
+            ->namespace(
+                \Cobra\Interfaces\i18n\LocalisationInterface::class,
+                \Cobra\i18n\Localisation::class
+            );
     }
 
     /**

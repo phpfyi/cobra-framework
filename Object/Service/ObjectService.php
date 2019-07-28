@@ -25,21 +25,19 @@ class ObjectService extends Service
      */
     public function namespaces(): void
     {
-        contain_namespace(
-            \Cobra\Interfaces\Object\AbstractObjectInterface::class,
-            \Cobra\Object\AbstractObject::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Object\Decorator\DecorationHandlerInterface::class,
-            \Cobra\Object\Decorator\DecorationHandler::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Object\Decorator\ObjectDecoratorInterface::class,
-            \Cobra\Object\Decorator\ObjectDecorator::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Object\Props\PropsDataInterface::class,
-            \Cobra\Object\Props\PropsData::class
-        );
+        $this
+            ->namespace(
+                \Cobra\Interfaces\Object\AbstractObjectInterface::class,
+                \Cobra\Object\AbstractObject::class
+            )->namespace(
+                \Cobra\Interfaces\Object\Decorator\DecorationHandlerInterface::class,
+                \Cobra\Object\Decorator\DecorationHandler::class
+            )->namespace(
+                \Cobra\Interfaces\Object\Decorator\ObjectDecoratorInterface::class,
+                \Cobra\Object\Decorator\ObjectDecorator::class
+            )->namespace(
+                \Cobra\Interfaces\Object\Props\PropsDataInterface::class,
+                \Cobra\Object\Props\PropsData::class
+            );
     }
 }

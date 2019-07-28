@@ -25,9 +25,10 @@ class ValidatorService extends Service
      */
     public function namespaces(): void
     {
-        contain_namespace(
-            \Cobra\Interfaces\Validator\ValidatorResolverInterface::class,
-            \Cobra\Validator\ValidatorResolver::class
-        );
+        $this
+            ->namespace(
+                \Cobra\Interfaces\Validator\ValidatorResolverInterface::class,
+                \Cobra\Validator\ValidatorResolver::class
+            );
     }
 }

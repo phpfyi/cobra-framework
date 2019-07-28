@@ -25,21 +25,19 @@ class RoutingService extends Service
      */
     public function namespaces(): void
     {
-        contain_namespace(
-            \Cobra\Interfaces\Routing\RouterInterface::class,
-            \Cobra\Routing\Router::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Routing\RouteInterface::class,
-            \Cobra\Routing\Route::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Routing\RouteDispatcherInterface::class,
-            \Cobra\Routing\RouteDispatcher::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Routing\Factory\RouteFactoryInterface::class,
-            \Cobra\Routing\Factory\RouteFactory::class
-        );
+        $this
+            ->namespace(
+                \Cobra\Interfaces\Routing\RouterInterface::class,
+                \Cobra\Routing\Router::class
+            )->namespace(
+                \Cobra\Interfaces\Routing\RouteInterface::class,
+                \Cobra\Routing\Route::class
+            )->namespace(
+                \Cobra\Interfaces\Routing\RouteDispatcherInterface::class,
+                \Cobra\Routing\RouteDispatcher::class
+            )->namespace(
+                \Cobra\Interfaces\Routing\Factory\RouteFactoryInterface::class,
+                \Cobra\Routing\Factory\RouteFactory::class
+            );
     }
 }

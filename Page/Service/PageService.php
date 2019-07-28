@@ -25,9 +25,10 @@ class PageService extends Service
      */
     public function namespaces(): void
     {
-        contain_namespace(
-            \Cobra\Interfaces\Page\PageInterface::class,
-            \Cobra\Page\Page::class
-        );
+        $this
+            ->namespace(
+                \Cobra\Interfaces\Page\PageInterface::class,
+                \Cobra\Page\Page::class
+            );
     }
 }

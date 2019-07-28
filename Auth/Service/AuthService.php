@@ -36,22 +36,20 @@ class AuthService extends Service
      */
     public function namespaces(): void
     {
-        contain_namespace(
-            \Cobra\Interfaces\Auth\Password\PasswordEncrypterInterface::class,
-            \Cobra\Auth\Password\PasswordEncrypter::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Auth\Password\PasswordGeneratorInterface::class,
-            \Cobra\Auth\Password\PasswordGenerator::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Auth\User\UserInterface::class,
-            \Cobra\Auth\User\User::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Auth\User\UserLogInterface::class,
-            \Cobra\Auth\User\UserLog::class
-        );
+        $this
+            ->namespace(
+                \Cobra\Interfaces\Auth\Password\PasswordEncrypterInterface::class,
+                \Cobra\Auth\Password\PasswordEncrypter::class
+            )->namespace(
+                \Cobra\Interfaces\Auth\Password\PasswordGeneratorInterface::class,
+                \Cobra\Auth\Password\PasswordGenerator::class
+            )->namespace(
+                \Cobra\Interfaces\Auth\User\UserInterface::class,
+                \Cobra\Auth\User\User::class
+            )->namespace(
+                \Cobra\Interfaces\Auth\User\UserLogInterface::class,
+                \Cobra\Auth\User\UserLog::class
+            );
     }
 
     /**
@@ -61,13 +59,13 @@ class AuthService extends Service
      */
     public function instances(): void
     {
-        contain_object(
-            \Cobra\Interfaces\Auth\Authenticator\AuthenticatorInterface::class,
-            \Cobra\Auth\Authenticator\SessionAuthenticator::resolve()
-        );
-        contain_object(
-            \Cobra\Interfaces\Auth\AuthInterface::class,
-            \Cobra\Auth\Auth::resolve()
-        );
+        $this
+            ->instance(
+                \Cobra\Interfaces\Auth\Authenticator\AuthenticatorInterface::class,
+                \Cobra\Auth\Authenticator\SessionAuthenticator::class
+            )->instance(
+                \Cobra\Interfaces\Auth\AuthInterface::class,
+                \Cobra\Auth\Auth::class
+            );
     }
 }

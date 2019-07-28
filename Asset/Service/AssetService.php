@@ -25,29 +25,25 @@ class AssetService extends Service
      */
     public function namespaces(): void
     {
-        contain_namespace(
-            \Cobra\Interfaces\Asset\FileInterface::class,
-            \Cobra\Asset\File::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Asset\FolderInterface::class,
-            \Cobra\Asset\Folder::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Asset\ImageInterface::class,
-            \Cobra\Asset\Image::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Asset\Form\Field\UploadFieldInterface::class,
-            \Cobra\Asset\Form\Field\UploadField::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Asset\Resource\FilePathSynchroniserInterface::class,
-            \Cobra\Asset\Resource\FilePathSynchroniser::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Asset\Resource\FileResourceInterface::class,
-            \Cobra\Asset\Resource\FileResource::class
-        );
+        $this
+            ->namespace(
+                \Cobra\Interfaces\Asset\FileInterface::class,
+                \Cobra\Asset\File::class
+            )->namespace(
+                \Cobra\Interfaces\Asset\FolderInterface::class,
+                \Cobra\Asset\Folder::class
+            )->namespace(
+                \Cobra\Interfaces\Asset\ImageInterface::class,
+                \Cobra\Asset\Image::class
+            )->namespace(
+                \Cobra\Interfaces\Asset\Form\Field\UploadFieldInterface::class,
+                \Cobra\Asset\Form\Field\UploadField::class
+            )->namespace(
+                \Cobra\Interfaces\Asset\Resource\FilePathSynchroniserInterface::class,
+                \Cobra\Asset\Resource\FilePathSynchroniser::class
+            )->namespace(
+                \Cobra\Interfaces\Asset\Resource\FileResourceInterface::class,
+                \Cobra\Asset\Resource\FileResource::class
+            );
     }
 }

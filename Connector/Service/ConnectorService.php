@@ -51,17 +51,19 @@ class ConnectorService extends Service
                 sprintf('No database connector class found for %s', $namespace)
             );
         }
-        contain_object(
-            \Cobra\Interfaces\Connector\ConnectorRepositoryInterface::class,
-            \Cobra\Connector\ConnectorRepository::resolve(
-                $namespace::resolve()
-                    ->setErrors(env('ERRORS_ENABLED'))
-                    ->setHostname(env('DB_HOSTNAME'))
-                    ->setDatabase(env('DB_DATABASE'))
-                    ->setUsername(env('DB_USERNAME'))
-                    ->setPassword(env('DB_PASSWORD'))
-                    ->connect()
-            )
-        );
+        $this
+            ->instance(
+                \Cobra\Interfaces\Connector\ConnectorRepositoryInterface::class,
+                \Cobra\Connector\ConnectorRepository::class,
+                [
+                    $namespace::resolve()
+                        ->setErrors(env('ERRORS_ENABLED'))
+                        ->setHostname(env('DB_HOSTNAME'))
+                        ->setDatabase(env('DB_DATABASE'))
+                        ->setUsername(env('DB_USERNAME'))
+                        ->setPassword(env('DB_PASSWORD'))
+                        ->connect()
+                ]
+            );
     }
 }

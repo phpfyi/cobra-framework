@@ -25,10 +25,11 @@ class AutoloaderService extends Service
      */
     public function namespaces(): void
     {
-        contain_namespace(
-            \Cobra\Interfaces\Autoloader\AutoloaderInterface::class,
-            \Cobra\Autoloader\Autoloader::class
-        );
+        $this
+            ->namespace(
+                \Cobra\Interfaces\Autoloader\AutoloaderInterface::class,
+                \Cobra\Autoloader\Autoloader::class
+            );
     }
 
     /**
@@ -38,10 +39,14 @@ class AutoloaderService extends Service
      */
     public function instances(): void
     {
-        contain_object(
-            \Cobra\Interfaces\Autoloader\ComposerAutoloaderInterface::class,
-            \Cobra\Autoloader\ComposerAutoloader::resolve($this->app->getClassLoader())
-        );
+        $this
+            ->instance(
+                \Cobra\Interfaces\Autoloader\ComposerAutoloaderInterface::class,
+                \Cobra\Autoloader\ComposerAutoloader::class,
+                [
+                    $this->app->getClassLoader()
+                ]
+            );
 
         $config = static::config('aliases');
         array_map(

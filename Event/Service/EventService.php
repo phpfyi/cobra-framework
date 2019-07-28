@@ -25,10 +25,11 @@ class EventService extends Service
      */
     public function namespaces(): void
     {
-        contain_namespace(
-            \Cobra\Interfaces\Event\EventInterface::class,
-            \Cobra\Event\Event::class
-        );
+        $this
+            ->namespace(
+                \Cobra\Interfaces\Event\EventInterface::class,
+                \Cobra\Event\Event::class
+            );
     }
 
     /**

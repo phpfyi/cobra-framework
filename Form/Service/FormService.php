@@ -25,25 +25,22 @@ class FormService extends Service
      */
     public function namespaces(): void
     {
-        contain_namespace(
-            \Cobra\Interfaces\Form\FormFactoryInterface::class,
-            \Cobra\Form\FormFactory::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Form\FormInterface::class,
-            \Cobra\Form\Form::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Form\FormRequestHandlerInterface::class,
-            \Cobra\Form\FormRequestHandler::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Form\FormRequestInterface::class,
-            \Cobra\Form\FormRequest::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Form\FormValidatorInterface::class,
-            \Cobra\Form\FormValidator::class
-        );
+        $this
+            ->namespace(
+                \Cobra\Interfaces\Form\FormFactoryInterface::class,
+                \Cobra\Form\FormFactory::class
+            )->namespace(
+                \Cobra\Interfaces\Form\FormInterface::class,
+                \Cobra\Form\Form::class
+            )->namespace(
+                \Cobra\Interfaces\Form\FormRequestHandlerInterface::class,
+                \Cobra\Form\FormRequestHandler::class
+            )->namespace(
+                \Cobra\Interfaces\Form\FormRequestInterface::class,
+                \Cobra\Form\FormRequest::class
+            )->namespace(
+                \Cobra\Interfaces\Form\FormValidatorInterface::class,
+                \Cobra\Form\FormValidator::class
+            );
     }
 }

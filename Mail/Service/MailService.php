@@ -25,21 +25,19 @@ class MailService extends Service
      */
     public function namespaces(): void
     {
-        contain_namespace(
-            \Cobra\Interfaces\Mail\MailerInterface::class,
-            \Cobra\Mail\Mailer::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Mail\MailerConfigInterface::class,
-            \Cobra\Mail\MailerConfig::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Mail\Smtp\SmtpMailerInterface::class,
-            \Cobra\Mail\Smtp\SmtpMailer::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Mail\Smtp\SmtpMailerConfigInterface::class,
-            \Cobra\Mail\Smtp\SmtpMailerConfig::class
-        );
+        $this
+            ->namespace(
+                \Cobra\Interfaces\Mail\MailerInterface::class,
+                \Cobra\Mail\Mailer::class
+            )->namespace(
+                \Cobra\Interfaces\Mail\MailerConfigInterface::class,
+                \Cobra\Mail\MailerConfig::class
+            )->namespace(
+                \Cobra\Interfaces\Mail\Smtp\SmtpMailerInterface::class,
+                \Cobra\Mail\Smtp\SmtpMailer::class
+            )->namespace(
+                \Cobra\Interfaces\Mail\Smtp\SmtpMailerConfigInterface::class,
+                \Cobra\Mail\Smtp\SmtpMailerConfig::class
+            );
     }
 }

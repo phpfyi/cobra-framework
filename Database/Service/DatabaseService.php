@@ -25,17 +25,16 @@ class DatabaseService extends Service
      */
     public function namespaces(): void
     {
-        contain_namespace(
-            \Cobra\Interfaces\Database\Relation\HasManyRelationInterface::class,
-            \Cobra\Database\Relation\HasManyRelation::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Database\Relation\HasOneRelationInterface::class,
-            \Cobra\Database\Relation\HasOneRelation::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Database\Relation\ManyManyRelationInterface::class,
-            \Cobra\Database\Relation\ManyManyRelation::class
-        );
+        $this
+            ->namespace(
+                \Cobra\Interfaces\Database\Relation\HasManyRelationInterface::class,
+                \Cobra\Database\Relation\HasManyRelation::class
+            )->namespace(
+                \Cobra\Interfaces\Database\Relation\HasOneRelationInterface::class,
+                \Cobra\Database\Relation\HasOneRelation::class
+            )->namespace(
+                \Cobra\Interfaces\Database\Relation\ManyManyRelationInterface::class,
+                \Cobra\Database\Relation\ManyManyRelation::class
+            );
     }
 }

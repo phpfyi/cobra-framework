@@ -25,13 +25,13 @@ class SessionService extends Service
      */
     public function namespaces(): void
     {
-        contain_namespace(
-            \Cobra\Interfaces\Session\SessionManagerInterface::class,
-            \Cobra\Session\SessionManager::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Session\SessionInterface::class,
-            \Cobra\Session\Session::class
-        );
+        $this
+            ->namespace(
+                \Cobra\Interfaces\Session\SessionManagerInterface::class,
+                \Cobra\Session\SessionManager::class
+            )->namespace(
+                \Cobra\Interfaces\Session\SessionInterface::class,
+                \Cobra\Session\Session::class
+            );
     }
 }

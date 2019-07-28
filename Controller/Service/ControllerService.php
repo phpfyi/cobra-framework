@@ -25,13 +25,13 @@ class ControllerService extends Service
      */
     public function namespaces(): void
     {
-        contain_namespace(
-            \Cobra\Interfaces\Controller\ControllerActionHandlerInterface::class,
-            \Cobra\Controller\ControllerActionHandler::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Controller\ControllerHandlerInterface::class,
-            \Cobra\Controller\ControllerHandler::class
-        );
+        $this
+            ->namespace(
+                \Cobra\Interfaces\Controller\ControllerActionHandlerInterface::class,
+                \Cobra\Controller\ControllerActionHandler::class
+            )->namespace(
+                \Cobra\Interfaces\Controller\ControllerHandlerInterface::class,
+                \Cobra\Controller\ControllerHandler::class
+            );
     }
 }

@@ -26,10 +26,11 @@ class HttpService extends Service
      */
     public function namespaces(): void
     {
-        contain_namespace(
-            \Cobra\Interfaces\Http\Middleware\MiddlewareHandlerInterface::class,
-            \Cobra\Http\Middleware\MiddlewareHandler::class
-        );
+        $this
+            ->namespace(
+                \Cobra\Interfaces\Http\Middleware\MiddlewareHandlerInterface::class,
+                \Cobra\Http\Middleware\MiddlewareHandler::class
+            );
     }
     /**
      * Set up any service class instances required by the application.

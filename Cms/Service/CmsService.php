@@ -25,13 +25,13 @@ class CmsService extends Service
      */
     public function namespaces(): void
     {
-        contain_namespace(
-            \Cobra\Interfaces\Cms\ModelDataTable\ModelDataTableInterface::class,
-            \Cobra\Cms\ModelDataTable\ModelDataTable::class
-        );
-        contain_namespace(
-            \Cobra\Interfaces\Cms\ModelDataTable\ModelDataTableColumnInterface::class,
-            \Cobra\Cms\ModelDataTable\ModelDataTableColumn::class
-        );
+        $this
+            ->namespace(
+                \Cobra\Interfaces\Cms\ModelDataTable\ModelDataTableInterface::class,
+                \Cobra\Cms\ModelDataTable\ModelDataTable::class
+            )->namespace(
+                \Cobra\Interfaces\Cms\ModelDataTable\ModelDataTableColumnInterface::class,
+                \Cobra\Cms\ModelDataTable\ModelDataTableColumn::class
+            );
     }
 }
