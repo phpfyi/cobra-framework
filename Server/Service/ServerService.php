@@ -35,6 +35,9 @@ class ServerService extends Service
             )->namespace(
                 \Cobra\Interfaces\Server\ServerInterface::class,
                 \Cobra\Server\Server::class
+            )->namespace(
+                \Cobra\Interfaces\Server\DirectoryInterface::class,
+                \Cobra\Server\Directory::class
             );
     }
 }

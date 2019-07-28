@@ -5,9 +5,9 @@ namespace Cobra\Asset;
 use Cobra\Cms\Traits\ModelConfigValidationRules;
 use Cobra\Cms\Traits\ModelDataTableColumns;
 use Cobra\Interfaces\Asset\FolderInterface;
+use Cobra\Interfaces\Server\Directory\DirectoryInterface;
 use Cobra\Model\Model;
 use Cobra\Model\ModelDatabaseTable;
-use Cobra\Server\Directory\Directory;
 
 /**
  * Folder
@@ -80,7 +80,7 @@ class Folder extends Model implements FolderInterface
      */
     public function afterSave(): void
     {
-        Directory::create(ASSETS_DIRECTORY, $this->directory);
+        container_resolve(DirectoryInterface::class)->create(ASSETS_DIRECTORY, $this->directory);
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace Cobra\Server\Directory;
 
+use SplFileInfo;
 use Cobra\Interfaces\Server\Directory\DirectoryInterface;
 use Cobra\Server\Directory\DirectoryIterator;
 
@@ -56,9 +57,9 @@ class Directory implements DirectoryInterface
      */
     public static function create(...$args):? bool
     {
-        $path = call_user_func_array([static::class, 'path'], $args);
-
-        return !is_dir($path) ? mkdir($path) : null;
+        $path = container_resolve(DirectoryInterface::class)->path(...$args);
+        
+        return !container_resolve(DirectoryInterface::class)->isDir($path) ? mkdir($path) : null;
     }
     
     /**
@@ -70,9 +71,9 @@ class Directory implements DirectoryInterface
      */
     public static function remove(...$args): bool
     {
-        $path = call_user_func_array([static::class, 'path'], $args);
+        $path = container_resolve(DirectoryInterface::class)->path(...$args);
 
-        if (!is_dir($path)) {
+        if (!container_resolve(DirectoryInterface::class)->isDir($path)) {
             return false;
         }
 
