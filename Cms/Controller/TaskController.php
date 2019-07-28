@@ -26,13 +26,11 @@ class TaskController extends AppController
      * Clears / builds the configuration cache
      *
      * @param CacheInvalidator $invalidator
-     * @param ComposerAutoloader $autoloader
      * @return void
      */
-    public function build(CacheInvalidator $invalidator, ComposerAutoloader $autoloader): void
+    public function build(CacheInvalidator $invalidator): void
     {
         $invalidator->clear();
-        $autoloader::refresh();
 
         view()->setPage('apps.cms.view.page.build');
     }

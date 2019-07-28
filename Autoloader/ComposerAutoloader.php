@@ -51,16 +51,6 @@ class ComposerAutoloader extends AbstractObject implements ComposerAutoloaderInt
     }
 
     /**
-     * Runs the dump-autoload command
-     *
-     * @return void
-     */
-    public static function refresh()
-    {
-        exec('composer dump-autoload');
-    }
-
-    /**
      * Returns the class autoloader instance.
      *
      * @return ClassLoader
