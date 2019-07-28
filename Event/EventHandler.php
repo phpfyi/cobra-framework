@@ -2,8 +2,10 @@
 
 namespace Cobra\Event;
 
-use Cobra\Object\AbstractObject;
 use Cobra\Interfaces\Event\EventHandlerInterface;
+use Cobra\Interfaces\Object\SingletonInterface;
+use Cobra\Object\AbstractObject;
+use Cobra\Object\Traits\SingletonMethods;
 
 /**
  * Event Handler
@@ -19,14 +21,47 @@ use Cobra\Interfaces\Event\EventHandlerInterface;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-class EventHandler extends AbstractObject implements EventHandlerInterface
+class EventHandler extends AbstractObject implements EventHandlerInterface, SingletonInterface
 {
+    use SingletonMethods;
+
     /**
      * Array of event mappings
      *
      * @var array
      */
     protected $mappings = [];
+
+    /**
+     * Array of fired events
+     *
+     * @var array
+     */
+    protected $fired = [];
+
+    /**
+     * Sets up the singleton instance
+     *
+     * @return EventHandlerInterface
+     */
+    public static function instance(): EventHandlerInterface
+    {
+        static $instance = null;
+        if ($instance === null) {
+            $instance = new static();
+        }
+        return $instance;
+    }
+
+    /**
+     * Returns an array of all fired events
+     *
+     * @return array
+     */
+    public function getFired(): array
+    {
+        return $this->fired;
+    }
 
     /**
      * Merges event mappings into the current mappings.
@@ -37,6 +72,7 @@ class EventHandler extends AbstractObject implements EventHandlerInterface
     public function merge(array $mappings): EventHandlerInterface
     {
         $this->mappings = array_merge_recursive($this->mappings, $mappings);
+
         return $this;
     }
 
@@ -52,11 +88,13 @@ class EventHandler extends AbstractObject implements EventHandlerInterface
     public function handle(string $event, &...$args):? array
     {
         if (array_key_exists($event, $this->mappings)) {
-            return (array) array_map(function (string $interceptor) use ($args) {
-                $interceptor = $interceptor::resolve();
-                
-                if($interceptor->enabled()) {
-                    return $interceptor::resolve()->handle(...$args);
+            return (array) array_map(function (string $namespace) use ($event, $args) {
+                $interceptor = $namespace::resolve();
+
+                if ($interceptor->enabled()) {
+                    $this->fired[$event][] = $namespace;
+
+                    return $interceptor->handle(...$args);
                 }
             }, $this->mappings[$event]);
         }
