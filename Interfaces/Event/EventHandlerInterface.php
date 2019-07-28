@@ -17,6 +17,13 @@ namespace Cobra\Interfaces\Event;
 interface EventHandlerInterface
 {
     /**
+     * Returns an array of all fired events
+     *
+     * @return array
+     */
+    public function getFired(): array;
+
+    /**
      * Merges event mappings into the current mappings.
      *
      * @param array $mappings
