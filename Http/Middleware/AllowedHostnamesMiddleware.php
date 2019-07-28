@@ -44,7 +44,7 @@ class AllowedHostnamesMiddleware extends Middleware
      */
     public function process(RequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        if (!empty($domains) && !in_array($request->getUri()->getHost(), $domains)) {
+        if (!empty($this->hostnames) && !in_array($request->getUri()->getHost(), $this->hostnames)) {
             return http_forbidden_response($handler);
         }
         return $handler->handle($request);
