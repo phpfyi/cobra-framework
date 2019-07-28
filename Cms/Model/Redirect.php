@@ -89,7 +89,7 @@ class Redirect extends Model
      */
     public function cmsForm(FormInterface $form): FormInterface
     {
-        $form->setField(SelectField::resolve('code')->setData(self::getRedirectStatusCodeOptions()));
+        $form->setField(SelectField::resolve('code')->setData(redirect_options()));
         $form->setField(
             SelectField::resolve('from_type')
                 ->setLabel('URL type')
@@ -117,25 +117,6 @@ class Redirect extends Model
         $form->setValidators(static::config('validation_rules'));
 
         return $form;
-    }
-    
-    /**
-     * Retuns an array of HTTP status code options
-     *
-     * @return array
-     */
-    public static function getRedirectStatusCodeOptions(): array
-    {
-        $codes = [];
-        $status = config('http.300_codes');
-        array_map(
-            function ($code, $description) use (&$codes) {
-                $codes[$code] = $code.' - '.$description;
-            },
-            array_keys($status),
-            $status
-        );
-        return $codes;
     }
 
     /**
