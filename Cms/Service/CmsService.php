@@ -37,4 +37,19 @@ class CmsService extends Service
                 \Cobra\Cms\Parser\CmsModelUrlParser::class
             );
     }
+
+    /**
+     * Set up any service class instances required by the application.
+     *
+     * @throws InvalidConnectorException
+     * @return void
+     */
+    public function instances(): void
+    {
+        $this
+            ->instance(
+                \Cobra\Interfaces\Cms\CmsMessagesInterface::class,
+                \Cobra\Cms\CmsMessages::class
+            );
+    }
 }

@@ -19,6 +19,13 @@ use Cobra\Model\Model;
 interface CmsMessagesInterface
 {
     /**
+     * Setup method to load the current session messages.
+     *
+     * @return CmsMessagesInterface
+     */
+    public function setup(): CmsMessagesInterface;
+
+    /**
      * Sets an array of messages
      *
      * @param  array $messages

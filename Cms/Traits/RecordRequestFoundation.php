@@ -2,7 +2,7 @@
 
 namespace Cobra\Cms\Traits;
 
-use Cobra\Cms\CmsMessages;
+use Cobra\Interfaces\Cms\CmsMessagesInterface;
 use Cobra\Interfaces\Cms\Parser\CmsModelUrlParserInterface;
 use Cobra\Interfaces\Controller\ControllerInterface;
 use Cobra\Interfaces\Form\FormInterface;
@@ -32,7 +32,7 @@ trait RecordRequestFoundation
     /**
      * Messages instance
      *
-     * @var CmsMessages
+     * @var CmsMessagesInterface
      */
     protected $messages;
 
@@ -47,7 +47,7 @@ trait RecordRequestFoundation
         ControllerInterface $controller,
         FormInterface $form,
         CmsModelUrlParserInterface $parser,
-        CmsMessages $messages
+        CmsMessagesInterface $messages
     ) {
         parent::__construct($controller, $form);
 
