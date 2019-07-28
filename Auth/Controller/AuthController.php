@@ -2,7 +2,7 @@
 
 namespace Cobra\Auth\Controller;
 
-use Cobra\Gtm\Gtm;
+use Cobra\Interfaces\Gtm\GtmInterface;
 use Cobra\Page\Controller\PageController;
 
 /**
@@ -61,7 +61,7 @@ class AuthController extends PageController
 
         view()
             ->setData('container_id', config('auth.gtm.container_id'))
-            ->setData('datalayer', Gtm::instance());
+            ->setData('datalayer', container_object(GtmInterface::class));
     }
 
     /**

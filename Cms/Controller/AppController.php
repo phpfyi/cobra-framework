@@ -4,8 +4,8 @@ namespace Cobra\Cms\Controller;
 
 use Cobra\Core\Traits\VersionControl;
 use Cobra\Interfaces\Cms\CmsMessagesInterface;
+use Cobra\Interfaces\Gtm\GtmInterface;
 use Cobra\Page\Controller\PageController;
-use Cobra\Gtm\Gtm;
 use Cobra\Model\ModelClassMap;
 
 /**
@@ -81,7 +81,7 @@ class AppController extends PageController
 
         view()
             ->setData('container_id', config('cms.gtm.container_id'))
-            ->setData('datalayer', Gtm::instance())
+            ->setData('datalayer', container_object(GtmInterface::class))
             ->setData('menu_models', $this->getMenu())
             ->setData('app_version', $this->getVersionNumber(1))
             ->setData('messages', container_object(CmsMessagesInterface::class)->setup());
