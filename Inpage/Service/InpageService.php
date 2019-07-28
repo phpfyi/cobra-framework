@@ -73,10 +73,16 @@ class InpageService extends Service
      */
     public function instances(): void
     {
-        contain_object(
-            \Cobra\Interfaces\Inpage\InpageInterface::class,
-            $inpage = \Cobra\Inpage\Inpage::resolve()
+        $this
+            ->instance(
+                \Cobra\Interfaces\Inpage\InpageInterface::class,
+                \Cobra\Inpage\Inpage::class
+            );
+
+        $inpage = container_object(
+            \Cobra\Interfaces\Inpage\InpageInterface::class
         );
+
         array_map(function (string $namespace) use ($inpage) {
             $inpage->setReport(
                 $namespace::resolve()

@@ -38,11 +38,16 @@ class GtmService extends Service
      */
     public function instances(): void
     {
-        $store = GtmDataStore::resolve();
+        $store = container_resolve(GtmDataStore::class);
 
-        contain_object(
-            \Cobra\Interfaces\Gtm\GtmInterface::class,
-            \Cobra\Gtm\Gtm::instance()->setStore($store)
-        );
+        $this
+            ->instance(
+                \Cobra\Interfaces\Gtm\GtmInterface::class,
+                \Cobra\Gtm\Gtm::class
+            );
+
+        container_object(
+            \Cobra\Interfaces\Gtm\GtmInterface::class
+        )->setStore($store);
     }
 }

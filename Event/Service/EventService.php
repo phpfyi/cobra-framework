@@ -39,11 +39,16 @@ class EventService extends Service
      */
     public function instances(): void
     {
-        contain_object(
-            \Cobra\Interfaces\Event\EventHandlerInterface::class,
-            \Cobra\Event\EventHandler::resolve()->merge(
-                $this->app->getEvents()
-            )
+        $this
+            ->instance(
+                \Cobra\Interfaces\Event\EventHandlerInterface::class,
+                \Cobra\Event\EventHandler::class
+            );
+
+        container_object(
+            \Cobra\Interfaces\Event\EventHandlerInterface::class
+        )->merge(
+            $this->app->getEvents()
         );
     }
 }
