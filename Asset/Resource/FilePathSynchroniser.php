@@ -51,15 +51,25 @@ class FilePathSynchroniser extends AbstractObject implements FilePathSynchronise
     protected $systemPath;
 
     /**
+     * FileSystemInterface instance
+     *
+     * @var FileSystemInterface
+     */
+    protected $fileSystem;
+
+    /**
      * Sets the file and folder instances
      *
      * @param FileInterface   $file
      * @param FolderInterface $folder
+     * @param FileSystemInterface $fileSystem
      */
-    public function __construct(FileInterface $file, FolderInterface $folder)
+    public function __construct(FileInterface $file, FolderInterface $folder, FileSystemInterface $fileSystem)
     {
         $this->file = $file;
         $this->folder = $folder;
+        $this->fileSystem = $fileSystem;
+
         $this->publicPath = $this->getAssetPath($this->file->public_path);
         $this->systemPath = $this->getAssetPath($this->file->system_path);
     }
@@ -72,7 +82,7 @@ class FilePathSynchroniser extends AbstractObject implements FilePathSynchronise
     public function sync(): void
     {
         if ($this->isPathMismatch()) {
-            container_resolve(FileSystemInterface::class)->move(
+            $this->fileSystem->move(
                 path_join_root($this->file->system_path),
                 path_join_root($this->systemPath)
             );

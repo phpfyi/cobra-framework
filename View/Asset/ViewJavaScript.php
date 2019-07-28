@@ -3,8 +3,9 @@
 namespace Cobra\View\Asset;
 
 use Cobra\Html\HtmlScriptElement;
-use Cobra\Interfaces\View\Asset\ViewJavaScriptInterface;
 use Cobra\Interfaces\Server\File\FileSystemInterface;
+use Cobra\Interfaces\View\Asset\ViewJavaScriptInterface;
+use Cobra\Interfaces\View\ViewInterface;
 
 /**
  * View JavaScript
@@ -40,6 +41,26 @@ class ViewJavaScript extends ViewAsset implements ViewJavaScriptInterface
      * @var array
      */
     protected $bundles = [];
+
+    /**
+     * FileSystemInterface instance
+     *
+     * @var FileSystemInterface
+     */
+    protected $fileSystem;
+
+    /**
+     * View instance
+     *
+     * @param ViewInterface $view
+     * @param FileSystemInterface $fileSystem
+     */
+    public function __construct(ViewInterface $view, FileSystemInterface $fileSystem)
+    {
+        parent::__construct($view);
+
+        $this->fileSystem = $fileSystem;
+    }
 
     /**
      * Sets an inline script HTML tag
@@ -137,10 +158,9 @@ class ViewJavaScript extends ViewAsset implements ViewJavaScriptInterface
         return sprintf(
             '/js/%s.%s.js',
             $path,
-            container_resolve(FileSystemInterface::class)
-                ->modified(
-                    path_join_root(PUBLIC_DIRECTORY, 'js', $path, 'js')
-                )
+            $this->fileSystem->modified(
+                path_join_root(PUBLIC_DIRECTORY, 'js', $path, 'js')
+            )
         );
     }
 }

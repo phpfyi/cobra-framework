@@ -49,17 +49,30 @@ class ViewLoader extends AbstractObject implements ViewLoaderInterface
     protected $cache;
 
     /**
+     * FileSystemInterface instance
+     *
+     * @var FileSystemInterface
+     */
+    protected $fileSystem;
+
+    /**
      * Sets the base template path and data
      *
      * @param string $path
      * @param ViewDataInterface $data
      * @param ViewCache $cache
+     * @param FileSystemInterface $fileSystem
      */
-    public function __construct(string $path, ViewDataInterface $data, ViewCache $cache)
-    {
+    public function __construct(
+        string $path,
+        ViewDataInterface $data,
+        ViewCache $cache,
+        FileSystemInterface $fileSystem
+    ) {
         $this->template = path_join_root($path.'.'.TEMPLATE_EXTENSION);
         $this->data = $data;
         $this->cache = $cache;
+        $this->fileSystem = $fileSystem;
 
         $this->emit('LoadingTemplate', $path);
     }
@@ -80,7 +93,7 @@ class ViewLoader extends AbstractObject implements ViewLoaderInterface
                 return container_resolve(
                     ViewParserInterface::class,
                     [
-                        container_resolve(FileSystemInterface::class)->get($this->template)
+                        $this->fileSystem->get($this->template)
                     ]
                 )->getOutput();
             }

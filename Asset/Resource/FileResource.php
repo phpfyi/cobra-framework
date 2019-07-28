@@ -38,15 +38,24 @@ class FileResource extends AbstractObject implements FileResourceInterface
     protected $response;
 
     /**
+     * FileSystemInterface instance
+     *
+     * @var FileSystemInterface
+     */
+    protected $fileSystem;
+
+    /**
      * Sets the file and response instances
      *
      * @param FileInterface $file
      * @param ResponseInterface $response
+     * @param FileSystemInterface $fileSystem
      */
-    public function __construct(FileInterface $file, ResponseInterface $response)
+    public function __construct(FileInterface $file, ResponseInterface $response, FileSystemInterface $fileSystem)
     {
         $this->file = $file;
         $this->response = $response;
+        $this->fileSystem = $fileSystem;
     }
 
     /**
@@ -89,9 +98,8 @@ class FileResource extends AbstractObject implements FileResourceInterface
      */
     protected function getContentLength(): int
     {
-        return container_resolve(FileSystemInterface::class)
-            ->size(
-                path_join_root($this->file->system_path)
-            );
+        return $this->fileSystem->size(
+            path_join_root($this->file->system_path)
+        );
     }
 }
