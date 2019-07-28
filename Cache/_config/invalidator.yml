@@ -1,0 +1,8 @@
+Cobra\Cache\CacheInvalidator:
+  caches:
+    - Cobra\Autoloader\Cache\AutoloaderCache
+    - Cobra\Config\Cache\ConfigCache
+    - Cobra\Model\Cache\SchemaCache
+    - Cobra\Routing\Cache\RouteCache
+    - Cobra\Validator\Cache\ValidatorCache
+    - Cobra\View\Cache\ViewCache
