@@ -79,9 +79,9 @@ class ConnectorRepository extends AbstractObject implements ConnectorRepositoryI
      */
     public function unset(string $name): ConnectorRepositoryInterface
     {
-        $connection = $this->connectors[$name]->getConnection();
-        $connection = null;
+        $this->connectors[$name]->disconnect();
         unset($this->connectors[$name]);
+        
         return $this;
     }
 

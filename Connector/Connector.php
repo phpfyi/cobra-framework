@@ -93,7 +93,7 @@ abstract class Connector extends AbstractObject implements ConnectorInterface
      * Sets whether to enable errors on the database connection object.
      *
      * @param  boolean $errors
-     * @return Connector
+     * @return ConnectorInterface
      */
     public function setErrors(bool $errors): ConnectorInterface
     {
@@ -105,7 +105,7 @@ abstract class Connector extends AbstractObject implements ConnectorInterface
      * Sets the database connection hostname.
      *
      * @param  string $hostname
-     * @return Connector
+     * @return ConnectorInterface
      */
     public function setHostname(string $hostname): ConnectorInterface
     {
@@ -117,7 +117,7 @@ abstract class Connector extends AbstractObject implements ConnectorInterface
      * Sets the database connection database name.
      *
      * @param  string $database
-     * @return Connector
+     * @return ConnectorInterface
      */
     public function setDatabase(string $database): ConnectorInterface
     {
@@ -129,7 +129,7 @@ abstract class Connector extends AbstractObject implements ConnectorInterface
      * Sets the database connection username.
      *
      * @param  string $username
-     * @return Connector
+     * @return ConnectorInterface
      */
     public function setUsername(string $username): ConnectorInterface
     {
@@ -141,7 +141,7 @@ abstract class Connector extends AbstractObject implements ConnectorInterface
      * Sets the database connection password.
      *
      * @param  string $password
-     * @return Connector
+     * @return ConnectorInterface
      */
     public function setPassword(string $password): ConnectorInterface
     {
@@ -152,11 +152,23 @@ abstract class Connector extends AbstractObject implements ConnectorInterface
     /**
      * Sets the database connection params.
      *
-     * @return array
+     * @param array $params
+     * @return ConnectorInterface
      */
     public function setParams(array $params): ConnectorInterface
     {
         $this->params = $params;
+        return $this;
+    }
+
+    /**
+     * Closes the database connection.
+     *
+     * @return ConnectorInterface
+     */
+    public function disconnect(): ConnectorInterface
+    {
+        $this->connection = null;
         return $this;
     }
 }

@@ -73,7 +73,15 @@ interface ConnectorInterface
     /**
      * Sets the database connection params.
      *
-     * @return array
+     * @param array $params
+     * @return ConnectorInterface
      */
     public function setParams(array $params): ConnectorInterface;
+
+    /**
+     * Closes the database connection.
+     *
+     * @return ConnectorInterface
+     */
+    public function disconnect(): ConnectorInterface;
 }
