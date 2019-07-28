@@ -34,6 +34,7 @@ class InpageService extends Service
         \Cobra\Inpage\Report\InpageSessionReport::class,
         \Cobra\Inpage\Report\InpageTagManagerReport::class,
         \Cobra\Inpage\Report\InpageViewReport::class,
+        \Cobra\Inpage\Report\InpageEventsReport::class,
     ];
 
     /**
