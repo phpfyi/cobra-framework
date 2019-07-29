@@ -2,6 +2,8 @@
 
 namespace Cobra\Interfaces\Asset;
 
+use Cobra\Http\Stream\FileStream;
+
 /**
  * File Interface
  *
@@ -16,5 +18,10 @@ namespace Cobra\Interfaces\Asset;
  */
 interface FileInterface
 {
-
+    /**
+     * Returns the system file instance
+     *
+     * @return FileStream
+     */
+    public function getResource(): FileStream;
 }
