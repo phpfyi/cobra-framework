@@ -4,7 +4,6 @@ namespace Cobra\Interfaces\Controller;
 
 use Cobra\Interfaces\Http\Message\RequestInterface;
 use Cobra\Interfaces\Http\Message\ResponseInterface;
-use Cobra\Http\Stream\Stream;
 
 /**
  * Controller interface
@@ -42,13 +41,4 @@ interface ControllerInterface
      * @return void
      */
     public function setHttpError(int $code): void;
-
-    /**
-     * Sets the HTTP response body from a stream
-     *
-     * @param  Stream $stream
-     * @param  mixed  $data
-     * @return void
-     */
-    public function setResponseBody(Stream $stream, $data): void;
 }
