@@ -168,30 +168,31 @@ class Page extends Model implements PageInterface
         $form->setField(SelectField::resolve('twitter_card')->setData(config('seo.twitter_card')));
         $form->setField(SelectField::resolve('og_type')->setData(config('seo.og_type')));
         $form->setField(SelectField::resolve('og_locale')->setData(config('seo.og_locale')));
-        // update labels
+        // set readonly
+        $form->getField('segment')->setReadonly();
+        // set labels
         $form->getField('og_type')->setLabel('OG type');
         $form->getField('og_sitename')->setLabel('OG sitename');
         $form->getField('og_locale')->setLabel('OG locale');
-        $form->getField('segment')->setReadonly();
-        $form->getField('title')->addClass('title-segment');
+        // set attributes
         $form->getField('priority')->setAttribute('step', '0.01');
-        // set parent segment
         $form->getField('segment')->setAttribute('data-path', parent_path($this));
-        // add classes
+        // set classes
+        $form->getField('title')->addClass('title-segment');
         $form->getField('meta_title')->addClass('meta-title-handler');
         $form->getField('meta_description')->addClass('meta-desc-handler');
-        // validation
+        // set folders
         $form->getField('social_imageID')->setFolderName('Social');
-        // move fields
+        // set field position
         $form->insertBefore('segment', $form->getField('parentID'));
         $form->insertAfter('og_locale', $form->getField('social_imageID'));
-        // headings
+        // set headings
         $form->insertBefore('meta_title', PageSerpHtmlElement::resolve('div', 'serp')->setUri($this->segment));
         $form->insertBefore('class', container_resolve(HtmlElementInterface::class, ['h4', 's1', 'Class']));
         $form->insertBefore('title', container_resolve(HtmlElementInterface::class, ['h4', 's2', 'Content']));
         $form->insertBefore('serp', container_resolve(HtmlElementInterface::class, ['h4', 's3', 'Search Engine Optimisation']));
         $form->insertBefore('priority', container_resolve(HtmlElementInterface::class, ['h4', 's4', 'Sitemap']));
-        // validation
+        // set validation
         $form->setValidators(Page::config('validation_rules'));
 
         return $form;
