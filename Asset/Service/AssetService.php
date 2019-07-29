@@ -41,9 +41,6 @@ class AssetService extends Service
             )->namespace(
                 \Cobra\Interfaces\Asset\Resource\FilePathSynchroniserInterface::class,
                 \Cobra\Asset\Resource\FilePathSynchroniser::class
-            )->namespace(
-                \Cobra\Interfaces\Asset\Resource\FileResourceInterface::class,
-                \Cobra\Asset\Resource\FileResource::class
             );
     }
 }
