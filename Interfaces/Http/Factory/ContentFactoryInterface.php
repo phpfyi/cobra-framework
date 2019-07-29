@@ -21,7 +21,7 @@ use Cobra\Http\Stream\XmlStream;
 interface ContentFactoryInterface
 {
     /**
-     * Returns HTML output.
+     * Returns a HtmlStream object.
      *
      * @param string $output
      * @return HtmlStream
@@ -29,7 +29,7 @@ interface ContentFactoryInterface
     public function html(string $output): HtmlStream;
 
     /**
-     * Returns JSON output.
+     * Returns a JsonStream object.
      *
      * @param string $output
      * @return JsonStream
@@ -37,7 +37,7 @@ interface ContentFactoryInterface
     public function json(array $output): JsonStream;
 
     /**
-     * Returns XML output.
+     * Returns a XmlStream object.
      *
      * @param string $output
      * @return XmlStream

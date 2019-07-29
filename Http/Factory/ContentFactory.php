@@ -42,40 +42,46 @@ class ContentFactory extends AbstractObject implements ContentFactoryInterface
     }
 
     /**
-     * Returns HTML output.
+     * Returns a HtmlStream object.
      *
      * @param string $output
      * @return HtmlStream
      */
     public function html(string $output): HtmlStream
     {
-        $this->controller->getResponse()->addHeader('Content-type', 'text/html;charset=UTF-8');
+        $this->controller
+            ->getResponse()
+            ->addHeader('Content-type', 'text/html;charset=UTF-8');
         
         return $this->write(HtmlStream::class, $output);
     }
 
     /**
-     * Returns JSON output.
+     * Returns a JsonStream object.
      *
      * @param string $output
      * @return JsonStream
      */
     public function json(array $output): JsonStream
     {
-        $this->controller->getResponse()->addHeader('Content-type', 'application/json');
+        $this->controller
+            ->getResponse()
+            ->addHeader('Content-type', 'application/json');
         
         return $this->write(JsonStream::class, $output);
     }
 
     /**
-     * Returns XML output.
+     * Returns a XmlStream object.
      *
      * @param string $output
      * @return XmlStream
      */
     public function xml(string $output): XmlStream
     {
-        $this->controller->getResponse()->addHeader('Content-type', 'text/xml');
+        $this->controller
+            ->getResponse()
+            ->addHeader('Content-type', 'text/xml');
         
         return $this->write(XmlStream::class, $output);
     }
