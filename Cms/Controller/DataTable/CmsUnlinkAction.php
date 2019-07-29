@@ -2,6 +2,8 @@
 
 namespace Cobra\Cms\Controller\DataTable;
 
+use Cobra\Http\Stream\HtmlStream;
+
 /**
  * CMS Unlink Action Controller
  *
@@ -19,13 +21,13 @@ class CmsUnlinkAction extends CmsAction
     /**
      * Unlinks a relation record
      *
-     * @return void
+     * @return HtmlStream
      */
-    public function action()
+    public function action(): HtmlStream
     {
         $this->parser->getManyRelation()->remove($this->id);
 
-        $this->setTableResponse(
+        return $this->getTableResponse(
             singleton($this->parser->getManyRelationClass()),
             $this->parser->getManyRelation()->get()
         );

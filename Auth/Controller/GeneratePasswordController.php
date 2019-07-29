@@ -26,14 +26,14 @@ class GeneratePasswordController extends Controller
      *
      * @param  RequestInterface       $request
      * @param  PasswordGeneratorInterface $generator
-     * @return void
+     * @return HtmlStream|null
      */
-    public function index(RequestInterface $request, PasswordGeneratorInterface $generator): void
+    public function index(RequestInterface $request, PasswordGeneratorInterface $generator):? HtmlStream
     {
         if (!$request->isAjax()) {
-            return;
+            return null;
         }
 
-        $this->setResponseBody(HtmlStream::resolve(), $generator->create(14));
+        return output()->html($generator->create(14));
     }
 }

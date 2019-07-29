@@ -25,18 +25,17 @@ class PageSegmentController extends Controller
      * Default controller action
      *
      * @param  RequestInterface $request
-     * @param HtmlStream $htmlStream
-     * @return void
+     * @return HtmlStream
      */
-    public function index(RequestInterface $request, HtmlStream $htmlStream): void
+    public function index(RequestInterface $request):? HtmlStream
     {
         if (!$request->isAjax()) {
-            return;
+            return null;
         }
 
         $parent = Page::get()->column('segment')->where('id', '=', $request->postVar('id'))->one();
         $segment = $parent ? $parent->segment : '';
 
-        $this->setResponseBody($htmlStream, $segment);
+        return output()->html($segment);
     }
 }

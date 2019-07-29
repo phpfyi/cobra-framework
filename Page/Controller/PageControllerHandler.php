@@ -99,12 +99,12 @@ class PageControllerHandler extends ControllerHandler
         )->getOutput();
 
         $this->emit('AfterViewRendered', $this->output);
-        
-        $this->controller->setResponseBody(
-            $this->stream,
-            $this->output
-        );
 
+        $this->stream->write($this->output);
+        
+        $this->controller->setResponse(
+            $this->controller->getResponse()->withBody($this->stream)
+        );
         $this->controller->getResponse()->getSession()
             ->set(config('form.csrf_field_name'), csrf());
     }

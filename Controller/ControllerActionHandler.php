@@ -74,7 +74,7 @@ class ControllerActionHandler extends AbstractObject implements ControllerAction
                 $this->controller,
                 $this->action
             );
-            if($output instanceof Stream) {
+            if ($output instanceof Stream) {
                 $this->controller->setResponse(
                     $this->controller->getResponse()->withBody($output)
                 );

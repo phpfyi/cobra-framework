@@ -22,7 +22,7 @@ use Cobra\Page\Page;
 class PageLinkListController extends Controller
 {
     /**
-     * Array of HTML links
+     * Array of HTML page links
      *
      * @var array
      */
@@ -32,16 +32,16 @@ class PageLinkListController extends Controller
      * Returns a tiny MCE link list
      *
      * @param  RequestInterface $request
-     * @return void
+     * @return JsonStream
      */
-    public function index(RequestInterface $request): void
+    public function index(RequestInterface $request):? JsonStream
     {
         if (!$request->isAjax()) {
-            return;
+            return null;
         }
         array_map(
             function ($page) {
-                $this->pages[] = [
+                $this->links[] = [
                     'title' => $page->title,
                     'value' => $page->segment
                 ];
@@ -49,6 +49,6 @@ class PageLinkListController extends Controller
             iterator_to_array(Page::get()->sort('title')->all())
         );
 
-        $this->setResponseBody(JsonStream::resolve(), $this->pages);
+        return output()->json($this->links);
     }
 }

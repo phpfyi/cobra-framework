@@ -2,11 +2,11 @@
 
 namespace Cobra\Page\Controller;
 
+use Cobra\Controller\Controller;
+use Cobra\Http\Stream\XmlStream;
 use Cobra\Interfaces\Http\Message\RequestInterface;
 use Cobra\Interfaces\Page\PageInterface;
 use Cobra\Interfaces\Page\Sitemap\XMLSitemapBuilderInterface;
-use Cobra\Controller\Controller;
-use Cobra\Http\Stream\XmlStream;
 
 /**
  * XML Sitemap Controller
@@ -26,10 +26,9 @@ class XMLSitemapController extends Controller
      * Sets the XML sitemap response
      *
      * @param RequestInterface $request
-     * @param XmlStream $stream
-     * @return void
+     * @return XmlStream
      */
-    public function index(RequestInterface $request, XmlStream $stream): void
+    public function index(RequestInterface $request): XmlStream
     {
         $builder = container_resolve(
             XMLSitemapBuilderInterface::class,
@@ -39,8 +38,6 @@ class XMLSitemapController extends Controller
                 )
             ]
         );
-        $this->getResponse()->addHeader('Content-type', 'text/xml');
-        
-        $this->setResponseBody($stream, $builder->getXML());
+        return output()->xml($builder->getXML());
     }
 }

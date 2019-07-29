@@ -79,7 +79,7 @@ abstract class CmsAction extends Controller
                 RequestUri::resolve($this->basePath)
             ]
         );
-        $this->action($request);
+        return $this->action($request);
     }
 
     /**
@@ -87,9 +87,9 @@ abstract class CmsAction extends Controller
      *
      * @param  Model $model
      * @param  mixed $data
-     * @return void
+     * @return HtmlStream
      */
-    protected function setTableResponse(Model $model, $data): void
+    protected function getTableResponse(Model $model, $data): HtmlStream
     {
         $table = $model->cmsTable(
             container_resolve(
@@ -106,7 +106,7 @@ abstract class CmsAction extends Controller
             ->set('parentID', $this->parentID)
             ->set('basePath', $this->basePath);
 
-        $this->setResponseBody(HtmlStream::resolve(), $table);
+        return output()->html($table);
     }
 
     /**

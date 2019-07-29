@@ -2,6 +2,8 @@
 
 namespace Cobra\Cms\Controller\DataTable;
 
+use Cobra\Http\Stream\HtmlStream;
+
 /**
  * CMS Sort Action Controller
  *
@@ -19,9 +21,9 @@ class CmsSortAction extends CmsAction
     /**
      * Sorts a relation list
      *
-     * @return void
+     * @return HtmlStream
      */
-    public function action()
+    public function action(): HtmlStream
     {
         $relation = $this->parser->getManyRelation();
         array_map(
@@ -34,7 +36,7 @@ class CmsSortAction extends CmsAction
             },
             $this->request->postVar('records')
         );
-        $this->setTableResponse(
+        return $this->getTableResponse(
             singleton($this->parser->getManyRelationClass()),
             $relation->get()
         );

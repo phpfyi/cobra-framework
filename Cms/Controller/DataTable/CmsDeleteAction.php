@@ -2,6 +2,8 @@
 
 namespace Cobra\Cms\Controller\DataTable;
 
+use Cobra\Http\Stream\HtmlStream;
+
 /**
  * CMS Delete Action Controller
  *
@@ -19,9 +21,9 @@ class CmsDeleteAction extends CmsAction
     /**
      * Deletes a CMS record
      *
-     * @return void
+     * @return HtmlStream
      */
-    public function action()
+    public function action(): HtmlStream
     {
         if ($relation = $this->parser->getManyRelation()) {
             $relation->remove($this->id);
@@ -31,6 +33,6 @@ class CmsDeleteAction extends CmsAction
 
         $data = $relation ? $relation->get() : $this->class::get()->all();
 
-        $this->setTableResponse($record, $data);
+        return $this->getTableResponse($record, $data);
     }
 }

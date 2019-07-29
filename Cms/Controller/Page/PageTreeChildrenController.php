@@ -27,18 +27,18 @@ class PageTreeChildrenController extends Controller
      * Default controller action
      *
      * @param  RequestInterface $request
-     * @return void
+     * @return HtmlStream
      */
-    public function index(RequestInterface $request): void
+    public function index(RequestInterface $request):? HtmlStream
     {
         if (!$request->isAjax()) {
-            return;
+            return null;
         }
         $data = container_resolve(ViewDataInterface::class)
             ->set('children', $this->getChildren($request->postVar('id')))
             ->withTemplate('apps.cms.view.includes.tree');
             
-        $this->setResponseBody(HtmlStream::resolve(), $data);
+        return output()->html($data);
     }
 
     /**

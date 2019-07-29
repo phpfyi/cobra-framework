@@ -28,9 +28,9 @@ class CmsSearchAction extends CmsAction
     /**
      * Searches a list and returns a result set
      *
-     * @return void
+     * @return HtmlStream
      */
-    public function action()
+    public function action(): HtmlStream
     {
         foreach ($this->request->postVar('search-class')::get()->all() as $record) {
             $this->list[] = sprintf(
@@ -39,6 +39,6 @@ class CmsSearchAction extends CmsAction
                 $record->title
             );
         }
-        $this->setResponseBody(HtmlStream::resolve(), implode($this->list));
+        return output()->html(implode($this->list));
     }
 }
