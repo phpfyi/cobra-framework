@@ -3,10 +3,10 @@
 namespace Cobra\Asset;
 
 use Cobra\Cms\Traits\ModelDataTableColumns;
+use Cobra\Http\Stream\FileStream;
 use Cobra\Interfaces\Asset\FileInterface;
 use Cobra\Interfaces\Asset\Form\Field\UploadFieldInterface;
 use Cobra\Interfaces\Asset\Resource\FilePathSynchroniserInterface;
-use Cobra\Interfaces\Asset\Resource\FileResourceInterface;
 use Cobra\Interfaces\Form\FormInterface;
 use Cobra\Form\Field\SelectField;
 use Cobra\Model\Model;
@@ -64,9 +64,9 @@ class File extends Model implements FileInterface
     protected $inMenu = true;
 
     /**
-     * The system file instance
+     * FileStream resource
      *
-     * @var FileResourceInterface
+     * @var FileStream
      */
     protected $resource;
 
@@ -134,17 +134,12 @@ class File extends Model implements FileInterface
     /**
      * Returns the system file instance
      *
-     * @return FileResourceInterface
+     * @return FileStream
      */
-    public function getResource(): FileResourceInterface
+    public function getResource(): FileStream
     {
         if (!$this->resource) {
-            $this->resource = container_resolve(
-                FileResourceInterface::class,
-                [
-                    $this
-                ]
-            );
+            $this->resource = container_resolve(FileStream::class, [$this]);
         }
         return $this->resource;
     }
@@ -165,12 +160,7 @@ class File extends Model implements FileInterface
                 ]
             )->sync();
         }
-        $this->resource = container_resolve(
-            FileResourceInterface::class,
-            [
-                $this
-            ]
-        );
+        $this->resource = container_resolve(FileStream::class, [$this]);
     }
 
     /**
