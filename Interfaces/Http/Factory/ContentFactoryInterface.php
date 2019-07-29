@@ -2,9 +2,11 @@
 
 namespace Cobra\Interfaces\Http\Factory;
 
+use Cobra\Http\Stream\FileStream;
 use Cobra\Http\Stream\HtmlStream;
 use Cobra\Http\Stream\JsonStream;
 use Cobra\Http\Stream\XmlStream;
+use Cobra\Interfaces\Asset\FileInterface;
 
 /**
  * Content Factory Interface
@@ -43,4 +45,12 @@ interface ContentFactoryInterface
      * @return XmlStream
      */
     public function xml(string $output): XmlStream;
+
+    /**
+     * Returns a FileStream object.
+     *
+     * @param string $file
+     * @return FileInterface
+     */
+    public function file(FileInterface $file): FileStream;
 }

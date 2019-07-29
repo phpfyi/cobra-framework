@@ -24,7 +24,7 @@ class AssetController extends Controller
      * Sends a file response
      *
      * @param RequestUriInterface $uri
-     * @return void
+     * @return FileStream|null
      */
     public function index(RequestUriInterface $uri)
     {
@@ -33,10 +33,6 @@ class AssetController extends Controller
         if (!$file) {
             return $this->setHttpError(404);
         }
-        $this->setResponse(
-            $this->response->withBody(
-                $file->getResource()->output()
-            )
-        );
+        return output()->file($file);
     }
 }

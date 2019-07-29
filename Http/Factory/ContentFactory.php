@@ -2,12 +2,15 @@
 
 namespace Cobra\Http\Factory;
 
-use Cobra\Interfaces\Http\Factory\ContentFactoryInterface;
+use Cobra\Asset\File;
 use Cobra\Http\Stream\Stream;
+use Cobra\Http\Stream\FileStream;
 use Cobra\Http\Stream\HtmlStream;
 use Cobra\Http\Stream\JsonStream;
 use Cobra\Http\Stream\XmlStream;
+use Cobra\Interfaces\Asset\FileInterface;
 use Cobra\Interfaces\Controller\ControllerInterface;
+use Cobra\Interfaces\Http\Factory\ContentFactoryInterface;
 use Cobra\Object\AbstractObject;
 
 /**
@@ -84,6 +87,41 @@ class ContentFactory extends AbstractObject implements ContentFactoryInterface
             ->addHeader('Content-type', 'text/xml');
         
         return $this->write(XmlStream::class, $output);
+    }
+
+    /**
+     * Returns a FileStream object.
+     *
+     * @param FileInterface $file
+     * @return FileStream
+     */
+    public function file(FileInterface $file): FileStream
+    {
+        $stream = $this->write(FileStream::class, $file);
+
+        $this->controller
+            ->getResponse()
+                ->addHeader('Expires', $stream->getExpires())
+                ->addHeader('Cache-Control', 'must-revalidate')
+                ->addHeader('Pragma', 'public')
+                ->addHeader('Content-Length', $stream->getContentLength())
+                ->addHeader('Content-Type', $file->type);
+
+        if ($file->class === File::class) {
+            $this->controller
+                ->getResponse()
+                    ->addHeader('Expires', '0')
+                    ->addHeader('Cache-Control', 'private')
+                    ->addHeader('Content-Description', 'File Transfer')
+                    ->addHeader(
+                        'Content-Disposition',
+                        sprintf(
+                            'attachment; filename="%s"',
+                            $file->filename
+                        )
+                    );
+        }
+        return $stream;
     }
     
     /**
