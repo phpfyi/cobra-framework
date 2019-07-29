@@ -7,8 +7,11 @@ use Cobra\Object\AbstractObject;
 
 /**
  * Content
- * 
+ *
  * Abstract parent class to wrap content types for HTTP responses.
+ *
+ * Takes input (can be any data type, an array, string etc), and returns output
+ * which can be the original data or in most cases; a transformed version.
  *
  * @category  HTTP
  * @package   Cobra
@@ -29,17 +32,21 @@ abstract class Content extends AbstractObject implements ContentInterface
     protected $input;
 
     /**
-     * Writes the input content into the object
-     *
-     * @param mixed $input
-     * @return ContentInterface
-     */
-    abstract public function write($input): ContentInterface;
-
-    /**
      * Returns HTTP safe string representation of the content.
      *
      * @return string
      */
     abstract public function __toString(): string;
+
+    /**
+     * Writes the input content into the object.
+     *
+     * @param mixed $input
+     * @return ContentInterface
+     */
+    public function write($input): ContentInterface
+    {
+        $this->input = $input;
+        return $this;
+    }
 }

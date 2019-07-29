@@ -17,17 +17,17 @@ namespace Cobra\Interfaces\Http\Content;
 interface ContentInterface
 {
     /**
-     * Writes the input content into the object
-     *
-     * @param mixed $input
-     * @return ContentInterface
-     */
-    public function write($input): ContentInterface;
-
-    /**
      * Returns HTTP safe string representation of the content.
      *
      * @return string
      */
     public function __toString(): string;
+
+    /**
+     * Writes the input content into the object.
+     *
+     * @param mixed $input
+     * @return ContentInterface
+     */
+    public function write($input): ContentInterface;
 }
