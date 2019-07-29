@@ -89,9 +89,6 @@ class ContentFactory extends AbstractObject implements ContentFactoryInterface
      */
     protected function write(string $namespace, $output): Stream
     {
-        $stream = container_resolve($namespace);
-        $stream->write($output);
-
-        return $stream;
+        return container_resolve($namespace, [$output]);
     }
 }

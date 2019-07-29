@@ -19,12 +19,12 @@ use Cobra\Http\Stream\Stream;
 class JsonStream extends Stream
 {
     /**
-     * Returns HTTP safe string representation of the content.
+     * Sets the required properties
      *
-     * @return string
+     * @param mixed $data
      */
-    public function __toString(): string
+    public function __construct($data = null, bool $json = false)
     {
-        return json_encode($this->data, JSON_PRETTY_PRINT);
+        $this->data = $json ? $data : json_encode($data, JSON_PRETTY_PRINT);
     }
 }

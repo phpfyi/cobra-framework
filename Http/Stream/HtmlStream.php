@@ -20,7 +20,17 @@ use Cobra\Interfaces\View\Transform\ViewMinifierInterface;
 class HtmlStream extends Stream
 {
     /**
-     * Returns HTTP safe string representation of the content.
+     * Sets the required properties
+     *
+     * @param string|null $data
+     */
+    public function __construct(string $data = null)
+    {
+        $this->data = $data;
+    }
+
+    /**
+     * Returns the string output.
      *
      * @return string
      */
@@ -28,9 +38,7 @@ class HtmlStream extends Stream
     {
         return container_resolve(
             ViewMinifierInterface::class,
-            [
-                $this->data
-            ]
+            [$this->data]
         )->getOutput();
     }
 }
