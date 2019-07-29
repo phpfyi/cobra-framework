@@ -2,6 +2,7 @@
 
 use Cobra\Interfaces\Http\Message\RequestInterface;
 use Cobra\Interfaces\Http\Uri\RequestUriInterface;
+use Cobra\Interfaces\Http\Factory\ContentFactoryInterface;
 use Cobra\Http\Message\HttpForbiddenResponse;
 use Cobra\Http\Message\HttpRedirectResponse;
 
@@ -17,6 +18,18 @@ use Cobra\Http\Message\HttpRedirectResponse;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
+
+if (! function_exists('output')) {
+    /**
+     * Returns the content factory instance.
+     *
+     * @return ContentFactoryInterface
+     */
+    function output(): ContentFactoryInterface
+    {
+        return container_resolve(ContentFactoryInterface::class);
+    }
+}
 
 if (! function_exists('request_ip')) {
     /**
