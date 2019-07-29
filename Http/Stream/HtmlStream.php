@@ -1,9 +1,12 @@
 <?php
 
-namespace Cobra\Interfaces\Http\Content;
+namespace Cobra\Http\Stream;
+
+use Cobra\Http\Stream\Stream;
+use Cobra\Interfaces\View\Transform\ViewMinifierInterface;
 
 /**
- * Content Interface
+ * HTML Stream
  *
  * @category  HTTP
  * @package   Cobra
@@ -14,20 +17,20 @@ namespace Cobra\Interfaces\Http\Content;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-interface ContentInterface
+class HtmlStream extends Stream
 {
     /**
      * Returns HTTP safe string representation of the content.
      *
      * @return string
      */
-    public function __toString(): string;
-
-    /**
-     * Writes the input content into the object.
-     *
-     * @param mixed $input
-     * @return ContentInterface
-     */
-    public function write($input): ContentInterface;
+    public function __toString(): string
+    {
+        return container_resolve(
+            ViewMinifierInterface::class,
+            [
+                $this->data
+            ]
+        )->getOutput();
+    }
 }
