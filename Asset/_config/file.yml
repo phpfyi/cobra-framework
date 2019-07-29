@@ -1,4 +1,5 @@
 Cobra\Asset\File:
+  expiry_days: 30
   validation_rules:
     title: required
   table_columns:
