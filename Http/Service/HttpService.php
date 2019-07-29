@@ -30,6 +30,9 @@ class HttpService extends Service
             ->namespace(
                 \Cobra\Interfaces\Http\Middleware\MiddlewareHandlerInterface::class,
                 \Cobra\Http\Middleware\MiddlewareHandler::class
+            )->namespace(
+                \Cobra\Interfaces\Http\Factory\ContentFactoryInterface::class,
+                \Cobra\Http\Factory\ContentFactory::class
             );
     }
     /**
