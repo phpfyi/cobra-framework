@@ -73,7 +73,10 @@ class DuplicateFileValidator extends Validator
         $path = $factory->getAbsoluteFileSystemPath();
 
         if ($this->fileSystem->exists($path)) {
-            $this->message = sprintf($this->message, $path);
+            $this->message = sprintf(
+                $this->message,
+                $factory->getFilePublicPath()
+            );
             return false;
         }
         return true;

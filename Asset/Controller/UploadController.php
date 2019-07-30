@@ -24,7 +24,7 @@ class UploadController extends Controller
      *
      * @var string
      */
-    protected $ids = [];
+    protected $recordsIds = [];
 
     /**
      * File record field or relation name
@@ -82,7 +82,7 @@ class UploadController extends Controller
      */
     public function setup(): void
     {
-        $this->ids = array_filter((array) explode(',', $this->request->postVar('ids')));
+        $this->recordsIds = array_filter((array) explode(',', $this->request->postVar('ids')));
 
         $this->name = $this->request->postVar('name');
         $this->class = $this->request->postVar('class');
@@ -110,7 +110,7 @@ class UploadController extends Controller
         $this->uploader
             ->setFolderID($this->folderID)
             ->setFileClass($this->class)
-            ->setValue($this->ids);
+            ->setValue($this->recordsIds);
 
         $this->uploader->getProps()
             ->set('parent-class', $this->parentClass)
