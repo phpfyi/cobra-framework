@@ -37,6 +37,7 @@ class ConnectorService extends Service
     {
         return env('DB_ENABLED') === true;
     }
+    
     /**
      * Set up any service class instances required by the application.
      *

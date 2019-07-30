@@ -68,7 +68,6 @@ class ArgumentsResolver implements ArgumentsResolverInterface
             function ($index, ReflectionParameter $parameter) {
                 
                 if (!array_key_exists($index, $this->arguments)) {
-
                     $this->arguments[] = $parameter->getClass() === null
                     ? $parameter->getDefaultValue()
                     : $this->getArgumentInstance($parameter->getClass()->name);
