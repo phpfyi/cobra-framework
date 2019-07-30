@@ -58,7 +58,7 @@ class ArgumentsResolver implements ArgumentsResolverInterface
     }
 
     /**
-     * Get the class instance arguments
+     * Returns the resolved arguments for a class constructor or class method.
      *
      * @return array
      */
@@ -66,18 +66,28 @@ class ArgumentsResolver implements ArgumentsResolverInterface
     {
         array_map(
             function ($index, ReflectionParameter $parameter) {
+                
                 if (!array_key_exists($index, $this->arguments)) {
-                    $this->arguments[] = $parameter->getClass() != null
-                    ? (new ClassResolver(
-                        $this->container,
-                        $parameter->getClass()->name
-                    ))->getInstance()
-                    : $parameter->getDefaultValue();
+
+                    $this->arguments[] = $parameter->getClass() === null
+                    ? $parameter->getDefaultValue()
+                    : $this->getArgumentInstance($parameter->getClass()->name);
                 }
             },
             array_keys($this->parameters),
             $this->parameters
         );
         return $this->arguments;
+    }
+
+    /**
+     * Returns a new class instance argument.
+     *
+     * @param string $namespace
+     * @return object
+     */
+    protected function getArgumentInstance(string $namespace): object
+    {
+        return (new ClassResolver($this->container, $namespace))->getInstance();
     }
 }

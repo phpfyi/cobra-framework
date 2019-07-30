@@ -17,7 +17,7 @@ namespace Cobra\Interfaces\Container\Resolver;
 interface ArgumentsResolverInterface
 {
     /**
-     * Get the class instance arguments
+     * Returns the resolved arguments for a class constructor or class method.
      *
      * @return array
      */
