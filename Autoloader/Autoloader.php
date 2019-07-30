@@ -42,7 +42,7 @@ class Autoloader extends AbstractObject implements AutoloaderInterface
     public function include(string $class): void
     {
         $this->logger->setLog(
-            AutoloaderLog::resolve($class)
+            container_resolve(AutoloaderLog::class, [$class])
         );
     }
 }
