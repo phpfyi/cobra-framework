@@ -51,7 +51,9 @@ final class Environment implements EnvironmentInterface, SingletonInterface
         if ($instance === null) {
             $instance = new static();
 
-            self::$data = EnvironmentData::resolve(ENVIRONMENT_FILE)->load();
+            self::$data = container_resolve(
+                EnvironmentData::class, [ENVIRONMENT_FILE]
+            )->load();
         }
         return $instance;
     }
