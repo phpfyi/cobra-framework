@@ -42,20 +42,28 @@ interface UploadFieldInterface
     public function getFiles(): iterable;
 
     /**
-     * Sets the folder record by name
-     *
-     * @param  string $name
-     * @return UploadFieldInterface
-     */
-    public function setFolderName(string $name): UploadFieldInterface;
-
-    /**
      * Sets the folder record
      *
      * @param  FolderInterface $folder
      * @return UploadFieldInterface
      */
     public function setFolder(FolderInterface $folder): UploadFieldInterface;
+
+    /**
+     * Sets the folder ID.
+     *
+     * @param integer $folderId
+     * @return UploadFieldInterface
+     */
+    public function setFolderID(int $folderId): UploadFieldInterface;
+
+    /**
+     * Sets the folder record by name
+     *
+     * @param  string $name
+     * @return UploadFieldInterface
+     */
+    public function setFolderName(string $name): UploadFieldInterface;
 
     /**
      * Returns the folder record or null

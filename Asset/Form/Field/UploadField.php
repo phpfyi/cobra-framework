@@ -2,7 +2,6 @@
 
 namespace Cobra\Asset\Form\Field;
 
-use ArrayIterator;
 use Cobra\Asset\File;
 use Cobra\Interfaces\Asset\FileInterface;
 use Cobra\Interfaces\Asset\FolderInterface;
@@ -91,10 +90,13 @@ class UploadField extends FormField implements UploadFieldInterface, ViewObject
      */
     public function __construct(string $name, $label = '', $value = null, PropsDataInterface $data)
     {
-        parent::__construct($name, $label, $value);
+        parent::__construct($name, $label);
 
+        $this->setValue($value);
         $this->setProps($data);
+
         $this->props
+            ->set('ids', [])
             ->set('name', $name)
             ->set('class', $this->fileClass)
             ->set('folder-id', 0)
@@ -113,17 +115,21 @@ class UploadField extends FormField implements UploadFieldInterface, ViewObject
      */
     public function setValue($value, $escape = true): FormFieldInterface
     {
+        $this->files = [];
+
         if (is_iterable($value)) {
             array_map(
-                function (int $fileId) {
-                    $this->files[] = container_resolve(FileInterface::class)->find('id', $fileId);
+                function ($item) {
+                    $this->files[] = $item instanceof FileInterface
+                    ? $item
+                    : container_resolve(FileInterface::class)->find('id', $item);
                 },
-                new ArrayIterator($value)
+                is_array($value) ? $value : iterator_to_array($value)
             );
             return $this;
         }
         parent::setValue((int) $value, $escape);
-        
+
         if ($this->value > 0 && $file = container_resolve(FileInterface::class)->find('id', $this->value)) {
             $this->files[] = $file;
         }
@@ -140,6 +146,7 @@ class UploadField extends FormField implements UploadFieldInterface, ViewObject
     {
         $this->fileClass = $class;
         $this->props->set('class', $this->fileClass);
+
         return $this;
     }
     
@@ -151,7 +158,8 @@ class UploadField extends FormField implements UploadFieldInterface, ViewObject
      */
     public function setFiles(iterable $files): UploadFieldInterface
     {
-        $this->files = $files;
+        $this->setValue($files);
+
         return $this;
     }
     
@@ -166,6 +174,33 @@ class UploadField extends FormField implements UploadFieldInterface, ViewObject
     }
 
     /**
+     * Sets the folder record
+     *
+     * @param  FolderInterface $folder
+     * @return UploadFieldInterface
+     */
+    public function setFolder(FolderInterface $folder): UploadFieldInterface
+    {
+        $this->folder = $folder;
+        $this->props->set('folder-id', $folder->id);
+
+        return $this;
+    }
+
+    /**
+     * Sets the folder ID.
+     *
+     * @param integer $folderId
+     * @return UploadFieldInterface
+     */
+    public function setFolderID(int $folderId): UploadFieldInterface
+    {
+        return $this->setFolder(
+            container_resolve(FolderInterface::class)->find('id', $folderId)
+        );
+    }
+
+    /**
      * Sets the folder record by name
      *
      * @param  string $name
@@ -176,19 +211,6 @@ class UploadField extends FormField implements UploadFieldInterface, ViewObject
         return $this->setFolder(
             container_resolve(FolderInterface::class)->find('title', $name)
         );
-    }
-
-    /**
-     * Sets the folder record
-     *
-     * @param  FolderInterface $folder
-     * @return UploadFieldInterface
-     */
-    public function setFolder(FolderInterface $folder): UploadFieldInterface
-    {
-        $this->folder = $folder;
-        $this->props->set('folder-id', $folder->id);
-        return $this;
     }
 
     /**
@@ -209,9 +231,10 @@ class UploadField extends FormField implements UploadFieldInterface, ViewObject
      */
     public function setMultiple(bool $multiple): UploadFieldInterface
     {
-        $this->attributes['multiple'] = 'multiple';
         $this->multiple = $multiple;
+        $this->attributes['multiple'] = 'multiple';
         $this->props->set('multiple', $multiple);
+
         return $this;
     }
 
@@ -233,6 +256,10 @@ class UploadField extends FormField implements UploadFieldInterface, ViewObject
     public function __toString(): string
     {
         $this->attributes['name'] = 'form_uploader';
+
+        $this->props->set('ids', array_map(function (FileInterface $file) {
+            return $file->id;
+        }, $this->files));
 
         return parent::__toString();
     }

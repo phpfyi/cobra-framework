@@ -52,7 +52,7 @@ class UploadRemoveController extends UploadController
         }
         $this->recordsIds = $this->multiple
         ? array_diff($this->recordsIds, [$this->recordId])
-        : [0];
+        : [];
 
         if ($this->parentClass) {
             $this->parentClass::find('id', $this->parentID)
