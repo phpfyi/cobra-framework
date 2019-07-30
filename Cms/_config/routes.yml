@@ -59,14 +59,5 @@ routes:
           - path: '/sort'
             controller: 'Cobra\Cms\Controller\DataTable\CmsSortAction'
 
-          - path: '/upload'
-            guards: 
-              - 'Cobra\Cms\Guard\CmsUploadGuard'
-            children:
-              - path: '/add'
-                controller: 'Cobra\Cms\Controller\Upload\CmsUploadAddAction'
-              - path: '/remove'
-                controller: 'Cobra\Cms\Controller\Upload\CmsUploadRemoveAction'
-
           - path: '/unlink'
             controller: 'Cobra\Cms\Controller\DataTable\CmsUnlinkAction'
