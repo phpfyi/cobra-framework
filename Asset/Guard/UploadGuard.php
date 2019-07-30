@@ -1,13 +1,13 @@
 <?php
 
-namespace Cobra\Cms\Guard;
+namespace Cobra\Asset\Guard;
 
 use Cobra\Routing\Guard\RouteGuard;
 
 /**
- * CMS Route Guard
+ * Upload Guard
  *
- * @category  CMS
+ * @category  Asset
  * @package   Cobra
  * @author    Andrew Mc Cormack <webmaster@ddmseo.com>
  * @copyright Copyright (c) 2019, Andrew Mc Cormack
@@ -16,7 +16,7 @@ use Cobra\Routing\Guard\RouteGuard;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-class CmsUploadGuard extends RouteGuard
+class UploadGuard extends RouteGuard
 {
     /**
      * Returns whether the current route can be activated
