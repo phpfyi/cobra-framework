@@ -64,10 +64,10 @@ class UploadAddController extends UploadController
 
         // attach many relations
         if ($this->parentClass) {
-            array_map(function (int $id) {
+            array_map(function (int $recordId) {
                 $this->parentClass::find('id', $this->parentID)
                     ->{$this->name}()
-                    ->add($id);
+                    ->add($recordId);
             }, $recordsIds);
         }
         $this->uploader->setValue(

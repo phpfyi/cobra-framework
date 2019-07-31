@@ -190,13 +190,13 @@ class CmsModelUrlParser extends AbstractObject implements CmsModelUrlParserInter
      * Returns a record based off the table name and ID
      *
      * @param  string  $table
-     * @param  integer $id
+     * @param  integer $recordId
      * @return void
      */
-    protected function setUpdateRecord(string $table, int $id): void
+    protected function setUpdateRecord(string $table, int $recordId): void
     {
         $instance = $this->classMap->getInstance($table);
-        $this->record = $instance::find('id', $id);
+        $this->record = $instance::find('id', $recordId);
     }
 
     /**
