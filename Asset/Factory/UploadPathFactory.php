@@ -4,7 +4,7 @@ namespace Cobra\Asset\Factory;
 
 use Cobra\Http\Resource\FileUpload;
 use Cobra\Interfaces\Asset\FolderInterface;
-use Cobra\Interfaces\Server\Directory\DirectoryInterface;
+use Cobra\Interfaces\Server\Storage\FileSystemInterface;
 use Cobra\Object\AbstractObject;
 
 /**
@@ -36,11 +36,11 @@ class UploadPathFactory extends AbstractObject
     protected $folderID = 0;
 
     /**
-     * DirectoryInterface variable
+     * FileSystemInterface variable
      *
-     * @var DirectoryInterface
+     * @var FileSystemInterface
      */
-    protected $directory;
+    protected $fileSystem;
 
     /**
      * FolderInterface variable
@@ -61,13 +61,13 @@ class UploadPathFactory extends AbstractObject
      *
      * @param FileUpload $upload
      * @param integer $folderID
-     * @param DirectoryInterface $directory
+     * @param FileSystemInterface $fileSystem
      */
-    public function __construct(FileUpload $upload, int $folderID, DirectoryInterface $directory)
+    public function __construct(FileUpload $upload, int $folderID, FileSystemInterface $fileSystem)
     {
         $this->upload = $upload;
         $this->folderID = $folderID;
-        $this->directory = $directory;
+        $this->fileSystem = $fileSystem;
 
         $this->setupFolder();
     }
@@ -144,7 +144,10 @@ class UploadPathFactory extends AbstractObject
         if ($this->folderID > 0) {
             $this->folder = container_resolve(FolderInterface::class)->find('id', $this->folderID);
             $this->folderPath .= $this->folder->directory.'/';
+
+            $this->fileSystem->createDirectory(
+                normalize_directory(ASSETS_DIRECTORY, $this->folder->directory)
+            );
         }
-        $this->directory->create($this->folderPath);
     }
 }

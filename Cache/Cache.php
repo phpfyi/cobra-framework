@@ -4,8 +4,7 @@ namespace Cobra\Cache;
 
 use Cobra\Interfaces\Cache\CacheInterface;
 use Cobra\Interfaces\Cache\CacheKeyInterface;
-use Cobra\Interfaces\Server\Directory\DirectoryInterface;
-use Cobra\Interfaces\Server\File\FileSystemInterface;
+use Cobra\Interfaces\Server\Storage\FileSystemInterface;
 use Cobra\Object\AbstractObject;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\InvalidArgumentException;
@@ -87,27 +86,17 @@ abstract class Cache extends AbstractObject implements CacheInterface
     protected $fileSystem;
 
     /**
-     * DirectoryInterface instance
-     *
-     * @var DirectoryInterface
-     */
-    protected $directorySystem;
-
-    /**
      * Sets the required properties
      *
      * @param CacheKeyInterface $cacheKey
      * @param FileSystemInterface $fileSystem
-     * @param DirectoryInterface $directorySystem
      */
     public function __construct(
         CacheKeyInterface $cacheKey,
-        FileSystemInterface $fileSystem,
-        DirectoryInterface $directorySystem
+        FileSystemInterface $fileSystem
     ) {
         $this->cacheKey = $cacheKey;
         $this->fileSystem = $fileSystem;
-        $this->directorySystem = $directorySystem;
     }
 
     /**
@@ -172,7 +161,9 @@ abstract class Cache extends AbstractObject implements CacheInterface
         $this->items = [];
         $this->deferred = [];
 
-        return $this->directorySystem->remove(CACHE_DIRECTORY, $this->directory);
+        return $this->fileSystem->removeDirectory(
+            normalize_directory(CACHE_DIRECTORY, $this->directory)
+        );
     }
     
     /**
@@ -218,7 +209,9 @@ abstract class Cache extends AbstractObject implements CacheInterface
     {
         $this->items[$item->getKey()] = $item;
 
-        $this->directorySystem->create(CACHE_DIRECTORY, $this->directory);
+        $this->fileSystem->createDirectory(
+            normalize_directory(CACHE_DIRECTORY, $this->directory)
+        );
 
         return $this->fileSystem->put(
             $this->getFilePath($item->getKey()),

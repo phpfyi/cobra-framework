@@ -5,7 +5,7 @@ namespace Cobra\Asset\Resource;
 use Cobra\Interfaces\Asset\FileInterface;
 use Cobra\Interfaces\Asset\FolderInterface;
 use Cobra\Interfaces\Asset\Resource\FilePathSynchroniserInterface;
-use Cobra\Interfaces\Server\File\FileSystemInterface;
+use Cobra\Interfaces\Server\Storage\FileSystemInterface;
 use Cobra\Object\AbstractObject;
 
 /**
@@ -112,8 +112,8 @@ class FilePathSynchroniser extends AbstractObject implements FilePathSynchronise
     {
         return uri_join_absolute(
             ASSETS_DIRECTORY,
-            $this->folder->title,
-            path_basename($filename)
+            $this->folder->directory,
+            $this->fileSystem->basename($filename)
         );
     }
 }
