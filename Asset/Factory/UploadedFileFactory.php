@@ -101,10 +101,11 @@ class UploadedFileFactory extends AbstractObject
                 $this->record->width = $data[0];
                 $this->record->height = $data[1];
                 $this->record->type = $data['mime'];
-            } else {
-                $this->record->type = mime_content_type($this->pathFactory->getAbsoluteFileSystemPath());
             }
+            $this->record->save();
+            return $this->record;
         }
+        $this->record->type = mime_content_type($this->pathFactory->getAbsoluteFileSystemPath());
         $this->record->save();
 
         return $this->record;
