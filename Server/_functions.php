@@ -1,6 +1,6 @@
 <?php
 
-use Cobra\Interfaces\Server\File\FilePathInterface;
+use Cobra\Interfaces\Server\Storage\FileSystemInterface;
 
 /**
  * Server function sets
@@ -74,7 +74,7 @@ if (! function_exists('dir_parts')) {
     function dir_parts(string $path): array
     {
         return array_map(function (string $directory) {
-            return container_resolve(FilePathInterface::class)->basename($directory);
+            return container_resolve(FileSystemInterface::class)->basename($directory);
         }, explode('.', $path));
     }
 }
@@ -88,19 +88,40 @@ if (! function_exists('path_join_root')) {
      */
     function path_join_root(...$args): string
     {
-        return container_resolve(FilePathInterface::class)->joinRoot(...$args);
+        return ROOT.normalize_path(implode(DIRECTORY_SEPARATOR, $args));
     }
 }
 
-if (! function_exists('path_basename')) {
+if (! function_exists('normalize_directory')) {
     /**
-     * Returns the path filename / basename
+     * Returns a path to a file directory off a dot notation or directory
+     * separator syntax
+     *
+     * @param string[] ...$args
+     * @return string
+     */
+    function normalize_directory(...$args): string
+    {
+        return ROOT.implode(DIRECTORY_SEPARATOR, $args).DIRECTORY_SEPARATOR;
+    }
+}
+
+if (! function_exists('normalize_path')) {
+    /**
+     * Normalizes a path composed of either directory separators or dot syntax.
      *
      * @param string $path
      * @return string
      */
-    function path_basename(string $path): string
+    function normalize_path(string $path): string
     {
-        return container_resolve(FilePathInterface::class)->basename($path);
+        $path = str_replace(DIRECTORY_SEPARATOR, '.', $path);
+
+        $directories = dir_parts($path);
+
+        $basename = array_pop($directories);
+        $basename = container_resolve(FileSystemInterface::class)->basename(array_pop($directories)).'.'.$basename;
+
+        return implode(DIRECTORY_SEPARATOR, $directories).DIRECTORY_SEPARATOR.$basename;
     }
 }
