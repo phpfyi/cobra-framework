@@ -2,7 +2,7 @@
 
 namespace Cobra\View\Loader;
 
-use Cobra\Interfaces\Server\File\FileSystemInterface;
+use Cobra\Interfaces\Server\Storage\FileSystemInterface;
 use Cobra\Interfaces\View\Loader\ViewLoaderInterface;
 use Cobra\Interfaces\View\Loader\ScopedLoaderInterface;
 use Cobra\Interfaces\View\Transform\ViewParserInterface;

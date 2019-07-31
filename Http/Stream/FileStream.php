@@ -4,7 +4,7 @@ namespace Cobra\Http\Stream;
 
 use Cobra\Asset\File;
 use Cobra\Interfaces\Asset\FileInterface;
-use Cobra\Interfaces\Server\File\FileSystemInterface;
+use Cobra\Interfaces\Server\Storage\FileSystemInterface;
 
 /**
  * File Stream

@@ -5,7 +5,7 @@ namespace Cobra\Asset\Validator;
 use Cobra\Asset\Factory\UploadPathFactory;
 use Cobra\Http\Resource\FileUpload;
 use Cobra\Interfaces\Http\Message\RequestInterface;
-use Cobra\Interfaces\Server\File\FileSystemInterface;
+use Cobra\Interfaces\Server\Storage\FileSystemInterface;
 use Cobra\Validator\Validator;
 
 /**

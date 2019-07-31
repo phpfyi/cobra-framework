@@ -3,7 +3,7 @@
 namespace Cobra\View\Asset;
 
 use Cobra\Html\HtmlScriptElement;
-use Cobra\Interfaces\Server\File\FileSystemInterface;
+use Cobra\Interfaces\Server\Storage\FileSystemInterface;
 use Cobra\Interfaces\View\Asset\ViewJavaScriptInterface;
 use Cobra\Interfaces\View\ViewInterface;
 

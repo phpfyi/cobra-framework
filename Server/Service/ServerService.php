@@ -27,17 +27,11 @@ class ServerService extends Service
     {
         $this
             ->namespace(
-                \Cobra\Interfaces\Server\File\FilePathInterface::class,
-                \Cobra\Server\File\FilePath::class
-            )->namespace(
-                \Cobra\Interfaces\Server\File\FileSystemInterface::class,
-                \Cobra\Server\File\FileSystem::class
+                \Cobra\Interfaces\Server\Storage\FileSystemInterface::class,
+                \Cobra\Server\Storage\LocalFileSystem::class
             )->namespace(
                 \Cobra\Interfaces\Server\ServerInterface::class,
                 \Cobra\Server\Server::class
-            )->namespace(
-                \Cobra\Interfaces\Server\Directory\DirectoryInterface::class,
-                \Cobra\Server\Directory\Directory::class
             );
     }
 }
