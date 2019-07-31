@@ -22,7 +22,7 @@ interface FilePathInterface
      * @param  string[] ...$args
      * @return string
      */
-    public static function join(...$args): string;
+    public function join(...$args): string;
 
     /**
      * Returns an absolute system file path joined by \ with a starting \.
@@ -30,7 +30,7 @@ interface FilePathInterface
      * @param  string[] ...$args
      * @return string
      */
-    public static function joinAbsolute(...$args): string;
+    public function joinAbsolute(...$args): string;
 
     /**
      * Returns an root system file path joined by \ with a starting \.
@@ -38,7 +38,7 @@ interface FilePathInterface
      * @param  string[] ...$args
      * @return string
      */
-    public static function joinRoot(...$args): string;
+    public function joinRoot(...$args): string;
 
     /**
      * Normalizes a path composed of either directory separators or dot syntax.
@@ -46,7 +46,7 @@ interface FilePathInterface
      * @param  string $path
      * @return string
      */
-    public static function normalize(string $path): string;
+    public function normalize(string $path): string;
 
     /**
      * Returns the path filename / basename
@@ -54,5 +54,5 @@ interface FilePathInterface
      * @param string $path
      * @return string
      */
-    public static function basename(string $path): string;
+    public function basename(string $path): string;
 }

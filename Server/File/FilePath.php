@@ -25,9 +25,9 @@ class FilePath implements FilePathInterface
      * @param  string[] ...$args
      * @return string
      */
-    public static function join(...$args): string
+    public function join(...$args): string
     {
-        return static::normalize(implode(DIRECTORY_SEPARATOR, $args));
+        return $this->normalize(implode(DIRECTORY_SEPARATOR, ...$args));
     }
 
     /**
@@ -36,11 +36,9 @@ class FilePath implements FilePathInterface
      * @param  string[] ...$args
      * @return string
      */
-    public static function joinAbsolute(...$args): string
+    public function joinAbsolute(...$args): string
     {
-        $path = call_user_func_array([static::class, 'join'], $args);
-
-        return DIRECTORY_SEPARATOR.$path;
+        return DIRECTORY_SEPARATOR.$this->join($args);
     }
 
     /**
@@ -49,11 +47,9 @@ class FilePath implements FilePathInterface
      * @param  string[] ...$args
      * @return string
      */
-    public static function joinRoot(...$args): string
+    public function joinRoot(...$args): string
     {
-        $path = call_user_func_array([static::class, 'join'], $args);
-
-        return ROOT.$path;
+        return ROOT.$this->join($args);
     }
 
     /**
@@ -62,7 +58,7 @@ class FilePath implements FilePathInterface
      * @param  string $path
      * @return string
      */
-    public static function normalize(string $path): string
+    public function normalize(string $path): string
     {
         $path = str_replace(DIRECTORY_SEPARATOR, '.', $path);
 
@@ -80,7 +76,7 @@ class FilePath implements FilePathInterface
      * @param string $path
      * @return string
      */
-    public static function basename(string $path): string
+    public function basename(string $path): string
     {
         return (new SplFileInfo($path))->getFilename();
     }
