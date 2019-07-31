@@ -216,6 +216,20 @@ if (! function_exists('uri_part')) {
     }
 }
 
+if (! function_exists('extract_vars')) {
+    /**
+     * Returns a passed query string vars as an array
+     *
+     * @param string $query
+     * @return array
+     */
+    function extract_vars(string $query): array
+    {
+        parse_str($query, $params);
+        return $params;
+    }
+}
+
 if (! function_exists('uri_to_string')) {
     /**
      * Converts a URI instance into a URI string

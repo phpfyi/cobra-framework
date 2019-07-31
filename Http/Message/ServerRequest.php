@@ -189,8 +189,7 @@ class ServerRequest extends HttpMessage implements ServerRequestInterface
      */
     public function getQueryParams(): array
     {
-        parse_str($this->uri->getQuery(), $params);
-        return $params;
+        return extract_vars($this->uri->getQuery());
     }
 
     /**

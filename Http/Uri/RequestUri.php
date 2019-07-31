@@ -75,7 +75,7 @@ class RequestUri extends Uri implements RequestUriInterface
             $segments = array_filter(explode('/', $this->path));
             return $segments[$index];
         }
-        return basename($this->path);
+        return path_basename($this->path);
     }
 
     /**
@@ -86,7 +86,6 @@ class RequestUri extends Uri implements RequestUriInterface
      */
     public function getVar(string $name):? string
     {
-        parse_str($this->query, $params);
-        return array_key($name, $params);
+        return array_key($name, extract_vars($this->query));
     }
 }
