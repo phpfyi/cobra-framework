@@ -96,18 +96,27 @@ class UploadedFileFactory extends AbstractObject
         $this->record->system_path = '/'.$this->pathFactory->getFileSystemPath();
 
         if ($this->record instanceof ImageInterface) {
-            $data = getimagesize($this->pathFactory->getAbsoluteFileSystemPath());
-            if ($data) {
-                $this->record->width = $data[0];
-                $this->record->height = $data[1];
-                $this->record->type = $data['mime'];
-            }
-            $this->record->save();
-            return $this->record;
+            $this->setImageProperties();
         }
-        $this->record->type = mime_content_type($this->pathFactory->getAbsoluteFileSystemPath());
         $this->record->save();
 
         return $this->record;
+    }
+
+    /**
+     * Sets the record image properties
+     *
+     * @return void
+     */
+    protected function setImageProperties(): void
+    {
+        $data = getimagesize($this->pathFactory->getAbsoluteFileSystemPath());
+        if ($data) {
+            $this->record->width = $data[0];
+            $this->record->height = $data[1];
+            $this->record->type = $data['mime'];
+            return;
+        }
+        $this->record->type = mime_content_type($this->pathFactory->getAbsoluteFileSystemPath());
     }
 }
