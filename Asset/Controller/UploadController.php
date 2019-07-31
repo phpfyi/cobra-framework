@@ -113,8 +113,8 @@ class UploadController extends Controller
             ->setValue($this->recordsIds);
 
         $this->uploader->getProps()
-            ->set('parent-class', $this->parentClass)
-            ->set('parent-id', $this->parentID);
+            ->set('parent-class', (string) $this->parentClass)
+            ->set('parent-id', (int) $this->parentID);
 
         return $this->uploader;
     }
