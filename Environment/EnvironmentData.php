@@ -9,7 +9,7 @@ use Cobra\Object\AbstractObject;
 /**
  * Environment Data
  *
- * Loads the contents of the envuironment file and merges it with the server
+ * Loads the contents of the environment file and merges it with the server
  * environment variables.
  *
  * @category  Environment
