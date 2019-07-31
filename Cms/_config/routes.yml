@@ -5,59 +5,30 @@ routes:
     middleware:
       - 'Cobra\Http\Middleware\CmsAllowedIpsMiddleware'
     children:
-      - path: '/tree'
-        controller: 'Cobra\Cms\Controller\PageTreeController'
-
-      - path: '/tree/children'
-        controller: 'Cobra\Cms\Controller\Page\PageTreeChildrenController'
-
-      - path: '/links'
-        controller: 'Cobra\Cms\Controller\Page\PageLinkListController'
-
-      - path: '/segment/parent'
-        controller: 'Cobra\Cms\Controller\Page\PageSegmentController'
-
       - path: '/model'
-        children:
-          - path: '/Page/.*/Blocks/create'
-            action: 'create'
-            controller: 'Cobra\Cms\Controller\PageBlockRecordController'
-
-          - path: '/.*/create'
-            controller: 'Cobra\Cms\Controller\RecordController'
-            action: 'create'
-
-          - path: '/.*/read'
-            controller: 'Cobra\Cms\Controller\RecordsController'
-            action: 'read'
-
-          - path: '/.*/update/.*'
-            controller: 'Cobra\Cms\Controller\RecordController'
-            action: 'update'
-
+        children: 
+          - { path: '/Page/.*/Blocks/create', controller: 'Cobra\Cms\Controller\PageBlockRecordController', action: 'create' }
+          - { path: '/.*/create', controller: 'Cobra\Cms\Controller\RecordController', action: 'create' }
+          - { path: '/.*/read', controller: 'Cobra\Cms\Controller\RecordsController', action: 'read' }
+          - { path: '/.*/update/.*', controller: 'Cobra\Cms\Controller\RecordController', action: 'update' }
       - path: '/task'
         children:
-          - path: '/build'
-            controller: 'Cobra\Cms\Controller\TaskController'
-            action: 'build'
-
-          - path: '/migrate'
-            controller: 'Cobra\Cms\Controller\TaskController'
-            action: 'migrate'
-
-      - path: '/action'
+          - { path: '/build', controller: 'Cobra\Cms\Controller\TaskController', action: 'build' }
+          - { path: '/migrate', controller: 'Cobra\Cms\Controller\TaskController', action: 'migrate' }
+      - path: '/ajax'
+        guards: 
+          - 'Cobra\Routing\Guard\AjaxRouteGuard'
         children:
-          - path: '/delete'
-            controller: 'Cobra\Cms\Controller\DataTable\CmsDeleteAction'
-
-          - path: '/link'
-            controller: 'Cobra\Cms\Controller\DataTable\CmsLinkAction'
-
-          - path: '/search'
-            controller: 'Cobra\Cms\Controller\DataTable\CmsSearchAction'
-
-          - path: '/sort'
-            controller: 'Cobra\Cms\Controller\DataTable\CmsSortAction'
-
-          - path: '/unlink'
-            controller: 'Cobra\Cms\Controller\DataTable\CmsUnlinkAction'
+          - { path: '/parent-segment', controller: 'Cobra\Cms\Controller\Page\PageSegmentController' }
+          - { path: '/tree-children', controller: 'Cobra\Cms\Controller\Page\PageTreeChildrenController' }
+          - { path: '/links', controller: 'Cobra\Cms\Controller\Page\PageLinkListController' }
+      - path: '/action'
+        guards: 
+          - 'Cobra\Routing\Guard\AjaxRouteGuard'
+        children:
+          - { path: '/delete', controller: 'Cobra\Cms\Controller\DataTable\CmsDeleteAction' }
+          - { path: '/link', controller: 'Cobra\Cms\Controller\DataTable\CmsLinkAction' }
+          - { path: '/search', controller: 'Cobra\Cms\Controller\DataTable\CmsSearchAction' }
+          - { path: '/sort', controller: 'Cobra\Cms\Controller\DataTable\CmsSortAction' }
+          - { path: '/unlink', controller: 'Cobra\Cms\Controller\DataTable\CmsUnlinkAction' }
+      - { path: '/tree', controller: 'Cobra\Cms\Controller\PageTreeController' }
