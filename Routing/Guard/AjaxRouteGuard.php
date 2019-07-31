@@ -1,6 +1,6 @@
 <?php
 
-namespace Cobra\Route\Guard;
+namespace Cobra\Routing\Guard;
 
 use Cobra\Routing\Guard\RouteGuard;
 
