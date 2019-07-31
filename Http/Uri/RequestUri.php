@@ -28,16 +28,16 @@ class RequestUri extends Uri implements RequestUriInterface
      */
     public function __construct(string $uri)
     {
-        $this->scheme = (string) strtolower(parse_url($uri, PHP_URL_SCHEME));
-        $this->host = (string) strtolower(parse_url($uri, PHP_URL_HOST));
+        $this->scheme = (string) strtolower(uri_part($uri, 'SCHEME'));
+        $this->host = (string) strtolower(uri_part($uri, 'HOST'));
 
-        $this->port = parse_url($uri, PHP_URL_PORT);
-        $this->user = parse_url($uri, PHP_URL_USER);
-        $this->pass = parse_url($uri, PHP_URL_PASS);
+        $this->port = uri_part($uri, 'PORT');
+        $this->user = uri_part($uri, 'USER');
+        $this->pass = uri_part($uri, 'PASS');
 
-        $this->path = (string) parse_url($uri, PHP_URL_PATH);
-        $this->query = (string) parse_url($uri, PHP_URL_QUERY);
-        $this->fragment = (string) parse_url($uri, PHP_URL_FRAGMENT);
+        $this->path = (string) uri_part($uri, 'PATH');
+        $this->query = (string) uri_part($uri, 'QUERY');
+        $this->fragment = (string) uri_part($uri, 'FRAGMENT');
     }
 
     /**

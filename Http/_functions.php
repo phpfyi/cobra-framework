@@ -199,6 +199,23 @@ if (! function_exists('uri_path')) {
     }
 }
 
+if (! function_exists('uri_part')) {
+    /**
+     * Returns a URI part. Proxy function to parse_url.
+     *
+     * @param string $uri
+     * @param string $identifier
+     * @return void
+     */
+    function uri_part(string $uri, string $identifier)
+    {
+        $part = constant(
+            sprintf('PHP_URL_%s', strtoupper($identifier))
+        );
+        return parse_url($uri, $part);
+    }
+}
+
 if (! function_exists('uri_to_string')) {
     /**
      * Converts a URI instance into a URI string
