@@ -71,11 +71,9 @@ class RequestUri extends Uri implements RequestUriInterface
      */
     public function getSegment($index = null): string
     {
-        if ($index) {
-            $segments = array_filter(explode('/', $this->path));
-            return $segments[$index];
-        }
-        return path_basename($this->path);
+        $segments = array_filter(explode('/', $this->path));
+
+        return $index ? $segments[$index] : $segments[count($segments) - 1];
     }
 
     /**
