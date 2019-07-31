@@ -38,9 +38,6 @@ class UploadAddController extends UploadController
      */
     public function index(RequestInterface $request):? HtmlStream
     {
-        if (!$request->isAjax()) {
-            return null;
-        }
         $this->uploader = $this->getUploader();
 
         // validate uploads

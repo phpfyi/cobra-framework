@@ -5,7 +5,6 @@ namespace Cobra\Auth\Controller;
 use Cobra\Controller\Controller;
 use Cobra\Http\Stream\HtmlStream;
 use Cobra\Interfaces\Auth\Password\PasswordGeneratorInterface;
-use Cobra\Interfaces\Http\Message\RequestInterface;
 
 /**
  * Password Controller
@@ -24,16 +23,11 @@ class GeneratePasswordController extends Controller
     /**
      * Returns a random generated password response
      *
-     * @param  RequestInterface       $request
      * @param  PasswordGeneratorInterface $generator
      * @return HtmlStream|null
      */
-    public function index(RequestInterface $request, PasswordGeneratorInterface $generator):? HtmlStream
+    public function index(PasswordGeneratorInterface $generator):? HtmlStream
     {
-        if (!$request->isAjax()) {
-            return null;
-        }
-
         return output()->html($generator->create(14));
     }
 }

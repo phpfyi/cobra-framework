@@ -3,7 +3,6 @@
 namespace Cobra\Asset\Controller;
 
 use Cobra\Http\Stream\HtmlStream;
-use Cobra\Interfaces\Http\Message\RequestInterface;
 
 /**
  * Upload Remove Controller
@@ -41,15 +40,11 @@ class UploadRemoveController extends UploadController
     /**
      * Runs the upload remove action
      *
-     * @param RequestInterface $request
      * @param HtmlStream $stream
      * @return HtmlStream|null
      */
-    public function index(RequestInterface $request):? HtmlStream
+    public function index():? HtmlStream
     {
-        if (!$request->isAjax()) {
-            return null;
-        }
         $this->recordsIds = $this->multiple
         ? array_diff($this->recordsIds, [$this->recordId])
         : [];

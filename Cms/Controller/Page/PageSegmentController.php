@@ -29,10 +29,6 @@ class PageSegmentController extends Controller
      */
     public function index(RequestInterface $request):? HtmlStream
     {
-        if (!$request->isAjax()) {
-            return null;
-        }
-
         $parent = Page::get()->column('segment')->where('id', '=', $request->postVar('id'))->one();
         $segment = $parent ? $parent->segment : '';
 

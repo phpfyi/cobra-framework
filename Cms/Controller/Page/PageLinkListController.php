@@ -2,7 +2,6 @@
 
 namespace Cobra\Cms\Controller\Page;
 
-use Cobra\Interfaces\Http\Message\RequestInterface;
 use Cobra\Controller\Controller;
 use Cobra\Http\Stream\JsonStream;
 use Cobra\Page\Page;
@@ -31,14 +30,10 @@ class PageLinkListController extends Controller
     /**
      * Returns a tiny MCE link list
      *
-     * @param  RequestInterface $request
      * @return JsonStream
      */
-    public function index(RequestInterface $request):? JsonStream
+    public function index():? JsonStream
     {
-        if (!$request->isAjax()) {
-            return null;
-        }
         array_map(
             function ($page) {
                 $this->links[] = [

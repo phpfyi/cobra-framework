@@ -31,9 +31,6 @@ class PageTreeChildrenController extends Controller
      */
     public function index(RequestInterface $request):? HtmlStream
     {
-        if (!$request->isAjax()) {
-            return null;
-        }
         $data = container_resolve(ViewDataInterface::class)
             ->set('children', $this->getChildren($request->postVar('id')))
             ->withTemplate('apps.cms.view.includes.tree');

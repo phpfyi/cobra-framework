@@ -63,9 +63,6 @@ abstract class CmsAction extends Controller
      */
     public function index(RequestInterface $request)
     {
-        if (!$request->isAjax()) {
-            return;
-        }
         array_map(
             function ($property) use ($request) {
                 $this->{$property} = $request->postVar($property);
