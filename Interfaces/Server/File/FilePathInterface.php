@@ -55,4 +55,12 @@ interface FilePathInterface
      * @return string
      */
     public function basename(string $path): string;
+
+    /**
+     * Returns the path extension.
+     *
+     * @param string $path
+     * @return string
+     */
+    public function extension(string $path): string;
 }

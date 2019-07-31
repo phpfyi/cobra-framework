@@ -80,4 +80,15 @@ class FilePath implements FilePathInterface
     {
         return (new SplFileInfo($path))->getFilename();
     }
+
+    /**
+     * Returns the path extension.
+     *
+     * @param string $path
+     * @return string
+     */
+    public function extension(string $path): string
+    {
+        return (new SplFileInfo($path))->getExtension();
+    }
 }

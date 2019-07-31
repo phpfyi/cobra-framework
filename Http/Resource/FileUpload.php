@@ -3,6 +3,7 @@
 namespace Cobra\Http\Resource;
 
 use Cobra\Http\Stream\UploadStream;
+use Cobra\Interfaces\Server\File\FilePathInterface;
 use Cobra\Interfaces\Server\File\FileSystemInterface;
 use Cobra\Object\AbstractObject;
 use Psr\Http\Message\UploadedFileInterface;
@@ -98,10 +99,15 @@ class FileUpload extends AbstractObject implements UploadedFileInterface
      *
      * @param array $data
      * @param UploadStream $stream
+     * @param FilePathInterface $filePath
      * @param FileSystemInterface $stream
      */
-    public function __construct(array $data, UploadStream $stream, FileSystemInterface $fileSystem)
-    {
+    public function __construct(
+        array $data,
+        UploadStream $stream,
+        FilePathInterface $filePath,
+        FileSystemInterface $fileSystem
+    ) {
         $this->fileSystem = $fileSystem;
 
         $this->tmpName = array_key('tmp_name', $data);
@@ -110,7 +116,7 @@ class FileUpload extends AbstractObject implements UploadedFileInterface
         $this->filename = path_basename(array_key('name', $data));
         $this->clientMediaType = array_key('type', $data);
         $this->serverMediaType = $this->tmpName ? mime_content_type($this->tmpName) : null;
-        $this->extension = pathinfo($this->filename, PATHINFO_EXTENSION);
+        $this->extension = $filePath->extension($this->filename);
         $this->hash = md5($this->filename);
 
         $this->stream = $stream;
