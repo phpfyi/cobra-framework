@@ -2,6 +2,7 @@
 
 namespace Cobra\Interfaces\Model;
 
+use Cobra\Model\ModelDatabaseTable;
 use Cobra\Interfaces\Cms\ModelDataTable\ModelDataTableInterface;
 use Cobra\Interfaces\Form\FormInterface;
 
