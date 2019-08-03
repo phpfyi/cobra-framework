@@ -53,6 +53,9 @@ class SchemaTableFactory extends AbstractObject
     {
         $this->schema = $this->databaseTable->getDatabaseSchema();
 
+        $this->schema->hierarchy = [];
+        $this->schema->polymorphic = false;
+
         $this
             ->setHierarchy()
             ->set('getColumns', 'columns')
@@ -71,12 +74,15 @@ class SchemaTableFactory extends AbstractObject
      */
     protected function setHierarchy(): SchemaTableFactory
     {
-        $namespace = $this->databaseTable->getClass();
+        $this->schema->hierarchy[] = $namespace = $this->databaseTable->getClass();
         
         while ($namespace = get_parent_class($namespace)) {
             if (is_subclass_of($namespace, Model::class)) {
                 $this->schema->hierarchy[] = $namespace;
             }
+        }
+        if (count($this->schema->hierarchy) > 1) {
+            $this->schema->polymorphic = true;
         }
         return $this;
     }
