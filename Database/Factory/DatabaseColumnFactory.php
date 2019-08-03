@@ -27,6 +27,13 @@ class DatabaseColumnFactory extends AbstractObject
     protected $column;
 
     /**
+     * Whether to write a primary key
+     *
+     * @var bool
+     */
+    protected $primary;
+
+    /**
      * Column SQL
      *
      * @var string
@@ -37,10 +44,12 @@ class DatabaseColumnFactory extends AbstractObject
      * Sets the required properties
      *
      * @param DatabaseFieldInterface $column
+     * @param bool $primary
      */
-    public function __construct(DatabaseFieldInterface $column)
+    public function __construct(DatabaseFieldInterface $column, bool $primary = true)
     {
         $this->column = $column;
+        $this->primary = $primary;
     }
 
     /**
@@ -54,7 +63,9 @@ class DatabaseColumnFactory extends AbstractObject
         $this->sql .= sprintf('%s%s ', $this->getType(), $this->getLength());
         $this->sql .= $this->column->isUnsigned() === true ? 'unsigned ' : '';
         $this->sql .= $this->column->isIncremented() === true ? 'AUTO_INCREMENT ' : '';
-        $this->sql .= $this->column->isPrimary() === true ? 'primary key ' : '';
+        if ($this->primary) {
+            $this->sql .= $this->column->isPrimary() === true ? 'primary key ' : '';
+        }
         $this->sql .= $this->column->isNull() === true ? 'NULL ' : '';
         $this->sql .= $this->column->isNotNull() === true ? 'NOT NULL ' : '';
         $this->sql .= $this->column->getDefault() ? sprintf('DEFAULT %s ', $this->column->getDefault()) : '';
