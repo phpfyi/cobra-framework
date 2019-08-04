@@ -36,6 +36,13 @@ class SchemaFactory extends AbstractObject
     protected $schemaCache;
 
     /**
+     * Array of model schema specs.
+     *
+     * @var array
+     */
+    protected $schemas = [];
+
+    /**
      * Sets the required properties.
      *
      * @param ObjectCache $objectCache
@@ -56,17 +63,38 @@ class SchemaFactory extends AbstractObject
     {
         array_map(
             function (ModelInterface $model) {
-                $table = databaseTable($model);
-                $factory = container_resolve(SchemaTableFactory::class, [$table]);
+                $schema = container_resolve(SchemaTableFactory::class, [databaseTable($model)])->getSchema();
 
-                $this->schemaCache->find(
-                    $table->getClass(),
-                    function () use ($factory) {
-                        return json_encode($factory->getSchema(), JSON_PRETTY_PRINT);
-                    }
-                );
+                $this->schemas[$schema->class] = $schema;
             },
             $this->objectCache->getInstances()
+        );
+        array_map(
+            function (object $schema) {
+                $this->sendToCache(
+                    container_resolve(
+                        SchemaSpecFactory::class,
+                        [$schema, $this->schemas]
+                    )->getSpec()
+                );
+            },
+            $this->schemas
+        );
+    }
+
+    /**
+     * Sends the schema to the cache.
+     *
+     * @param object $schema
+     * @return void
+     */
+    protected function sendToCache(object $schema): void
+    {
+        $this->schemaCache->find(
+            $schema->class,
+            function () use ($schema) {
+                return json_encode($schema, JSON_PRETTY_PRINT);
+            }
         );
     }
 }

@@ -63,7 +63,7 @@ class SchemaTableFactory extends AbstractObject
             ->set('getHasManyRelations', 'hasMany')
             ->set('getManyManyRelations', 'manyMany')
             ->set('getBelongsManyManyRelations', 'belongsManyMany');
-
+            
         return $this->schema;
     }
 
