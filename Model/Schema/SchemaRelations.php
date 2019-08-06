@@ -102,7 +102,7 @@ class SchemaRelations extends AbstractObject
      *
      * @return array
      */
-    public function hasOne(): array
+    public function getHasOne(): array
     {
         return $this->hasOne;
     }
@@ -112,7 +112,7 @@ class SchemaRelations extends AbstractObject
      *
      * @return array
      */
-    public function hasMany(): array
+    public function getHasMany(): array
     {
         return $this->hasMany;
     }
@@ -122,7 +122,7 @@ class SchemaRelations extends AbstractObject
      *
      * @return array
      */
-    public function manyMany(): array
+    public function getManyMany(): array
     {
         return $this->manyMany;
     }
@@ -132,7 +132,7 @@ class SchemaRelations extends AbstractObject
      *
      * @return array
      */
-    public function belongsManyMany(): array
+    public function getBelongsManyMany(): array
     {
         return $this->belongsManyMany;
     }
