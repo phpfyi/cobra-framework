@@ -46,6 +46,8 @@ class TaskController extends AppController
         $schemaFactory->cacheSchema();
         $databaseArchitect->createDatabase();
 
-        view()->setPage('apps.cms.view.page.migrate');
+        view()
+            ->setData('migrated', [])
+            ->setPage('apps.cms.view.page.migrate');
     }
 }
