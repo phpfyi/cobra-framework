@@ -122,7 +122,7 @@ class ModelFormFactory extends AbstractObject implements FormFactoryInterface
                     )->getOutput()
                 );
             },
-            schema($this->model)->getHierarchy(true)
+            schema($this->model)->hierarchy(true)
         );
         // add tokens fields and submit button
         $this->form = container_resolve(
@@ -158,13 +158,13 @@ class ModelFormFactory extends AbstractObject implements FormFactoryInterface
         // set fields
         $factory = ModelFormColumnFactory::resolve(
             $this->form,
-            (array) schema($model)->columns
+            schema($model)->columns()->getColumns()
         )->pushToForm();
 
         // set has one fields
         $factory = ModelFormHasOneFactory::resolve(
             $this->form,
-            (array) schema($model)->hasOne
+            schema($model)->columns()->getHasOneColumns()
         )->pushToForm();
     }
 
