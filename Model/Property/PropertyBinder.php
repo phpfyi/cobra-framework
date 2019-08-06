@@ -27,6 +27,13 @@ class PropertyBinder extends AbstractObject
     protected $source;
 
     /**
+     * Array of columns names to bind
+     *
+     * @var array
+     */
+    protected $columns = [];
+
+    /**
      * Properties to bind
      *
      * @var array
