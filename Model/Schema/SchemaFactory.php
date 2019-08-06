@@ -5,6 +5,7 @@ namespace Cobra\Model\Schema;
 use Cobra\Interfaces\Model\ModelInterface;
 use Cobra\Model\Cache\ObjectCache;
 use Cobra\Model\Cache\SchemaCache;
+use Cobra\Model\Schema\Mutator\SchemaMutator;
 use Cobra\Object\AbstractObject;
 
 /**
@@ -62,6 +63,30 @@ class SchemaFactory extends AbstractObject
     public function cacheSchema(): void
     {
         array_map(
+            function (object $schema) {
+                $this->sendToCache(
+                    container_resolve(
+                        SchemaMutator::class,
+                        [
+                            array_map(function (string $namespace) {
+                                return $this->schemas[$namespace];
+                            }, $schema->hierarchy)
+                        ]
+                    )->mutate()
+                );
+            },
+            $this->getDatabaseSchemas()
+        );
+    }
+
+    /**
+     * Sets up all the schema data instances.
+     *
+     * @return array
+     */
+    protected function getDatabaseSchemas(): array
+    {
+        array_map(
             function (ModelInterface $model) {
                 $schema = container_resolve(SchemaTableFactory::class, [databaseTable($model)])->getSchema();
 
@@ -69,17 +94,7 @@ class SchemaFactory extends AbstractObject
             },
             $this->objectCache->getInstances()
         );
-        array_map(
-            function (object $schema) {
-                $this->sendToCache(
-                    container_resolve(
-                        SchemaSpecFactory::class,
-                        [$schema, $this->schemas]
-                    )->getSpec()
-                );
-            },
-            $this->schemas
-        );
+        return $this->schemas;
     }
 
     /**
