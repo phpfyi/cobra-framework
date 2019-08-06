@@ -53,7 +53,7 @@ class DatabaseArchitect extends AbstractObject
     public function createDatabase(): void
     {
         array_map(function (ModelInterface $model) {
-            $this->tables[] = databaseTable($model);
+            $this->tables[] = database_table($model);
         }, $this->instances);
 
         container_resolve(DatabaseFactory::class, [$this->tables])->createDatabase();

@@ -179,7 +179,7 @@ class ModelFormFactory extends AbstractObject implements FormFactoryInterface
         // has many fields
         $factory = ModelFormHasManyFactory::resolve(
             $this->form,
-            databaseTable($model)->getHasManyRelations(),
+            database_table($model)->getHasManyRelations(),
             $this->model,
             $this->request->getUri()->getPath()
         )->pushToForm();
@@ -187,7 +187,7 @@ class ModelFormFactory extends AbstractObject implements FormFactoryInterface
         // many many fields
         $factory = ModelFormManyManyFactory::resolve(
             $this->form,
-            databaseTable($model)->getManyManyRelations(),
+            database_table($model)->getManyManyRelations(),
             $this->model,
             $this->request->getUri()->getPath()
         )->pushToForm();

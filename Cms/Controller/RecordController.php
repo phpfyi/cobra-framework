@@ -88,7 +88,7 @@ class RecordController extends AppController
         )->getForm();
 
         if ($this->relation instanceof HasManyRelation) {
-            foreach (databaseTable($this->record)->getHasOneRelations() as $hasOne) {
+            foreach (database_table($this->record)->getHasOneRelations() as $hasOne) {
                 if ($hasOne->getHasManyRelation() == $this->relation->getRelation()
                     && $hasOne->getRelationClass() == $this->relation->getParentClass()
                 ) {
