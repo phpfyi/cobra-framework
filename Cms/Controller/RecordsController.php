@@ -5,7 +5,7 @@ namespace Cobra\Cms\Controller;
 use Cobra\Cms\Controller\AppController;
 use Cobra\Interfaces\Cms\ModelDataTable\ModelDataTableInterface;
 use Cobra\Interfaces\Http\Message\RequestInterface;
-use Cobra\Model\ModelClassMap;
+use Cobra\Model\Cache\ObjectCache;
 
 /**
  * CMS Records Controller
@@ -25,12 +25,12 @@ class RecordsController extends AppController
      * Build the CMS record list and renders the UI
      *
      * @param RequestInterface $request
-     * @param ModelClassMap $classMap
+     * @param ObjectCache $objectCache
      * @return void
      */
-    public function read(RequestInterface $request, ModelClassMap $classMap): void
+    public function read(RequestInterface $request, ObjectCache $objectCache): void
     {
-        $model = $classMap->getInstance(
+        $model = $objectCache->getInstance(
             $request->getUri()->getSegment(3)
         );
         $table = $model->cmsTable(

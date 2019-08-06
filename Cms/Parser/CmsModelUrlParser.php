@@ -4,8 +4,8 @@ namespace Cobra\Cms\Parser;
 
 use Cobra\Http\Uri\RequestUri;
 use Cobra\Interfaces\Cms\Parser\CmsModelUrlParserInterface;
+use Cobra\Model\Cache\ObjectCache;
 use Cobra\Model\Model;
-use Cobra\Model\ModelClassMap;
 use Cobra\Object\AbstractObject;
 
 /**
@@ -39,11 +39,11 @@ class CmsModelUrlParser extends AbstractObject implements CmsModelUrlParserInter
     protected $segments = [];
 
     /**
-     * ModelClassMap instance
+     * ObjectCache instance
      *
-     * @var ModelClassMap
+     * @var ObjectCache
      */
-    protected $classMap;
+    protected $objectCache;
 
     /**
      * URL record action
@@ -77,12 +77,12 @@ class CmsModelUrlParser extends AbstractObject implements CmsModelUrlParserInter
      * Sets the required properties
      *
      * @param RequestUri $uri
-     * @param ModelClassMap $classMap
+     * @param ObjectCache $objectCache
      */
-    public function __construct(RequestUri $uri, ModelClassMap $classMap)
+    public function __construct(RequestUri $uri, ObjectCache $objectCache)
     {
         $this->segments = array_filter(explode('/', $uri->getPath()));
-        $this->classMap = $classMap;
+        $this->objectCache = $objectCache;
 
         $this->setRecord();
     }
@@ -183,7 +183,7 @@ class CmsModelUrlParser extends AbstractObject implements CmsModelUrlParserInter
      */
     protected function setCreateRecord(string $table): void
     {
-        $this->record = $this->classMap->getInstance($table);
+        $this->record = $this->objectCache->getInstance($table);
     }
 
     /**
@@ -195,7 +195,7 @@ class CmsModelUrlParser extends AbstractObject implements CmsModelUrlParserInter
      */
     protected function setUpdateRecord(string $table, int $recordId): void
     {
-        $instance = $this->classMap->getInstance($table);
+        $instance = $this->objectCache->getInstance($table);
         $this->record = $instance::find('id', $recordId);
     }
 
