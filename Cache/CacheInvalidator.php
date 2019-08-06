@@ -3,7 +3,7 @@
 namespace Cobra\Cache;
 
 use Cobra\Interfaces\Cache\CacheInvalidatorInterface;
-use Cobra\Model\Schema\ModelSchemaBuilder;
+use Cobra\Model\Schema\SchemaFactory;
 use Cobra\Object\AbstractObject;
 
 /**
@@ -23,18 +23,18 @@ class CacheInvalidator extends AbstractObject implements CacheInvalidatorInterfa
     /**
      * Schema builder instance
      *
-     * @var ModelSchemaBuilder
+     * @var SchemaFactory
      */
-    protected $schemaBuilder;
+    protected $schemaFactory;
 
     /**
      * Sets the required properties
      *
-     * @param ModelSchemaBuilder $schemaBuilder
+     * @param SchemaFactory $schemaFactory
      */
-    public function __construct(ModelSchemaBuilder $schemaBuilder)
+    public function __construct(SchemaFactory $schemaFactory)
     {
-        $this->schemaBuilder = $schemaBuilder;
+        $this->schemaFactory = $schemaFactory;
     }
 
     /**
@@ -51,6 +51,6 @@ class CacheInvalidator extends AbstractObject implements CacheInvalidatorInterfa
             static::config('caches')
         );
 
-        $this->schemaBuilder->run();
+        $this->schemaFactory->cacheSchema();
     }
 }

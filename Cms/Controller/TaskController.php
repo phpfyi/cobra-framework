@@ -2,11 +2,10 @@
 
 namespace Cobra\Cms\Controller;
 
-use Cobra\Autoloader\ComposerAutoloader;
 use Cobra\Cache\CacheInvalidator;
 use Cobra\Cms\Controller\AppController;
-use Cobra\Model\Migration\ModelMigrator;
-use Cobra\Model\Schema\ModelSchemaBuilder;
+use Cobra\Model\Factory\DatabaseArchitect;
+use Cobra\Model\Schema\SchemaFactory;
 
 /**
  * CMS Task Controller
@@ -38,14 +37,14 @@ class TaskController extends AppController
     /**
      * Runs the database migration queries
      *
-     * @param ModelSchemaBuilder $scheamBuilder
-     * @param ModelMigrator $migrator
+     * @param SchemaFactory $schemaFactory
+     * @param DatabaseArchitect $databaseArchitect
      * @return void
      */
-    public function migrate(ModelSchemaBuilder $scheamBuilder, ModelMigrator $migrator): void
+    public function migrate(SchemaFactory $schemaFactory, DatabaseArchitect $databaseArchitect): void
     {
-        $scheamBuilder->run();
-        $migrator->run();
+        $schemaFactory->cacheSchema();
+        $databaseArchitect->createDatabase();
 
         view()->setPage('apps.cms.view.page.migrate');
     }
