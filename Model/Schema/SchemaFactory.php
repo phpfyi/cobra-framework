@@ -5,7 +5,7 @@ namespace Cobra\Model\Schema;
 use Cobra\Interfaces\Model\ModelInterface;
 use Cobra\Model\Cache\ObjectCache;
 use Cobra\Model\Cache\SchemaCache;
-use Cobra\Model\Schema\Mutator\SchemaMutator;
+use Cobra\Model\Schema\SchemaTransformer;
 use Cobra\Object\AbstractObject;
 
 /**
@@ -66,13 +66,13 @@ class SchemaFactory extends AbstractObject
             function (object $schema) {
                 $this->sendToCache(
                     container_resolve(
-                        SchemaMutator::class,
+                        SchemaTransformer::class,
                         [
                             array_map(function (string $namespace) {
                                 return $this->schemas[$namespace];
                             }, $schema->hierarchy)
                         ]
-                    )->mutate()
+                    )->getData()
                 );
             },
             $this->getDatabaseSchemas()
