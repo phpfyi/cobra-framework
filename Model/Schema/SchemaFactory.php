@@ -89,7 +89,7 @@ class SchemaFactory extends AbstractObject
         array_map(
             function (ModelInterface $model) {
                 $schema = container_resolve(
-                    SchemaTableFactory::class, 
+                    SchemaTableFactory::class,
                     [database_table($model)]
                 )->getSchema();
 
