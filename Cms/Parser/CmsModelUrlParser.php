@@ -222,19 +222,19 @@ class CmsModelUrlParser extends AbstractObject implements CmsModelUrlParserInter
      */
     protected function getRelationTable(string $relation): string
     {
-        $schema = schema($this->parent);
+        $relations = schema($this->parent)->relations();
 
-        if (property_exists((object) $schema->hasMany_all, $relation)) {
+        if ($relations->hasHasMany($relation)) {
             $this->manyRelation = $this->parent->$relation();
             $this->manyRelationClass = $this->manyRelation->getRelationClass();
 
-            return $schema->hasMany_all->{$relation}->relationTable;
+            return $relations->get($relation)->relationTable;
         }
-        if (property_exists((object) $schema->manyMany_all, $relation)) {
+        if ($relations->hasManyMany($relation)) {
             $this->manyRelation = $this->parent->$relation();
             $this->manyRelationClass = $this->manyRelation->getForeignClass();
 
-            return $schema->manyMany_all->{$relation}->foreignTable;
+            return $relations->get($relation)->foreignTable;
         }
     }
 }
