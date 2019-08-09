@@ -44,8 +44,7 @@ class LoggedInEvent extends Event
         $this->log->action = 'Login attempt';
         $this->log->result = 'Success';
         $this->log->ip_address = $this->request->getIP();
+        $this->log->UserID = $user->id;
         $this->log->save();
-
-        $user->Logs()->add($this->log->id);
     }
 }
