@@ -143,7 +143,7 @@ class SchemaRelations extends AbstractObject
      * @param string $name
      * @return boolean
      */
-    public function hasRelation(string $name): bool
+    public function exists(string $name): bool
     {
         return array_key_exists($name, $this->relations);
     }
