@@ -2,6 +2,8 @@
 
 namespace Cobra\Database\Statement;
 
+use Cobra\Database\Statement\Traits\UsesLimitSQL;
+use Cobra\Database\Statement\Traits\UsesWhereSQL;
 use Cobra\Object\AbstractObject;
 
 /**
@@ -18,6 +20,8 @@ use Cobra\Object\AbstractObject;
  */
 class UpdateStatement extends AbstractObject
 {
+    use UsesLimitSQL, UsesWhereSQL;
+
     /**
      * The database table name
      *
@@ -40,18 +44,27 @@ class UpdateStatement extends AbstractObject
     protected $bind = [];
 
     /**
+     * The limit clause number.
+     *
+     * @var string
+     */
+    protected $limit = 1;
+
+    /**
      * Sets the required properties.
      *
      * @param string $table
      * @param array $data
      * @param integer $id
+     * @param integer $limit
      */
-    public function __construct(string $table, array $data, int $id)
+    public function __construct(string $table, array $data, int $id, int $limit = 1)
     {
         $this->table = $table;
         $this->columns = array_keys($data);
         $this->bind = array_values($data);
         $this->bind[] = $id;
+        $this->limit = $limit;
     }
 
     /**
@@ -66,7 +79,8 @@ class UpdateStatement extends AbstractObject
                 [
                     $this->getTableSQL(),
                     $this->getColumnsSQL(),
-                    $this->getWhereSQL()
+                    $this->getWhereSQL(),
+                    $this->getLimitSQL()
                 ]
             ),
             $this->bind
@@ -102,15 +116,5 @@ class UpdateStatement extends AbstractObject
                 $this->columns
             )
         );
-    }
-
-    /**
-     * Returns the where SQL.
-     *
-     * @return string
-     */
-    protected function getWhereSQL(): string
-    {
-        return ' WHERE id = ?';
     }
 }
