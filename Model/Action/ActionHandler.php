@@ -21,7 +21,7 @@ use Cobra\Event\Traits\EventEmitter;
  *
  * Methods called here MUST return either true or false depending on the outcome
  * of the action. The class has a single responsibility - to call the action and
- * return whether its was successful. Things like determining why an action did 
+ * return whether its was successful. Things like determining why an action did
  * not complete should be the responsibility of the called action.
  *
  * @category  Model

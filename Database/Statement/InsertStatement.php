@@ -5,7 +5,7 @@ namespace Cobra\Database\Statement;
 use Cobra\Object\AbstractObject;
 
 /**
- * Update Statement
+ * Insert Statement
  *
  * @category  Database
  * @package   Cobra
@@ -16,7 +16,7 @@ use Cobra\Object\AbstractObject;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-class UpdateStatement extends AbstractObject
+class InsertStatement extends AbstractObject
 {
     /**
      * The database table name
@@ -26,7 +26,7 @@ class UpdateStatement extends AbstractObject
     protected $table;
 
     /**
-     * The table columns to update
+     * The table columns to insert
      *
      * @var string
      */
@@ -44,18 +44,16 @@ class UpdateStatement extends AbstractObject
      *
      * @param string $table
      * @param array $data
-     * @param integer $id
      */
-    public function __construct(string $table, array $data, int $id)
+    public function __construct(string $table, array $data)
     {
         $this->table = $table;
         $this->columns = array_keys($data);
         $this->bind = array_values($data);
-        $this->bind[] = $id;
     }
 
     /**
-     * Executes the database query statement and returns the row count.
+     * Executes the database query statement and returns the insert ID.
      *
      * @return int
      */
@@ -66,24 +64,24 @@ class UpdateStatement extends AbstractObject
                 [
                     $this->getTableSQL(),
                     $this->getColumnsSQL(),
-                    $this->getWhereSQL()
+                    $this->getValuesSQL()
                 ]
             ),
             $this->bind
         );
         $stmt->execute();
 
-        return $stmt->rowCount();
+        return $stmt->insertId();
     }
 
     /**
-     * Returns the table SQL
+     * Returns the table SQL.
      *
      * @return string
      */
     protected function getTableSQL(): string
     {
-        return sprintf('UPDATE `%s` SET ', $this->table);
+        return sprintf('INSERT INTO `%s`(created,', $this->table);
     }
 
     /**
@@ -93,24 +91,24 @@ class UpdateStatement extends AbstractObject
      */
     protected function getColumnsSQL(): string
     {
-        return implode(
-            ',',
-            array_map(
-                function (string $column) {
-                    return sprintf('%s = ?', $column);
-                },
-                $this->columns
-            )
-        );
+        return implode(',', $this->columns);
     }
 
     /**
-     * Returns the where SQL.
+     * Returns the values SQL.
      *
      * @return string
      */
-    protected function getWhereSQL(): string
+    protected function getValuesSQL(): string
     {
-        return ' WHERE id = ?';
+        return ') VALUES (NOW(),'.implode(
+            ',',
+            array_map(
+                function ($column) {
+                    return '?';
+                },
+                $this->columns
+            )
+        ).')';
     }
 }
