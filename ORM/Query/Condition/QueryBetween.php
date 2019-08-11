@@ -59,10 +59,8 @@ class QueryBetween extends QueryCondition
     public function getSQL(): string
     {
         return sprintf(
-            '%s BETWEEN %s AND %s',
-            $this->getColumnSQL(),
-            $this->minValue,
-            $this->maxValue
+            '%s BETWEEN ? AND ?',
+            $this->getColumnSQL()
         );
     }
 }
