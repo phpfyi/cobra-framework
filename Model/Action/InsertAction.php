@@ -60,5 +60,7 @@ class InsertAction extends Action
             ]
         );
         $this->id = $this->statement->run();
+
+        $this->model->id = $this->id;
     }
 }
