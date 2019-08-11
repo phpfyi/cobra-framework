@@ -3,7 +3,7 @@
 namespace Cobra\ORM\Query;
 
 use Closure;
-use Cobra\ORM\Factory\QueryFactory;
+use Cobra\ORM\Factory\SelectQueryFactory;
 use Cobra\ORM\Query\Traits\UsesColumns;
 use Cobra\ORM\Query\Traits\UsesConditions;
 use Cobra\ORM\Query\Traits\UsesTable;
@@ -26,9 +26,9 @@ class QuerySelect extends Query
     use UsesColumns, UsesConditions, UsesTable;
 
     /**
-     * QueryFactory instance
+     * SelectQueryFactory instance
      *
-     * @var QueryFactory
+     * @var SelectQueryFactory
      */
     protected $queryFactory;
 
@@ -47,7 +47,7 @@ class QuerySelect extends Query
     public function __construct(string $table)
     {
         $this->table = $table;
-        $this->queryFactory = container_resolve(QueryFactory::class, [$this]);
+        $this->queryFactory = container_resolve(SelectQueryFactory::class, [$this]);
     }
 
     /**
