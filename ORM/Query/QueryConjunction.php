@@ -52,7 +52,7 @@ class QueryConjunction extends Query
             '%s%s%s%s',
             $this->conjunction ? $this->conjunction.' ' : '',
             $this->isNested() ? '(' : '',
-            $this->implode($this->getConditions()),
+            $this->getImplodedSQL($this->getConditions()),
             $this->isNested() ? ')' : ''
         );
     }
