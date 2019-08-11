@@ -67,7 +67,12 @@ trait UsesConditions
      */
     public function where($column, string $operator = null, $value = null): Query
     {
-        return $this->setConjunctionForCondition($column, func_get_args(), QueryWhere::class, Condition\QueryComparison::class);
+        return $this->setConjunctionForCondition(
+            $column,
+            [$column, $operator, $value],
+            QueryWhere::class,
+            Condition\QueryComparison::class
+        );
     }
 
     /**
@@ -80,7 +85,12 @@ trait UsesConditions
      */
     public function and($column, string $operator = null, $value = null): Query
     {
-        return $this->setConjunctionForCondition($column, func_get_args(), QueryAnd::class, Condition\QueryComparison::class);
+        return $this->setConjunctionForCondition(
+            $column,
+            [$column, $operator, $value],
+            QueryAnd::class,
+            Condition\QueryComparison::class
+        );
     }
 
     /**
@@ -93,7 +103,12 @@ trait UsesConditions
      */
     public function or($column, string $operator = null, $value = null): Query
     {
-        return $this->setConjunctionForCondition($column, func_get_args(), QueryOr::class, Condition\QueryComparison::class);
+        return $this->setConjunctionForCondition(
+            $column,
+            [$column, $operator, $value],
+            QueryOr::class,
+            Condition\QueryComparison::class
+        );
     }
 
     /**
@@ -106,7 +121,12 @@ trait UsesConditions
      */
     public function between(string $column, $minValue, $maxValue): Query
     {
-        return $this->setConjunctionForCondition($column, func_get_args(), QueryWhere::class, Condition\QueryBetween::class);
+        return $this->setConjunctionForCondition(
+            $column,
+            [$column, $minValue, $maxValue],
+            QueryWhere::class,
+            Condition\QueryBetween::class
+        );
     }
 
     /**
@@ -118,7 +138,12 @@ trait UsesConditions
      */
     public function in(string $column, array $values): Query
     {
-        return $this->setConjunctionForCondition($column, [$column, 'IN', $values], QueryWhere::class, Condition\QueryIn::class);
+        return $this->setConjunctionForCondition(
+            $column,
+            [$column, 'IN', $values],
+            QueryWhere::class,
+            Condition\QueryIn::class
+        );
     }
 
     /**
@@ -130,7 +155,12 @@ trait UsesConditions
      */
     public function notIn(string $column, array $values): Query
     {
-        return $this->setConjunctionForCondition($column, [$column, 'NOT IN', $values], QueryWhere::class, Condition\QueryIn::class);
+        return $this->setConjunctionForCondition(
+            $column,
+            [$column, 'NOT IN', $values],
+            QueryWhere::class,
+            Condition\QueryIn::class
+        );
     }
 
     /**
