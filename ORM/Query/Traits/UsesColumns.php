@@ -27,16 +27,6 @@ trait UsesColumns
      * @var array
      */
     protected $columns = [];
-
-    /**
-     * Returns the columns SQL
-     *
-     * @return string
-     */
-    public function getColumnsSQL(): string
-    {
-        return $this->getImplodedSQL($this->columns, ', '.PHP_EOL);
-    }
     
     /**
      * Returns an array of all query column objects.
