@@ -73,11 +73,6 @@ class QueryIn extends QueryCondition
      */
     protected function getSQLPlaceholders(): string
     {
-        return implode(
-            ',',
-            array_map(function (string $value) {
-                return '?';
-            }, $this->values)
-        );
+        return implode(',', array_fill(0, count($this->values), '?'));
     }
 }
