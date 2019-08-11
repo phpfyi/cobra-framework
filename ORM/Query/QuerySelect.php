@@ -21,7 +21,7 @@ use Cobra\ORM\Query\Traits\UsesTable;
  * @since     1.0.0
  */
 
-class QueryTable extends Query
+class QuerySelect extends Query
 {
     use UsesColumns, UsesConditions, UsesTable;
 
@@ -75,9 +75,9 @@ class QueryTable extends Query
      *
      * @param string $table
      * @param Closure $closure
-     * @return QueryTable
+     * @return QuerySelect
      */
-    public function leftJoin(string $table, Closure $closure): QueryTable
+    public function leftJoin(string $table, Closure $closure): QuerySelect
     {
         return $this->setJoinObject(Join\QueryLeftJoin::class, $table, $closure);
     }
@@ -87,9 +87,9 @@ class QueryTable extends Query
      *
      * @param string $table
      * @param Closure $closure
-     * @return QueryTable
+     * @return QuerySelect
      */
-    public function rightJoin(string $table, Closure $closure): QueryTable
+    public function rightJoin(string $table, Closure $closure): QuerySelect
     {
         return $this->setJoinObject(Join\QueryRightJoin::class, $table, $closure);
     }
@@ -99,9 +99,9 @@ class QueryTable extends Query
      *
      * @param string $table
      * @param Closure $closure
-     * @return QueryTable
+     * @return QuerySelect
      */
-    public function fullJoin(string $table, Closure $closure): QueryTable
+    public function fullJoin(string $table, Closure $closure): QuerySelect
     {
         return $this->setJoinObject(Join\QueryFullJoin::class, $table, $closure);
     }
@@ -111,9 +111,9 @@ class QueryTable extends Query
      *
      * @param string $table
      * @param Closure $closure
-     * @return QueryTable
+     * @return QuerySelect
      */
-    public function innerJoin(string $table, Closure $closure): QueryTable
+    public function innerJoin(string $table, Closure $closure): QuerySelect
     {
         return $this->setJoinObject(Join\QueryInnerJoin::class, $table, $closure);
     }
@@ -124,9 +124,9 @@ class QueryTable extends Query
      * @param string $namespace
      * @param string $table
      * @param Closure $closure
-     * @return QueryTable
+     * @return QuerySelect
      */
-    protected function setJoinObject(string $namespace, string $table, Closure $closure): QueryTable
+    protected function setJoinObject(string $namespace, string $table, Closure $closure): QuerySelect
     {
         $closure($this->joins[$table] = container_resolve($namespace, [$table, $this->getTable()]));
         return $this;
