@@ -2,12 +2,10 @@
 
 namespace Cobra\ORM\Query\Column;
 
-use Cobra\ORM\Query\QueryColumn;
-
 /**
- * Query Min
+ * Column Max
  *
- * Class representing an SQL query MIN column.
+ * Class representing an SQL query MAX column.
  *
  * @category  ORM
  * @package   Cobra
@@ -19,7 +17,7 @@ use Cobra\ORM\Query\QueryColumn;
  * @since     1.0.0
  */
 
-class QueryMin extends QueryColumn
+class ColumnMax extends Column
 {
     /**
      * Returns the SQL string.
@@ -28,6 +26,9 @@ class QueryMin extends QueryColumn
      */
     public function getSQL(): string
     {
-        return sprintf('MIN(%s)', $this->getColumnSQL());
+        return sprintf(
+            'MAX(%s)',
+            $this->column
+        );
     }
 }

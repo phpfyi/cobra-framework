@@ -2,12 +2,10 @@
 
 namespace Cobra\ORM\Query\Column;
 
-use Cobra\ORM\Query\QueryColumn;
-
 /**
- * Query Distinct
+ * Column Min
  *
- * Class representing an SQL query DISTINCT column.
+ * Class representing an SQL query MIN column.
  *
  * @category  ORM
  * @package   Cobra
@@ -19,7 +17,7 @@ use Cobra\ORM\Query\QueryColumn;
  * @since     1.0.0
  */
 
-class QueryDistinct extends QueryColumn
+class ColumnMin extends Column
 {
     /**
      * Returns the SQL string.
@@ -28,6 +26,9 @@ class QueryDistinct extends QueryColumn
      */
     public function getSQL(): string
     {
-        return sprintf('DISTINCT(%s)', $this->getColumnSQL());
+        return sprintf(
+            'MIN(%s)',
+            $this->column
+        );
     }
 }

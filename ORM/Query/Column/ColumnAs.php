@@ -2,10 +2,8 @@
 
 namespace Cobra\ORM\Query\Column;
 
-use Cobra\ORM\Query\QueryColumn;
-
 /**
- * Query As
+ * Column As
  *
  * Class representing an SQL query AS column.
  *
@@ -19,7 +17,7 @@ use Cobra\ORM\Query\QueryColumn;
  * @since     1.0.0
  */
 
-class QueryAs extends QueryColumn
+class ColumnAs extends Column
 {
     /**
      * Database table column alias
@@ -31,13 +29,12 @@ class QueryAs extends QueryColumn
     /**
      * Sets the required properties.
      *
-     * @param string $table
      * @param string $column
      * @param string $alias
      */
-    public function __construct(string $table, string $column, string $alias)
+    public function __construct(string $column, string $alias)
     {
-        parent::__construct($table, $column);
+        parent::__construct($column);
 
         $this->alias = $alias;
     }
@@ -49,6 +46,10 @@ class QueryAs extends QueryColumn
      */
     public function getSQL(): string
     {
-        return sprintf('%s AS %s', $this->getColumnSQL(), $this->alias);
+        return sprintf(
+            '%s AS %s',
+            $this->column,
+            $this->alias
+        );
     }
 }

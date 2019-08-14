@@ -2,12 +2,10 @@
 
 namespace Cobra\ORM\Query\Column;
 
-use Cobra\ORM\Query\QueryColumn;
-
 /**
- * Query Sum
+ * Column Average
  *
- * Class representing an SQL query SUM column.
+ * Class representing an SQL query AVG column.
  *
  * @category  ORM
  * @package   Cobra
@@ -19,7 +17,7 @@ use Cobra\ORM\Query\QueryColumn;
  * @since     1.0.0
  */
 
-class QuerySum extends QueryColumn
+class ColumnAverage extends Column
 {
     /**
      * Returns the SQL string.
@@ -28,6 +26,9 @@ class QuerySum extends QueryColumn
      */
     public function getSQL(): string
     {
-        return sprintf('SUM(%s)', $this->getColumnSQL());
+        return sprintf(
+            'AVG(%s)',
+            $this->column
+        );
     }
 }

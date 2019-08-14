@@ -1,11 +1,11 @@
 <?php
 
-namespace Cobra\ORM\Query;
+namespace Cobra\ORM\Query\Column;
 
-use Cobra\ORM\Query\Traits\UsesColumn;
+use Cobra\ORM\Query\Query;
 
 /**
- * Query Column
+ * Column
  *
  * Abstract class representing an SQL query column.
  *
@@ -19,17 +19,8 @@ use Cobra\ORM\Query\Traits\UsesColumn;
  * @since     1.0.0
  */
 
-abstract class QueryColumn extends Query
+abstract class Column extends Query
 {
-    use UsesColumn;
-
-    /**
-     * Database table name
-     *
-     * @var string
-     */
-    protected $table;
-
     /**
      * Database table column name
      *
@@ -43,9 +34,21 @@ abstract class QueryColumn extends Query
      * @param string $table
      * @param string $column
      */
-    public function __construct(string $table, string $column)
+    public function __construct(string $column)
     {
-        $this->table = $table;
         $this->column = $column;
+    }
+
+    /**
+     * Returns the SQL string.
+     *
+     * @return string
+     */
+    public function getSQL(): string
+    {
+        return sprintf(
+            '%s',
+            $this->column
+        );
     }
 }

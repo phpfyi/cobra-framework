@@ -2,12 +2,10 @@
 
 namespace Cobra\ORM\Query\Column;
 
-use Cobra\ORM\Query\QueryColumn;
-
 /**
- * Query Max
+ * Column Sum
  *
- * Class representing an SQL query MAX column.
+ * Class representing an SQL query SUM column.
  *
  * @category  ORM
  * @package   Cobra
@@ -19,7 +17,7 @@ use Cobra\ORM\Query\QueryColumn;
  * @since     1.0.0
  */
 
-class QueryMax extends QueryColumn
+class ColumnSum extends Column
 {
     /**
      * Returns the SQL string.
@@ -28,6 +26,9 @@ class QueryMax extends QueryColumn
      */
     public function getSQL(): string
     {
-        return sprintf('MAX(%s)', $this->getColumnSQL());
+        return sprintf(
+            'SUM(%s)',
+            $this->column
+        );
     }
 }

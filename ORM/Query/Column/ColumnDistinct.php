@@ -1,9 +1,11 @@
 <?php
 
-namespace Cobra\ORM\Query\Traits;
+namespace Cobra\ORM\Query\Column;
 
 /**
- * Uses Table trait
+ * Column Distinct
+ *
+ * Class representing an SQL query DISTINCT column.
  *
  * @category  ORM
  * @package   Cobra
@@ -15,22 +17,18 @@ namespace Cobra\ORM\Query\Traits;
  * @since     1.0.0
  */
 
-trait UsesTable
+class ColumnDistinct extends Column
 {
     /**
-     * Database table name.
-     *
-     * @var string
-     */
-    protected $table;
-
-    /**
-     * Returns the database table name.
+     * Returns the SQL string.
      *
      * @return string
      */
-    public function getTable(): string
+    public function getSQL(): string
     {
-        return $this->table;
+        return sprintf(
+            'DISTINCT(%s)',
+            $this->column
+        );
     }
 }
