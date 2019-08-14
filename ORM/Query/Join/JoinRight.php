@@ -2,10 +2,8 @@
 
 namespace Cobra\ORM\Query\Join;
 
-use Cobra\ORM\Query\QueryJoin;
-
 /**
- * Query Left Join
+ * Join Right
  *
  * @category  ORM
  * @package   Cobra
@@ -17,12 +15,12 @@ use Cobra\ORM\Query\QueryJoin;
  * @since     1.0.0
  */
 
-class QueryLeftJoin extends QueryJoin
+class JoinRight extends Join
 {
     /**
      * Join type
      *
      * @var string
      */
-    protected $join = 'LEFT JOIN';
+    protected $join = 'RIGHT JOIN';
 }

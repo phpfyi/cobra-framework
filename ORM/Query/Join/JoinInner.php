@@ -2,10 +2,8 @@
 
 namespace Cobra\ORM\Query\Join;
 
-use Cobra\ORM\Query\QueryJoin;
-
 /**
- * Query Full Join
+ * Join Inner
  *
  * @category  ORM
  * @package   Cobra
@@ -17,12 +15,12 @@ use Cobra\ORM\Query\QueryJoin;
  * @since     1.0.0
  */
 
-class QueryFullJoin extends QueryJoin
+class JoinInner extends Join
 {
     /**
      * Join type
      *
      * @var string
      */
-    protected $join = 'FULL JOIN';
+    protected $join = 'INNER JOIN';
 }
