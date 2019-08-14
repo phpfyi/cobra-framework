@@ -1,13 +1,11 @@
 <?php
 
-namespace Cobra\ORM\Query\Condition;
+namespace Cobra\ORM\Query\Comparison;
 
-use Cobra\ORM\Query\QueryCondition;
+use Cobra\ORM\Query\Query;
 
 /**
- * Query Comparison
- *
- * Class representing an SQL query comparison condition.
+ * Comparison Columns
  *
  * @category  ORM
  * @package   Cobra
@@ -19,36 +17,41 @@ use Cobra\ORM\Query\QueryCondition;
  * @since     1.0.0
  */
 
-class QueryComparison extends QueryCondition
+class ComparisonColumns extends Comparison
 {
     /**
-     * Condition operator
+     * Database table column
+     *
+     * @var string
+     */
+    protected $column;
+
+    /**
+     * Join operator
      *
      * @var string
      */
     protected $operator;
 
     /**
-     * Condition value
+     * Database join table column
      *
-     * @var mixed
+     * @var string
      */
-    protected $value;
+    protected $joinColumn;
 
     /**
      * Sets the required properties.
      *
-     * @param string $table
      * @param string $column
      * @param string $operator
-     * @param string|int|array $value
+     * @param string $joinColumn
      */
-    public function __construct(string $table, string $column, string $operator, $value)
+    public function __construct(string $column, string $operator, string $joinColumn)
     {
-        parent::__construct($table, $column);
-        
+        $this->column = $column;
         $this->operator = $operator;
-        $this->value = $value;
+        $this->joinColumn = $joinColumn;
     }
 
     /**
@@ -59,9 +62,10 @@ class QueryComparison extends QueryCondition
     public function getSQL(): string
     {
         return sprintf(
-            '%s %s ?',
-            $this->getColumnSQL(),
-            $this->operator
+            '%s %s %s ',
+            $this->column,
+            $this->operator,
+            $this->joinColumn
         );
     }
 }

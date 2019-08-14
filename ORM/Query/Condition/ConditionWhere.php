@@ -1,13 +1,11 @@
 <?php
 
-namespace Cobra\ORM\Query\Conjunction;
-
-use Cobra\ORM\Query\QueryConjunction;
+namespace Cobra\ORM\Query\Condition;
 
 /**
- * Query or
+ * Condition where
  *
- * Class representing an SQL query OR conjunction.
+ * Class representing an SQL query WHERE condition.
  *
  * @category  ORM
  * @package   Cobra
@@ -19,12 +17,12 @@ use Cobra\ORM\Query\QueryConjunction;
  * @since     1.0.0
  */
 
-class QueryOr extends QueryConjunction
+class ConditionWhere extends Condition
 {
     /**
-     * Conjunction type
+     * Condition type
      *
      * @var string
      */
-    protected $conjunction = 'OR';
+    protected $condition = 'WHERE';
 }

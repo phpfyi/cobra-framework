@@ -1,13 +1,11 @@
 <?php
 
-namespace Cobra\ORM\Query\Condition;
-
-use Cobra\ORM\Query\QueryCondition;
+namespace Cobra\ORM\Query\Comparison;
 
 /**
- * Query in Condition
+ * Query in Comparison
  *
- * Class representing an SQL query IN condition.
+ * Class representing an SQL query IN comparison.
  *
  * @category  ORM
  * @package   Cobra
@@ -19,17 +17,17 @@ use Cobra\ORM\Query\QueryCondition;
  * @since     1.0.0
  */
 
-class QueryIn extends QueryCondition
+class ComparisonIn extends Comparison
 {
     /**
-     * Condition operator
+     * Comparison operator
      *
      * @var string
      */
     protected $operator = 'IN';
 
     /**
-     * Condition values
+     * Comparison values
      *
      * @var mixed
      */
@@ -38,15 +36,13 @@ class QueryIn extends QueryCondition
     /**
      * Sets the required properties.
      *
-     * @param string $table
      * @param string $column
      * @param string $operator
      * @param array $values
      */
-    public function __construct(string $table, string $column, string $operator = 'IN', array $values = [])
+    public function __construct(string $column, string $operator = 'IN', array $values = [])
     {
-        parent::__construct($table, $column);
-        
+        $this->column = $column;
         $this->operator = $operator;
         $this->values = $values;
     }
@@ -59,8 +55,8 @@ class QueryIn extends QueryCondition
     public function getSQL(): string
     {
         return sprintf(
-            '%s %s (%s)',
-            $this->getColumnSQL(),
+            '%s %s (%s) ',
+            $this->column,
             $this->operator,
             $this->getSQLPlaceholders()
         );

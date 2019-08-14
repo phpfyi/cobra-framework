@@ -1,11 +1,13 @@
 <?php
 
-namespace Cobra\ORM\Query;
+namespace Cobra\ORM\Query\Comparison;
 
-use Cobra\Object\AbstractObject;
+use Cobra\ORM\Query\Query;
 
 /**
- * Query
+ * Comparison
+ *
+ * Class representing an SQL query comparison.
  *
  * @category  ORM
  * @package   Cobra
@@ -17,12 +19,7 @@ use Cobra\Object\AbstractObject;
  * @since     1.0.0
  */
 
-abstract class Query extends AbstractObject
+abstract class Comparison extends Query
 {
-    /**
-     * Returns the SQL string.
-     *
-     * @return string
-     */
-    abstract public function getSQL(): string;
+    
 }

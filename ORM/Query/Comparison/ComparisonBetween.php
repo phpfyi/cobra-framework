@@ -1,13 +1,11 @@
 <?php
 
-namespace Cobra\ORM\Query\Condition;
-
-use Cobra\ORM\Query\QueryCondition;
+namespace Cobra\ORM\Query\Comparison;
 
 /**
- * Query Between
+ * Comparison Between
  *
- * Class representing an SQL query BETWEEN condition.
+ * Class representing an SQL query BETWEEN comparison.
  *
  * @category  ORM
  * @package   Cobra
@@ -19,17 +17,17 @@ use Cobra\ORM\Query\QueryCondition;
  * @since     1.0.0
  */
 
-class QueryBetween extends QueryCondition
+class ComparisonBetween extends Comparison
 {
     /**
-     * Condition min value
+     * Comparison min value
      *
      * @var mixed
      */
     protected $minValue;
 
     /**
-     * Condition max value
+     * Comparison max value
      *
      * @var mixed
      */
@@ -38,15 +36,13 @@ class QueryBetween extends QueryCondition
     /**
      * Sets the required properties.
      *
-     * @param string $table
      * @param string $column
      * @param mixed $minValue
      * @param mixed $maxValue
      */
-    public function __construct(string $table, string $column, $minValue, $maxValue)
+    public function __construct(string $column, $minValue, $maxValue)
     {
-        parent::__construct($table, $column);
-        
+        $this->column = $column;
         $this->minValue = $minValue;
         $this->maxValue = $maxValue;
     }
@@ -59,8 +55,8 @@ class QueryBetween extends QueryCondition
     public function getSQL(): string
     {
         return sprintf(
-            '%s BETWEEN ? AND ?',
-            $this->getColumnSQL()
+            '%s BETWEEN ? AND ? ',
+            $this->column
         );
     }
 }

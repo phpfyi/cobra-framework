@@ -1,11 +1,11 @@
 <?php
 
-namespace Cobra\ORM\Query;
-
-use Cobra\Object\AbstractObject;
+namespace Cobra\ORM\Query\Condition;
 
 /**
- * Query
+ * Condition or
+ *
+ * Class representing an SQL query OR condition.
  *
  * @category  ORM
  * @package   Cobra
@@ -17,12 +17,12 @@ use Cobra\Object\AbstractObject;
  * @since     1.0.0
  */
 
-abstract class Query extends AbstractObject
+class ConditionOr extends Condition
 {
     /**
-     * Returns the SQL string.
+     * Condition type
      *
-     * @return string
+     * @var string
      */
-    abstract public function getSQL(): string;
+    protected $condition = 'OR';
 }
