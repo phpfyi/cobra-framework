@@ -62,7 +62,7 @@ class HttpResponse extends HttpMessage implements ResponseInterface
     /**
      * Gets the response status code.
      *
-     * @return int Status code.
+     * @return integer Status code.
      */
     public function getStatusCode(): int
     {

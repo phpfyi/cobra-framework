@@ -55,7 +55,7 @@ class InsertStatement extends AbstractObject
     /**
      * Executes the database query statement and returns the insert ID.
      *
-     * @return int
+     * @return integer
      */
     public function run(): int
     {

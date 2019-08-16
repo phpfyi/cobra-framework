@@ -58,7 +58,7 @@ interface ManyManyRelationInterface
     /**
      * Returns the relation local ID
      *
-     * @return int
+     * @return integer
      */
     public function getLocalID(): int;
 

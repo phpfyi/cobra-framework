@@ -163,7 +163,7 @@ class ManyManyRelation extends DatabaseTable implements ManyManyRelationInterfac
     /**
      * Returns the relation local ID
      *
-     * @return int
+     * @return integer
      */
     public function getLocalID(): int
     {

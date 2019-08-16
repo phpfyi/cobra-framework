@@ -106,7 +106,7 @@ class HasOneRelation extends DatabaseIntField implements HasOneRelationInterface
     /**
      * Returns the relation ID
      *
-     * @return int
+     * @return integer
      */
     public function getRelationID(): int
     {

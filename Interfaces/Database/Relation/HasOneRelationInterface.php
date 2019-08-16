@@ -44,7 +44,7 @@ interface HasOneRelationInterface
     /**
      * Returns the relation ID
      *
-     * @return int
+     * @return integer
      */
     public function getRelationID(): int;
 

@@ -60,7 +60,7 @@ class DeleteStatement extends AbstractObject
     /**
      * Executes the database query statement and returns the row count.
      *
-     * @return int
+     * @return integer
      */
     public function run(): int
     {

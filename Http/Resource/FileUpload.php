@@ -185,7 +185,7 @@ class FileUpload extends AbstractObject implements UploadedFileInterface
      * the file in the $_FILES array if available, as PHP calculates this based
      * on the actual size transmitted.
      *
-     * @return int|null The file size in bytes or null if unknown.
+     * @return integer|null The file size in bytes or null if unknown.
      */
     public function getSize():? int
     {
@@ -204,7 +204,7 @@ class FileUpload extends AbstractObject implements UploadedFileInterface
      * the file in the $_FILES array.
      *
      * @see    http://php.net/manual/en/features.file-upload.errors.php
-     * @return int One of PHP's UPLOAD_ERR_XXX constants.
+     * @return integer One of PHP's UPLOAD_ERR_XXX constants.
      */
     public function getError(): int
     {

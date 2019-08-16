@@ -66,7 +66,7 @@ interface HasManyRelationInterface
     /**
      * Returns the relation parent ID
      *
-     * @return int
+     * @return integer
      */
     public function getParentID(): int;
 
