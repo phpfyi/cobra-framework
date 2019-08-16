@@ -2,6 +2,7 @@
 
 namespace Cobra\ORM\Query\Traits;
 
+use Closure;
 use Cobra\ORM\Query\Condition;
 use Cobra\ORM\Query\Query;
 
@@ -21,35 +22,52 @@ use Cobra\ORM\Query\Query;
 trait UsesConditions
 {
     /**
-     * Sets a AND clause.
+     * Sets a query AND clause.
      *
-     * @param [mixed] ...$args
-     * @return ConditionAnd
+     * @param Closure $closure
+     * @return Query
      */
-    public function and(...$args): Condition\ConditionAnd
+    public function and(Closure $closure = null): Query
     {
-        return $this->store->setCondition(Condition\ConditionAnd::class, $args);
+        return $this->setConditionOrClosure(Condition\ConditionAnd::class, $closure);
     }
 
     /**
-     * Sets a ON clause.
+     * Sets a query ON clause.
      *
-     * @param [mixed] ...$args
-     * @return ConditionOr
+     * @param Closure $closure
+     * @return Query
      */
-    public function or(...$args): Condition\ConditionOr
+    public function or(Closure $closure = null): Query
     {
-        return $this->store->setCondition(Condition\ConditionOr::class, $args);
+        return $this->setConditionOrClosure(Condition\ConditionOr::class, $closure);
     }
 
     /**
-     * Sets a WHERE clause.
+     * Sets a query WHERE clause.
      *
-     * @param [mixed] ...$args
-     * @return ConditionWhere
+     * @param Closure $closure
+     * @return Query
      */
-    public function where(...$args): Condition\ConditionWhere
+    public function where(Closure $closure = null): Query
     {
-        return $this->store->setCondition(Condition\ConditionWhere::class, $args);
+        return $this->setConditionOrClosure(Condition\ConditionWhere::class, $closure);
+    }
+
+    /**
+     * Sets a query clause with optional closure.
+     *
+     * @param string $namespace
+     * @param Closure $closure
+     * @return Query
+     */
+    protected function setConditionOrClosure(string $namespace, Closure $closure = null): Query
+    {
+        $condition = $this->store->setCondition($namespace);
+        if ($closure) {
+            $closure($condition);
+            return $this;
+        }
+        return $condition;
     }
 }
