@@ -2,7 +2,7 @@
 
 namespace Cobra\Page;
 
-use Cobra\Cms\Traits\ModelDataTableColumns;
+use Cobra\Interfaces\Cms\ModelDataTable\ModelDataTableInterface;
 use Cobra\Interfaces\Form\FormInterface;
 use Cobra\Interfaces\View\ViewObject;
 use Cobra\Model\Model;
@@ -24,7 +24,7 @@ use Cobra\View\Traits\RendersTemplate;
  */
 class PageBlock extends Model implements ViewObject
 {
-    use UsesTemplate, ModelDataTableColumns, RendersTemplate;
+    use UsesTemplate, RendersTemplate;
 
     /**
      * Model table name
@@ -113,6 +113,17 @@ class PageBlock extends Model implements ViewObject
         $form->getField('title')->setValidator('required');
         
         return $form;
+    }
+    
+    /**
+     * Model CMS table overrides
+     *
+     * @param  ModelDataTableInterface $table
+     * @return ModelDataTableInterface
+     */
+    public function cmsTable(ModelDataTableInterface $table): ModelDataTableInterface
+    {
+        return $table->setColumns(PageBlock::config('table_columns'));
     }
     
     /**
