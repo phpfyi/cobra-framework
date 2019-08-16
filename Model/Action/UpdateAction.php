@@ -129,7 +129,7 @@ class UpdateAction extends Action
     }
 
     /**
-     * Create a new record
+     * Create a new record.
      *
      * @return void
      */

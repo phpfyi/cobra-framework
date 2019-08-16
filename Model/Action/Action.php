@@ -79,7 +79,7 @@ abstract class Action extends AbstractObject
             function (string $namespace) {
                 $this->processNamespace($namespace);
             },
-            schema($this->model)->hierarchy()
+            schema($this->model)->hierarchy(true)
         );
         if (method_exists($this->model, $this->methodAfter)) {
             $this->model->{$this->methodAfter}();
