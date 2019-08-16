@@ -3,7 +3,7 @@
 namespace Cobra\ORM\Query\Column;
 
 /**
- * Column UPdate
+ * Column Update
  *
  * Class representing an SQL query update query column.
  *
