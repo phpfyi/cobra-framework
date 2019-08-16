@@ -2,7 +2,7 @@
 
 namespace Cobra\Model\Action;
 
-use Cobra\Database\Statement\InsertStatement;
+use Cobra\ORM\Factory\QueryFactory;
 
 /**
  * Insert Action
@@ -52,14 +52,11 @@ class InsertAction extends Action
         if ($this->id) {
             $this->columns['id'] = $this->id;
         }
-        $this->statement = container_resolve(
-            InsertStatement::class,
-            [
-                schema($namespace)->get('table'),
-                $this->columns
-            ]
-        );
-        $this->id = $this->statement->run();
+        $this->statement = container_resolve(QueryFactory::class)
+            ->insert(schema($namespace)->get('table'))
+            ->columns($this->columns);
+
+        $this->id = $this->statement->execute();
 
         $this->model->id = $this->id;
     }

@@ -2,8 +2,9 @@
 
 namespace Cobra\Model\Action;
 
-use Cobra\Database\Statement\DeleteStatement;
 use Cobra\Model\Model;
+use Cobra\ORM\Factory\QueryFactory;
+use Cobra\ORM\Query\Condition\Condition;
 
 /**
  * Delete Action
@@ -53,13 +54,14 @@ class DeleteAction extends Action
      */
     protected function processNamespace(string $namespace): void
     {
-        $this->statement = container_resolve(
-            DeleteStatement::class,
-            [
-                schema($namespace)->get('table'),
-                $this->id
-            ]
-        );
-        $this->statement->run();
+        $this->statement = container_resolve(QueryFactory::class)
+            ->delete(schema($namespace)->get('table'))
+            ->where(function (Condition $condition) {
+                $condition->column('id', '=', $this->id);
+            })
+            ->limit(1)
+            ->bind([$this->id]);
+
+        $this->statement->execute();
     }
 }
