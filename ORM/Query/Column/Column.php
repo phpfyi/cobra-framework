@@ -7,7 +7,7 @@ use Cobra\ORM\Query\Query;
 /**
  * Column
  *
- * Abstract class representing an SQL query column.
+ * Class representing an SQL query column.
  *
  * @category  ORM
  * @package   Cobra
@@ -19,7 +19,7 @@ use Cobra\ORM\Query\Query;
  * @since     1.0.0
  */
 
-abstract class Column extends Query
+class Column extends Query
 {
     /**
      * Database table column name
