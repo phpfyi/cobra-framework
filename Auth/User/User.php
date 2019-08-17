@@ -256,7 +256,7 @@ class User extends Model implements UserInterface
      */
     public function beforeSave(): void
     {
-        if (!$this->password) {
+        if ($this->password === null) {
             unset($this->password);
             return;
         }

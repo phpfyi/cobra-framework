@@ -63,6 +63,13 @@ class UpdateAction extends Action
     protected $table;
 
     /**
+     * Record exists in database
+     *
+     * @var boolean
+     */
+    protected $existing = false;
+
+    /**
      * Sets the required properties
      *
      * @param Model $model
@@ -84,11 +91,12 @@ class UpdateAction extends Action
     protected function processNamespace(string $namespace): void
     {
         $this->namespace = $namespace;
-        $this->columns = $this->getChangedColumns($namespace);
         $this->table = schema($namespace)->get('table');
+        $this->existing = $this->hasExistingRecord();
+        $this->columns = $this->getChangedColumns();
         
         if (!empty($this->columns)) {
-            $this->hasExistingRecord()
+            $this->existing
             ? $this->updateRecord()
             : $this->createRecord();
 
@@ -103,9 +111,17 @@ class UpdateAction extends Action
      */
     protected function getChangedColumns(): array
     {
+        $this->columns = $this->model->extractFromClass($this->namespace, false);
+
+        if (!$this->existing) {
+            return $this->columns;
+        }
         return array_intersect_key(
-            $this->changed,
-            schema($this->namespace)->columns()->getColumnsWithHasOne()
+            $this->columns,
+            array_intersect_key(
+                $this->changed,
+                schema($this->namespace)->columns()->getColumnsWithHasOne()
+            )
         );
     }
 

@@ -29,6 +29,20 @@ class PropertyHandler extends AbstractObject
     protected $model;
 
     /**
+     * Array of model properties.
+     *
+     * @var array
+     */
+    protected $properties = [];
+
+    /**
+     * Array of changed model properties.
+     *
+     * @var array
+     */
+    protected $changed = [];
+
+    /**
      * Sets the model instance
      *
      * @param Model $model
@@ -36,6 +50,67 @@ class PropertyHandler extends AbstractObject
     public function __construct(Model $model)
     {
         $this->model = $model;
+    }
+
+    /**
+     * Returns all changed model properties.
+     *
+     * @return array
+     */
+    public function changed(): array
+    {
+        return $this->changed;
+    }
+
+    /**
+     * Sets a model property.
+     *
+     * @param string $name
+     * @param mixed $value
+     * @return void
+     */
+    public function set(string $name, $value): void
+    {
+        if (array_key_exists($name, $this->properties) && $this->properties[$name] !== $value) {
+            $this->changed[$name] = $value;
+        }
+        $this->properties[$name] = $value;
+    }
+
+    /**
+     * Returns a model property.
+     *
+     * @param string $name
+     * @return mixed
+     */
+    public function get(string $name)
+    {
+        return $this->properties[$name];
+    }
+
+    /**
+     * Unsets a model property.
+     *
+     * @param string $name
+     * @return void
+     */
+    public function unset(string $name): void
+    {
+        if (array_key_exists($name, $this->properties)) {
+            $this->changed[$name] = null;
+        }
+        unset($this->properties[$name]);
+    }
+
+    /**
+     * Checks a model property is set.
+     *
+     * @param string $name
+     * @return bool
+     */
+    public function isset(string $name): bool
+    {
+        return isset($this->properties[$name]);
     }
 
     /**

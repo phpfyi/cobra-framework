@@ -96,7 +96,7 @@ class PropertyExtractor extends AbstractObject
     protected function extractColumn(string $property): void
     {
         if (!in_array($property, $this->unassignable)) {
-            if (property_exists($this->source, $property)) {
+            if (isset($this->source->{$property})) {
                 $this->properties[$property] = $this->source->$property;
             }
         }
