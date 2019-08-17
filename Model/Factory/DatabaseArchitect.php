@@ -4,7 +4,7 @@ namespace Cobra\Model\Factory;
 
 use Cobra\Database\Factory\DatabaseFactory;
 use Cobra\Interfaces\Model\ModelInterface;
-use Cobra\Model\Cache\ObjectCache;
+use Cobra\Model\Factory\ClassFactory;
 use Cobra\Object\AbstractObject;
 
 /**
@@ -38,11 +38,11 @@ class DatabaseArchitect extends AbstractObject
     /**
      * Sets the required properties
      *
-     * @param ObjectCache $cache
+     * @param ClassFactory $cache
      */
-    public function __construct(ObjectCache $cache)
+    public function __construct(ClassFactory $cache)
     {
-        $this->instances = $cache->getInstances();
+        $this->instances = $cache->getReflectionClasses();
     }
 
     /**

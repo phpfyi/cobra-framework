@@ -5,7 +5,7 @@ namespace Cobra\Cms\Controller;
 use Cobra\Core\Traits\VersionControl;
 use Cobra\Interfaces\Cms\CmsMessagesInterface;
 use Cobra\Interfaces\Gtm\GtmInterface;
-use Cobra\Model\Cache\ObjectCache;
+use Cobra\Model\Factory\ClassFactory;
 use Cobra\Page\Controller\PageController;
 
 /**
@@ -94,9 +94,9 @@ class AppController extends PageController
      */
     protected function getMenu(): array
     {
-        foreach (container_resolve(ObjectCache::class)->getInstances() as $name => $model) {
+        foreach (container_resolve(ClassFactory::class)->getReflectionClasses() as $model) {
             if ($model->getInMenu()) {
-                $path = sprintf('%s%s/read', config('cms.model_route'), $name);
+                $path = sprintf('%s%s/read', config('cms.model_route'), $model->getTable());
                 $this->menu[$path] = $model->getPlural();
             }
         }

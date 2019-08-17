@@ -3,8 +3,8 @@
 namespace Cobra\Model\Schema;
 
 use Cobra\Interfaces\Model\ModelInterface;
-use Cobra\Model\Cache\ObjectCache;
 use Cobra\Model\Cache\SchemaCache;
+use Cobra\Model\Factory\ClassFactory;
 use Cobra\Model\Schema\SchemaTransformer;
 use Cobra\Object\AbstractObject;
 
@@ -23,11 +23,11 @@ use Cobra\Object\AbstractObject;
 class SchemaFactory extends AbstractObject
 {
     /**
-     * ObjectCache instance
+     * ClassFactory instance
      *
-     * @var ObjectCache
+     * @var ClassFactory
      */
-    protected $objectCache;
+    protected $classFactory;
 
     /**
      * SchemaCache instance
@@ -46,12 +46,12 @@ class SchemaFactory extends AbstractObject
     /**
      * Sets the required properties.
      *
-     * @param ObjectCache $objectCache
+     * @param ClassFactory $classFactory
      * @param SchemaCache $schemaCache
      */
-    public function __construct(ObjectCache $objectCache, SchemaCache $schemaCache)
+    public function __construct(ClassFactory $classFactory, SchemaCache $schemaCache)
     {
-        $this->objectCache = $objectCache;
+        $this->classFactory = $classFactory;
         $this->schemaCache = $schemaCache;
     }
 
@@ -95,7 +95,7 @@ class SchemaFactory extends AbstractObject
 
                 $this->schemas[$schema->class] = $schema;
             },
-            $this->objectCache->getInstances()
+            $this->classFactory->getReflectionClasses()
         );
         return $this->schemas;
     }

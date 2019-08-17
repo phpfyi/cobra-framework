@@ -369,7 +369,7 @@ class DatabaseTable extends AbstractObject implements DatabaseTableInterface
             [
                 $relation,
                 $relationClass,
-                singleton($relationClass)->getTable(),
+                get_table_for_class($relationClass),
                 $this->class,
                 $this->table
             ]
@@ -392,7 +392,7 @@ class DatabaseTable extends AbstractObject implements DatabaseTableInterface
                 $this->class,
                 $this->table,
                 $foreignClass,
-                singleton($foreignClass)->getTable()
+                get_table_for_class($foreignClass)
             ]
         );
     }
@@ -413,7 +413,7 @@ class DatabaseTable extends AbstractObject implements DatabaseTableInterface
                 $this->class,
                 $this->table,
                 $foreignClass,
-                singleton($foreignClass)->getTable()
+                get_table_for_class($foreignClass)
             ]
         );
     }

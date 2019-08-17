@@ -5,7 +5,7 @@ namespace Cobra\Cms\Controller;
 use Cobra\Cms\Controller\AppController;
 use Cobra\Interfaces\Cms\ModelDataTable\ModelDataTableInterface;
 use Cobra\Interfaces\Http\Message\RequestInterface;
-use Cobra\Model\Cache\ObjectCache;
+use Cobra\Model\Factory\ClassFactory;
 
 /**
  * CMS Records Controller
@@ -25,12 +25,12 @@ class RecordsController extends AppController
      * Build the CMS record list and renders the UI
      *
      * @param RequestInterface $request
-     * @param ObjectCache $objectCache
+     * @param ClassFactory $classFactory
      * @return void
      */
-    public function read(RequestInterface $request, ObjectCache $objectCache): void
+    public function read(RequestInterface $request, ClassFactory $classFactory): void
     {
-        $model = $objectCache->getInstance(
+        $model = $classFactory->getSingletonForTable(
             $request->getUri()->getSegment(3)
         );
         $table = $model->cmsTable(
