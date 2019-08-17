@@ -9,7 +9,7 @@ use Cobra\Cms\ModelDataTable\Element\ModelDataTableHeading;
 use Cobra\Cms\ModelDataTable\Element\ModelDataTableSearch;
 use Cobra\Interfaces\Cms\ModelDataTable\ModelDataTableColumnInterface;
 use Cobra\Interfaces\Cms\ModelDataTable\ModelDataTableInterface;
-use Cobra\Interfaces\Model\DataList\ModelDataListInterface;
+use Cobra\Interfaces\Model\ModelDataList\ModelDataListInterface;
 use Cobra\Interfaces\Object\Props\PropsDataInterface;
 use Cobra\Interfaces\View\ViewObject;
 use Cobra\Model\Model;

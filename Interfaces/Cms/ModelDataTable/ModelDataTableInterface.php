@@ -3,7 +3,7 @@
 namespace Cobra\Interfaces\Cms\ModelDataTable;
 
 use Cobra\Cms\ModelDataTable\Element\ModelDataTableElement;
-use Cobra\Interfaces\Model\DataList\ModelDataListInterface;
+use Cobra\Interfaces\Model\ModelDataList\ModelDataListInterface;
 use Cobra\Model\Model;
 
 /**

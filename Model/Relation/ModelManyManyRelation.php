@@ -4,7 +4,7 @@ namespace Cobra\Model\Relation;
 
 use Iterator;
 use Cobra\Database\Relation\ManyManyRelation;
-use Cobra\Interfaces\Model\DataList\ModelDataListInterface;
+use Cobra\Interfaces\Model\ModelDataList\ModelDataListInterface;
 use Cobra\Model\Traits\ModelDataListManyAccess;
 use Cobra\Model\Traits\ModelPolymorphism;
 use Cobra\ORM\Factory\QueryFactory;
