@@ -81,9 +81,7 @@ class PropertyHandler extends AbstractObject
     {
         $binder = PropertyBinder::resolve(
             $this->model,
-            array_merge(
-                schema($namespace)->columns()->getNamesWithHasOne()
-            ),
+            schema($namespace)->columns()->getNamesWithHasOne(),
             $data,
             $unassignable ? [] : $this->model->getUnassignable()
         );
@@ -134,9 +132,7 @@ class PropertyHandler extends AbstractObject
     {
         $extractor = PropertyExtractor::resolve(
             $this->model,
-            array_merge(
-                schema($namespace)->columns()->getNamesWithHasOne()
-            ),
+            schema($namespace)->columns()->getNamesWithHasOne(),
             $unassignable ? [] : $this->model->getUnassignable()
         );
         return $extractor->doExtraction()->getProperties();
