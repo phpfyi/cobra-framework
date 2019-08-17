@@ -70,19 +70,6 @@ abstract class Model extends ModelManager implements ModelInterface
     ];
 
     /**
-     * Magic method to handle calling methods via a property call
-     *
-     * @param  string $name
-     * @return mixed
-     */
-    public function __get(string $name)
-    {
-        if (method_exists($this, $name)) {
-            return $this->$name();
-        }
-    }
-
-    /**
      * Returns the database table name.
      *
      * @return string
