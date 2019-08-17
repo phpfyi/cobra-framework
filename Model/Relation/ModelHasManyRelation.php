@@ -4,7 +4,7 @@ namespace Cobra\Model\Relation;
 
 use Iterator;
 use Cobra\Database\Relation\HasManyRelation;
-use Cobra\Interfaces\Model\ModelDataList;
+use Cobra\Interfaces\Model\DataList\ModelDataListInterface;
 use Cobra\Model\Exception\InvalidModelRelationException;
 use Cobra\Model\Traits\ModelDataListManyAccess;
 use Cobra\ORM\Factory\QueryFactory;
@@ -22,7 +22,7 @@ use Cobra\ORM\Query\Condition\Condition;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-class ModelHasManyRelation extends HasManyRelation implements Iterator, ModelDataList
+class ModelHasManyRelation extends HasManyRelation implements Iterator, ModelDataListInterface
 {
     use ModelDataListManyAccess;
 
@@ -48,9 +48,9 @@ class ModelHasManyRelation extends HasManyRelation implements Iterator, ModelDat
     /**
      * Returns the has many relation data.
      *
-     * @return ModelDataList
+     * @return ModelDataListInterface
      */
-    public function get(): ModelDataList
+    public function get(): ModelDataListInterface
     {
         $class = $this->getRelationClass(true);
         $this->data = $class::get()->where(

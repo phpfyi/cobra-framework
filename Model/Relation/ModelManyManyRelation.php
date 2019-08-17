@@ -4,7 +4,7 @@ namespace Cobra\Model\Relation;
 
 use Iterator;
 use Cobra\Database\Relation\ManyManyRelation;
-use Cobra\Interfaces\Model\ModelDataList;
+use Cobra\Interfaces\Model\DataList\ModelDataListInterface;
 use Cobra\Model\Traits\ModelDataListManyAccess;
 use Cobra\Model\Traits\ModelPolymorphism;
 use Cobra\ORM\Factory\QueryFactory;
@@ -23,7 +23,7 @@ use Cobra\ORM\Query\Query;
  * @link      https://github.com/phpfyi/cobra-framework
  * @since     1.0.0
  */
-class ModelManyManyRelation extends ManyManyRelation implements Iterator, ModelDataList
+class ModelManyManyRelation extends ManyManyRelation implements Iterator, ModelDataListInterface
 {
     use ModelDataListManyAccess, ModelPolymorphism;
 
@@ -101,9 +101,9 @@ class ModelManyManyRelation extends ManyManyRelation implements Iterator, ModelD
     /**
      * Returns the many many relation data.
      *
-     * @return ModelDataList
+     * @return ModelDataListInterface
      */
-    public function get(): ModelDataList
+    public function get(): ModelDataListInterface
     {
         $select = container_resolve(QueryFactory::class)
             ->select($this->table, $this->foreignClass)

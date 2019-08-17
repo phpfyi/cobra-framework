@@ -2,8 +2,8 @@
 
 namespace Cobra\Interfaces\Cms\ModelDataTable;
 
-use Cobra\Interfaces\Model\ModelDataList;
 use Cobra\Cms\ModelDataTable\Element\ModelDataTableElement;
+use Cobra\Interfaces\Model\DataList\ModelDataListInterface;
 use Cobra\Model\Model;
 
 /**
@@ -100,17 +100,17 @@ interface ModelDataTableInterface
      * The config values set here are used within the [data-config] HTML
      * attribute on the table as JavaScript hooks when actions are performed.
      *
-     * @param  ModelDataList $list
+     * @param  ModelDataListInterface $list
      * @return ModelDataTableInterface
      */
-    public function setList(ModelDataList $list): ModelDataTableInterface;
+    public function setList(ModelDataListInterface $list): ModelDataTableInterface;
 
     /**
      * Returns the table data list
      *
-     * @return ModelDataList
+     * @return ModelDataListInterface
      */
-    public function getList(): ModelDataList;
+    public function getList(): ModelDataListInterface;
 
     /**
      * Returns an array of elements by template position

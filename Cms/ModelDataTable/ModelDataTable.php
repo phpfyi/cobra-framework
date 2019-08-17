@@ -9,7 +9,7 @@ use Cobra\Cms\ModelDataTable\Element\ModelDataTableHeading;
 use Cobra\Cms\ModelDataTable\Element\ModelDataTableSearch;
 use Cobra\Interfaces\Cms\ModelDataTable\ModelDataTableColumnInterface;
 use Cobra\Interfaces\Cms\ModelDataTable\ModelDataTableInterface;
-use Cobra\Interfaces\Model\ModelDataList;
+use Cobra\Interfaces\Model\DataList\ModelDataListInterface;
 use Cobra\Interfaces\Object\Props\PropsDataInterface;
 use Cobra\Interfaces\View\ViewObject;
 use Cobra\Model\Model;
@@ -112,7 +112,7 @@ class ModelDataTable extends AbstractObject implements ModelDataTableInterface, 
     /**
      * Table list data
      *
-     * @var ModelDataList
+     * @var ModelDataListInterface
      */
     protected $list;
 
@@ -121,7 +121,7 @@ class ModelDataTable extends AbstractObject implements ModelDataTableInterface, 
      *
      * @param string $name
      * @param Model $model
-     * @param ModelDataList $list
+     * @param ModelDataListInterface $list
      * @param ModelDataTableHeading $heading
      * @param ModelDataTableCount $count
      * @param ModelDataTableCreateButton $createButton
@@ -130,7 +130,7 @@ class ModelDataTable extends AbstractObject implements ModelDataTableInterface, 
     public function __construct(
         string $name,
         Model $model,
-        ModelDataList $list = null,
+        ModelDataListInterface $list = null,
         ModelDataTableHeading $heading,
         ModelDataTableCount $count,
         ModelDataTableCreateButton $createButton,
@@ -267,10 +267,10 @@ class ModelDataTable extends AbstractObject implements ModelDataTableInterface, 
      * The config values set here are used within the [data-config] HTML
      * attribute on the table as JavaScript hooks when actions are performed.
      *
-     * @param  ModelDataList $list
+     * @param  ModelDataListInterface $list
      * @return ModelDataTableInterface
      */
-    public function setList(ModelDataList $list): ModelDataTableInterface
+    public function setList(ModelDataListInterface $list): ModelDataTableInterface
     {
         $this->props->set('class', $this->class);
         $this->list = $list;
@@ -300,9 +300,9 @@ class ModelDataTable extends AbstractObject implements ModelDataTableInterface, 
     /**
      * Returns the table data list
      *
-     * @return ModelDataList
+     * @return ModelDataListInterface
      */
-    public function getList(): ModelDataList
+    public function getList(): ModelDataListInterface
     {
         return $this->list;
     }
