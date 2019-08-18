@@ -49,9 +49,9 @@ class AlterTableAddColumnStatement extends AbstractObject
     /**
      * Executes the database query statement and returns the result.
      *
-     * @return array
+     * @return object
      */
-    public function run(): bool
+    public function run(): object
     {
         return stmt(sprintf(
             "ALTER TABLE `%s` ADD %s",
