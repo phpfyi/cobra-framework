@@ -5,6 +5,7 @@ namespace Cobra\Database\Query\Join;
 use Cobra\Database\Query\Condition;
 use Cobra\Database\Query\Query;
 use Cobra\Database\Query\Traits\UsesConditions;
+use Cobra\Database\Query\Traits\UsesQueryIdentifier;
 use Cobra\Database\Store\QueryStore;
 
 /**
@@ -22,14 +23,7 @@ use Cobra\Database\Store\QueryStore;
 
 abstract class Join extends Query
 {
-    use UsesConditions;
-
-    /**
-     * Store Class
-     *
-     * @var string
-     */
-    protected $storeClass = QueryStore::class;
+    use UsesConditions, UsesQueryIdentifier;
 
     /**
      * QueryStore instance
@@ -56,13 +50,14 @@ abstract class Join extends Query
      * Sets the required properties.
      *
      * @param string $table
-     * @param string $storeClass
+     * @param QueryStore $store
      */
-    public function __construct(string $table, string $storeClass)
+    public function __construct(string $table, QueryStore $store)
     {
         $this->table = $table;
-        $this->storeClass = $storeClass;
-        $this->store = container_resolve($storeClass);
+        $this->store = $store;
+        
+        $this->setQID();
     }
 
     /**
@@ -76,7 +71,7 @@ abstract class Join extends Query
             '%s `%s` %s ',
             $this->join,
             $this->table,
-            $this->store->renderConditions()
+            $this->store->renderConditions($this->qid)
         );
     }
 

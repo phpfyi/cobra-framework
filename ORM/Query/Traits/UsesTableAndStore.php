@@ -3,6 +3,7 @@
 namespace Cobra\Database\Query\Traits;
 
 use Cobra\Database\Query\Query;
+use Cobra\Database\Query\Traits\UsesQueryIdentifier;
 use Cobra\Database\Store\QueryStore;
 
 /**
@@ -20,12 +21,7 @@ use Cobra\Database\Store\QueryStore;
 
 trait UsesTableAndStore
 {
-    /**
-     * Store Class
-     *
-     * @var string
-     */
-    protected $storeClass = QueryStore::class;
+    use UsesQueryIdentifier;
 
     /**
      * QueryStore instance
@@ -49,6 +45,8 @@ trait UsesTableAndStore
     public function __construct(string $table)
     {
         $this->table = $table;
-        $this->store = container_resolve($this->storeClass);
+        $this->store = container_resolve(QueryStore::class);
+        
+        $this->setQID();
     }
 }

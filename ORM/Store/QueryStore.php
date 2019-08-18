@@ -94,21 +94,48 @@ class QueryStore extends AbstractObject
      * @param array $args
      * @return Condition
      */
-    public function setCondition(string $namespace, array $args = []): Condition
+    public function setCondition(string $namespace, string $qid, array $args = []): Condition
     {
-        return $this->conditions[] = container_resolve($namespace, $args);
+        return $this->conditions[$qid][] = container_resolve($namespace, $args);
+    }
+
+    /**
+     * Returns query conditions based on an identifier.
+     *
+     * @param string $qid
+     * @return array
+     */
+    public function getConditions(string $qid): array
+    {
+        return $this->comparisons[$qid];
     }
 
     /**
      * Sets a query comparison.
      *
      * @param string $namespace
+     * @param string $qid
      * @param array $args
      * @return Comparison
      */
-    public function setComparison(string $namespace, array $args = []): Comparison
+    public function setComparison(string $namespace, string $qid, array $args = []): Comparison
     {
-        return $this->comparisons[] = container_resolve($namespace, $args);
+        $comparison = container_resolve($namespace, $args);
+        
+        $this->bind = array_merge($this->bind, $comparison->getBindValues());
+        
+        return $this->comparisons[$qid][] = $comparison;
+    }
+
+    /**
+     * Returns query comparisons based on an identifier.
+     *
+     * @param string $qid
+     * @return array
+     */
+    public function getComparisons(string $qid): array
+    {
+        return $this->comparisons[$qid];
     }
 
     /**
@@ -135,23 +162,25 @@ class QueryStore extends AbstractObject
     }
 
     /**
-     * Renders the query conditions SQL.
+     * Renders query conditions based on an identifier.
      *
+     * @param string $qid
      * @return string
      */
-    public function renderConditions(): string
+    public function renderConditions(string $qid): string
     {
-        return $this->renderPortion($this->conditions);
+        return $this->renderPortion($this->conditions[$qid]);
     }
 
     /**
-     * Renders the query comparisons SQL.
+     * Renders query comparisons based on an identifier.
      *
+     * @param string $qid
      * @return string
      */
-    public function renderComparisons(): string
+    public function renderComparisons(string $qid): string
     {
-        return $this->renderPortion($this->comparisons);
+        return $this->renderPortion($this->comparisons[$qid]);
     }
 
     /**

@@ -66,7 +66,8 @@ trait UsesConditions
     {
         $condition = $this->store->setCondition(
             $namespace,
-            [$this->storeClass]
+            $this->qid,
+            [$this->store]
         );
         // return the condition object
         if (empty($args)) {

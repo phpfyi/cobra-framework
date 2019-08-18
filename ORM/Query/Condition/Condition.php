@@ -4,6 +4,7 @@ namespace Cobra\Database\Query\Condition;
 
 use Cobra\Database\Query\Comparison;
 use Cobra\Database\Query\Query;
+use Cobra\Database\Query\Traits\UsesQueryIdentifier;
 use Cobra\Database\Store\QueryStore;
 
 /**
@@ -23,12 +24,7 @@ use Cobra\Database\Store\QueryStore;
 
 abstract class Condition extends Query
 {
-    /**
-     * Store Class
-     *
-     * @var string
-     */
-    protected $storeClass = QueryStore::class;
+    use UsesQueryIdentifier;
 
     /**
      * Condition type
@@ -47,12 +43,23 @@ abstract class Condition extends Query
     /**
      * Sets the required properties.
      *
-     * @param string $storeClass
+     * @param QueryStore $store
      */
-    public function __construct(string $storeClass)
+    public function __construct(QueryStore $store)
     {
-        $this->storeClass = $storeClass;
-        $this->store = container_resolve($storeClass);
+        $this->store = $store;
+
+        $this->setQID();
+    }
+
+    /**
+     * Returns the QueryStore instance.
+     *
+     * @return QueryStore
+     */
+    public function getStore(): QueryStore
+    {
+        return $this->store;
     }
     
     /**
@@ -65,7 +72,7 @@ abstract class Condition extends Query
         return sprintf(
             '%s %s',
             $this->condition,
-            $this->store->renderComparisons()
+            $this->store->renderComparisons($this->qid)
         );
     }
 
@@ -79,7 +86,7 @@ abstract class Condition extends Query
      */
     public function between(string $column, $minValue, $maxValue): Query
     {
-        $this->store->setComparison(Comparison\ComparisonBetween::class, [$$column, $minValue, $maxValue]);
+        $this->store->setComparison(Comparison\ComparisonBetween::class, $this->qid, [$$column, $minValue, $maxValue]);
         return $this;
     }
 
@@ -91,7 +98,7 @@ abstract class Condition extends Query
      */
     public function column(...$args): Query
     {
-        $this->store->setComparison(Comparison\ComparisonColumn::class, $args);
+        $this->store->setComparison(Comparison\ComparisonColumn::class, $this->qid, $args);
         return $this;
     }
 
@@ -103,7 +110,7 @@ abstract class Condition extends Query
      */
     public function columns(...$args): Query
     {
-        $this->store->setComparison(Comparison\ComparisonColumns::class, $args);
+        $this->store->setComparison(Comparison\ComparisonColumns::class, $this->qid, $args);
         return $this;
     }
 
@@ -116,7 +123,7 @@ abstract class Condition extends Query
      */
     public function in(string $column, array $values): Query
     {
-        $this->store->setComparison(Comparison\ComparisonIn::class, [$column, 'IN', $values]);
+        $this->store->setComparison(Comparison\ComparisonIn::class, $this->qid, [$column, 'IN', $values]);
         return $this;
     }
 
@@ -129,7 +136,7 @@ abstract class Condition extends Query
      */
     public function notIn(string $column, array $values): Query
     {
-        $this->store->setComparison(Comparison\ComparisonIn::class, [$column, 'NOT IN', $values]);
+        $this->store->setComparison(Comparison\ComparisonIn::class, $this->qid, [$column, 'NOT IN', $values]);
         return $this;
     }
 
@@ -142,7 +149,7 @@ abstract class Condition extends Query
      */
     public function setComparison(string $namespace, array $args): Query
     {
-        $this->store->setComparison($namespace, $args);
+        $this->store->setComparison($namespace, $this->qid, $args);
         return $this;
     }
 }

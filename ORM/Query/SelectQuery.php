@@ -6,6 +6,7 @@ use Cobra\Database\Query\Column;
 use Cobra\Database\Query\Join;
 use Cobra\Database\Query\Traits\UsesConditions;
 use Cobra\Database\Query\Traits\UsesLimit;
+use Cobra\Database\Query\Traits\UsesQueryIdentifier;
 use Cobra\Database\Store\QueryStore;
 
 /**
@@ -23,14 +24,7 @@ use Cobra\Database\Store\QueryStore;
 
 class SelectQuery extends Query
 {
-    use UsesBindData, UsesConditions, UsesLimit;
-
-    /**
-     * Store Class
-     *
-     * @var string
-     */
-    protected $storeClass = QueryStore::class;
+    use UsesConditions, UsesLimit, UsesQueryIdentifier;
     
     /**
      * Database table name.
@@ -77,7 +71,9 @@ class SelectQuery extends Query
     {
         $this->table = $table;
         $this->class = $class;
-        $this->store = container_resolve($this->storeClass);
+        $this->store = container_resolve(QueryStore::class);
+        
+        $this->setQID();
     }
 
     /**
@@ -92,7 +88,7 @@ class SelectQuery extends Query
             $this->store->renderColumns(),
             $this->table,
             $this->store->renderJoins(),
-            $this->store->renderConditions(),
+            $this->store->renderConditions($this->qid),
             $this->order ? sprintf(' ORDER BY %s %s', $this->order, $this->sort) : '',
             $this->limit > 0 ? sprintf(' LIMIT %s', $this->limit) : ''
         );
@@ -218,7 +214,7 @@ class SelectQuery extends Query
      */
     public function joinLeft(string $table): Join\JoinLeft
     {
-        return $this->store->setJoin(Join\JoinLeft::class, [$table, $this->storeClass]);
+        return $this->store->setJoin(Join\JoinLeft::class, [$table, $this->store]);
     }
 
     /**
@@ -229,7 +225,7 @@ class SelectQuery extends Query
      */
     public function joinRight(string $table): Join\JoinRight
     {
-        return $this->store->setJoin(Join\JoinRight::class, [$table, $this->storeClass]);
+        return $this->store->setJoin(Join\JoinRight::class, [$table, $this->store]);
     }
 
     /**
@@ -240,7 +236,7 @@ class SelectQuery extends Query
      */
     public function joinFull(string $table): Join\JoinFull
     {
-        return $this->store->setJoin(Join\JoinFull::class, [$table, $this->storeClass]);
+        return $this->store->setJoin(Join\JoinFull::class, [$table, $this->store]);
     }
 
     /**
@@ -251,7 +247,7 @@ class SelectQuery extends Query
      */
     public function joinInner(string $table): Join\JoinInner
     {
-        return $this->store->setJoin(Join\JoinInner::class, [$table, $this->storeClass]);
+        return $this->store->setJoin(Join\JoinInner::class, [$table, $this->store]);
     }
 
     /**
