@@ -76,10 +76,10 @@ abstract class Join extends Query
      * Sets an ON clause.
      *
      * @param [mixed] ...$args
-     * @return ConditionOn
+     * @return Query
      */
-    public function on(...$args): Condition\ConditionOn
+    public function on(...$args): Query
     {
-        return $this->store->setCondition(Condition\ConditionOn::class, $args);
+        return $this->setConditionOrClosure(Condition\ConditionOn::class, $args);
     }
 }

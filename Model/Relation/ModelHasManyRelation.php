@@ -36,10 +36,7 @@ class ModelHasManyRelation extends HasManyRelation implements Iterator, ModelDat
         return container_resolve(QueryFactory::class)
             ->select($this->relationTable)
             ->count('id')
-            ->where(function (Condition $condition) {
-                $condition
-                    ->column("{$this->relationTable}.{$this->getHasOneColumnName()}", '=', $this->parentID);
-            })
+            ->where("{$this->relationTable}.{$this->getHasOneColumnName()}", '=', $this->parentID)
             ->limit(1)
             ->bind([$this->parentID])
             ->fetch()->count;
@@ -86,14 +83,8 @@ class ModelHasManyRelation extends HasManyRelation implements Iterator, ModelDat
         return container_resolve(QueryFactory::class)
             ->select($this->relationTable)
             ->count('id')
-            ->where(function (Condition $condition) use ($relationID) {
-                $condition
-                    ->column("{$this->relationTable}.id", '=', $relationID);
-            })
-            ->and(function (Condition $condition) {
-                $condition
-                    ->column("{$this->relationTable}.{$this->getHasOneColumnName()}", '=', $this->parentID);
-            })
+            ->where("{$this->relationTable}.id", '=', $relationID)
+            ->and("{$this->relationTable}.{$this->getHasOneColumnName()}", '=', $this->parentID)
             ->limit(1)
             ->bind([$relationID,$this->parentID])
             ->fetch()->count > 0;
@@ -140,10 +131,7 @@ class ModelHasManyRelation extends HasManyRelation implements Iterator, ModelDat
         return container_resolve(QueryFactory::class)
             ->update($this->relationTable)
             ->column($this->getHasOneColumnName(), $value)
-            ->where(function (Condition $condition) use ($relationID) {
-                $condition
-                    ->column("{$this->relationTable}.id", '=', $relationID);
-            })
+            ->where("{$this->relationTable}.id", '=', $relationID)
             ->bind([$relationID])
             ->execute();
     }

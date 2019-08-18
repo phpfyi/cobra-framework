@@ -89,10 +89,7 @@ class ModelManyManyRelation extends ManyManyRelation implements Iterator, ModelD
         return container_resolve(QueryFactory::class)
             ->select($this->table)
             ->count('id')
-            ->where(function (Condition $condition) {
-                $condition
-                    ->column("{$this->table}.{$this->localColumn}", '=', $this->localID);
-            })
+            ->where("{$this->table}.{$this->localColumn}", '=', $this->localID)
             ->limit(1)
             ->bind([$this->localID])
             ->fetch()->count;
@@ -107,10 +104,7 @@ class ModelManyManyRelation extends ManyManyRelation implements Iterator, ModelD
     {
         $select = container_resolve(QueryFactory::class)
             ->select($this->table, $this->foreignClass)
-            ->where(function (Condition $condition) {
-                $condition
-                    ->column("{$this->table}.{$this->localColumn}", '=', $this->localID);
-            })
+            ->where("{$this->table}.{$this->localColumn}", '=', $this->localID)
             ->order("{$this->table}.{$this->sortColumn}", 'ASC')
             ->bind([$this->localID]);
 
@@ -119,12 +113,10 @@ class ModelManyManyRelation extends ManyManyRelation implements Iterator, ModelD
                 $table = schema($class)->get('table');
                 $select
                     ->joinLeft($table)
-                    ->on()
-                    ->columns("{$this->table}.{$this->foreignColumn}", '=', "{$table}.id");
+                    ->on("{$this->table}.{$this->foreignColumn}", '=', "{$table}.id");
             },
             schema($this->foreignClass)->hierarchy()
-        );
-            
+        );  
         $this->data = $this->runPolymorphismArray($select->fetch());
         return $this;
     }
@@ -216,13 +208,7 @@ class ModelManyManyRelation extends ManyManyRelation implements Iterator, ModelD
     protected function setWhereConditions(Query $stmt, int $foreignID): void
     {
         $stmt
-            ->where(function (Condition $condition) {
-                $condition
-                    ->column("{$this->table}.{$this->localColumn}", '=', $this->localID);
-            })
-            ->and(function (Condition $condition) use ($foreignID) {
-                $condition
-                    ->column("{$this->table}.{$this->foreignColumn}", '=', $foreignID);
-            });
+            ->where("{$this->table}.{$this->localColumn}", '=', $this->localID)
+            ->and("{$this->table}.{$this->foreignColumn}", '=', $foreignID);
     }
 }

@@ -122,4 +122,17 @@ abstract class Condition extends Query
         $this->store->setComparison(Comparison\ComparisonIn::class, [$column, 'NOT IN', $values]);
         return $this;
     }
+
+    /**
+     * Sets a comparison object in the store.
+     *
+     * @param string $namespace
+     * @param array $args
+     * @return Query
+     */
+    public function setComparison(string $namespace, array $args): Query
+    {
+        $this->store->setComparison($namespace, $args);
+        return $this;
+    }
 }

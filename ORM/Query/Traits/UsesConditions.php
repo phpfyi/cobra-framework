@@ -3,6 +3,7 @@
 namespace Cobra\ORM\Query\Traits;
 
 use Closure;
+use Cobra\ORM\Query\Comparison;
 use Cobra\ORM\Query\Condition;
 use Cobra\ORM\Query\Query;
 
@@ -24,50 +25,62 @@ trait UsesConditions
     /**
      * Sets a query AND clause.
      *
-     * @param Closure $closure
+     * @param [mixed] ...$args
      * @return Query
      */
-    public function and(Closure $closure = null): Query
+    public function and(...$args): Query
     {
-        return $this->setConditionOrClosure(Condition\ConditionAnd::class, $closure);
+        return $this->setConditionOrClosure(Condition\ConditionAnd::class, $args);
     }
 
     /**
      * Sets a query ON clause.
      *
-     * @param Closure $closure
+     * @param [mixed] ...$args
      * @return Query
      */
-    public function or(Closure $closure = null): Query
+    public function or(...$args): Query
     {
-        return $this->setConditionOrClosure(Condition\ConditionOr::class, $closure);
+        return $this->setConditionOrClosure(Condition\ConditionOr::class, $args);
     }
 
     /**
      * Sets a query WHERE clause.
      *
-     * @param Closure $closure
+     * @param [mixed] ...$args
      * @return Query
      */
-    public function where(Closure $closure = null): Query
+    public function where(...$args): Query
     {
-        return $this->setConditionOrClosure(Condition\ConditionWhere::class, $closure);
+        return $this->setConditionOrClosure(Condition\ConditionWhere::class, $args);
     }
 
     /**
      * Sets a query clause with optional closure.
      *
      * @param string $namespace
-     * @param Closure $closure
+     * @param [mixed] ...$args
      * @return Query
      */
-    protected function setConditionOrClosure(string $namespace, Closure $closure = null): Query
+    protected function setConditionOrClosure(string $namespace, $args): Query
     {
         $condition = $this->store->setCondition($namespace);
-        if ($closure) {
-            $closure($condition);
+        // return the condition object
+        if (empty($args)) {
+            return $condition;
+        }
+        // run closure and return this
+        if ($args[0] instanceof Closure) {
+            $args[0]($condition);
             return $this;
         }
-        return $condition;
+        // fallback to where query or on query for join
+        $condition->setComparison(
+            $condition instanceof Condition\ConditionOn
+            ? Comparison\ComparisonColumns::class
+            : Comparison\ComparisonColumn::class,
+            $args
+        );
+        return $this;
     }
 }
