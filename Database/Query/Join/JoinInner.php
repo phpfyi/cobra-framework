@@ -1,11 +1,9 @@
 <?php
 
-namespace Cobra\ORM\Query\Condition;
+namespace Cobra\Database\Query\Join;
 
 /**
- * Condition or
- *
- * Class representing an SQL query OR condition.
+ * Join Inner
  *
  * @category  ORM
  * @package   Cobra
@@ -17,12 +15,12 @@ namespace Cobra\ORM\Query\Condition;
  * @since     1.0.0
  */
 
-class ConditionOr extends Condition
+class JoinInner extends Join
 {
     /**
-     * Condition type
+     * Join type
      *
      * @var string
      */
-    protected $condition = 'OR';
+    protected $join = 'INNER JOIN';
 }

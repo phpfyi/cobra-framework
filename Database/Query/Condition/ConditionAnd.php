@@ -1,9 +1,11 @@
 <?php
 
-namespace Cobra\ORM\Query\Join;
+namespace Cobra\Database\Query\Condition;
 
 /**
- * Join Full
+ * Condition and
+ *
+ * Class representing an SQL query AND condition.
  *
  * @category  ORM
  * @package   Cobra
@@ -15,12 +17,12 @@ namespace Cobra\ORM\Query\Join;
  * @since     1.0.0
  */
 
-class JoinFull extends Join
+class ConditionAnd extends Condition
 {
     /**
-     * Join type
+     * Condition type
      *
      * @var string
      */
-    protected $join = 'FULL JOIN';
+    protected $condition = 'AND';
 }

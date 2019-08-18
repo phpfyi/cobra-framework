@@ -1,6 +1,6 @@
 <?php
 
-namespace Cobra\ORM\Query\Condition;
+namespace Cobra\Database\Query\Condition;
 
 /**
  * Condition where

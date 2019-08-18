@@ -1,11 +1,11 @@
 <?php
 
-namespace Cobra\ORM\Query\Condition;
+namespace Cobra\Database\Query\Condition;
 
 /**
- * Condition and
+ * Condition or
  *
- * Class representing an SQL query AND condition.
+ * Class representing an SQL query OR condition.
  *
  * @category  ORM
  * @package   Cobra
@@ -17,12 +17,12 @@ namespace Cobra\ORM\Query\Condition;
  * @since     1.0.0
  */
 
-class ConditionAnd extends Condition
+class ConditionOr extends Condition
 {
     /**
      * Condition type
      *
      * @var string
      */
-    protected $condition = 'AND';
+    protected $condition = 'OR';
 }

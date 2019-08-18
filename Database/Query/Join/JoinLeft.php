@@ -1,9 +1,9 @@
 <?php
 
-namespace Cobra\ORM\Query\Join;
+namespace Cobra\Database\Query\Join;
 
 /**
- * Join Inner
+ * Join Left
  *
  * @category  ORM
  * @package   Cobra
@@ -15,12 +15,12 @@ namespace Cobra\ORM\Query\Join;
  * @since     1.0.0
  */
 
-class JoinInner extends Join
+class JoinLeft extends Join
 {
     /**
      * Join type
      *
      * @var string
      */
-    protected $join = 'INNER JOIN';
+    protected $join = 'LEFT JOIN';
 }

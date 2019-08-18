@@ -1,6 +1,6 @@
 <?php
 
-namespace Cobra\ORM\Query\Join;
+namespace Cobra\Database\Query\Join;
 
 /**
  * Join Right

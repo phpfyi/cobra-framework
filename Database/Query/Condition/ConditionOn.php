@@ -1,9 +1,11 @@
 <?php
 
-namespace Cobra\ORM\Query\Join;
+namespace Cobra\Database\Query\Condition;
 
 /**
- * Join Left
+ * Condition on
+ *
+ * Class representing an SQL query ON condition.
  *
  * @category  ORM
  * @package   Cobra
@@ -15,12 +17,12 @@ namespace Cobra\ORM\Query\Join;
  * @since     1.0.0
  */
 
-class JoinLeft extends Join
+class ConditionOn extends Condition
 {
     /**
-     * Join type
+     * Condition type
      *
      * @var string
      */
-    protected $join = 'LEFT JOIN';
+    protected $condition = 'ON';
 }

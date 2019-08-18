@@ -1,11 +1,9 @@
 <?php
 
-namespace Cobra\ORM\Query\Condition;
+namespace Cobra\Database\Query\Join;
 
 /**
- * Condition on
- *
- * Class representing an SQL query ON condition.
+ * Join Full
  *
  * @category  ORM
  * @package   Cobra
@@ -17,12 +15,12 @@ namespace Cobra\ORM\Query\Condition;
  * @since     1.0.0
  */
 
-class ConditionOn extends Condition
+class JoinFull extends Join
 {
     /**
-     * Condition type
+     * Join type
      *
      * @var string
      */
-    protected $condition = 'ON';
+    protected $join = 'FULL JOIN';
 }
