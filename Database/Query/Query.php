@@ -1,6 +1,6 @@
 <?php
 
-namespace Cobra\ORM\Query;
+namespace Cobra\Database\Query;
 
 use Cobra\Object\AbstractObject;
 
