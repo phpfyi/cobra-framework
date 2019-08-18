@@ -3,8 +3,8 @@
 namespace Cobra\Database\Factory;
 
 use Cobra\Database\DatabaseTable;
-use Cobra\Database\Statement\ShowTablesStatement;
 use Cobra\Object\AbstractObject;
+use Cobra\ORM\Factory\QueryFactory;
 
 /**
  * Database Factory
@@ -38,12 +38,12 @@ class DatabaseFactory extends AbstractObject
      * Sets the required properties.
      *
      * @param array $tables
-     * @param ShowTablesStatement $statment
+     * @param QueryFactory $factory
      */
-    public function __construct(array $tables, ShowTablesStatement $statment)
+    public function __construct(array $tables, QueryFactory $factory)
     {
         $this->tables = $tables;
-        $this->existingTables = $statment->run();
+        $this->existingTables = $factory->tables()->fetch();
     }
 
     /**

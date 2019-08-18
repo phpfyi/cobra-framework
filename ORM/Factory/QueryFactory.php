@@ -3,9 +3,11 @@
 namespace Cobra\ORM\Factory;
 
 use Cobra\Object\AbstractObject;
+use Cobra\ORM\Query\ColumnsQuery;
 use Cobra\ORM\Query\DeleteQuery;
 use Cobra\ORM\Query\InsertQuery;
 use Cobra\ORM\Query\SelectQuery;
+use Cobra\ORM\Query\TablesQuery;
 use Cobra\ORM\Query\UpdateQuery;
 
 /**
@@ -65,5 +67,27 @@ class QueryFactory extends AbstractObject
     public function delete(...$args): DeleteQuery
     {
         return container_resolve(DeleteQuery::class, $args);
+    }
+
+    /**
+     * Returns a tables statement object
+     *
+     * @param [string] ...$args
+     * @return TablesQuery
+     */
+    public function tables(...$args): TablesQuery
+    {
+        return container_resolve(TablesQuery::class, $args);
+    }
+
+    /**
+     * Returns a table columns statement object
+     *
+     * @param [string] ...$args
+     * @return ColumnsQuery
+     */
+    public function columns(...$args): ColumnsQuery
+    {
+        return container_resolve(ColumnsQuery::class, $args);
     }
 }

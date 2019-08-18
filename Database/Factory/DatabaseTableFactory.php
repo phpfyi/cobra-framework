@@ -5,10 +5,10 @@ namespace Cobra\Database\Factory;
 use Cobra\Database\Statement\AlterTableAddColumnStatement;
 use Cobra\Database\Statement\AlterTableChangeColumnStatement;
 use Cobra\Database\Statement\CreateTableStatement;
-use Cobra\Database\Statement\ShowColumnsStatement;
 use Cobra\Interfaces\Database\DatabaseTableInterface;
 use Cobra\Interfaces\Database\Field\DatabaseFieldInterface;
 use Cobra\Object\AbstractObject;
+use Cobra\ORM\Factory\QueryFactory;
 
 /**
  * Database Table Factory
@@ -84,10 +84,8 @@ class DatabaseTableFactory extends AbstractObject
      */
     protected function update(): void
     {
-        $this->existingColumns = container_resolve(
-            ShowColumnsStatement::class,
-            [$this->table->getTable()]
-        )->run();
+        $this->existingColumns = container_resolve(QueryFactory::class)
+            ->columns($this->table->getTable())->fetch();
 
         $this->alterTable(AlterTableAddColumnStatement::class, $this->getInsertColumns());
         $this->alterTable(AlterTableChangeColumnStatement::class, $this->getUpdateColumns());
