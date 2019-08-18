@@ -1,10 +1,10 @@
 <?php
 
-namespace Cobra\ORM\Query\Condition;
+namespace Cobra\Database\Query\Condition;
 
-use Cobra\ORM\Query\Comparison;
-use Cobra\ORM\Query\Query;
-use Cobra\ORM\Store\QueryStore;
+use Cobra\Database\Query\Comparison;
+use Cobra\Database\Query\Query;
+use Cobra\Database\Store\QueryStore;
 
 /**
  * Condition

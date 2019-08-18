@@ -2,9 +2,9 @@
 
 namespace Cobra\Model\Action;
 
+use Cobra\Database\Factory\QueryFactory;
+use Cobra\Database\Query\Condition\Condition;
 use Cobra\Model\Model;
-use Cobra\ORM\Factory\QueryFactory;
-use Cobra\ORM\Query\Condition\Condition;
 
 /**
  * Update Action

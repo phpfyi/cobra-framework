@@ -2,7 +2,7 @@
 
 namespace Cobra\Model\Action;
 
-use Cobra\ORM\Factory\QueryFactory;
+use Cobra\Database\Factory\QueryFactory;
 
 /**
  * Insert Action

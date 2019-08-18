@@ -1,13 +1,12 @@
 <?php
 
-namespace Cobra\ORM\Query;
+namespace Cobra\Database\Query;
 
-use Cobra\ORM\Query\Column;
-use Cobra\ORM\Query\Join;
-use Cobra\ORM\Query\Traits\UsesBindData;
-use Cobra\ORM\Query\Traits\UsesConditions;
-use Cobra\ORM\Query\Traits\UsesLimit;
-use Cobra\ORM\Store\QueryStore;
+use Cobra\Database\Query\Column;
+use Cobra\Database\Query\Join;
+use Cobra\Database\Query\Traits\UsesConditions;
+use Cobra\Database\Query\Traits\UsesLimit;
+use Cobra\Database\Store\QueryStore;
 
 /**
  * Select Query

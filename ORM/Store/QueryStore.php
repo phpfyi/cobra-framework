@@ -1,13 +1,14 @@
 <?php
 
-namespace Cobra\ORM\Store;
+namespace Cobra\Database\Store;
 
+use Cobra\Database\Query\Column\Column;
+use Cobra\Database\Query\Column\ColumnMutator;
+use Cobra\Database\Query\Comparison\Comparison;
+use Cobra\Database\Query\Condition\Condition;
+use Cobra\Database\Query\Join\Join;
+use Cobra\Database\Query\Query;
 use Cobra\Object\AbstractObject;
-use Cobra\ORM\Query\Column\Column;
-use Cobra\ORM\Query\Comparison\Comparison;
-use Cobra\ORM\Query\Condition\Condition;
-use Cobra\ORM\Query\Join\Join;
-use Cobra\ORM\Query\Query;
 
 /**
  * Query Store

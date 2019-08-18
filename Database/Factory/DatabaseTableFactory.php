@@ -2,13 +2,13 @@
 
 namespace Cobra\Database\Factory;
 
+use Cobra\Database\Factory\QueryFactory;
 use Cobra\Database\Statement\AlterTableAddColumnStatement;
 use Cobra\Database\Statement\AlterTableChangeColumnStatement;
 use Cobra\Database\Statement\CreateTableStatement;
 use Cobra\Interfaces\Database\DatabaseTableInterface;
 use Cobra\Interfaces\Database\Field\DatabaseFieldInterface;
 use Cobra\Object\AbstractObject;
-use Cobra\ORM\Factory\QueryFactory;
 
 /**
  * Database Table Factory

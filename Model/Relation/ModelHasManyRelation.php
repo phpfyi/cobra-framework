@@ -3,12 +3,12 @@
 namespace Cobra\Model\Relation;
 
 use Iterator;
+use Cobra\Database\Factory\QueryFactory;
+use Cobra\Database\Query\Condition\Condition;
 use Cobra\Database\Relation\HasManyRelation;
 use Cobra\Interfaces\Model\ModelDataList\ModelDataListInterface;
 use Cobra\Model\Exception\InvalidModelRelationException;
 use Cobra\Model\Traits\ModelDataListManyAccess;
-use Cobra\ORM\Factory\QueryFactory;
-use Cobra\ORM\Query\Condition\Condition;
 
 /**
  * Model Has Many Relation

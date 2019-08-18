@@ -3,8 +3,8 @@
 namespace Cobra\Database\Factory;
 
 use Cobra\Database\DatabaseTable;
+use Cobra\Database\Factory\QueryFactory;
 use Cobra\Object\AbstractObject;
-use Cobra\ORM\Factory\QueryFactory;
 
 /**
  * Database Factory

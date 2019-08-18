@@ -1,9 +1,9 @@
 <?php
 
-namespace Cobra\ORM\Query\Traits;
+namespace Cobra\Database\Query\Traits;
 
-use Cobra\ORM\Query\Query;
-use Cobra\ORM\Store\QueryStore;
+use Cobra\Database\Query\Query;
+use Cobra\Database\Store\QueryStore;
 
 /**
  * Uses Table And Store Trait

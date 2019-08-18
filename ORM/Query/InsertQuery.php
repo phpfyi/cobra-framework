@@ -1,11 +1,11 @@
 <?php
 
-namespace Cobra\ORM\Query;
+namespace Cobra\Database\Query;
 
-use Cobra\ORM\Query\Column\Column;
-use Cobra\ORM\Query\Column\ColumnInsert;
-use Cobra\ORM\Query\Traits\UsesBindData;
-use Cobra\ORM\Query\Traits\UsesTableAndStore;
+use Cobra\Database\Query\Column\Column;
+use Cobra\Database\Query\Column\ColumnInsert;
+use Cobra\Database\Query\Traits\UsesMutateColumns;
+use Cobra\Database\Query\Traits\UsesTableAndStore;
 
 /**
  * Insert Query

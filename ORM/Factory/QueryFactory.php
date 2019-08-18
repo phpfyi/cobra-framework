@@ -1,14 +1,14 @@
 <?php
 
-namespace Cobra\ORM\Factory;
+namespace Cobra\Database\Factory;
 
+use Cobra\Database\Query\ColumnsQuery;
+use Cobra\Database\Query\DeleteQuery;
+use Cobra\Database\Query\InsertQuery;
+use Cobra\Database\Query\SelectQuery;
+use Cobra\Database\Query\TablesQuery;
+use Cobra\Database\Query\UpdateQuery;
 use Cobra\Object\AbstractObject;
-use Cobra\ORM\Query\ColumnsQuery;
-use Cobra\ORM\Query\DeleteQuery;
-use Cobra\ORM\Query\InsertQuery;
-use Cobra\ORM\Query\SelectQuery;
-use Cobra\ORM\Query\TablesQuery;
-use Cobra\ORM\Query\UpdateQuery;
 
 /**
  * Query Factory

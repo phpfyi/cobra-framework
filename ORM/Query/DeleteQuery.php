@@ -1,11 +1,10 @@
 <?php
 
-namespace Cobra\ORM\Query;
+namespace Cobra\Database\Query;
 
-use Cobra\ORM\Query\Traits\UsesBindData;
-use Cobra\ORM\Query\Traits\UsesConditions;
-use Cobra\ORM\Query\Traits\UsesLimit;
-use Cobra\ORM\Query\Traits\UsesTableAndStore;
+use Cobra\Database\Query\Traits\UsesConditions;
+use Cobra\Database\Query\Traits\UsesLimit;
+use Cobra\Database\Query\Traits\UsesTableAndStore;
 
 /**
  * Delete Query

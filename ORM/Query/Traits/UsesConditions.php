@@ -1,11 +1,11 @@
 <?php
 
-namespace Cobra\ORM\Query\Traits;
+namespace Cobra\Database\Query\Traits;
 
 use Closure;
-use Cobra\ORM\Query\Comparison;
-use Cobra\ORM\Query\Condition;
-use Cobra\ORM\Query\Query;
+use Cobra\Database\Query\Comparison;
+use Cobra\Database\Query\Condition;
+use Cobra\Database\Query\Query;
 
 /**
  * Uses Columns trait

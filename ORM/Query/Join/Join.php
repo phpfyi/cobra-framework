@@ -1,11 +1,11 @@
 <?php
 
-namespace Cobra\ORM\Query\Join;
+namespace Cobra\Database\Query\Join;
 
-use Cobra\ORM\Query\Condition;
-use Cobra\ORM\Query\Query;
-use Cobra\ORM\Query\Traits\UsesConditions;
-use Cobra\ORM\Store\QueryStore;
+use Cobra\Database\Query\Condition;
+use Cobra\Database\Query\Query;
+use Cobra\Database\Query\Traits\UsesConditions;
+use Cobra\Database\Store\QueryStore;
 
 /**
  * Join
