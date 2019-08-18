@@ -78,7 +78,7 @@ class SelectQuery extends Query
     {
         $this->table = $table;
         $this->class = $class;
-        $this->store = container_resolve(QueryStore::class);
+        $this->store = container_resolve($this->storeClass);
     }
 
     /**
