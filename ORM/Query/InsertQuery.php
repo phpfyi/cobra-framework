@@ -5,7 +5,7 @@ namespace Cobra\ORM\Query;
 use Cobra\ORM\Query\Column\Column;
 use Cobra\ORM\Query\Column\ColumnInsert;
 use Cobra\ORM\Query\Traits\UsesBindData;
-use Cobra\ORM\Store\QueryStore;
+use Cobra\ORM\Query\Traits\UsesTableAndStore;
 
 /**
  * Insert Query
@@ -22,32 +22,7 @@ use Cobra\ORM\Store\QueryStore;
 
 class InsertQuery extends Query
 {
-    use UsesBindData;
-
-    /**
-     * Database table name.
-     *
-     * @var string
-     */
-    protected $table;
-
-    /**
-     * QueryStore instance
-     *
-     * @var array
-     */
-    protected $store;
-
-    /**
-     * Sets the required properties.
-     *
-     * @param string $table
-     */
-    public function __construct(string $table)
-    {
-        $this->table = $table;
-        $this->store = container_resolve(QueryStore::class);
-    }
+    use UsesBindData, UsesTableAndStore;
 
     /**
      * Returns the SQL string.

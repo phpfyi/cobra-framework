@@ -5,7 +5,7 @@ namespace Cobra\ORM\Query;
 use Cobra\ORM\Query\Traits\UsesBindData;
 use Cobra\ORM\Query\Traits\UsesConditions;
 use Cobra\ORM\Query\Traits\UsesLimit;
-use Cobra\ORM\Store\QueryStore;
+use Cobra\ORM\Query\Traits\UsesTableAndStore;
 
 /**
  * Delete Query
@@ -22,32 +22,7 @@ use Cobra\ORM\Store\QueryStore;
 
 class DeleteQuery extends Query
 {
-    use UsesBindData, UsesConditions, UsesLimit;
-
-    /**
-     * Database table name.
-     *
-     * @var string
-     */
-    protected $table;
-
-    /**
-     * QueryStore instance
-     *
-     * @var array
-     */
-    protected $store;
-
-    /**
-     * Sets the required properties.
-     *
-     * @param string $table
-     */
-    public function __construct(string $table)
-    {
-        $this->table = $table;
-        $this->store = container_resolve(QueryStore::class);
-    }
+    use UsesBindData, UsesConditions, UsesLimit, UsesTableAndStore;
 
     /**
      * Returns the SQL string.
