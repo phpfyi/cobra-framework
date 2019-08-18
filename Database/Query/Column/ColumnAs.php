@@ -1,11 +1,11 @@
 <?php
 
-namespace Cobra\ORM\Query\Column;
+namespace Cobra\Database\Query\Column;
 
 /**
- * Column Insert
+ * Column As
  *
- * Class representing an SQL query insert query column.
+ * Class representing an SQL query AS column.
  *
  * @category  ORM
  * @package   Cobra
@@ -17,35 +17,39 @@ namespace Cobra\ORM\Query\Column;
  * @since     1.0.0
  */
 
-class ColumnInsert extends Column
+class ColumnAs extends Column
 {
     /**
-     * Database table column value
+     * Database table column alias
      *
-     * @var mixed
+     * @var string
      */
-    protected $value;
+    protected $alias;
 
     /**
      * Sets the required properties.
      *
      * @param string $column
-     * @param mixed $value
+     * @param string $alias
      */
-    public function __construct(string $column, $value)
+    public function __construct(string $column, string $alias)
     {
         parent::__construct($column);
 
-        $this->value = $value;
+        $this->alias = $alias;
     }
 
     /**
-     * Returns the column value.
+     * Returns the SQL string.
      *
-     * @return void
+     * @return string
      */
-    public function getValue()
+    public function getSQL(): string
     {
-        return $this->value;
+        return sprintf(
+            '%s AS %s',
+            $this->column,
+            $this->alias
+        );
     }
 }

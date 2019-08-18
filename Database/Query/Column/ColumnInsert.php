@@ -1,11 +1,11 @@
 <?php
 
-namespace Cobra\ORM\Query\Column;
+namespace Cobra\Database\Query\Column;
 
 /**
- * Column Distinct
+ * Column Insert
  *
- * Class representing an SQL query DISTINCT column.
+ * Class representing an SQL query insert query column.
  *
  * @category  ORM
  * @package   Cobra
@@ -17,7 +17,7 @@ namespace Cobra\ORM\Query\Column;
  * @since     1.0.0
  */
 
-class ColumnDistinct extends Column
+class ColumnInsert extends ColumnMutator
 {
     /**
      * Returns the SQL string.
@@ -27,7 +27,7 @@ class ColumnDistinct extends Column
     public function getSQL(): string
     {
         return sprintf(
-            'DISTINCT(%s)',
+            '%s',
             $this->column
         );
     }

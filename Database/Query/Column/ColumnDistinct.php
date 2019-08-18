@@ -1,13 +1,11 @@
 <?php
 
-namespace Cobra\ORM\Query\Column;
-
-use Cobra\ORM\Query\Query;
+namespace Cobra\Database\Query\Column;
 
 /**
- * Column
+ * Column Distinct
  *
- * Class representing an SQL query column.
+ * Class representing an SQL query DISTINCT column.
  *
  * @category  ORM
  * @package   Cobra
@@ -19,26 +17,8 @@ use Cobra\ORM\Query\Query;
  * @since     1.0.0
  */
 
-class Column extends Query
+class ColumnDistinct extends Column
 {
-    /**
-     * Database table column name
-     *
-     * @var string
-     */
-    protected $column;
-
-    /**
-     * Sets the required properties.
-     *
-     * @param string $table
-     * @param string $column
-     */
-    public function __construct(string $column)
-    {
-        $this->column = $column;
-    }
-
     /**
      * Returns the SQL string.
      *
@@ -47,7 +27,7 @@ class Column extends Query
     public function getSQL(): string
     {
         return sprintf(
-            '%s',
+            'DISTINCT(%s)',
             $this->column
         );
     }

@@ -1,11 +1,13 @@
 <?php
 
-namespace Cobra\ORM\Query\Column;
+namespace Cobra\Database\Query\Column;
+
+use Cobra\Database\Query\Query;
 
 /**
- * Column Count
+ * Column
  *
- * Class representing an SQL query COUNT column.
+ * Class representing an SQL query column.
  *
  * @category  ORM
  * @package   Cobra
@@ -17,26 +19,24 @@ namespace Cobra\ORM\Query\Column;
  * @since     1.0.0
  */
 
-class ColumnCount extends Column
+class Column extends Query
 {
     /**
-     * Database table column alias
+     * Database table column name
      *
      * @var string
      */
-    protected $alias;
+    protected $column;
 
     /**
      * Sets the required properties.
      *
+     * @param string $table
      * @param string $column
-     * @param string $alias
      */
-    public function __construct(string $column, string $alias)
+    public function __construct(string $column)
     {
-        parent::__construct($column);
-
-        $this->alias = $alias;
+        $this->column = $column;
     }
 
     /**
@@ -47,9 +47,8 @@ class ColumnCount extends Column
     public function getSQL(): string
     {
         return sprintf(
-            'COUNT(%s) AS %s',
-            $this->column,
-            $this->alias
+            '%s',
+            $this->column
         );
     }
 }

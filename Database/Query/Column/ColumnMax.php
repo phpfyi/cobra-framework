@@ -1,11 +1,11 @@
 <?php
 
-namespace Cobra\ORM\Query\Column;
+namespace Cobra\Database\Query\Column;
 
 /**
- * Column Sum
+ * Column Max
  *
- * Class representing an SQL query SUM column.
+ * Class representing an SQL query MAX column.
  *
  * @category  ORM
  * @package   Cobra
@@ -17,7 +17,7 @@ namespace Cobra\ORM\Query\Column;
  * @since     1.0.0
  */
 
-class ColumnSum extends Column
+class ColumnMax extends Column
 {
     /**
      * Returns the SQL string.
@@ -27,7 +27,7 @@ class ColumnSum extends Column
     public function getSQL(): string
     {
         return sprintf(
-            'SUM(%s)',
+            'MAX(%s)',
             $this->column
         );
     }

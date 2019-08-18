@@ -1,11 +1,11 @@
 <?php
 
-namespace Cobra\ORM\Query\Column;
+namespace Cobra\Database\Query\Column;
 
 /**
- * Column Max
+ * Column Average
  *
- * Class representing an SQL query MAX column.
+ * Class representing an SQL query AVG column.
  *
  * @category  ORM
  * @package   Cobra
@@ -17,7 +17,7 @@ namespace Cobra\ORM\Query\Column;
  * @since     1.0.0
  */
 
-class ColumnMax extends Column
+class ColumnAverage extends Column
 {
     /**
      * Returns the SQL string.
@@ -27,7 +27,7 @@ class ColumnMax extends Column
     public function getSQL(): string
     {
         return sprintf(
-            'MAX(%s)',
+            'AVG(%s)',
             $this->column
         );
     }

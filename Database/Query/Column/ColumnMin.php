@@ -1,11 +1,11 @@
 <?php
 
-namespace Cobra\ORM\Query\Column;
+namespace Cobra\Database\Query\Column;
 
 /**
- * Column Average
+ * Column Min
  *
- * Class representing an SQL query AVG column.
+ * Class representing an SQL query MIN column.
  *
  * @category  ORM
  * @package   Cobra
@@ -17,7 +17,7 @@ namespace Cobra\ORM\Query\Column;
  * @since     1.0.0
  */
 
-class ColumnAverage extends Column
+class ColumnMin extends Column
 {
     /**
      * Returns the SQL string.
@@ -27,7 +27,7 @@ class ColumnAverage extends Column
     public function getSQL(): string
     {
         return sprintf(
-            'AVG(%s)',
+            'MIN(%s)',
             $this->column
         );
     }

@@ -1,11 +1,11 @@
 <?php
 
-namespace Cobra\ORM\Query\Column;
+namespace Cobra\Database\Query\Column;
+
+use Cobra\Database\Query\Query;
 
 /**
- * Column As
- *
- * Class representing an SQL query AS column.
+ * Column Mutator
  *
  * @category  ORM
  * @package   Cobra
@@ -17,39 +17,37 @@ namespace Cobra\ORM\Query\Column;
  * @since     1.0.0
  */
 
-class ColumnAs extends Column
+abstract class ColumnMutator extends Query
 {
     /**
-     * Database table column alias
+     * Database table column value
      *
-     * @var string
+     * @var mixed
      */
-    protected $alias;
+    protected $value;
 
     /**
      * Sets the required properties.
      *
      * @param string $column
-     * @param string $alias
+     * @param mixed $value
      */
-    public function __construct(string $column, string $alias)
+    public function __construct(string $column, $value)
     {
         parent::__construct($column);
 
-        $this->alias = $alias;
+        $this->value = $value;
     }
 
     /**
-     * Returns the SQL string.
+     * Returns all bind data.
      *
-     * @return string
+     * @return array
      */
-    public function getSQL(): string
+    public function getBindValues(): array
     {
-        return sprintf(
-            '%s AS %s',
-            $this->column,
-            $this->alias
-        );
+        return [
+            $this->value,
+        ];
     }
 }

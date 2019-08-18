@@ -1,6 +1,6 @@
 <?php
 
-namespace Cobra\ORM\Query\Column;
+namespace Cobra\Database\Query\Column;
 
 /**
  * Column Update
@@ -17,28 +17,8 @@ namespace Cobra\ORM\Query\Column;
  * @since     1.0.0
  */
 
-class ColumnUpdate extends Column
+class ColumnUpdate extends ColumnMutator
 {
-    /**
-     * Database table column value
-     *
-     * @var mixed
-     */
-    protected $value;
-
-    /**
-     * Sets the required properties.
-     *
-     * @param string $column
-     * @param mixed $value
-     */
-    public function __construct(string $column, $value)
-    {
-        parent::__construct($column);
-
-        $this->value = $value;
-    }
-
     /**
      * Returns the SQL string.
      *
@@ -50,15 +30,5 @@ class ColumnUpdate extends Column
             '%s = ?',
             $this->column
         );
-    }
-
-    /**
-     * Returns the column value.
-     *
-     * @return void
-     */
-    public function getValue()
-    {
-        return $this->value;
     }
 }

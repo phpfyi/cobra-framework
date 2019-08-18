@@ -1,11 +1,11 @@
 <?php
 
-namespace Cobra\ORM\Query\Column;
+namespace Cobra\Database\Query\Column;
 
 /**
- * Column Min
+ * Column Sum
  *
- * Class representing an SQL query MIN column.
+ * Class representing an SQL query SUM column.
  *
  * @category  ORM
  * @package   Cobra
@@ -17,7 +17,7 @@ namespace Cobra\ORM\Query\Column;
  * @since     1.0.0
  */
 
-class ColumnMin extends Column
+class ColumnSum extends Column
 {
     /**
      * Returns the SQL string.
@@ -27,7 +27,7 @@ class ColumnMin extends Column
     public function getSQL(): string
     {
         return sprintf(
-            'MIN(%s)',
+            'SUM(%s)',
             $this->column
         );
     }
