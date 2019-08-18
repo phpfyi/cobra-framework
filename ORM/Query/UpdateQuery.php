@@ -24,7 +24,14 @@ use Cobra\Database\Query\Traits\UsesTableAndStore;
 
 class UpdateQuery extends Query
 {
-    use UsesBindData, UsesConditions, UsesLimit, UsesTableAndStore;
+    use UsesConditions, UsesLimit, UsesMutateColumns, UsesTableAndStore;
+
+    /**
+     * Mutate column class.
+     *
+     * @var string
+     */
+    protected $columnClass = ColumnUpdate::class;
 
     /**
      * Returns the SQL string.
@@ -40,33 +47,6 @@ class UpdateQuery extends Query
             $this->store->renderConditions(),
             $this->limit > 0 ? sprintf(' LIMIT %s', $this->limit) : ''
         );
-    }
-
-    /**
-     * Sets an array of query column objects.
-     *
-     * @param array $columns
-     * @return UpdateQuery
-     */
-    public function columns(array $columns): UpdateQuery
-    {
-        array_map(function (string $column, $value) {
-            $this->column($column, $value);
-        }, array_keys($columns), $columns);
-        return $this;
-    }
-
-    /**
-     * Sets a query column object.
-     *
-     * @param string $column
-     * @param mixed $value
-     * @return UpdateQuery
-     */
-    public function column(string $column, $value): UpdateQuery
-    {
-        $this->store->setColumn(ColumnUpdate::class, [$column, $value]);
-        return $this;
     }
 
     /**

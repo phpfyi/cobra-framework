@@ -21,7 +21,7 @@ use Cobra\Database\Query\Traits\UsesTableAndStore;
 
 class DeleteQuery extends Query
 {
-    use UsesBindData, UsesConditions, UsesLimit, UsesTableAndStore;
+    use UsesConditions, UsesLimit, UsesTableAndStore;
 
     /**
      * Returns the SQL string.

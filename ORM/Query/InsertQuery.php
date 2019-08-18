@@ -22,7 +22,14 @@ use Cobra\Database\Query\Traits\UsesTableAndStore;
 
 class InsertQuery extends Query
 {
-    use UsesBindData, UsesTableAndStore;
+    use UsesMutateColumns, UsesTableAndStore;
+
+    /**
+     * Mutate column class.
+     *
+     * @var string
+     */
+    protected $columnClass = ColumnInsert::class;
 
     /**
      * Returns the SQL string.
@@ -37,33 +44,6 @@ class InsertQuery extends Query
             $this->store->renderColumns(),
             stmt_placeholders($this->store->getColumns())
         );
-    }
-
-    /**
-     * Sets an array of query column objects.
-     *
-     * @param array $columns
-     * @return InsertQuery
-     */
-    public function columns(array $columns): InsertQuery
-    {
-        array_map(function (string $column, $value) {
-            $this->column($column, $value);
-        }, array_keys($columns), $columns);
-        return $this;
-    }
-
-    /**
-     * Sets a query column object.
-     *
-     * @param string $column
-     * @param mixed $value
-     * @return InsertQuery
-     */
-    public function column(string $column, $value): InsertQuery
-    {
-        $this->store->setColumn(ColumnInsert::class, [$column, $value]);
-        return $this;
     }
 
     /**
