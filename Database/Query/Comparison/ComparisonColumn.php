@@ -1,8 +1,8 @@
 <?php
 
-namespace Cobra\ORM\Query\Comparison;
+namespace Cobra\Database\Query\Comparison;
 
-use Cobra\ORM\Query\Query;
+use Cobra\Database\Query\Query;
 
 /**
  * Comparison Column
@@ -68,5 +68,17 @@ class ComparisonColumn extends Comparison
             $this->column,
             $this->operator
         );
+    }
+
+    /**
+     * Returns all bind data.
+     *
+     * @return array
+     */
+    public function getBindValues(): array
+    {
+        return [
+            $this->value,
+        ];
     }
 }

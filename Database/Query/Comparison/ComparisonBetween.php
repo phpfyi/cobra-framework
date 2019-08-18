@@ -1,6 +1,6 @@
 <?php
 
-namespace Cobra\ORM\Query\Comparison;
+namespace Cobra\Database\Query\Comparison;
 
 /**
  * Comparison Between
@@ -58,5 +58,18 @@ class ComparisonBetween extends Comparison
             '%s BETWEEN ? AND ? ',
             $this->column
         );
+    }
+
+    /**
+     * Returns all bind data.
+     *
+     * @return array
+     */
+    public function getBindValues(): array
+    {
+        return [
+            $this->minValue,
+            $this->maxValue,
+        ];
     }
 }

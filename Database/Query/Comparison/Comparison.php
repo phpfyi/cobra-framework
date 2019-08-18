@@ -1,8 +1,8 @@
 <?php
 
-namespace Cobra\ORM\Query\Comparison;
+namespace Cobra\Database\Query\Comparison;
 
-use Cobra\ORM\Query\Query;
+use Cobra\Database\Query\Query;
 
 /**
  * Comparison
@@ -21,5 +21,10 @@ use Cobra\ORM\Query\Query;
 
 abstract class Comparison extends Query
 {
-    
+    /**
+     * Returns all bind data.
+     *
+     * @return array
+     */
+    abstract public function getBindValues(): array;
 }

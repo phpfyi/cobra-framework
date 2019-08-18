@@ -1,6 +1,6 @@
 <?php
 
-namespace Cobra\ORM\Query\Comparison;
+namespace Cobra\Database\Query\Comparison;
 
 /**
  * Query in Comparison
@@ -60,5 +60,15 @@ class ComparisonIn extends Comparison
             $this->operator,
             stmt_placeholders($this->values)
         );
+    }
+
+    /**
+     * Returns all bind data.
+     *
+     * @return array
+     */
+    public function getBindValues(): array
+    {
+        return $this->values;
     }
 }
