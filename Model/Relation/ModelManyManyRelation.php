@@ -80,22 +80,6 @@ class ModelManyManyRelation extends ManyManyRelation implements Iterator, ModelD
     }
 
     /**
-     * Returns the many many record count.
-     *
-     * @return integer
-     */
-    public function count(): int
-    {
-        return container_resolve(QueryFactory::class)
-            ->select($this->table)
-            ->count('id')
-            ->where("{$this->table}.{$this->localColumn}", '=', $this->localID)
-            ->limit(1)
-            ->bind([$this->localID])
-            ->fetch()->count;
-    }
-
-    /**
      * Returns the many many relation data.
      *
      * @return ModelDataListInterface
@@ -122,23 +106,19 @@ class ModelManyManyRelation extends ManyManyRelation implements Iterator, ModelD
     }
 
     /**
-     * Adds a many many list item.
+     * Returns the many many record count.
      *
-     * @param integer $foreignID
-     * @return integer|null
+     * @return integer
      */
-    public function add(int $foreignID):? int
+    public function count(): int
     {
-        if ($this->exists($foreignID)) {
-            return null;
-        }
         return container_resolve(QueryFactory::class)
-            ->insert($this->table)
-            ->columns([
-                $this->localColumn => $this->localID,
-                $this->foreignColumn => $foreignID
-            ])
-            ->execute();
+            ->select($this->table)
+            ->count('id')
+            ->where("{$this->table}.{$this->localColumn}", '=', $this->localID)
+            ->limit(1)
+            ->bind([$this->localID])
+            ->fetch()->count;
     }
 
     /**
@@ -158,6 +138,26 @@ class ModelManyManyRelation extends ManyManyRelation implements Iterator, ModelD
         $this->setWhereConditions($stmt, $foreignID);
 
         return $stmt->fetch()->count > 0;
+    }
+
+    /**
+     * Adds a many many list item.
+     *
+     * @param integer $foreignID
+     * @return integer|null
+     */
+    public function add(int $foreignID):? int
+    {
+        if ($this->exists($foreignID)) {
+            return null;
+        }
+        return container_resolve(QueryFactory::class)
+            ->insert($this->table)
+            ->columns([
+                $this->localColumn => $this->localID,
+                $this->foreignColumn => $foreignID
+            ])
+            ->execute();
     }
 
     /**

@@ -27,6 +27,24 @@ class ModelHasManyRelation extends HasManyRelation implements Iterator, ModelDat
     use ModelDataListManyAccess;
 
     /**
+     * Returns the has many relation data.
+     *
+     * @return ModelDataListInterface
+     */
+    public function get(): ModelDataListInterface
+    {
+        $class = $this->getRelationClass(true);
+        $this->data = $class::get()->where(
+            $this->getHasOneColumnName(),
+            '=',
+            $this->getParentID()
+        )->all(false);
+
+
+        return $this;
+    }
+
+    /**
      * Returns the has many record count.
      *
      * @return integer
@@ -40,36 +58,6 @@ class ModelHasManyRelation extends HasManyRelation implements Iterator, ModelDat
             ->limit(1)
             ->bind([$this->parentID])
             ->fetch()->count;
-    }
-
-    /**
-     * Returns the has many relation data.
-     *
-     * @return ModelDataListInterface
-     */
-    public function get(): ModelDataListInterface
-    {
-        $class = $this->getRelationClass(true);
-        $this->data = $class::get()->where(
-            $this->getHasOneColumnName(),
-            '=',
-            $this->getParentID()
-        )->all(false);
-        return $this;
-    }
-
-    /**
-     * Adds a many many list item.
-     *
-     * @param  integer $relationID
-     * @return integer|null
-     */
-    public function add(int $relationID):? int
-    {
-        if ($this->exists($relationID)) {
-            return null;
-        }
-        return $this->updateHasOneColumn($relationID, $this->parentID);
     }
 
     /**
@@ -88,6 +76,20 @@ class ModelHasManyRelation extends HasManyRelation implements Iterator, ModelDat
             ->limit(1)
             ->bind([$relationID,$this->parentID])
             ->fetch()->count > 0;
+    }
+
+    /**
+     * Adds a many many list item.
+     *
+     * @param  integer $relationID
+     * @return integer|null
+     */
+    public function add(int $relationID):? int
+    {
+        if ($this->exists($relationID)) {
+            return null;
+        }
+        return $this->updateHasOneColumn($relationID, $this->parentID);
     }
 
     /**
