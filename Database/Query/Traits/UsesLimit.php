@@ -1,11 +1,11 @@
 <?php
 
-namespace Cobra\ORM\Query\Traits;
+namespace Cobra\Database\Query\Traits;
 
-use Cobra\ORM\Query\Query;
+use Cobra\Database\Query\Query;
 
 /**
- * Uses Bind Data trait
+ * Uses Limit Trait
  *
  * @category  ORM
  * @package   Cobra
@@ -17,24 +17,24 @@ use Cobra\ORM\Query\Query;
  * @since     1.0.0
  */
 
-trait UsesBindData
+trait UsesLimit
 {
     /**
-     * Query bind data
+     * The query LIMIT
      *
      * @var array
      */
-    protected $bind = [];
+    protected $limit = 0;
 
     /**
-     * Sets the query bind data.
+     * Sets the query LIMIT.
      *
-     * @param array $data
+     * @param int $limit
      * @return Query
      */
-    public function bind(array $data): Query
+    public function limit(int $limit = 0): Query
     {
-        $this->bind = $data;
+        $this->limit = $limit;
         return $this;
     }
 }
