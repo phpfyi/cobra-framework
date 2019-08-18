@@ -25,9 +25,16 @@ abstract class Join extends Query
     use UsesConditions;
 
     /**
+     * Store Class
+     *
+     * @var string
+     */
+    protected $storeClass = QueryStore::class;
+
+    /**
      * QueryStore instance
      *
-     * @var array
+     * @var QueryStore
      */
     protected $store;
 
@@ -49,12 +56,13 @@ abstract class Join extends Query
      * Sets the required properties.
      *
      * @param string $table
-     * @param string $joinedTable
+     * @param string $storeClass
      */
-    public function __construct(string $table)
+    public function __construct(string $table, string $storeClass)
     {
         $this->table = $table;
-        $this->store = container_resolve(QueryStore::class);
+        $this->storeClass = $storeClass;
+        $this->store = container_resolve($storeClass);
     }
 
     /**

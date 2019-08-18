@@ -64,7 +64,10 @@ trait UsesConditions
      */
     protected function setConditionOrClosure(string $namespace, $args): Query
     {
-        $condition = $this->store->setCondition($namespace);
+        $condition = $this->store->setCondition(
+            $namespace,
+            [$this->storeClass]
+        );
         // return the condition object
         if (empty($args)) {
             return $condition;

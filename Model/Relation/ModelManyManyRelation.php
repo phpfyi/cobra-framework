@@ -116,7 +116,7 @@ class ModelManyManyRelation extends ManyManyRelation implements Iterator, ModelD
                     ->on("{$this->table}.{$this->foreignColumn}", '=', "{$table}.id");
             },
             schema($this->foreignClass)->hierarchy()
-        );  
+        );
         $this->data = $this->runPolymorphismArray($select->fetch());
         return $this;
     }

@@ -25,6 +25,13 @@ use Cobra\ORM\Store\QueryStore;
 class SelectQuery extends Query
 {
     use UsesBindData, UsesConditions, UsesLimit;
+
+    /**
+     * Store Class
+     *
+     * @var string
+     */
+    protected $storeClass = QueryStore::class;
     
     /**
      * Database table name.
@@ -212,7 +219,7 @@ class SelectQuery extends Query
      */
     public function joinLeft(string $table): Join\JoinLeft
     {
-        return $this->store->setJoin(Join\JoinLeft::class, [$table]);
+        return $this->store->setJoin(Join\JoinLeft::class, [$table, $this->storeClass]);
     }
 
     /**
@@ -223,7 +230,7 @@ class SelectQuery extends Query
      */
     public function joinRight(string $table): Join\JoinRight
     {
-        return $this->store->setJoin(Join\JoinRight::class, [$table]);
+        return $this->store->setJoin(Join\JoinRight::class, [$table, $this->storeClass]);
     }
 
     /**
@@ -234,7 +241,7 @@ class SelectQuery extends Query
      */
     public function joinFull(string $table): Join\JoinFull
     {
-        return $this->store->setJoin(Join\JoinFull::class, [$table]);
+        return $this->store->setJoin(Join\JoinFull::class, [$table, $this->storeClass]);
     }
 
     /**
@@ -245,7 +252,7 @@ class SelectQuery extends Query
      */
     public function joinInner(string $table): Join\JoinInner
     {
-        return $this->store->setJoin(Join\JoinInner::class, [$table]);
+        return $this->store->setJoin(Join\JoinInner::class, [$table, $this->storeClass]);
     }
 
     /**

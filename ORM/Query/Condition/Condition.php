@@ -24,6 +24,13 @@ use Cobra\ORM\Store\QueryStore;
 abstract class Condition extends Query
 {
     /**
+     * Store Class
+     *
+     * @var string
+     */
+    protected $storeClass = QueryStore::class;
+
+    /**
      * Condition type
      *
      * @var string
@@ -33,16 +40,19 @@ abstract class Condition extends Query
     /**
      * QueryStore instance
      *
-     * @var array
+     * @var QueryStore
      */
     protected $store;
 
     /**
      * Sets the required properties.
+     *
+     * @param string $storeClass
      */
-    public function __construct()
+    public function __construct(string $storeClass)
     {
-        $this->store = container_resolve(QueryStore::class);
+        $this->storeClass = $storeClass;
+        $this->store = container_resolve($storeClass);
     }
     
     /**
