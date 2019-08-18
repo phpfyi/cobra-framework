@@ -54,6 +54,23 @@ class QueryStore extends AbstractObject
     protected $comparisons = [];
 
     /**
+     * Array of query bind data.
+     *
+     * @var array
+     */
+    protected $bind = [];
+
+    /**
+     * Returns the query bind data array.
+     *
+     * @return array
+     */
+    public function getBind(): array
+    {
+        return $this->bind;
+    }
+
+    /**
      * Sets a query column.
      *
      * @param string $namespace
@@ -62,7 +79,12 @@ class QueryStore extends AbstractObject
      */
     public function setColumn(string $namespace, array $args = []): Column
     {
-        return $this->columns[] = container_resolve($namespace, $args);
+        $column = container_resolve($namespace, $args);
+
+        if ($column instanceof ColumnMutator) {
+            $this->bind = array_merge($this->bind, $column->getBindValues());
+        }
+        return $this->columns[] = $column;
     }
 
     /**
@@ -85,6 +107,16 @@ class QueryStore extends AbstractObject
     public function setJoin(string $namespace, array $args = []): Join
     {
         return $this->joins[] = container_resolve($namespace, $args);
+    }
+
+    /**
+     * Returns all query joins.
+     *
+     * @return array
+     */
+    public function getJoins(): array
+    {
+        return $this->joins;
     }
 
     /**
