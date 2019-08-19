@@ -2,8 +2,6 @@
 
 namespace Cobra\Database\Query\Column;
 
-use Cobra\Database\Query\Query;
-
 /**
  * Column Mutator
  *
@@ -17,7 +15,7 @@ use Cobra\Database\Query\Query;
  * @since     1.0.0
  */
 
-abstract class ColumnMutator extends Query
+abstract class ColumnMutator extends Column
 {
     /**
      * Database table column value
