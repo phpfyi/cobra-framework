@@ -12,7 +12,7 @@ use Cobra\Database\Store\QueryStore;
 /**
  * Select Query
  *
- * @category  ORM
+ * @category  Database
  * @package   Cobra
  * @author    Andrew Mc Cormack <webmaster@ddmseo.com>
  * @copyright Copyright (c) 2019, Andrew Mc Cormack
@@ -285,12 +285,14 @@ class SelectQuery extends Query
     {
         $stmt = stmt(
             $this->getSQL(),
-            $this->bind,
-            $this->limit
+            $this->store->getBind()
         );
+        if ($this->limit) {
+            $stmt->setLimit($this->limit);
+        }
         if ($this->class) {
             $stmt->setClass($this->class);
         }
-        return $stmt->fetch();
+        return $stmt->execute()->fetch();
     }
 }

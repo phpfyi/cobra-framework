@@ -2,14 +2,17 @@
 
 namespace Cobra\Database\Query;
 
+use Cobra\Database\Query\Column\Column;
+use Cobra\Database\Query\Column\ColumnUpdate;
 use Cobra\Database\Query\Traits\UsesConditions;
+use Cobra\Database\Query\Traits\UsesMutateColumns;
 use Cobra\Database\Query\Traits\UsesLimit;
 use Cobra\Database\Query\Traits\UsesTableAndStore;
 
 /**
- * Delete Query
+ * Update Query
  *
- * @category  ORM
+ * @category  Database
  * @package   Cobra
  * @author    Andrew Mc Cormack <webmaster@ddmseo.com>
  * @copyright Copyright (c) 2019, Andrew Mc Cormack
@@ -19,9 +22,16 @@ use Cobra\Database\Query\Traits\UsesTableAndStore;
  * @since     1.0.0
  */
 
-class DeleteQuery extends Query
+class UpdateQuery extends Query
 {
-    use UsesConditions, UsesLimit, UsesTableAndStore;
+    use UsesConditions, UsesLimit, UsesMutateColumns, UsesTableAndStore;
+
+    /**
+     * Mutate column class.
+     *
+     * @var string
+     */
+    protected $columnClass = ColumnUpdate::class;
 
     /**
      * Returns the SQL string.
@@ -31,15 +41,16 @@ class DeleteQuery extends Query
     public function getSQL(): string
     {
         return sprintf(
-            'DELETE FROM `%s` %s%s',
+            'UPDATE %s SET %s %s%s',
             $this->table,
-            $this->store->renderConditions(),
+            $this->store->renderColumns(),
+            $this->store->renderConditions($this->qid),
             $this->limit > 0 ? sprintf(' LIMIT %s', $this->limit) : ''
         );
     }
 
     /**
-     * Executes the insert query.
+     * Executes the update query.
      *
      * @return integer
      */
@@ -47,9 +58,11 @@ class DeleteQuery extends Query
     {
         $stmt = stmt(
             $this->getSQL(),
-            $this->bind
-        )->execute();
-
-        return $stmt->rowCount();
+            $this->store->getBind()
+        );
+        if ($this->limit) {
+            $stmt->setLimit($this->limit);
+        }
+        return $stmt->execute()->rowCount();
     }
 }

@@ -2,17 +2,14 @@
 
 namespace Cobra\Database\Query;
 
-use Cobra\Database\Query\Column\Column;
-use Cobra\Database\Query\Column\ColumnUpdate;
 use Cobra\Database\Query\Traits\UsesConditions;
-use Cobra\Database\Query\Traits\UsesMutateColumns;
 use Cobra\Database\Query\Traits\UsesLimit;
 use Cobra\Database\Query\Traits\UsesTableAndStore;
 
 /**
- * Update Query
+ * Delete Query
  *
- * @category  ORM
+ * @category  Database
  * @package   Cobra
  * @author    Andrew Mc Cormack <webmaster@ddmseo.com>
  * @copyright Copyright (c) 2019, Andrew Mc Cormack
@@ -22,16 +19,9 @@ use Cobra\Database\Query\Traits\UsesTableAndStore;
  * @since     1.0.0
  */
 
-class UpdateQuery extends Query
+class DeleteQuery extends Query
 {
-    use UsesConditions, UsesLimit, UsesMutateColumns, UsesTableAndStore;
-
-    /**
-     * Mutate column class.
-     *
-     * @var string
-     */
-    protected $columnClass = ColumnUpdate::class;
+    use UsesConditions, UsesLimit, UsesTableAndStore;
 
     /**
      * Returns the SQL string.
@@ -41,16 +31,15 @@ class UpdateQuery extends Query
     public function getSQL(): string
     {
         return sprintf(
-            'UPDATE %s SET %s %s%s',
+            'DELETE FROM `%s` %s%s',
             $this->table,
-            $this->store->renderColumns(),
-            $this->store->renderConditions(),
+            $this->store->renderConditions($this->qid),
             $this->limit > 0 ? sprintf(' LIMIT %s', $this->limit) : ''
         );
     }
 
     /**
-     * Executes the update query.
+     * Executes the insert query.
      *
      * @return integer
      */
@@ -58,14 +47,11 @@ class UpdateQuery extends Query
     {
         $stmt = stmt(
             $this->getSQL(),
-            array_merge(
-                array_map(function (Column $column) {
-                    return $column->getValue();
-                }, $this->store->getColumns()),
-                $this->bind
-            )
-        )->execute();
-        
-        return $stmt->rowCount();
+            $this->store->getBind()
+        );
+        if ($this->limit) {
+            $stmt->setLimit($this->limit);
+        }
+        return $stmt->execute()->rowCount();
     }
 }
