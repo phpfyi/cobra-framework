@@ -7,7 +7,7 @@ namespace Cobra\Database\Query\Column;
  *
  * Class representing an SQL query update query column.
  *
- * @category  ORM
+ * @category  Database
  * @package   Cobra
  * @author    Andrew Mc Cormack <webmaster@ddmseo.com>
  * @copyright Copyright (c) 2019, Andrew Mc Cormack

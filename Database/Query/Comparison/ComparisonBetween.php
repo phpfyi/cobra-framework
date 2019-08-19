@@ -7,7 +7,7 @@ namespace Cobra\Database\Query\Comparison;
  *
  * Class representing an SQL query BETWEEN comparison.
  *
- * @category  ORM
+ * @category  Database
  * @package   Cobra
  * @author    Andrew Mc Cormack <webmaster@ddmseo.com>
  * @copyright Copyright (c) 2019, Andrew Mc Cormack

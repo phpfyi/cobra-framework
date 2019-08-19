@@ -5,7 +5,7 @@ namespace Cobra\Database\Query\Traits;
 /**
  * Uses Query Identifier trait
  *
- * @category  ORM
+ * @category  Database
  * @package   Cobra
  * @author    Andrew Mc Cormack <webmaster@ddmseo.com>
  * @copyright Copyright (c) 2019, Andrew Mc Cormack
