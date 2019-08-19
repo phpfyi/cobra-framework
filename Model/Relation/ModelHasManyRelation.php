@@ -37,9 +37,8 @@ class ModelHasManyRelation extends HasManyRelation implements Iterator, ModelDat
         $this->data = $class::get()->where(
             $this->getHasOneColumnName(),
             '=',
-            $this->getParentID()
+            $this->parentID
         )->all(false);
-
 
         return $this;
     }
@@ -56,7 +55,6 @@ class ModelHasManyRelation extends HasManyRelation implements Iterator, ModelDat
             ->count('id')
             ->where("{$this->relationTable}.{$this->getHasOneColumnName()}", '=', $this->parentID)
             ->limit(1)
-            ->bind([$this->parentID])
             ->fetch()->count;
     }
 
@@ -74,7 +72,6 @@ class ModelHasManyRelation extends HasManyRelation implements Iterator, ModelDat
             ->where("{$this->relationTable}.id", '=', $relationID)
             ->and("{$this->relationTable}.{$this->getHasOneColumnName()}", '=', $this->parentID)
             ->limit(1)
-            ->bind([$relationID,$this->parentID])
             ->fetch()->count > 0;
     }
 
@@ -134,7 +131,6 @@ class ModelHasManyRelation extends HasManyRelation implements Iterator, ModelDat
             ->update($this->relationTable)
             ->column($this->getHasOneColumnName(), $value)
             ->where("{$this->relationTable}.id", '=', $relationID)
-            ->bind([$relationID])
             ->execute();
     }
 }

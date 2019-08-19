@@ -59,8 +59,7 @@ class DeleteAction extends Action
             ->where(function (Condition $condition) {
                 $condition->column('id', '=', $this->id);
             })
-            ->limit(1)
-            ->bind([$this->id]);
+            ->limit(1);
 
         $this->statement->execute();
     }

@@ -89,8 +89,7 @@ class ModelManyManyRelation extends ManyManyRelation implements Iterator, ModelD
         $select = container_resolve(QueryFactory::class)
             ->select($this->table, $this->foreignClass)
             ->where("{$this->table}.{$this->localColumn}", '=', $this->localID)
-            ->order("{$this->table}.{$this->sortColumn}", 'ASC')
-            ->bind([$this->localID]);
+            ->order("{$this->table}.{$this->sortColumn}", 'ASC');
 
         array_map(
             function ($class) use ($select) {
@@ -117,7 +116,6 @@ class ModelManyManyRelation extends ManyManyRelation implements Iterator, ModelD
             ->count('id')
             ->where("{$this->table}.{$this->localColumn}", '=', $this->localID)
             ->limit(1)
-            ->bind([$this->localID])
             ->fetch()->count;
     }
 
@@ -132,8 +130,7 @@ class ModelManyManyRelation extends ManyManyRelation implements Iterator, ModelD
         $stmt = container_resolve(QueryFactory::class)
             ->select($this->table)
             ->count('id')
-            ->limit(1)
-            ->bind([$this->localID,$foreignID]);
+            ->limit(1);
 
         $this->setWhereConditions($stmt, $foreignID);
 
@@ -170,8 +167,7 @@ class ModelManyManyRelation extends ManyManyRelation implements Iterator, ModelD
     {
         $stmt = container_resolve(QueryFactory::class)
             ->delete($this->table)
-            ->limit(1)
-            ->bind([$this->localID,$foreignID]);
+            ->limit(1);
 
         $this->setWhereConditions($stmt, $foreignID);
 
@@ -190,8 +186,7 @@ class ModelManyManyRelation extends ManyManyRelation implements Iterator, ModelD
         $stmt = container_resolve(QueryFactory::class)
             ->update($this->table)
             ->column($this->sortColumn, $sort)
-            ->limit(1)
-            ->bind([$this->localID,$foreignID]);
+            ->limit(1);
 
         $this->setWhereConditions($stmt, $foreignID);
 

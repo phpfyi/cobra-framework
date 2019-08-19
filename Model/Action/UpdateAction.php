@@ -135,12 +135,8 @@ class UpdateAction extends Action
         return container_resolve(QueryFactory::class)
             ->select($this->table)
             ->count('id')
-            ->where(function (Condition $condition) {
-                $condition
-                    ->column('id', '=', $this->id);
-            })
+            ->where('id', '=', $this->id)
             ->limit(1)
-            ->bind([$this->id])
             ->fetch()->count > 0;
     }
 
@@ -168,10 +164,7 @@ class UpdateAction extends Action
         $this->statement = container_resolve(QueryFactory::class)
             ->update($this->table)
             ->columns($this->columns)
-            ->where(function (Condition $condition) {
-                $condition->column('id', '=', $this->id);
-            })
-            ->limit(1)
-            ->bind([$this->id]);
+            ->where('id', '=', $this->id)
+            ->limit(1);
     }
 }
