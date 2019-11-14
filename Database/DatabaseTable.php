@@ -490,4 +490,14 @@ class DatabaseTable extends AbstractObject implements DatabaseTableInterface
     {
         return array_key($name, $this->manyMany);
     }
+
+    /**
+     * Return an array of belongs many many relations
+     *
+     * @return array
+     */
+    public function getBelongsManyManyRelations(): array
+    {
+        return $this->belongsManyMany;
+    }
 }
